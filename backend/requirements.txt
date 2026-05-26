@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+motor
+pydantic[email]
+python-dotenv
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+scikit-learn
+joblib
+numpy
+pandas
+pillow
+# tensorflow-cpu # Un-comment to use real tf models, mock models used by default

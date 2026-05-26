@@ -1,0 +1,6 @@
+node_modules/
+__pycache__/
+venv/
+.env
+disease_model.h5
+yield_model.pkl
