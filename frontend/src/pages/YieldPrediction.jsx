@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sprout, Droplets, ThermometerSun, Map, Database, TrendingUp, TrendingDown, IndianRupee, AlertCircle, CloudRain, Sun, Calendar, CheckCircle2, BarChart3 } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 import { useLanguage } from '../context/LanguageContext';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, LineChart, Line, Cell } from 'recharts';
 
@@ -31,10 +31,9 @@ const YieldPrediction = () => {
     
     try {
       const token = localStorage.getItem('token') || "mock-token";
-      const response = await axios.post(`http://localhost:8000/predict/predict-yield?lang=${language}`, formData, {
+      const response = await api.post(`/predict/predict-yield?lang=${language}`, formData, {
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         }
       });
       setResult(response.data);
