@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, Camera, AlertCircle, CheckCircle, BrainCircuit, ShieldAlert, ShieldCheck, Bug, Info, ListTree, Activity } from 'lucide-react';
-import axios from 'axios';
+import api from '../api';
 import { useLanguage } from '../context/LanguageContext';
 const DiseaseDetection = () => {
   const { t, language } = useLanguage();
@@ -35,10 +35,9 @@ const DiseaseDetection = () => {
     try {
       const token = localStorage.getItem('token') || "mock-token";
       
-      const response = await axios.post(`http://localhost:8000/predict/predict-disease?lang=${language}`, formData, {
+      const response = await api.post(`/predict/predict-disease?lang=${language}`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'multipart/form-data'
         }
       });
       setResult(response.data);
