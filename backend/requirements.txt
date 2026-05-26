@@ -11,4 +11,9 @@ joblib
 numpy
 pandas
 pillow
+opencv-python-headless
+httpx
+beautifulsoup4
+requests
+gTTS
 # tensorflow-cpu # Un-comment to use real tf models, mock models used by default
