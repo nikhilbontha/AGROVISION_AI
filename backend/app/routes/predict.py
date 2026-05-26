@@ -4,7 +4,7 @@ from app.database import history_collection
 from app.utils.security import decode_access_token
 from app.utils.image_utils import check_image_quality
 from app.utils.disease_info import get_disease_info
-from fastapi.security import OAuth2PasswordBearer
+from app.routes.auth import get_current_user
 import datetime
 import random
 import os
@@ -18,7 +18,6 @@ from app.services.weather_service import fetch_real_weather
 from app.services.market_service import fetch_agmarknet_price
 
 router = APIRouter()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login", auto_error=False)
 
 # Paths for models
 YIELD_MODEL_PATH = "../ml_models/yield_prediction/yield_model.pkl"
@@ -58,17 +57,6 @@ try:
         leaf_model = tf.keras.models.load_model(LEAF_MODEL_PATH)
 except Exception as e:
     print(f"Warning: Could not load leaf model: {e}")
-
-
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = decode_access_token(token)
-        if payload:
-            return payload
-    except:
-        pass
-    return {"id": "anonymous"}
-
 
 @router.post("/predict-disease")
 async def predict_disease(lang: str = 'en', file: UploadFile = File(...), crop_type: str = Form("Auto-Detect"), user: dict = Depends(get_current_user)):
