@@ -6,7 +6,9 @@ router = APIRouter()
 
 @router.get("/disease/{user_id}")
 async def get_disease_history(user_id: str, current_user: dict = Depends(get_current_user)):
-    cursor = disease_collection.find({"user_id": user_id}).sort("created_at", -1).limit(50)
+    # Ignore user_id from path and strictly use the authenticated user's ID
+    actual_user_id = current_user["id"]
+    cursor = disease_collection.find({"user_id": actual_user_id}).sort("created_at", -1).limit(50)
     history_list = []
     async for document in cursor:
         document["_id"] = str(document["_id"])
@@ -16,7 +18,8 @@ async def get_disease_history(user_id: str, current_user: dict = Depends(get_cur
 
 @router.get("/yield/{user_id}")
 async def get_yield_history(user_id: str, current_user: dict = Depends(get_current_user)):
-    cursor = yield_collection.find({"user_id": user_id}).sort("created_at", -1).limit(50)
+    actual_user_id = current_user["id"]
+    cursor = yield_collection.find({"user_id": actual_user_id}).sort("created_at", -1).limit(50)
     history_list = []
     async for document in cursor:
         document["_id"] = str(document["_id"])
@@ -26,7 +29,8 @@ async def get_yield_history(user_id: str, current_user: dict = Depends(get_curre
 
 @router.get("/recommendations/{user_id}")
 async def get_recommendation_history(user_id: str, current_user: dict = Depends(get_current_user)):
-    cursor = recommendation_collection.find({"user_id": user_id}).sort("created_at", -1).limit(50)
+    actual_user_id = current_user["id"]
+    cursor = recommendation_collection.find({"user_id": actual_user_id}).sort("created_at", -1).limit(50)
     history_list = []
     async for document in cursor:
         document["_id"] = str(document["_id"])

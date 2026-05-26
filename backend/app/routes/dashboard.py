@@ -7,13 +7,18 @@ from app.routes.auth import get_current_user
 router = APIRouter()
 
 @router.get("/stats")
-async def get_dashboard_stats():
+async def get_dashboard_stats(current_user: dict = Depends(get_current_user)):
+    user_id = current_user["id"]
+    
+    # We can keep total platform users just for display if needed, but scans should be personal
     total_users = await users_collection.count_documents({})
-    total_disease = await disease_collection.count_documents({})
-    total_yield = await yield_collection.count_documents({})
+    
+    total_disease = await disease_collection.count_documents({"user_id": user_id})
+    total_yield = await yield_collection.count_documents({"user_id": user_id})
     total_scans = total_disease + total_yield
     
     pipeline = [
+        {"$match": {"user_id": user_id}},
         {"$group": {"_id": "$predicted_disease", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit": 1}
@@ -23,12 +28,13 @@ async def get_dashboard_stats():
         most_common = doc["_id"]
         
     latest_rec = "No recent recommendations"
-    cursor = recommendation_collection.find().sort("created_at", -1).limit(1)
+    cursor = recommendation_collection.find({"user_id": user_id}).sort("created_at", -1).limit(1)
     async for doc in cursor:
         latest_rec = doc.get("crop_care", "Maintain regular care")
 
-    # Real avg confidence and healthy percent
+    # Real avg confidence and healthy percent for the user
     pipeline_conf = [
+        {"$match": {"user_id": user_id}},
         {"$group": {
             "_id": None,
             "avgConfidence": {"$avg": "$confidence"},
@@ -48,14 +54,14 @@ async def get_dashboard_stats():
         if totalCount > 0:
             healthyPercent = round((doc.get("healthyCount", 0) / totalCount) * 100, 1)
 
-    # Calculate profit this month and high risk crops
+    # Calculate profit this month and high risk crops for user
     current_month = datetime.utcnow().month
     current_year = datetime.utcnow().year
     
     profitThisMonth = 0
     highRiskCrops = 0
     
-    async for doc in yield_collection.find({}):
+    async for doc in yield_collection.find({"user_id": user_id}):
         created_at = doc.get("created_at")
         doc_month = -1
         doc_year = -1
@@ -77,7 +83,7 @@ async def get_dashboard_stats():
             highRiskCrops += 1
 
     return {
-        "totalFarmers": total_users,
+        "totalFarmers": total_users, # Keeping global for UX aesthetic if desired, otherwise could be 1
         "totalScans": total_scans,
         "diseasePredictions": total_disease,
         "yieldPredictions": total_yield,
@@ -90,25 +96,22 @@ async def get_dashboard_stats():
     }
 
 @router.get("/recent-disease")
-async def get_recent_disease():
-    cursor = disease_collection.find().sort("created_at", -1).limit(5)
+async def get_recent_disease(current_user: dict = Depends(get_current_user)):
+    user_id = current_user["id"]
+    cursor = disease_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5)
     recent = []
+    
+    user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    farmer_name = user["name"] if user else "Unknown"
+
     async for doc in cursor:
         doc["_id"] = str(doc["_id"])
-        user_id_str = doc.get("user_id")
-        user = None
-        if user_id_str:
-            try:
-                user = await users_collection.find_one({"_id": ObjectId(user_id_str)})
-            except:
-                pass
-        
         disease_name = doc.get("predicted_disease", "Unknown")
         confidence = doc.get("confidence", 0)
 
         recent.append({
             "id": doc["_id"],
-            "farmer": user["name"] if user else "Unknown",
+            "farmer": farmer_name,
             "cropName": doc.get("crop_type", "Unknown"),
             "disease": disease_name,
             "confidence": f"{confidence}%" if isinstance(confidence, (int, float)) else confidence,
@@ -117,25 +120,22 @@ async def get_recent_disease():
     return recent
 
 @router.get("/recent-yield")
-async def get_recent_yield():
-    cursor = yield_collection.find().sort("created_at", -1).limit(5)
+async def get_recent_yield(current_user: dict = Depends(get_current_user)):
+    user_id = current_user["id"]
+    cursor = yield_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5)
     recent = []
+    
+    user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    farmer_name = user["name"] if user else "Unknown"
+    
     async for doc in cursor:
         doc["_id"] = str(doc["_id"])
-        user_id_str = doc.get("user_id")
-        user = None
-        if user_id_str:
-            try:
-                user = await users_collection.find_one({"_id": ObjectId(user_id_str)})
-            except:
-                pass
-            
         area = doc.get("area", "Unknown")
         predicted_yield = doc.get("predicted_yield", "Unknown")
 
         recent.append({
             "id": doc["_id"],
-            "farmer": user["name"] if user else "Unknown",
+            "farmer": farmer_name,
             "cropName": doc.get("crop_type", "Unknown"),
             "predictedYield": str(predicted_yield),
             "date": doc.get("created_at"),
@@ -144,9 +144,12 @@ async def get_recent_yield():
     return recent
 
 @router.get("/analytics")
-async def get_analytics():
+async def get_analytics(current_user: dict = Depends(get_current_user)):
+    user_id = current_user["id"]
+    
     # diseaseDistribution
     dist_pipeline = [
+        {"$match": {"user_id": user_id}},
         {"$group": {"_id": "$predicted_disease", "value": {"$sum": 1}}},
         {"$sort": {"value": -1}},
         {"$limit": 5}
@@ -161,6 +164,7 @@ async def get_analytics():
 
     # cropHealth
     health_pipeline = [
+        {"$match": {"user_id": user_id}},
         {"$group": {
             "_id": "$crop_type",
             "total": {"$sum": 1},
@@ -180,6 +184,7 @@ async def get_analytics():
 
     # topPerformingCrop (most analyzed yield crop)
     yield_pipeline = [
+        {"$match": {"user_id": user_id}},
         {"$group": {"_id": "$crop_type", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit": 1}
@@ -191,7 +196,7 @@ async def get_analytics():
     # avgYield manual calculation
     total_yield = 0
     count_yield = 0
-    async for doc in yield_collection.find({}):
+    async for doc in yield_collection.find({"user_id": user_id}):
         try:
             val = float(str(doc.get("predicted_yield", 0)).split()[0])
             total_yield += val
@@ -209,7 +214,8 @@ async def get_analytics():
     }
 
 @router.get("/profit-analysis")
-async def get_profit_analysis(year: str = None):
+async def get_profit_analysis(year: str = None, current_user: dict = Depends(get_current_user)):
+    user_id = current_user["id"]
     if not year:
         year = str(datetime.now().year)
         
@@ -223,7 +229,7 @@ async def get_profit_analysis(year: str = None):
     months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     monthly_data = {m: {"month": m, "Wheat": 0, "Rice": 0, "Corn": 0, "Tomato": 0} for m in months}
     
-    async for doc in yield_collection.find({}):
+    async for doc in yield_collection.find({"user_id": user_id}):
         created_at = doc.get("created_at")
         if not created_at:
             continue
