@@ -18,7 +18,7 @@ from app.services.weather_service import fetch_real_weather
 from app.services.market_service import fetch_agmarknet_price
 
 router = APIRouter()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login", auto_error=False)
 
 # Paths for models
 YIELD_MODEL_PATH = "../ml_models/yield_prediction/yield_model.pkl"

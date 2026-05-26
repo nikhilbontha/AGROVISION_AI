@@ -94,6 +94,24 @@
     "phone": "Phone",
     "location": "Location",
     "language": "Language",
-    "joined": "Joined"
+    "joined": "Joined",
+    "register_title": "Create Account",
+    "login_title": "Login",
+    "err_invalid": "Invalid Email or Password",
+    "full_name": "Full Name",
+    "enter_name": "Enter your name",
+    "enter_email": "Enter your email",
+    "err_email_req": "Please enter a valid email address.",
+    "password": "Password",
+    "enter_password": "Enter your password",
+    "err_pass_req": "Please enter your password.",
+    "phone_opt": "Phone (Optional)",
+    "enter_phone": "Enter your phone number",
+    "location_opt": "Location (Optional)",
+    "enter_location": "Enter your city or district",
+    "register_btn": "Register",
+    "login_btn": "Login",
+    "has_account": "Already have an account? Login",
+    "no_account": "Don't have an account? Register"
   }
 }
