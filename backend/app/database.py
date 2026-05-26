@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL") or "mongodb://localhost:27017/agrovision"
+MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL") or "mongodb+srv://nikhilbontha00_AgroVisionAI:Nani%40nikhil2005@agrovisionai.8lnljmn.mongodb.net/agrovision?appName=AgroVisionAI&tlsAllowInvalidCertificates=true"
 client = AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=2000)
 db = client.get_database()
 
