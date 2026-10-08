@@ -10,6 +10,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
   const dropdownRef = useRef(null);
 
   const isLoggedIn = !!localStorage.getItem('token');
@@ -23,7 +24,7 @@ const Navbar = () => {
 
   const handleLanguageChange = async (lng) => {
     changeLanguage(lng);
-    
+
     // Save to backend if user is logged in
     const token = localStorage.getItem('token');
     if (token) {
@@ -47,6 +48,14 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      api.get('/auth/me')
+        .then(res => setUserInfo(res.data))
+        .catch(console.error);
+    }
+  }, [isLoggedIn]);
 
   const links = [
     { name: t('nav.home'), path: '/', icon: <Home className="w-5 h-5" /> },
@@ -76,9 +85,8 @@ const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`relative flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      isActive ? 'text-farm-green' : 'text-gray-300 hover:text-white hover:bg-gray-800'
-                    }`}
+                    className={`relative flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive ? 'text-farm-green' : 'text-gray-300 hover:text-white hover:bg-gray-800'
+                      }`}
                   >
                     {link.icon}
                     {link.name}
@@ -93,14 +101,20 @@ const Navbar = () => {
                 );
               })}
             </div>
-            
-            {/* Profile Dropdown */}
+
             <div className="relative" ref={dropdownRef}>
-              <button 
+              <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="flex items-center justify-center p-2 rounded-full bg-gray-800 border border-gray-700 text-gray-300 hover:text-farm-green hover:border-farm-green transition-all"
+                className={`flex items-center justify-center rounded-full border transition-all overflow-hidden ${isLoggedIn ? 'w-12 h-12 border-farm-green shadow-[0_0_10px_rgba(34,197,94,0.3)]' : 'p-2 bg-gray-800 border-gray-700 text-gray-300 hover:text-farm-green hover:border-farm-green'
+                  }`}
               >
-                <User className="w-5 h-5" />
+                {isLoggedIn && userInfo?.avatar ? (
+                  <img src={userInfo.avatar} alt="Profile" className="w-full h-full object-cover" />
+                ) : isLoggedIn && localStorage.getItem('custom_avatar') ? (
+                  <img src={localStorage.getItem('custom_avatar')} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  <User className="w-5 h-5" />
+                )}
               </button>
 
               <AnimatePresence>
@@ -116,13 +130,13 @@ const Navbar = () => {
                         <Globe className="w-3 h-3" /> {t('nav.language')}
                       </div>
                       <div className="flex justify-between items-center bg-farm-dark rounded-lg p-1">
-                        <button 
+                        <button
                           onClick={() => handleLanguageChange('en')}
                           className={`flex-1 text-center py-1 rounded-md text-sm transition-colors ${language === 'en' ? 'bg-farm-green text-black font-bold' : 'text-gray-400 hover:text-white'}`}
                         >
                           EN
                         </button>
-                        <button 
+                        <button
                           onClick={() => handleLanguageChange('te')}
                           className={`flex-1 text-center py-1 rounded-md text-sm transition-colors ${language === 'te' ? 'bg-farm-green text-black font-bold' : 'text-gray-400 hover:text-white'}`}
                         >
@@ -134,29 +148,29 @@ const Navbar = () => {
                     <div className="py-1">
                       {isLoggedIn ? (
                         <>
-                          <button 
-                            onClick={() => { setIsProfileOpen(false); navigate('/dashboard', { state: { activeTab: 'profile' } }); }}
-                            className="w-full text-left px-4 py-3 text-sm text-gray-300 hover:bg-farm-dark hover:text-white flex items-center gap-3 transition-colors"
+                          <button
+                            onClick={() => { setIsProfileOpen(false); navigate('/dashboard', { state: { activeTab: 'Settings' } }); }}
+                            className="w-full text-left px-4 py-2.5 text-xs text-gray-300 hover:bg-farm-dark hover:text-white flex items-center gap-3 transition-colors"
                           >
                             <User className="w-4 h-4" /> {t('nav.my_farmer_profile')}
                           </button>
-                          <button 
+                          <button
                             onClick={() => { handleLogout(); setIsProfileOpen(false); }}
-                            className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 flex items-center gap-3 transition-colors border-t border-gray-700/50"
+                            className="w-full text-left px-4 py-2.5 text-xs text-red-400 hover:bg-red-500/10 flex items-center gap-3 transition-colors border-t border-gray-700/50"
                           >
                             <LogOut className="w-4 h-4" /> {t('nav.logout')}
                           </button>
                         </>
                       ) : (
                         <>
-                          <Link 
+                          <Link
                             to="/login"
                             onClick={() => setIsProfileOpen(false)}
                             className="px-4 py-3 text-sm text-gray-300 hover:bg-farm-dark hover:text-farm-green flex items-center gap-3 transition-colors"
                           >
                             <LogIn className="w-4 h-4" /> {t('nav.login')}
                           </Link>
-                          <Link 
+                          <Link
                             to="/register"
                             onClick={() => setIsProfileOpen(false)}
                             className="px-4 py-3 text-sm text-gray-300 hover:bg-farm-dark hover:text-farm-green flex items-center gap-3 transition-colors"

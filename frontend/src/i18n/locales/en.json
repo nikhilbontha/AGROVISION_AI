@@ -45,7 +45,7 @@
     "soil_type": "Soil Type",
     "crop_type": "Crop Type",
     "calculate_estimate": "Calculate Estimate",
-    "estimated_yield_per_ha": "Estimated Yield per Hectare",
+    "estimated_yield_per_ha": "Estimated Yield per Acre",
     "total_expected_harvest": "Total Expected Harvest",
     "current_market_price": "Current Market Price",
     "financial_forecast": "Financial Forecast",

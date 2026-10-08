@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, predict, history, dashboard, assistant
+from app.routes import auth, predict, history, dashboard, assistant, admin
 from app.database import test_connection
 
 app = FastAPI(
@@ -21,6 +21,11 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_db_client():
     await test_connection()
+    try:
+        predict.get_disease_model()
+        predict.get_leaf_model()
+    except Exception as e:
+        print(f"Warning pre-loading models: {e}")
 
 @app.get("/")
 def read_root():
@@ -42,3 +47,4 @@ app.include_router(predict.router, prefix="/predict", tags=["Predictions"])
 app.include_router(history.router, prefix="/history", tags=["History"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["Dashboard"])
 app.include_router(assistant.router, prefix="/assistant", tags=["Assistant"])
+app.include_router(admin.router, prefix="/admin", tags=["Admin"])
