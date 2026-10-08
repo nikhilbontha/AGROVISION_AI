@@ -14,16 +14,10 @@ def check_image_quality(image_bytes):
         
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     
-    # 1. Blur Detection (Laplacian Variance)
+    # Always allow valid readable images to proceed to disease detection
+    warning_msg = None
     blur_score = cv2.Laplacian(gray, cv2.CV_64F).var()
-    if blur_score < 30: # Threshold for severe blur
-        return {"is_valid": False, "warning": "Image is too blurry. Please upload a clear, focused photo."}
+    if blur_score < 5:
+        warning_msg = "Note: Image appears slightly soft/blurry, but processing continued."
         
-    # 2. Brightness Check
-    mean_brightness = np.mean(gray)
-    if mean_brightness < 20:
-        return {"is_valid": False, "warning": "Image is too dark. Please ensure good lighting."}
-    if mean_brightness > 240:
-        return {"is_valid": False, "warning": "Image is too bright/overexposed. Please ensure clear lighting."}
-        
-    return {"is_valid": True, "warning": None}
+    return {"is_valid": True, "warning": warning_msg}

@@ -5,8 +5,9 @@ import numpy as np
 import json
 
 disease_model = tf.keras.models.load_model("../ml_models/disease_detection/disease_model.h5")
-with open("../ml_models/disease_detection/classes.json", "r") as f:
-    disease_classes = json.load(f)
+with open("../ml_models/disease_detection/class_indices.json", "r") as f:
+    class_indices = json.load(f)
+    disease_classes = {v: k for k, v in class_indices.items()}
 
 # Create a random noise image or load a specific one if available
 img = Image.new('RGB', (224, 224), color = 'green')

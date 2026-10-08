@@ -7,12 +7,20 @@ SECRET_KEY = os.getenv("JWT_SECRET", "supersecretjwtkey")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 1 week
 
+import asyncio
+
 def verify_password(plain_password, hashed_password):
     return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+async def async_verify_password(plain_password, hashed_password):
+    return await asyncio.to_thread(verify_password, plain_password, hashed_password)
 
 def get_password_hash(password):
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
+
+async def async_get_password_hash(password):
+    return await asyncio.to_thread(get_password_hash, password)
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()

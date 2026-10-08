@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroVision AI - Documentation</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+
+
+    <!-- Hero Header -->
+    <header class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i> AgroVision AI
+            </div>
+            <h1>Smart Crop Disease Detection, Yield Prediction & Market Intelligence Platform</h1>
+            <p>AI-powered agriculture support system for farmers with real-time disease diagnosis, yield prediction,
+                market intelligence, weather forecasting, and bilingual assistance.</p>
+            <div class="hero-buttons">
+                <a href="#overview" class="btn btn-primary"><i class="fas fa-book"></i> View Documentation</a>
+                <a href="#architecture" class="btn btn-secondary"><i class="fas fa-project-diagram"></i> Project
+                    Architecture</a>
+                <a href="#workflow" class="btn btn-outline"><i class="fas fa-play"></i> Live Workflow</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="nav-search" placeholder="Search sections...">
+            </div>
+            <nav id="navbar">
+                <ul class="nav-links">
+                    <li><a href="#overview" class="active"><span class="num">1</span> Overview</a></li>
+                    <li><a href="#problem"><span class="num">2</span> Problem Statement</a></li>
+                    <li><a href="#objectives"><span class="num">3</span> Objectives</a></li>
+                    <li><a href="#dataset"><span class="num">4</span> Dataset</a></li>
+                    <li><a href="#preprocessing"><span class="num">5</span> Preprocessing</a></li>
+                    <li><a href="#ml-methodology"><span class="num">6</span> Machine Learning</a></li>
+                    <li><a href="#results"><span class="num">7</span> Results</a></li>
+                    <li><a href="#use-cases"><span class="num">8</span> Use Cases</a></li>
+                    <li><a href="#tools"><span class="num">9</span> Tools</a></li>
+                    <li><a href="#architecture"><span class="num">10</span> Architecture</a></li>
+                    <li><a href="#workflow"><span class="num">11</span> Workflow</a></li>
+                    <li><a href="#dashboard"><span class="num">12</span> Dashboard</a></li>
+                    <li><a href="#future-scope"><span class="num">13</span> Future Scope</a></li>
+                    <li><a href="#faq"><span class="num">14</span> FAQ</a></li>
+                    <li><a href="#conclusion"><span class="num">15</span> Conclusion</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+
+            <!-- SECTION 1: OVERVIEW -->
+            <section id="overview" class="doc-section reveal">
+                <h2>1. Project Overview</h2>
+                <p class="section-desc">
+                    <strong>My project is AgroVision AI – Smart Crop Disease Detection, Yield Prediction & Market Intelligence Platform.</strong><br><br>
+                    This project is built to help farmers make better decisions using Artificial Intelligence and real-time agricultural data.
+                </p>
+                <div class="info-grid">
+                    <div class="info-card expandable" onclick="this.classList.toggle('expanded')">
+                        <h3><i class="fas fa-globe"></i> Domain <i class="fas fa-info-circle float-right"
+                                title="Click for more info"></i></h3>
+                        <p>Agriculture Tech + Artificial Intelligence</p>
+                        <div class="extra-info">
+                            This project operates at the intersection of modern agriculture and advanced AI, aiming to
+                            bring accessible, data-driven solutions to traditional farming practices across rural areas.
+                        </div>
+                    </div>
+                    <div class="info-card expandable" onclick="this.classList.toggle('expanded')">
+                        <h3><i class="fas fa-layer-group"></i> Sub-domains <i class="fas fa-info-circle float-right"
+                                title="Click for more info"></i></h3>
+                        <p>Computer Vision, Predictive Analytics, NLP</p>
+                        <div class="extra-info">
+                            Leverages Computer Vision for image-based disease diagnosis, Predictive Analytics for
+                            weather-integrated yield forecasting, and NLP for the multilingual AI assistant.
+                        </div>
+                    </div>
+                    <div class="info-card expandable" onclick="this.classList.toggle('expanded')">
+                        <h3><i class="fas fa-brain"></i> ML Type <i class="fas fa-info-circle float-right"
+                                title="Click for more info"></i></h3>
+                        <p>Supervised Learning, Deep Learning</p>
+                        <div class="extra-info">
+                            Utilizes Supervised Learning with heavily labeled datasets (images and tabular data) and
+                            Deep Learning architectures capable of complex spatial and non-linear pattern recognition.
+                        </div>
+                    </div>
+                    <div class="info-card expandable" onclick="this.classList.toggle('expanded')">
+                        <h3><i class="fas fa-code-branch"></i> Algorithms <i class="fas fa-info-circle float-right"
+                                title="Click for more info"></i></h3>
+                        <p>CNN, EfficientNet, Random Forest</p>
+                        <div class="extra-info">
+                            CNN and EfficientNet are optimized for robust leaf image classification, while Random Forest
+                            handles high-dimensional, non-linear regression on environmental yield data.
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="mt-4">Core Technologies</h3>
+                <div class="tech-cards">
+                    <span class="badge clickable" onclick="showTechDetails('CNN')"><i class="fas fa-network-wired"></i> CNN</span>
+                    <span class="badge clickable" onclick="showTechDetails('EfficientNet')"><i class="fas fa-project-diagram"></i> EfficientNet</span>
+                    <span class="badge clickable" onclick="showTechDetails('OpenCV')"><i class="fas fa-eye"></i> OpenCV</span>
+                    <span class="badge clickable" onclick="showTechDetails('Random Forest')"><i class="fas fa-tree"></i> Random Forest</span>
+                    <span class="badge clickable" onclick="showTechDetails('FastAPI')"><i class="fas fa-server"></i> FastAPI</span>
+                    <span class="badge clickable" onclick="showTechDetails('MongoDB')"><i class="fas fa-database"></i> MongoDB</span>
+                    <span class="badge clickable" onclick="showTechDetails('React')"><i class="fab fa-react"></i> React</span>
+                </div>
+                
+                <div id="tech-details-container" class="glass" style="display: none; margin-top: 20px; padding: 20px; border-left: 4px solid var(--accent-green); transition: all 0.3s ease;">
+                    <h4 id="tech-title" style="color: var(--primary-green); margin-bottom: 10px; font-size: 1.2rem;"></h4>
+                    <p id="tech-desc" style="color: var(--text-muted); font-size: 0.95rem;"></p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: PROBLEM STATEMENT -->
+            <section id="problem" class="doc-section reveal">
+                <h2>2. Problem Statement</h2>
+                <p class="section-desc" style="margin-bottom: 15px;">Major crop losses caused by delayed crop disease detection and unpredictable crop yields due to changing environmental conditions.</p>
+                
+                <p class="section-desc" style="margin-bottom: 15px;">
+                    <strong>Why this problem is important?:</strong> Farmers suffer huge economic losses globally due to crop diseases and unpredictable environmental changes. Early detection and accurate forecasting are critical for global food security and sustainable farming.
+                </p>
+                
+                <p class="section-desc">
+                    <strong>How ML helps solve it?:</strong> Machine Learning enables real-time, automated analysis of crop leaf images to instantly identify diseases. Furthermore, it leverages historical and environmental data to predict crop yield, assisting farmers in making timely, data-driven decisions.
+                </p>
+
+                <div class="problem-grid">
+                    <div class="card glass">
+                        <div class="icon-wrapper red"><i class="fas fa-bug"></i></div>
+                        <h4>Disease Detection Delay</h4>
+                        <p>Farmers often notice crop diseases too late, leading to significant yield loss and excessive
+                            pesticide use.</p>
+                    </div>
+                    <div class="card glass">
+                        <div class="icon-wrapper yellow"><i class="fas fa-cloud-sun-rain"></i></div>
+                        <h4>Weather Uncertainty</h4>
+                        <p>Unpredictable climate conditions make it difficult to plan irrigation and harvesting
+                            optimally.</p>
+                    </div>
+                    <div class="card glass">
+                        <div class="icon-wrapper blue"><i class="fas fa-chart-line"></i></div>
+                        <h4>Market Fluctuation</h4>
+                        <p>Lack of real-time pricing data prevents farmers from selling at the best possible time and
+                            price.</p>
+                    </div>
+                    <div class="card glass">
+                        <div class="icon-wrapper purple"><i class="fas fa-user-times"></i></div>
+                        <h4>Lack of Expert Guidance</h4>
+                        <p>Limited access to agricultural experts leaves farmers relying on guesswork rather than data.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="impact-box mt-4">
+                    <h3><i class="fas fa-lightbulb"></i> How AI Solves This</h3>
+                    <p>AgroVision provides <strong>instant</strong> disease diagnosis via smartphone cameras, integrates
+                        <strong>live weather APIs</strong> for precision planning, and uses <strong>machine
+                            learning</strong> to forecast yields and track market trends, putting expert knowledge
+                        directly into the hands of farmers.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 3: OBJECTIVES -->
+            <section id="objectives" class="doc-section reveal">
+                <h2>3. Objectives</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-search-location"></i></div>
+                        <div class="timeline-content">
+                            <h4>Analyze Crop Data</h4>
+                            <p>Collect and process large-scale agricultural datasets including soil, weather, and
+                                images.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="timeline-content">
+                            <h4>Train ML Models</h4>
+                            <p>Develop robust CNNs and Random Forest models for high-accuracy predictions.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-chart-pie"></i></div>
+                        <div class="timeline-content">
+                            <h4>Generate Predictions</h4>
+                            <p>Output actionable intelligence regarding crop health and expected harvest yields.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-hands-helping"></i></div>
+                        <div class="timeline-content">
+                            <h4>Farmer Assistance</h4>
+                            <p>Provide a bilingual (English/Telugu) AI assistant for accessible guidance.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon"><i class="fas fa-globe-asia"></i></div>
+                        <div class="timeline-content">
+                            <h4>Real-world Use</h4>
+                            <p>Deploy a scalable platform usable on standard mobile devices in rural areas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: DATASET DESCRIPTION -->
+            <section id="dataset" class="doc-section reveal">
+                <h2>4. Dataset Description</h2>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'disease-data')">Disease Dataset</button>
+                    <button class="tab-btn" onclick="openTab(event, 'yield-data')">Yield Dataset</button>
+                </div>
+
+                <div id="disease-data" class="tab-content active glass">
+                    <h3>PlantVillage Kaggle Dataset</h3>
+                    <div class="stats-row">
+                        <div class="stat"><span class="value">54,000+</span><span class="label">Images</span></div>
+                        <div class="stat"><span class="value">38</span><span class="label">Classes</span></div>
+                        <div class="stat"><span class="value">224x224</span><span class="label">Resolution</span></div>
+                    </div>
+                    <p class="mt-2">A comprehensive dataset featuring healthy and diseased leaf images across 14 crop
+                        species, crucial for training robust computer vision models.</p>
+                </div>
+
+                <div id="yield-data" class="tab-content glass" style="display:none;">
+                    <h3>Agricultural Yield Dataset</h3>
+                    <div class="stats-row">
+                        <div class="stat"><span class="value">750,000</span><span class="label">Rows</span></div>
+                        <div class="stat"><span class="value">8</span><span class="label">Core Features</span></div>
+                    </div>
+
+                    <div class="table-responsive mt-3">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Description</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Crop Type</td>
+                                    <td>Species of the crop planted</td>
+                                    <td>Categorical</td>
+                                </tr>
+                                <tr>
+                                    <td>Soil Type</td>
+                                    <td>Classification of soil (e.g., Loamy, Clay)</td>
+                                    <td>Categorical</td>
+                                </tr>
+                                <tr>
+                                    <td>Temperature</td>
+                                    <td>Average temperature during growth cycle</td>
+                                    <td>Numerical</td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity</td>
+                                    <td>Relative humidity percentages</td>
+                                    <td>Numerical</td>
+                                </tr>
+                                <tr>
+                                    <td>Rainfall</td>
+                                    <td>Total rainfall in mm</td>
+                                    <td>Numerical</td>
+                                </tr>
+                                <tr>
+                                    <td>Area</td>
+                                    <td>Cultivation area in hectares</td>
+                                    <td>Numerical</td>
+                                </tr>
+                                <tr>
+                                    <td>Market Price</td>
+                                    <td>Historical market pricing data</td>
+                                    <td>Numerical</td>
+                                </tr>
+                                <tr>
+                                    <td>Yield</td>
+                                    <td>Target Variable: Production in tons/hectare</td>
+                                    <td>Numerical</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: PREPROCESSING -->
+            <section id="preprocessing" class="doc-section reveal">
+                <h2>5. Data Analysis & Preprocessing</h2>
+
+                <div class="flow-container">
+                    <div class="flow-column">
+                        <h4 class="text-center"><i class="fas fa-camera"></i> Image Processing (Disease)</h4>
+                        <ul class="process-list">
+                            <li><i class="fas fa-compress"></i> <strong>Resize:</strong> Standardized to 224x224</li>
+                            <li><i class="fas fa-adjust"></i> <strong>Normalize:</strong> Pixel values scaled to [0, 1]
+                            </li>
+                            <li><i class="fas fa-clone"></i> <strong>Augmentation:</strong> Rotation, flip, zoom to
+                                prevent overfitting</li>
+                            <li><i class="fas fa-random"></i> <strong>Split:</strong> 80% Train, 10% Val, 10% Test</li>
+                        </ul>
+                    </div>
+                    <div class="flow-column">
+                        <h4 class="text-center"><i class="fas fa-database"></i> Tabular Data (Yield)</h4>
+                        <ul class="process-list">
+                            <li><i class="fas fa-eraser"></i> <strong>Missing Values:</strong> Imputation using
+                                median/mode</li>
+                            <li><i class="fas fa-font"></i> <strong>Encoding:</strong> One-hot encoding for Soil/Crop
+                                types</li>
+                            <li><i class="fas fa-balance-scale"></i> <strong>Scaling:</strong> StandardScaler applied to
+                                numericals</li>
+                            <li><i class="fas fa-filter"></i> <strong>Outliers:</strong> IQR method applied to clean
+                                anomalies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 6: ML METHODOLOGY -->
+            <section id="ml-methodology" class="doc-section reveal">
+                <h2>6. Machine Learning Methodology</h2>
+
+                <div class="grid-2">
+                    <div class="card glass ml-card">
+                        <h3><i class="fas fa-network-wired"></i> CNN / EfficientNet</h3>
+                        <p class="subtitle">For Disease Detection</p>
+                        <p><strong>Why Selected:</strong> Excellent spatial feature extraction; EfficientNet balances
+                            accuracy with computational efficiency.</p>
+                        <div class="training-params">
+                            <span class="param"><strong>Epochs:</strong> 50</span>
+                            <span class="param"><strong>Batch Size:</strong> 32</span>
+                            <span class="param"><strong>Optimizer:</strong> Adam</span>
+                            <span class="param"><strong>Loss:</strong> Categorical Crossentropy</span>
+                        </div>
+                    </div>
+                    <div class="card glass ml-card">
+                        <h3><i class="fas fa-tree"></i> Random Forest</h3>
+                        <p class="subtitle">For Yield Prediction</p>
+                        <p><strong>Why Selected:</strong> Handles non-linear relationships in tabular data well, robust
+                            against overfitting, provides feature importance.</p>
+                        <div class="training-params">
+                            <span class="param"><strong>Type:</strong> Supervised Regression</span>
+                            <span class="param"><strong>Criterion:</strong> MSE</span>
+                            <span class="param"><strong>Evaluation:</strong> MAE, RMSE, R²</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 7: RESULTS -->
+            <section id="results" class="doc-section reveal">
+                <h2>7. Results & Performance</h2>
+
+                <div class="results-grid">
+                    <div class="stat-box primary">
+                        <h4>Disease Detection Accuracy</h4>
+                        <div class="huge-text">98.2%</div>
+                        <p>Validation Accuracy</p>
+                    </div>
+                    <div class="stat-box secondary">
+                        <h4>Yield Model R² Score</h4>
+                        <div class="huge-text">0.94</div>
+                        <p>High predictive power</p>
+                    </div>
+                </div>
+
+                <div class="charts-container mt-4">
+                    <div class="chart-box glass">
+                        <h4>Model Confidence Distribution</h4>
+                        <div class="bar-chart">
+                            <div class="bar-row">
+                                <span class="label">Top-1 Accuracy</span>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 98%;">98%</div>
+                                </div>
+                            </div>
+                            <div class="bar-row">
+                                <span class="label">Top-3 Accuracy</span>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 99.5%;">99.5%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-box glass">
+                        <h4>Yield Metrics</h4>
+                        <div class="metrics-grid">
+                            <div class="metric"><span class="m-val">0.12</span><span class="m-lbl">MAE</span></div>
+                            <div class="metric"><span class="m-val">0.18</span><span class="m-lbl">RMSE</span></div>
+                            <div class="metric"><span class="m-val">94%</span><span class="m-lbl">Variance Expl.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 8: USE CASES -->
+            <section id="use-cases" class="doc-section reveal">
+                <h2>8. Use Cases & Applications</h2>
+
+                <div class="use-cases-grid">
+                    <div class="uc-card">
+                        <div class="uc-icon"><i class="fas fa-camera-retro"></i></div>
+                        <h4>Farmer Image Diagnosis</h4>
+                        <p>A farmer spots yellowing leaves, snaps a photo, and instantly receives a diagnosis and
+                            treatment plan.</p>
+                    </div>
+                    <div class="uc-card">
+                        <div class="uc-icon"><i class="fas fa-seedling"></i></div>
+                        <h4>Yield Planning</h4>
+                        <p>Before sowing, a user inputs area and soil type to estimate harvest volume and potential
+                            revenue.</p>
+                    </div>
+                    <div class="uc-card">
+                        <div class="uc-icon"><i class="fas fa-store"></i></div>
+                        <h4>Agri-Business & Market</h4>
+                        <p>Traders and farmers use live market tracking to decide the optimal time to sell crops for
+                            maximum profit.</p>
+                    </div>
+                    <div class="uc-card">
+                        <div class="uc-icon"><i class="fas fa-university"></i></div>
+                        <h4>Academic Review</h4>
+                        <p>Serves as a robust college project demonstrating end-to-end full-stack machine learning
+                            implementation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 9: TOOLS USED -->
+            <section id="tools" class="doc-section reveal">
+                <h2>9. Tools & Technologies</h2>
+
+                <div class="tools-grid">
+                    <div class="tool-category">
+                        <h4><i class="fas fa-desktop"></i> Frontend</h4>
+                        <ul>
+                            <li><i class="fab fa-react"></i> React.js</li>
+                            <li><i class="fas fa-wind"></i> Tailwind CSS</li>
+                            <li><i class="fas fa-magic"></i> Framer Motion</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h4><i class="fas fa-server"></i> Backend</h4>
+                        <ul>
+                            <li><i class="fas fa-bolt"></i> FastAPI</li>
+                            <li><i class="fab fa-python"></i> Python</li>
+                            <li><i class="fas fa-database"></i> MongoDB Atlas</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h4><i class="fas fa-brain"></i> AI / ML</h4>
+                        <ul>
+                            <li><i class="fas fa-cube"></i> TensorFlow / Keras</li>
+                            <li><i class="fas fa-chart-area"></i> Scikit-learn</li>
+                            <li><i class="fas fa-eye"></i> OpenCV</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h4><i class="fas fa-cloud"></i> Deployment</h4>
+                        <ul>
+                            <li><i class="fas fa-rocket"></i> Render (Backend)</li>
+                            <li><i class="fas fa-bolt"></i> Vite (Frontend)</li>
+                            <li><i class="fab fa-git"></i> GitHub Actions</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 10: ARCHITECTURE -->
+            <section id="architecture" class="doc-section reveal">
+                <h2>10. System Architecture</h2>
+                <div class="architecture-diagram glass">
+                    <div class="arch-layer frontend-layer">
+                        <div class="arch-box"><i class="fab fa-react"></i> React Frontend UI (Vite)</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="arch-layer backend-layer">
+                        <div class="arch-box"><i class="fas fa-server"></i> FastAPI Backend Core</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="arch-layer ml-layer">
+                        <div class="arch-box ml"><i class="fas fa-brain"></i> Disease Model (CNN)</div>
+                        <div class="arch-box ml"><i class="fas fa-tree"></i> Yield Model (RF)</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div class="arch-layer data-layer">
+                        <div class="arch-box db"><i class="fas fa-database"></i> MongoDB (Users & History)</div>
+                        <div class="arch-box api"><i class="fas fa-cloud"></i> Open-Meteo & Market APIs</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 11: WORKFLOW -->
+            <section id="workflow" class="doc-section reveal">
+                <h2>11. Core Workflows</h2>
+
+                <div class="workflow-grid">
+                    <div class="wf-card glass">
+                        <h3>Disease Detection Flow</h3>
+                        <div class="wf-step">1. Upload Image & Quality Verification</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">2. Valid Crop Leaf Detection (CNN)</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">3. Top-3 Disease Classification (EfficientNet)</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">4. OpenCV Color Masking & Infection Severity Count</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step highlight">5. Treatment Lookup & DB History Save</div>
+                    </div>
+
+                    <div class="wf-card glass">
+                        <h3>Yield Prediction Flow</h3>
+                        <div class="wf-step">1. Input Farm Data & Fetch Real-time Climate (Open-Meteo)</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">2. Multi-Feature Regression Inference (Random Forest)</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">3. Fetch Live Market Price per Quintal (Agmarknet)</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step">4. Profitability & Risk Calculation</div>
+                        <div class="wf-arrow">↓</div>
+                        <div class="wf-step highlight">5. Smart Action Recommendation Display</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 12: DASHBOARD -->
+            <section id="dashboard" class="doc-section reveal">
+                <h2>12. Dashboard Showcase</h2>
+                <div class="dashboard-mockup">
+                    <div class="dash-sidebar">
+                        <div class="d-item"><i class="fas fa-home"></i> Home</div>
+                        <div class="d-item"><i class="fas fa-leaf"></i> Scan Crop</div>
+                        <div class="d-item"><i class="fas fa-chart-bar"></i> Yield Predict</div>
+                        <div class="d-item"><i class="fas fa-microphone"></i> AI Assistant</div>
+                    </div>
+                    <div class="dash-main">
+                        <div class="dash-header">Dashboard Overview</div>
+                        <div class="dash-cards">
+                            <div class="d-card"><i class="fas fa-search"></i> Total Scans: 142</div>
+                            <div class="d-card"><i class="fas fa-rupee-sign"></i> Est. Profit: ₹125k</div>
+                            <div class="d-card"><i class="fas fa-heartbeat"></i> Healthy Crop: 85%</div>
+                            <div class="d-card"><i class="fas fa-cloud"></i> Weather: 28°C Clear</div>
+                        </div>
+                        <div class="dash-charts">
+                            <div class="d-chart-area">Yield Analytics Trend</div>
+                            <div class="d-chart-area small">Recent Predictions</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 13: FUTURE SCOPE -->
+            <section id="future-scope" class="doc-section reveal">
+                <h2>13. Future Scope</h2>
+                <div class="future-grid">
+                    <div class="future-item"><i class="fas fa-microphone-alt"></i> <span>Native Voice Assistant for
+                            Illiterate Farmers</span></div>
+                    <div class="future-item"><i class="fas fa-microchip"></i> <span>IoT Soil Sensor Integration</span>
+                    </div>
+                    <div class="future-item"><i class="fas fa-space-shuttle"></i> <span>Drone & Satellite Image
+                            Scanning</span></div>
+                    <div class="future-item"><i class="fas fa-landmark"></i> <span>Government Scheme Integration</span>
+                    </div>
+                    <div class="future-item"><i class="fas fa-mobile-alt"></i> <span>Native Mobile Application
+                            (Android/iOS)</span></div>
+                    <div class="future-item"><i class="fas fa-shopping-cart"></i> <span>B2B Marketplace Linkage</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 14: FAQ -->
+            <section id="faq" class="doc-section reveal">
+                <h2>14. Key Technical Clarifications</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <div class="faq-question">Why use CNN for disease detection? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">CNNs (Convolutional Neural Networks) are exceptionally proficient at
+                            spatial feature extraction. They can detect minute patterns in leaves (like spots or
+                            discoloration) that signify specific diseases, outperforming traditional ML models on image
+                            data.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Why Random Forest for yield prediction? <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">Yield data is tabular and involves non-linear relationships (e.g.,
+                            rainfall vs. yield). Random Forest handles non-linearity well, requires less preprocessing
+                            than neural networks, and provides feature importance which helps understand what impacts
+                            yield most.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Why MongoDB? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">MongoDB provides a flexible NoSQL schema, perfect for storing varied
+                            prediction histories, dynamic user profiles, and logs without rigid migrations during rapid
+                            prototyping.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Why is Telugu support included? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">To ensure maximum accessibility for farmers in Telangana and Andhra
+                            Pradesh, breaking the language barrier in agricultural tech.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How scalable is the architecture? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">The React frontend (Vite) is statically hosted, and the FastAPI backend
+                            is stateless. This allows horizontal scaling via Docker containers or serverless
+                            deployments, capable of handling thousands of concurrent inferences.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 15: CONCLUSION -->
+            <section id="conclusion" class="doc-section reveal">
+                <h2>15. Conclusion</h2>
+                <div class="conclusion-box glass">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p class="conclusion-text">
+                        <strong>AgroVision AI successfully bridges modern artificial intelligence and traditional
+                            agriculture.</strong><br><br>
+                        By equipping farmers with accessible, real-time tools to detect diseases early, accurately
+                        predict yields, track market prices, and receive intelligent weather insights, the platform
+                        enables data-driven decision-making. <br><br>
+                        This comprehensive system ultimately mitigates risks, improves crop productivity, and enhances
+                        overall profitability for the agricultural community.
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="brand"><i class="fas fa-leaf"></i> AgroVision AI</div>
+            <div class="credits">
+                <p>Prepared by <strong>Nikhil Bontha, Rishi Ankathi, Ganga Gundamoni</strong></p>
+                <p>B.Tech AIML | Anurag University</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
