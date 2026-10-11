@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-11T06:54:11Z",
+  "phase": "Phase 8: Regression Validation",
+  "total_tests": 4,
+  "passed_tests": 4,
+  "failed_tests": 0,
+  "test_cases": [
+    {
+      "id": "REG-01",
+      "name": "API Root Health Endpoint",
+      "passed": true,
+      "status_code": 200
+    },
+    {
+      "id": "REG-02",
+      "name": "Production Smart Yield Forecasting & Profitability Engine",
+      "passed": true,
+      "status_code": 200,
+      "details": "Yield/Acre: 1.021 tons, Revenue: Rs. 413913.4"
+    },
+    {
+      "id": "REG-03",
+      "name": "AI Agronomist Assistant Chatbot Service",
+      "passed": true,
+      "status_code": 200,
+      "details": "Intent: fertilizer, Reply Length: 110 chars"
+    },
+    {
+      "id": "REG-04",
+      "name": "Legacy Disease Detection Endpoint Stability & Rejection Policy",
+      "passed": true,
+      "status_code": 200,
+      "details": "Response disease/uncertainty handled safely: True"
+    }
+  ]
+}

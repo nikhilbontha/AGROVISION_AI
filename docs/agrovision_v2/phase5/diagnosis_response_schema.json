@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgroVision AI 2.0 Diagnostic Response Schema",
+  "description": "Validation schema for multimodal diagnostic engine responses, separating model output from calibrated confidence, and tracking evidence ledgers, contradictions, and abstentions.",
+  "type": "object",
+  "required": [
+    "diagnosis_engine_version",
+    "decision_status",
+    "selected_crop_id",
+    "crop_selection_status",
+    "affected_organ",
+    "candidate_diagnoses",
+    "evidence_ledger",
+    "raw_model_scores",
+    "calibration_status",
+    "uncertainty_reasons",
+    "contradictions",
+    "follow_up_questions",
+    "recommended_next_step",
+    "knowledge_references",
+    "model_version",
+    "taxonomy_version",
+    "questionnaire_version",
+    "limitations"
+  ],
+  "properties": {
+    "diagnosis_engine_version": {
+      "type": "string",
+      "example": "2.0.0"
+    },
+    "decision_status": {
+      "type": "string",
+      "enum": [
+        "diagnosis_supported",
+        "multiple_candidates",
+        "needs_more_information",
+        "crop_mismatch",
+        "organ_mismatch",
+        "unsupported_crop",
+        "model_unavailable",
+        "invalid_input",
+        "insufficient_evidence",
+        "expert_review_recommended"
+      ]
+    },
+    "selected_crop_id": {
+      "type": "string"
+    },
+    "crop_selection_status": {
+      "type": "string",
+      "enum": ["verified_host", "crop_mismatch_detected", "crop_uncertain", "unsupported_crop"]
+    },
+    "affected_organ": {
+      "type": "string"
+    },
+    "candidate_diagnoses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "canonical_disease_id",
+          "canonical_name",
+          "scientific_name",
+          "raw_model_score",
+          "evidence_score",
+          "decision_rationale"
+        ],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "canonical_disease_id": { "type": "string" },
+          "canonical_name": { "type": "string" },
+          "scientific_name": { "type": ["string", "null"] },
+          "raw_model_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "evidence_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "decision_rationale": { "type": "string" }
+        }
+      }
+    },
+    "evidence_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "canonical_disease_id",
+          "canonical_crop_id",
+          "raw_model_score",
+          "organ_compatibility",
+          "supporting_evidence",
+          "conflicting_evidence",
+          "missing_evidence"
+        ],
+        "properties": {
+          "canonical_disease_id": { "type": "string" },
+          "canonical_crop_id": { "type": "string" },
+          "raw_model_score": { "type": "number" },
+          "organ_compatibility": { "type": "string" },
+          "supporting_evidence": { "type": "array", "items": { "type": "string" } },
+          "conflicting_evidence": { "type": "array", "items": { "type": "string" } },
+          "missing_evidence": { "type": "array", "items": { "type": "string" } },
+          "contradictions": { "type": "array", "items": { "type": "string" } },
+          "ranking_reason": { "type": "string" }
+        }
+      }
+    },
+    "raw_model_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["output_index", "class_label", "score"],
+        "properties": {
+          "output_index": { "type": "integer" },
+          "class_label": { "type": "string" },
+          "score": { "type": "number" }
+        }
+      }
+    },
+    "calibration_status": {
+      "type": "string",
+      "enum": [
+        "uncalibrated_softmax",
+        "calibrated_platt_scaling",
+        "calibrated_temperature_scaling",
+        "heuristic_uncalibrated"
+      ]
+    },
+    "uncertainty_reasons": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question_id", "question_text", "purpose", "allowed_options"],
+        "properties": {
+          "question_id": { "type": "string" },
+          "question_text": { "type": "string" },
+          "purpose": { "type": "string" },
+          "allowed_options": { "type": "array" }
+        }
+      }
+    },
+    "recommended_next_step": {
+      "type": "string"
+    },
+    "knowledge_references": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "taxonomy_version": {
+      "type": "string"
+    },
+    "questionnaire_version": {
+      "type": "string"
+    },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

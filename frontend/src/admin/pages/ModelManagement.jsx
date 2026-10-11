@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Cpu, CheckCircle2, RefreshCw, BarChart2, Database, Calendar, Server, Layers } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
+import { Cpu, CheckCircle2, RefreshCw, BarChart2, Database, Calendar, Server, Layers, Eye } from 'lucide-react';
 import DataTable from '../components/DataTable';
 import StatusBadge from '../components/StatusBadge';
 import StatCard from '../components/StatCard';
 import ChartCard from '../components/ChartCard';
+import ModelDatasetModal from '../components/ModelDatasetModal';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 import { adminApi } from '../services/adminApi';
 import { useAdmin } from '../context/AdminContext';
@@ -13,6 +15,8 @@ const ModelManagement = () => {
   const [modelHistory, setModelHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isRetraining, setIsRetraining] = useState(false);
+  const [selectedVersion, setSelectedVersion] = useState(null);
+  const [activeModalModel, setActiveModalModel] = useState(null);
 
   useEffect(() => {
     const loadHistory = async () => {
@@ -29,23 +33,31 @@ const ModelManagement = () => {
     addToast('Initiating model retraining pipeline on GPU cluster...', 'warning');
     setTimeout(() => {
       setIsRetraining(false);
-      addToast('Model retrained successfully! Accuracy improved to 97.1% (v2.5.0)', 'success');
-    }, 3000);
+      addToast('Model retrained successfully! Accuracy improved to 97.4% (v2.6.0)', 'success');
+    }, 2500);
   };
 
-  const currentModel = modelHistory[0] || {
-    version: 'v2.4.0',
-    accuracy: 96.4,
-    precision: 95.8,
-    recall: 96.1,
-    f1_score: 95.9,
-    dataset_size: '54,300 Images',
-    training_date: '2024-04-20',
+  // Find deployed production active model, or selected model from table, or latest fallback
+  const deployedModel = modelHistory.find(
+    (m) => m.status === 'Deployed' || m.status === 'Active' || m.version?.includes('Current')
+  ) || modelHistory[0];
+
+  const currentModel = selectedVersion || deployedModel || {
+    version: 'v2.5.0 (Current)',
+    architecture: 'Unified 72-Class MobileNetV2 + SoftMax Transfer Learning Model',
+    accuracy: 96.8,
+    precision: 96.2,
+    recall: 96.5,
+    f1_score: 96.3,
+    dataset_size: '87,400 Images',
+    training_date: '2026-10-10',
     status: 'Deployed'
   };
 
   const classPerformanceData = [
     { class: 'Tomato Early Blight', accuracy: 98.2, f1: 98.0 },
+    { class: 'Rice Blast', accuracy: 97.4, f1: 97.1 },
+    { class: 'Wheat Stripe Rust', accuracy: 96.9, f1: 96.5 },
     { class: 'Corn Leaf Blight', accuracy: 96.5, f1: 96.1 },
     { class: 'Potato Late Blight', accuracy: 95.8, f1: 95.4 },
     { class: 'Grape Black Rot', accuracy: 97.1, f1: 96.9 },
@@ -56,12 +68,28 @@ const ModelManagement = () => {
     {
       label: 'Model Version',
       key: 'version',
-      render: (val, row) => (
-        <div className="flex items-center gap-2">
-          <Cpu className="w-4 h-4 text-emerald-400" />
-          <span className="font-mono font-bold text-white">{val}</span>
-        </div>
-      )
+      render: (val, row) => {
+        const isCurrentActive = row.status === 'Deployed' || row.status === 'Active' || val?.includes('Current');
+        const isSelected = currentModel.version === val;
+        return (
+          <button
+            type="button"
+            onClick={() => setSelectedVersion(row)}
+            className="flex items-center gap-2 text-left group hover:opacity-80 transition-opacity"
+            title="Click to view details"
+          >
+            <Cpu className={`w-4 h-4 ${isCurrentActive ? 'text-emerald-400' : 'text-slate-400'}`} />
+            <span className={`font-mono font-bold ${isSelected ? 'text-emerald-300 underline underline-offset-4' : 'text-white'}`}>
+              {val}
+            </span>
+            {isCurrentActive && (
+              <span className="px-1.5 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-sans border border-emerald-500/40 font-bold">
+                Active
+              </span>
+            )}
+          </button>
+        );
+      }
     },
     { label: 'Validation Accuracy', key: 'accuracy', render: (val) => <span className="font-mono font-bold text-emerald-400">{val}%</span> },
     { label: 'Precision', key: 'precision', render: (val) => <span className="font-mono text-cyan-400">{val}%</span> },
@@ -69,7 +97,25 @@ const ModelManagement = () => {
     { label: 'F1 Score', key: 'f1_score', render: (val) => <span className="font-mono font-bold text-amber-400">{val}%</span> },
     { label: 'Dataset Size', key: 'dataset_size', className: 'text-slate-300' },
     { label: 'Training Date', key: 'training_date', className: 'font-mono text-slate-400' },
-    { label: 'Deployment Status', key: 'status', render: (val) => <StatusBadge status={val} /> }
+    { label: 'Deployment Status', key: 'status', render: (val) => <StatusBadge status={val} /> },
+    {
+      label: 'Dataset Info',
+      key: 'actions',
+      render: (_, row) => (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setActiveModalModel(row);
+          }}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/25 text-emerald-400 hover:text-emerald-300 border border-emerald-500/30 hover:border-emerald-500/60 transition-all text-xs font-semibold group shadow-sm hover:shadow-emerald-500/20"
+          title={`View dataset sources and complete info for ${row.version}`}
+        >
+          <Eye className="w-3.5 h-3.5 group-hover:scale-110 transition-transform text-emerald-400" />
+          <span>View Info</span>
+        </button>
+      )
+    }
   ];
 
   return (
@@ -103,15 +149,22 @@ const ModelManagement = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-extrabold text-white">AgroVision-CNN Classifier</h3>
-                <StatusBadge status="Active" customLabel="Production Active" />
+                <StatusBadge
+                  status={currentModel.status === 'Deployed' || currentModel.status === 'Active' || currentModel.version?.includes('Current') ? 'Active' : 'Archived'}
+                  customLabel={currentModel.status === 'Deployed' || currentModel.status === 'Active' || currentModel.version?.includes('Current') ? 'Production Active' : 'Archived Iteration'}
+                />
               </div>
-              <p className="text-xs text-slate-400">Architecture: MobileNetV2 + SoftMax Transfer Learning Model</p>
+              <p className="text-xs text-slate-400">
+                Architecture: {currentModel.architecture || 'Unified 72-Class MobileNetV2 + SoftMax Transfer Learning Model'}
+              </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
             <div className="px-3 py-1.5 rounded-xl bg-farm-dark border border-slate-800">
-              <span className="text-slate-400 block text-[10px]">CURRENT VERSION</span>
+              <span className="text-slate-400 block text-[10px]">
+                {currentModel.status === 'Deployed' || currentModel.version?.includes('Current') ? 'CURRENT VERSION' : 'SELECTED VERSION'}
+              </span>
               <strong className="text-emerald-400">{currentModel.version}</strong>
             </div>
             <div className="px-3 py-1.5 rounded-xl bg-farm-dark border border-slate-800">
@@ -122,6 +175,15 @@ const ModelManagement = () => {
               <span className="text-slate-400 block text-[10px]">DATASET SIZE</span>
               <strong className="text-cyan-400">{currentModel.dataset_size}</strong>
             </div>
+            <button
+              type="button"
+              onClick={() => setActiveModalModel(currentModel)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 transition-all text-xs font-sans font-semibold shadow-sm hover:shadow-emerald-500/20"
+              title="Inspect dataset sources and complete architecture specs"
+            >
+              <Eye className="w-4 h-4 text-emerald-400" />
+              <span>Dataset Details</span>
+            </button>
           </div>
         </div>
 
@@ -172,6 +234,16 @@ const ModelManagement = () => {
         isLoading={loading}
         searchPlaceholder="Search model version..."
       />
+
+      {/* Dataset & Model Specification Modal */}
+      <AnimatePresence>
+        {activeModalModel && (
+          <ModelDatasetModal
+            model={activeModalModel}
+            onClose={() => setActiveModalModel(null)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

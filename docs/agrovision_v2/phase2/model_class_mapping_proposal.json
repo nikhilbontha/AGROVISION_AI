@@ -1,0 +1,898 @@
+{
+  "schema_version": "2.0.0",
+  "generated_at": "2026-10-11T11:20:00+05:30",
+  "description": "Explicit decouple mapping binding specific neural model checkpoints to stable canonical disease identifiers, preventing index collision or array-position dependence.",
+  "models": {
+    "v1_baseline_39class": {
+      "model_identifier": "v1_baseline_39class",
+      "checkpoint_path": "ml_models/disease_detection/disease_model.h5",
+      "total_classes": 39,
+      "architecture": "EfficientNetB0 (ImageNet Transfer + Fine-Tune)",
+      "output_class_mappings": [
+        {
+          "output_index": 0,
+          "raw_output_label": "Apple___Apple_scab",
+          "canonical_disease_id": "dis_apple_scab",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Scab"
+        },
+        {
+          "output_index": 1,
+          "raw_output_label": "Apple___Black_rot",
+          "canonical_disease_id": "dis_apple_black_rot",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Black Rot (Frogeye Leaf Spot)"
+        },
+        {
+          "output_index": 2,
+          "raw_output_label": "Apple___Cedar_apple_rust",
+          "canonical_disease_id": "dis_apple_cedar_apple_rust",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Cedar Apple Rust"
+        },
+        {
+          "output_index": 3,
+          "raw_output_label": "Apple___healthy",
+          "canonical_disease_id": "dis_apple_healthy",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Healthy Foliage"
+        },
+        {
+          "output_index": 4,
+          "raw_output_label": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+          "canonical_disease_id": "dis_corn_cercospora_gray_leaf_spot",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Cercospora Gray Leaf Spot"
+        },
+        {
+          "output_index": 5,
+          "raw_output_label": "Corn___Common_rust",
+          "canonical_disease_id": "dis_corn_common_rust",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Common Rust"
+        },
+        {
+          "output_index": 6,
+          "raw_output_label": "Corn___Northern_Leaf_Blight",
+          "canonical_disease_id": "dis_corn_northern_leaf_blight",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Northern Leaf Blight"
+        },
+        {
+          "output_index": 7,
+          "raw_output_label": "Corn___healthy",
+          "canonical_disease_id": "dis_corn_healthy",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Healthy Foliage"
+        },
+        {
+          "output_index": 8,
+          "raw_output_label": "Cotton___Bacterial_blight",
+          "canonical_disease_id": "dis_cotton_bacterial_blight",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Bacterial Blight (Angular Leaf Spot / Blackarm)"
+        },
+        {
+          "output_index": 9,
+          "raw_output_label": "Cotton___healthy",
+          "canonical_disease_id": "dis_cotton_healthy",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Healthy Canopy"
+        },
+        {
+          "output_index": 10,
+          "raw_output_label": "Grape___Black_rot",
+          "canonical_disease_id": "dis_grape_black_rot",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Black Rot"
+        },
+        {
+          "output_index": 11,
+          "raw_output_label": "Grape___Esca_(Black_Measles)",
+          "canonical_disease_id": "dis_grape_esca",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Esca (Black Measles)"
+        },
+        {
+          "output_index": 12,
+          "raw_output_label": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+          "canonical_disease_id": "dis_grape_leaf_blight",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Leaf Blight (Isariopsis Spot)"
+        },
+        {
+          "output_index": 13,
+          "raw_output_label": "Grape___healthy",
+          "canonical_disease_id": "dis_grape_healthy",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Healthy Foliage"
+        },
+        {
+          "output_index": 14,
+          "raw_output_label": "Non_Plant___Unsupported",
+          "canonical_disease_id": "dis_non_plant_unsupported",
+          "canonical_crop_id": "crop_non_plant",
+          "canonical_name": "Non-Plant / Unsupported Object"
+        },
+        {
+          "output_index": 15,
+          "raw_output_label": "Orange___Haunglongbing_(Citrus_greening)",
+          "canonical_disease_id": "dis_orange_citrus_greening",
+          "canonical_crop_id": "crop_orange",
+          "canonical_name": "Orange Citrus Greening (Huanglongbing)"
+        },
+        {
+          "output_index": 16,
+          "raw_output_label": "Orange___healthy",
+          "canonical_disease_id": "dis_orange_healthy",
+          "canonical_crop_id": "crop_orange",
+          "canonical_name": "Orange Healthy Foliage"
+        },
+        {
+          "output_index": 17,
+          "raw_output_label": "Pepper,_bell___Bacterial_spot",
+          "canonical_disease_id": "dis_pepper_bacterial_spot",
+          "canonical_crop_id": "crop_pepper_bell",
+          "canonical_name": "Bell Pepper Bacterial Spot"
+        },
+        {
+          "output_index": 18,
+          "raw_output_label": "Pepper,_bell___healthy",
+          "canonical_disease_id": "dis_pepper_healthy",
+          "canonical_crop_id": "crop_pepper_bell",
+          "canonical_name": "Bell Pepper Healthy Foliage"
+        },
+        {
+          "output_index": 19,
+          "raw_output_label": "Potato___Early_blight",
+          "canonical_disease_id": "dis_potato_early_blight",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Early Blight"
+        },
+        {
+          "output_index": 20,
+          "raw_output_label": "Potato___Late_blight",
+          "canonical_disease_id": "dis_potato_late_blight",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Late Blight"
+        },
+        {
+          "output_index": 21,
+          "raw_output_label": "Potato___healthy",
+          "canonical_disease_id": "dis_potato_healthy",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Healthy Foliage"
+        },
+        {
+          "output_index": 22,
+          "raw_output_label": "Rice___Bacterial_leaf_blight",
+          "canonical_disease_id": "dis_rice_bacterial_leaf_blight",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Bacterial Leaf Blight"
+        },
+        {
+          "output_index": 23,
+          "raw_output_label": "Rice___Blast",
+          "canonical_disease_id": "dis_rice_blast",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Blast"
+        },
+        {
+          "output_index": 24,
+          "raw_output_label": "Rice___healthy",
+          "canonical_disease_id": "dis_rice_healthy",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Healthy Foliage"
+        },
+        {
+          "output_index": 25,
+          "raw_output_label": "Tomato___Bacterial_spot",
+          "canonical_disease_id": "dis_tomato_bacterial_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Bacterial Spot"
+        },
+        {
+          "output_index": 26,
+          "raw_output_label": "Tomato___Early_blight",
+          "canonical_disease_id": "dis_tomato_early_blight",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Early Blight"
+        },
+        {
+          "output_index": 27,
+          "raw_output_label": "Tomato___Late_blight",
+          "canonical_disease_id": "dis_tomato_late_blight",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Late Blight"
+        },
+        {
+          "output_index": 28,
+          "raw_output_label": "Tomato___Leaf_Mold",
+          "canonical_disease_id": "dis_tomato_leaf_mold",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Leaf Mold"
+        },
+        {
+          "output_index": 29,
+          "raw_output_label": "Tomato___Septoria_leaf_spot",
+          "canonical_disease_id": "dis_tomato_septoria_leaf_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Septoria Leaf Spot"
+        },
+        {
+          "output_index": 30,
+          "raw_output_label": "Tomato___Spider_mites Two-spotted_spider_mite",
+          "canonical_disease_id": "dis_tomato_spider_mites",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Two-Spotted Spider Mites"
+        },
+        {
+          "output_index": 31,
+          "raw_output_label": "Tomato___Target_Spot",
+          "canonical_disease_id": "dis_tomato_target_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Target Spot"
+        },
+        {
+          "output_index": 32,
+          "raw_output_label": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_tomato_yellow_leaf_curl",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Yellow Leaf Curl Virus"
+        },
+        {
+          "output_index": 33,
+          "raw_output_label": "Tomato___Tomato_mosaic_virus",
+          "canonical_disease_id": "dis_tomato_mosaic_virus",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Mosaic Virus"
+        },
+        {
+          "output_index": 34,
+          "raw_output_label": "Tomato___healthy",
+          "canonical_disease_id": "dis_tomato_healthy",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Healthy Foliage"
+        },
+        {
+          "output_index": 35,
+          "raw_output_label": "Wheat___Leaf_rust",
+          "canonical_disease_id": "dis_wheat_leaf_rust",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Leaf Rust (Brown Rust)"
+        },
+        {
+          "output_index": 36,
+          "raw_output_label": "Wheat___Powdery_mildew",
+          "canonical_disease_id": "dis_wheat_powdery_mildew",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Powdery Mildew"
+        },
+        {
+          "output_index": 37,
+          "raw_output_label": "Wheat___Stripe_rust",
+          "canonical_disease_id": "dis_wheat_stripe_rust",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Stripe Rust (Yellow Rust)"
+        },
+        {
+          "output_index": 38,
+          "raw_output_label": "Wheat___healthy",
+          "canonical_disease_id": "dis_wheat_healthy",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Healthy Foliage"
+        }
+      ]
+    },
+    "v2_unified_72class": {
+      "model_identifier": "v2_unified_72class",
+      "checkpoint_path": "ml_models/disease_detection/unified_experiment/artifacts/agrovision_phase7_20261010_231412/AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+      "total_classes": 72,
+      "architecture": "EfficientNetB0 (Combined 72-Class Strategy A Baseline)",
+      "output_class_mappings": [
+        {
+          "output_index": 0,
+          "raw_output_label": "Apple___Apple_Scab",
+          "canonical_disease_id": "dis_apple_scab",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Scab"
+        },
+        {
+          "output_index": 1,
+          "raw_output_label": "Apple___Black_Rot",
+          "canonical_disease_id": "dis_apple_black_rot",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Black Rot (Frogeye Leaf Spot)"
+        },
+        {
+          "output_index": 2,
+          "raw_output_label": "Apple___Cedar_Apple_Rust",
+          "canonical_disease_id": "dis_apple_cedar_apple_rust",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Cedar Apple Rust"
+        },
+        {
+          "output_index": 3,
+          "raw_output_label": "Apple___Healthy",
+          "canonical_disease_id": "dis_apple_healthy",
+          "canonical_crop_id": "crop_apple",
+          "canonical_name": "Apple Healthy Foliage"
+        },
+        {
+          "output_index": 4,
+          "raw_output_label": "Banana___Black_Sigatoka",
+          "canonical_disease_id": "dis_banana_black_sigatoka",
+          "canonical_crop_id": "crop_banana",
+          "canonical_name": "Banana Black Sigatoka"
+        },
+        {
+          "output_index": 5,
+          "raw_output_label": "Banana___Cordana_Leaf_Spot",
+          "canonical_disease_id": "dis_banana_cordana_leaf_spot",
+          "canonical_crop_id": "crop_banana",
+          "canonical_name": "Banana Cordana Leaf Spot"
+        },
+        {
+          "output_index": 6,
+          "raw_output_label": "Banana___Healthy",
+          "canonical_disease_id": "dis_banana_healthy",
+          "canonical_crop_id": "crop_banana",
+          "canonical_name": "Banana Healthy Foliage"
+        },
+        {
+          "output_index": 7,
+          "raw_output_label": "Banana___Panama_Disease",
+          "canonical_disease_id": "dis_banana_panama_disease",
+          "canonical_crop_id": "crop_banana",
+          "canonical_name": "Banana Panama Disease (Fusarium Wilt)"
+        },
+        {
+          "output_index": 8,
+          "raw_output_label": "Chilli___Anthracnose",
+          "canonical_disease_id": "dis_chilli_anthracnose",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Anthracnose (Dieback & Fruit Rot)"
+        },
+        {
+          "output_index": 9,
+          "raw_output_label": "Chilli___Damping_Off",
+          "canonical_disease_id": "dis_chilli_damping_off",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Damping Off"
+        },
+        {
+          "output_index": 10,
+          "raw_output_label": "Chilli___Healthy",
+          "canonical_disease_id": "dis_chilli_healthy",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Healthy Foliage"
+        },
+        {
+          "output_index": 11,
+          "raw_output_label": "Chilli___Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_chilli_leaf_curl",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Leaf Curl Virus"
+        },
+        {
+          "output_index": 12,
+          "raw_output_label": "Chilli___Leaf_Spot",
+          "canonical_disease_id": "dis_chilli_leaf_spot",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Cercospora Leaf Spot (Frog Eye Spot)"
+        },
+        {
+          "output_index": 13,
+          "raw_output_label": "Chilli___Veinal_Mottle_Virus",
+          "canonical_disease_id": "dis_chilli_veinal_mottle",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Veinal Mottle Virus"
+        },
+        {
+          "output_index": 14,
+          "raw_output_label": "Chilli___Whitefly",
+          "canonical_disease_id": "dis_chilli_whitefly",
+          "canonical_crop_id": "crop_chilli",
+          "canonical_name": "Chilli Whitefly Infestation & Damage"
+        },
+        {
+          "output_index": 15,
+          "raw_output_label": "Corn___Cercospora_Gray_Leaf_Spot",
+          "canonical_disease_id": "dis_corn_cercospora_gray_leaf_spot",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Cercospora Gray Leaf Spot"
+        },
+        {
+          "output_index": 16,
+          "raw_output_label": "Corn___Common_Rust",
+          "canonical_disease_id": "dis_corn_common_rust",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Common Rust"
+        },
+        {
+          "output_index": 17,
+          "raw_output_label": "Corn___Healthy",
+          "canonical_disease_id": "dis_corn_healthy",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Healthy Foliage"
+        },
+        {
+          "output_index": 18,
+          "raw_output_label": "Corn___Northern_Leaf_Blight",
+          "canonical_disease_id": "dis_corn_northern_leaf_blight",
+          "canonical_crop_id": "crop_corn",
+          "canonical_name": "Corn Northern Leaf Blight"
+        },
+        {
+          "output_index": 19,
+          "raw_output_label": "Cotton___Alternaria_Leaf_Spot",
+          "canonical_disease_id": "dis_cotton_alternaria_leaf_spot",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Alternaria Leaf Spot"
+        },
+        {
+          "output_index": 20,
+          "raw_output_label": "Cotton___Bacterial_Blight",
+          "canonical_disease_id": "dis_cotton_bacterial_blight",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Bacterial Blight (Angular Leaf Spot / Blackarm)"
+        },
+        {
+          "output_index": 21,
+          "raw_output_label": "Cotton___Fusarium_Wilt",
+          "canonical_disease_id": "dis_cotton_fusarium_wilt",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Fusarium Wilt"
+        },
+        {
+          "output_index": 22,
+          "raw_output_label": "Cotton___Healthy",
+          "canonical_disease_id": "dis_cotton_healthy",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Healthy Canopy"
+        },
+        {
+          "output_index": 23,
+          "raw_output_label": "Cotton___Verticillium_Wilt",
+          "canonical_disease_id": "dis_cotton_verticillium_wilt",
+          "canonical_crop_id": "crop_cotton",
+          "canonical_name": "Cotton Verticillium Wilt"
+        },
+        {
+          "output_index": 24,
+          "raw_output_label": "Grape___Black_Rot",
+          "canonical_disease_id": "dis_grape_black_rot",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Black Rot"
+        },
+        {
+          "output_index": 25,
+          "raw_output_label": "Grape___Esca_Black_Measles",
+          "canonical_disease_id": "dis_grape_esca",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Esca (Black Measles)"
+        },
+        {
+          "output_index": 26,
+          "raw_output_label": "Grape___Healthy",
+          "canonical_disease_id": "dis_grape_healthy",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Healthy Foliage"
+        },
+        {
+          "output_index": 27,
+          "raw_output_label": "Grape___Leaf_Blight_Isariopsis_Spot",
+          "canonical_disease_id": "dis_grape_leaf_blight",
+          "canonical_crop_id": "crop_grape",
+          "canonical_name": "Grape Leaf Blight (Isariopsis Spot)"
+        },
+        {
+          "output_index": 28,
+          "raw_output_label": "Mango___Anthracnose",
+          "canonical_disease_id": "dis_mango_anthracnose",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Anthracnose"
+        },
+        {
+          "output_index": 29,
+          "raw_output_label": "Mango___Bacterial_Canker",
+          "canonical_disease_id": "dis_mango_bacterial_canker",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Bacterial Canker (Bacterial Black Spot)"
+        },
+        {
+          "output_index": 30,
+          "raw_output_label": "Mango___Cutting_Weevil",
+          "canonical_disease_id": "dis_mango_cutting_weevil",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Leaf Cutting Weevil Damage"
+        },
+        {
+          "output_index": 31,
+          "raw_output_label": "Mango___Die_Back",
+          "canonical_disease_id": "dis_mango_die_back",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Die Back"
+        },
+        {
+          "output_index": 32,
+          "raw_output_label": "Mango___Gall_Midge",
+          "canonical_disease_id": "dis_mango_gall_midge",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Leaf Gall Midge Damage"
+        },
+        {
+          "output_index": 33,
+          "raw_output_label": "Mango___Healthy",
+          "canonical_disease_id": "dis_mango_healthy",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Healthy Foliage"
+        },
+        {
+          "output_index": 34,
+          "raw_output_label": "Mango___Powdery_Mildew",
+          "canonical_disease_id": "dis_mango_powdery_mildew",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Powdery Mildew"
+        },
+        {
+          "output_index": 35,
+          "raw_output_label": "Mango___Sooty_Mould",
+          "canonical_disease_id": "dis_mango_sooty_mould",
+          "canonical_crop_id": "crop_mango",
+          "canonical_name": "Mango Sooty Mould"
+        },
+        {
+          "output_index": 36,
+          "raw_output_label": "Non_Plant___Unsupported_Object",
+          "canonical_disease_id": "dis_non_plant_unsupported",
+          "canonical_crop_id": "crop_non_plant",
+          "canonical_name": "Non-Plant / Unsupported Object"
+        },
+        {
+          "output_index": 37,
+          "raw_output_label": "Orange___Citrus_Greening",
+          "canonical_disease_id": "dis_orange_citrus_greening",
+          "canonical_crop_id": "crop_orange",
+          "canonical_name": "Orange Citrus Greening (Huanglongbing)"
+        },
+        {
+          "output_index": 38,
+          "raw_output_label": "Orange___Healthy",
+          "canonical_disease_id": "dis_orange_healthy",
+          "canonical_crop_id": "crop_orange",
+          "canonical_name": "Orange Healthy Foliage"
+        },
+        {
+          "output_index": 39,
+          "raw_output_label": "Palm___Magnesium_Deficiency",
+          "canonical_disease_id": "dis_palm_magnesium_deficiency",
+          "canonical_crop_id": "crop_oil_palm",
+          "canonical_name": "Oil Palm Magnesium Deficiency"
+        },
+        {
+          "output_index": 40,
+          "raw_output_label": "Palm___Scale_Insect",
+          "canonical_disease_id": "dis_palm_scale_insect",
+          "canonical_crop_id": "crop_oil_palm",
+          "canonical_name": "Oil Palm Scale Insect Infestation"
+        },
+        {
+          "output_index": 41,
+          "raw_output_label": "Pepper___Bacterial_Spot",
+          "canonical_disease_id": "dis_pepper_bacterial_spot",
+          "canonical_crop_id": "crop_pepper_bell",
+          "canonical_name": "Bell Pepper Bacterial Spot"
+        },
+        {
+          "output_index": 42,
+          "raw_output_label": "Pepper___Healthy",
+          "canonical_disease_id": "dis_pepper_healthy",
+          "canonical_crop_id": "crop_pepper_bell",
+          "canonical_name": "Bell Pepper Healthy Foliage"
+        },
+        {
+          "output_index": 43,
+          "raw_output_label": "Potato___Early_Blight",
+          "canonical_disease_id": "dis_potato_early_blight",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Early Blight"
+        },
+        {
+          "output_index": 44,
+          "raw_output_label": "Potato___Healthy",
+          "canonical_disease_id": "dis_potato_healthy",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Healthy Foliage"
+        },
+        {
+          "output_index": 45,
+          "raw_output_label": "Potato___Late_Blight",
+          "canonical_disease_id": "dis_potato_late_blight",
+          "canonical_crop_id": "crop_potato",
+          "canonical_name": "Potato Late Blight"
+        },
+        {
+          "output_index": 46,
+          "raw_output_label": "Rice___Bacterial_Leaf_Blight",
+          "canonical_disease_id": "dis_rice_bacterial_leaf_blight",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Bacterial Leaf Blight"
+        },
+        {
+          "output_index": 47,
+          "raw_output_label": "Rice___Blast",
+          "canonical_disease_id": "dis_rice_blast",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Blast"
+        },
+        {
+          "output_index": 48,
+          "raw_output_label": "Rice___Brown_Spot",
+          "canonical_disease_id": "dis_rice_brown_spot",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Brown Spot"
+        },
+        {
+          "output_index": 49,
+          "raw_output_label": "Rice___Healthy",
+          "canonical_disease_id": "dis_rice_healthy",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Healthy Foliage"
+        },
+        {
+          "output_index": 50,
+          "raw_output_label": "Rice___Leaf_Scald",
+          "canonical_disease_id": "dis_rice_leaf_scald",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Leaf Scald"
+        },
+        {
+          "output_index": 51,
+          "raw_output_label": "Rice___Leaf_Smut",
+          "canonical_disease_id": "dis_rice_leaf_smut",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Leaf Smut"
+        },
+        {
+          "output_index": 52,
+          "raw_output_label": "Rice___Sheath_Blight",
+          "canonical_disease_id": "dis_rice_sheath_blight",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Sheath Blight"
+        },
+        {
+          "output_index": 53,
+          "raw_output_label": "Rice___Tungro",
+          "canonical_disease_id": "dis_rice_tungro",
+          "canonical_crop_id": "crop_rice",
+          "canonical_name": "Rice Tungro Disease"
+        },
+        {
+          "output_index": 54,
+          "raw_output_label": "Tomato___Bacterial_Spot",
+          "canonical_disease_id": "dis_tomato_bacterial_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Bacterial Spot"
+        },
+        {
+          "output_index": 55,
+          "raw_output_label": "Tomato___Early_Blight",
+          "canonical_disease_id": "dis_tomato_early_blight",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Early Blight"
+        },
+        {
+          "output_index": 56,
+          "raw_output_label": "Tomato___Healthy",
+          "canonical_disease_id": "dis_tomato_healthy",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Healthy Foliage"
+        },
+        {
+          "output_index": 57,
+          "raw_output_label": "Tomato___Late_Blight",
+          "canonical_disease_id": "dis_tomato_late_blight",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Late Blight"
+        },
+        {
+          "output_index": 58,
+          "raw_output_label": "Tomato___Leaf_Mold",
+          "canonical_disease_id": "dis_tomato_leaf_mold",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Leaf Mold"
+        },
+        {
+          "output_index": 59,
+          "raw_output_label": "Tomato___Mosaic_Virus",
+          "canonical_disease_id": "dis_tomato_mosaic_virus",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Mosaic Virus"
+        },
+        {
+          "output_index": 60,
+          "raw_output_label": "Tomato___Septoria_Leaf_Spot",
+          "canonical_disease_id": "dis_tomato_septoria_leaf_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Septoria Leaf Spot"
+        },
+        {
+          "output_index": 61,
+          "raw_output_label": "Tomato___Spider_Mites",
+          "canonical_disease_id": "dis_tomato_spider_mites",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Two-Spotted Spider Mites"
+        },
+        {
+          "output_index": 62,
+          "raw_output_label": "Tomato___Target_Spot",
+          "canonical_disease_id": "dis_tomato_target_spot",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Target Spot"
+        },
+        {
+          "output_index": 63,
+          "raw_output_label": "Tomato___Yellow_Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_tomato_yellow_leaf_curl",
+          "canonical_crop_id": "crop_tomato",
+          "canonical_name": "Tomato Yellow Leaf Curl Virus"
+        },
+        {
+          "output_index": 64,
+          "raw_output_label": "Turmeric___Dry_Leaf",
+          "canonical_disease_id": "dis_turmeric_dry_leaf",
+          "canonical_crop_id": "crop_turmeric",
+          "canonical_name": "Turmeric Dry Leaf / Desiccation"
+        },
+        {
+          "output_index": 65,
+          "raw_output_label": "Turmeric___Healthy",
+          "canonical_disease_id": "dis_turmeric_healthy",
+          "canonical_crop_id": "crop_turmeric",
+          "canonical_name": "Turmeric Healthy Foliage"
+        },
+        {
+          "output_index": 66,
+          "raw_output_label": "Turmeric___Leaf_Blotch",
+          "canonical_disease_id": "dis_turmeric_leaf_blotch",
+          "canonical_crop_id": "crop_turmeric",
+          "canonical_name": "Turmeric Leaf Blotch"
+        },
+        {
+          "output_index": 67,
+          "raw_output_label": "Turmeric___Rhizome_Rot",
+          "canonical_disease_id": "dis_turmeric_rhizome_rot",
+          "canonical_crop_id": "crop_turmeric",
+          "canonical_name": "Turmeric Rhizome Rot (Soft Rot)"
+        },
+        {
+          "output_index": 68,
+          "raw_output_label": "Wheat___Healthy",
+          "canonical_disease_id": "dis_wheat_healthy",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Healthy Foliage"
+        },
+        {
+          "output_index": 69,
+          "raw_output_label": "Wheat___Leaf_Rust",
+          "canonical_disease_id": "dis_wheat_leaf_rust",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Leaf Rust (Brown Rust)"
+        },
+        {
+          "output_index": 70,
+          "raw_output_label": "Wheat___Powdery_Mildew",
+          "canonical_disease_id": "dis_wheat_powdery_mildew",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Powdery Mildew"
+        },
+        {
+          "output_index": 71,
+          "raw_output_label": "Wheat___Stripe_Rust",
+          "canonical_disease_id": "dis_wheat_stripe_rust",
+          "canonical_crop_id": "crop_wheat",
+          "canonical_name": "Wheat Stripe Rust (Yellow Rust)"
+        }
+      ]
+    }
+  },
+  "unmapped_excluded_classes": [
+    {
+      "raw_dataset_label": "Chilli_Yellowish",
+      "dataset_source": "Dataset_2",
+      "assigned_canonical_disease_id": "dis_chilli_yellowish",
+      "canonical_crop_id": "crop_chilli",
+      "exclusion_reason": "Conflates viral chlorosis, nutrient deficiency, and moisture stress. Excluded from neural softmax heads to prevent false confidence."
+    },
+    {
+      "raw_dataset_label": "Palm_Dryness",
+      "dataset_source": "Dataset_2",
+      "assigned_canonical_disease_id": "dis_palm_dryness",
+      "canonical_crop_id": "crop_oil_palm",
+      "exclusion_reason": "Abiotic moisture stress; lacks distinct pathogen lesions and consistent diagnostic criteria."
+    },
+    {
+      "raw_dataset_label": "Palm_Fungal Disease",
+      "dataset_source": "Dataset_2",
+      "assigned_canonical_disease_id": "dis_palm_fungal_disease",
+      "canonical_crop_id": "crop_oil_palm",
+      "exclusion_reason": "Statistically insufficient sample size (25 images); generic undifferentiated label without identified pathogen species."
+    }
+  ],
+  "index_shift_analysis": {
+    "summary": "35 classes changed their output index between Model v1 and Model v2.",
+    "example_collisions_prevented": [
+      {
+        "canonical_disease_id": "dis_corn_cercospora_gray_leaf_spot",
+        "canonical_name": "Corn Cercospora Gray Leaf Spot",
+        "v1_index": 4,
+        "v2_index": 15,
+        "shift_magnitude": 11
+      },
+      {
+        "canonical_disease_id": "dis_corn_common_rust",
+        "canonical_name": "Corn Common Rust",
+        "v1_index": 5,
+        "v2_index": 16,
+        "shift_magnitude": 11
+      },
+      {
+        "canonical_disease_id": "dis_corn_northern_leaf_blight",
+        "canonical_name": "Corn Northern Leaf Blight",
+        "v1_index": 6,
+        "v2_index": 18,
+        "shift_magnitude": 12
+      },
+      {
+        "canonical_disease_id": "dis_corn_healthy",
+        "canonical_name": "Corn Healthy Foliage",
+        "v1_index": 7,
+        "v2_index": 17,
+        "shift_magnitude": 10
+      },
+      {
+        "canonical_disease_id": "dis_cotton_bacterial_blight",
+        "canonical_name": "Cotton Bacterial Blight (Angular Leaf Spot / Blackarm)",
+        "v1_index": 8,
+        "v2_index": 20,
+        "shift_magnitude": 12
+      },
+      {
+        "canonical_disease_id": "dis_cotton_healthy",
+        "canonical_name": "Cotton Healthy Canopy",
+        "v1_index": 9,
+        "v2_index": 22,
+        "shift_magnitude": 13
+      },
+      {
+        "canonical_disease_id": "dis_grape_black_rot",
+        "canonical_name": "Grape Black Rot",
+        "v1_index": 10,
+        "v2_index": 24,
+        "shift_magnitude": 14
+      },
+      {
+        "canonical_disease_id": "dis_grape_esca",
+        "canonical_name": "Grape Esca (Black Measles)",
+        "v1_index": 11,
+        "v2_index": 25,
+        "shift_magnitude": 14
+      },
+      {
+        "canonical_disease_id": "dis_grape_leaf_blight",
+        "canonical_name": "Grape Leaf Blight (Isariopsis Spot)",
+        "v1_index": 12,
+        "v2_index": 27,
+        "shift_magnitude": 15
+      },
+      {
+        "canonical_disease_id": "dis_grape_healthy",
+        "canonical_name": "Grape Healthy Foliage",
+        "v1_index": 13,
+        "v2_index": 26,
+        "shift_magnitude": 13
+      }
+    ]
+  }
+}

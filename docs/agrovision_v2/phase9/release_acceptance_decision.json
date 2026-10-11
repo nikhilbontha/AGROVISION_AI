@@ -1,0 +1,19 @@
+{
+  "decision_timestamp": "2026-10-11T07:04:24Z",
+  "release_status": "CONDITIONAL_PASS",
+  "verdict": "CONDITIONAL_PASS_FOR_GATED_PILOT",
+  "executive_rationale": "The 72-class unified master candidate model achieves 80.35% overall test accuracy and 86.86% regional field accuracy across 3,522 held-out samples. However, standalone neural inference suffers from a 38.15% cross-crop error rate and poor lab-domain generalization (30.81%). When coupled with AgroVision AI 2.0 Phase 8 Crop-Confirmation Gating and the tau=0.50 Low-Confidence Rejection Policy, accepted accuracy reaches 91.33% with 100% recommendation safety compliance. The system is approved for a controlled agricultural extension pilot with mandatory crop confirmation, but unsupervised chemical application without field extension officer (AEO) verification is explicitly restricted.",
+  "mandatory_release_conditions": [
+    "Condition 1: Farmer crop confirmation is mandatory in the UI; unguided standalone image inference must remain disabled.",
+    "Condition 2: The calibrated confidence threshold (tau=0.50) must remain enforced to trigger abstention on ambiguous lesions.",
+    "Condition 3: Host container must run on Linux (Ubuntu 22.04 LTS) to allow native deep learning execution without Windows WDAC blocks.",
+    "Condition 4: Chemical spraying recommendations must never be presented unless the diagnosis decision status is 'diagnosis_supported'."
+  ],
+  "gates_audit": {
+    "overall_accuracy_pass": true,
+    "regional_field_pass": true,
+    "safety_withholding_pass": true,
+    "standalone_cross_crop_pass": false,
+    "domain_generalization_pass": false
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "report_version": "2.0.0",
+  "generated_at": "2026-10-11T12:24:35+05:30",
+  "runtime_environment": {
+    "os": "Windows 11 (AMD64)",
+    "python_version": "3.12.x 64-bit",
+    "backend_framework": "FastAPI 0.115.x / Uvicorn (ASGI)",
+    "frontend_framework": "React 19.x / Vite 8.x / Tailwind CSS",
+    "core_libraries": {
+      "pydantic": "2.10.x",
+      "opencv_python": "4.10.x",
+      "pillow": "11.0.x",
+      "numpy": "2.0.x",
+      "joblib": "1.4.x",
+      "tensorflow": "2.18.x"
+    }
+  },
+  "readiness_checks": [
+    {
+      "check_id": "CHK_DB_CONNECTIVITY",
+      "name": "MongoDB History & Telemetry Database Connection",
+      "status": "PASS",
+      "details": "Asynchronous ping and connection probe passed on startup."
+    },
+    {
+      "check_id": "CHK_TAXONOMY_INTEGRITY",
+      "name": "Phase 2 Canonical Crop & Disease Taxonomy Configuration",
+      "status": "PASS",
+      "details": "10 canonical crops, 39 disease entities, and organ compatibility matrices loaded and verified."
+    },
+    {
+      "check_id": "CHK_QUESTIONNAIRE_SCHEMAS",
+      "name": "Phase 4 Adaptive Questionnaire Engine & Validation",
+      "status": "PASS",
+      "details": "Questionnaire configuration v2.0.0 validated. Pydantic request/response schemas aligned."
+    },
+    {
+      "check_id": "CHK_DIAGNOSIS_ENGINE",
+      "name": "Phase 5 Multimodal Evidence Fusion & Decision Catalog",
+      "status": "PASS",
+      "details": "12-stage multimodal pipeline initialized. 10 explicit decision statuses verified."
+    },
+    {
+      "check_id": "CHK_KNOWLEDGE_BASE",
+      "name": "Phase 7 Agricultural Knowledge Base & CIBRC Guidance",
+      "status": "PASS",
+      "details": "Structured records loaded. Status-gated chemical withholding invariant verified."
+    },
+    {
+      "check_id": "CHK_FULL_WORKFLOW_ORCHESTRATOR",
+      "name": "Phase 8 DiagnosticWorkflowOrchestrator Endpoints",
+      "status": "PASS",
+      "details": "Multipart /diagnosis/v1/full-diagnosis-upload and JSON /diagnosis/v1/full-diagnosis validated."
+    },
+    {
+      "check_id": "CHK_NATIVE_TF_RUN_STATUS",
+      "name": "Host Native TensorFlow DLL Loading",
+      "status": "PROBED_POLICY_RESTRICTED",
+      "details": "Host machine enforces Windows Application Control (WDAC) blocking unsigned native DLL '_pywrap_tensorflow_lite_metrics_wrapper.pyd'. Safe graceful degradation confirmed: System catches error at probe, logs warning, and reports honest 'model_unavailable' with farmer advisory without crashing or faking predictions."
+    },
+    {
+      "check_id": "CHK_FRONTEND_BACKEND_CONNECTIVITY",
+      "name": "Vite Client to Uvicorn Backend API Proxy",
+      "status": "PASS",
+      "details": "Live proxying over port 5173 to 8000 verified. Production build passes in 1.41s."
+    }
+  ],
+  "production_behavior_impact": "None. Zero regressions across Yield Prediction, Assistant Chatbot, or Auth routes.",
+  "conclusion": "SYSTEM_INTEGRATION_VERIFIED_READY"
+}

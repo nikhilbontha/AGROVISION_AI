@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-10-11T06:54:11Z",
+  "phase": "Phase 8: Full-Stack Integration and End-to-End System Validation",
+  "total_tests": 13,
+  "passed_tests": 13,
+  "failed_tests": 0,
+  "test_cases": [
+    {
+      "id": "POS-01",
+      "name": "Multipart Image & Questionnaire Upload E2E Workflow",
+      "passed": true,
+      "status_code": 200,
+      "details": "Decision Status: model_unavailable"
+    },
+    {
+      "id": "POS-02",
+      "name": "Deterministic Multimodal Fusion -> Single Candidate Confirmed with CIBRC Guidance",
+      "passed": true,
+      "status_code": 200,
+      "details": "Status: diagnosis_supported, Guidance Permitted: True"
+    },
+    {
+      "id": "POS-03",
+      "name": "Knowledge Base Direct Retrieval for Valid Canonical Disease",
+      "passed": true,
+      "status_code": 200,
+      "details": "Retrieved disease: Tomato Late Blight"
+    },
+    {
+      "id": "POS-04",
+      "name": "Decision Status Catalog Metadata Retrieval",
+      "passed": true,
+      "status_code": 200,
+      "details": "Retrieved 10 decision statuses"
+    },
+    {
+      "id": "POS-05",
+      "name": "Questionnaire Canonical Crop Taxonomy Catalog",
+      "passed": true,
+      "status_code": 200,
+      "details": "Retrieved 18 crops"
+    },
+    {
+      "id": "FAIL-01",
+      "name": "Corrupted Image Binary Rejection",
+      "passed": true,
+      "status_code": 400,
+      "details": "{\"detail\":\"Corrupted or unreadable image file. Please upload a valid JPG, PNG, or WEBP photo.\"}"
+    },
+    {
+      "id": "FAIL-02",
+      "name": "Empty Image File Rejection",
+      "passed": true,
+      "status_code": 400,
+      "details": "{\"detail\":\"Empty image file uploaded. Please select a valid photo.\"}"
+    },
+    {
+      "id": "FAIL-03",
+      "name": "Unsupported Crop Safe Abstention & Chemical Withholding",
+      "passed": true,
+      "status_code": 200,
+      "details": "Decision: unsupported_crop, Guidance Permitted: False"
+    },
+    {
+      "id": "FAIL-04",
+      "name": "Plant Organ Incompatibility Abstention",
+      "passed": true,
+      "status_code": 200,
+      "details": "Decision: model_unavailable, Organ: rhizomes_tubers"
+    },
+    {
+      "id": "FAIL-05",
+      "name": "Multiple Plausible Candidates Withholding Chemical Treatment",
+      "passed": true,
+      "status_code": 200,
+      "details": "Status: multiple_candidates, Chemicals Count: 0"
+    },
+    {
+      "id": "FAIL-06",
+      "name": "Insufficient Evidence Abstention & Advisory Callout",
+      "passed": true,
+      "status_code": 200,
+      "details": "Status: model_unavailable"
+    },
+    {
+      "id": "FAIL-07",
+      "name": "Missing Disease Knowledge Record 404 Response",
+      "passed": true,
+      "status_code": 404,
+      "details": "Status Code: 404"
+    },
+    {
+      "id": "FAIL-08",
+      "name": "Crop Selection Disagreement Detection",
+      "passed": true,
+      "status_code": 200,
+      "details": "Status: crop_mismatch, Guidance Permitted: False"
+    }
+  ]
+}

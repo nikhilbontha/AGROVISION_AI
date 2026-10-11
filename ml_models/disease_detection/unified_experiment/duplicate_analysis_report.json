@@ -1,0 +1,23 @@
+{
+  "d1_exact_duplicates_count": 0,
+  "d2_exact_duplicates_count": 293,
+  "cross_dataset_exact_duplicates_count": 0,
+  "cross_dataset_near_duplicates_count": 2,
+  "cross_exact_duplicates": [],
+  "cross_near_duplicates_sample": [
+    {
+      "ahash": "ffc783838383c7ff",
+      "dataset_1_count": 1,
+      "dataset_2_count": 1,
+      "dataset_1_sample": "ml_models\\disease_detection\\dataset_prepared\\train\\Tomato___Leaf_Mold\\Tomato___Leaf_Mold_train_29.jpg",
+      "dataset_2_sample": "Andhra_Master_Dataset/Cotton_Verticillium Wilt/aug_verticillium_(435).png"
+    },
+    {
+      "ahash": "ffffc38181c3ffff",
+      "dataset_1_count": 1,
+      "dataset_2_count": 1,
+      "dataset_1_sample": "ml_models\\disease_detection\\dataset_prepared\\val\\Tomato___Tomato_Yellow_Leaf_Curl_Virus\\Tomato___Tomato_Yellow_Leaf_Curl_Virus_val_0.jpg",
+      "dataset_2_sample": "Andhra_Master_Dataset/Cotton_Bacterial Blight/aug_bacterial_(1027).png"
+    }
+  ]
+}

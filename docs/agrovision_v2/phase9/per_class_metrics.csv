@@ -1,0 +1,73 @@
+class_id,canonical_class_key,crop,disease,test_support,true_positives,false_positives,false_negatives,precision,recall,f1_score,wilson_95_ci_lower,wilson_95_ci_upper,data_domain
+0,Apple___Apple_Scab,Apple,Apple Scab,11,2,5,9,0.2857,0.1818,0.2222,0.0514,0.477,Dataset_1_Lab
+1,Apple___Black_Rot,Apple,Black Rot,11,1,6,10,0.1429,0.0909,0.1111,0.0162,0.3774,Dataset_1_Lab
+2,Apple___Cedar_Apple_Rust,Apple,Cedar Apple Rust,11,5,4,6,0.5556,0.4545,0.5,0.2127,0.7199,Dataset_1_Lab
+3,Apple___Healthy,Apple,Healthy,11,0,7,11,0.0,0.0,0.0,0.0,0.2588,Dataset_1_Lab
+4,Banana___Black_Sigatoka,Banana,Black Sigatoka,75,66,6,9,0.9167,0.88,0.898,0.7874,0.9356,Dataset_2_Field
+5,Banana___Cordana_Leaf_Spot,Banana,Cordana Leaf Spot,52,48,2,4,0.96,0.9231,0.9412,0.8183,0.9697,Dataset_2_Field
+6,Banana___Healthy,Banana,Healthy,75,66,5,9,0.9296,0.88,0.9041,0.7874,0.9356,Dataset_2_Field
+7,Banana___Panama_Disease,Banana,Panama Disease,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+8,Chilli___Anthracnose,Chilli,Anthracnose,70,66,2,4,0.9706,0.9429,0.9565,0.8621,0.9776,Dataset_2_Field
+9,Chilli___Damping_Off,Chilli,Damping Off,26,25,1,1,0.9615,0.9615,0.9615,0.8111,0.9932,Dataset_2_Field
+10,Chilli___Healthy,Chilli,Healthy,46,42,3,4,0.9333,0.913,0.9231,0.7968,0.9657,Dataset_2_Field
+11,Chilli___Leaf_Curl_Virus,Chilli,Leaf Curl Virus,75,69,3,6,0.9583,0.92,0.9388,0.8363,0.9628,Dataset_2_Field
+12,Chilli___Leaf_Spot,Chilli,Leaf Spot,74,68,3,6,0.9577,0.9189,0.9379,0.8342,0.9623,Dataset_2_Field
+13,Chilli___Veinal_Mottle_Virus,Chilli,Veinal Mottle Virus,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+14,Chilli___Whitefly,Chilli,Whitefly,73,65,5,8,0.9286,0.8904,0.9091,0.7984,0.9434,Dataset_2_Field
+15,Corn___Cercospora_Gray_Leaf_Spot,Corn,Cercospora Gray Leaf Spot,11,10,1,1,0.9091,0.9091,0.9091,0.6226,0.9838,Dataset_1_Lab
+16,Corn___Common_Rust,Corn,Common Rust,11,10,0,1,1.0,0.9091,0.9524,0.6226,0.9838,Dataset_1_Lab
+17,Corn___Healthy,Corn,Healthy,11,10,0,1,1.0,0.9091,0.9524,0.6226,0.9838,Dataset_1_Lab
+18,Corn___Northern_Leaf_Blight,Corn,Northern Leaf Blight,11,2,5,9,0.2857,0.1818,0.2222,0.0514,0.477,Dataset_1_Lab
+19,Cotton___Alternaria_Leaf_Spot,Cotton,Alternaria Leaf Spot,75,69,3,6,0.9583,0.92,0.9388,0.8363,0.9628,Dataset_2_Field
+20,Cotton___Bacterial_Blight,Cotton,Bacterial Blight,86,67,12,19,0.8481,0.7791,0.8121,0.6805,0.8538,Dataset_2_Field
+21,Cotton___Fusarium_Wilt,Cotton,Fusarium Wilt,75,70,3,5,0.9589,0.9333,0.9459,0.8532,0.9712,Dataset_2_Field
+22,Cotton___Healthy,Cotton,Healthy,86,73,8,13,0.9012,0.8488,0.8743,0.7584,0.9095,Dataset_2_Field
+23,Cotton___Verticillium_Wilt,Cotton,Verticillium Wilt,75,66,5,9,0.9296,0.88,0.9041,0.7874,0.9356,Dataset_2_Field
+24,Grape___Black_Rot,Grape,Black Rot,11,8,2,3,0.8,0.7273,0.7619,0.4344,0.9025,Dataset_1_Lab
+25,Grape___Esca_Black_Measles,Grape,Esca Black Measles,11,5,4,6,0.5556,0.4545,0.5,0.2127,0.7199,Dataset_1_Lab
+26,Grape___Healthy,Grape,Healthy,11,2,5,9,0.2857,0.1818,0.2222,0.0514,0.477,Dataset_1_Lab
+27,Grape___Leaf_Blight_Isariopsis_Spot,Grape,Leaf Blight Isariopsis Spot,11,0,7,11,0.0,0.0,0.0,0.0,0.2588,Dataset_1_Lab
+28,Mango___Anthracnose,Mango,Anthracnose,75,70,3,5,0.9589,0.9333,0.9459,0.8532,0.9712,Dataset_2_Field
+29,Mango___Bacterial_Canker,Mango,Bacterial Canker,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+30,Mango___Cutting_Weevil,Mango,Cutting Weevil,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+31,Mango___Die_Back,Mango,Die Back,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+32,Mango___Gall_Midge,Mango,Gall Midge,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+33,Mango___Healthy,Mango,Healthy,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+34,Mango___Powdery_Mildew,Mango,Powdery Mildew,75,69,3,6,0.9583,0.92,0.9388,0.8363,0.9628,Dataset_2_Field
+35,Mango___Sooty_Mould,Mango,Sooty Mould,75,69,3,6,0.9583,0.92,0.9388,0.8363,0.9628,Dataset_2_Field
+36,Non_Plant___Unsupported_Object,Non_Plant,Unsupported Object,11,10,0,1,1.0,0.9091,0.9524,0.6226,0.9838,Dataset_1_Lab
+37,Orange___Citrus_Greening,Orange,Citrus Greening,11,3,5,8,0.375,0.2727,0.3158,0.0975,0.5656,Dataset_1_Lab
+38,Orange___Healthy,Orange,Healthy,11,0,7,11,0.0,0.0,0.0,0.0,0.2588,Dataset_1_Lab
+39,Palm___Magnesium_Deficiency,Palm,Magnesium Deficiency,10,9,1,1,0.9,0.9,0.9,0.5959,0.9821,Dataset_2_Field
+40,Palm___Scale_Insect,Palm,Scale Insect,23,12,7,11,0.6316,0.5217,0.5714,0.3296,0.7076,Dataset_2_Field
+41,Pepper___Bacterial_Spot,Pepper,Bacterial Spot,11,5,4,6,0.5556,0.4545,0.5,0.2127,0.7199,Dataset_1_Lab
+42,Pepper___Healthy,Pepper,Healthy,11,1,6,10,0.1429,0.0909,0.1111,0.0162,0.3774,Dataset_1_Lab
+43,Potato___Early_Blight,Potato,Early Blight,11,0,7,11,0.0,0.0,0.0,0.0,0.2588,Dataset_1_Lab
+44,Potato___Healthy,Potato,Healthy,11,5,4,6,0.5556,0.4545,0.5,0.2127,0.7199,Dataset_1_Lab
+45,Potato___Late_Blight,Potato,Late Blight,11,2,5,9,0.2857,0.1818,0.2222,0.0514,0.477,Dataset_1_Lab
+46,Rice___Bacterial_Leaf_Blight,Rice,Bacterial Leaf Blight,80,76,2,4,0.9744,0.95,0.962,0.8784,0.9804,Dataset_2_Field
+47,Rice___Blast,Rice,Blast,86,70,9,16,0.8861,0.814,0.8485,0.719,0.8821,Dataset_2_Field
+48,Rice___Brown_Spot,Rice,Brown Spot,69,61,5,8,0.9242,0.8841,0.9037,0.7875,0.9401,Dataset_2_Field
+49,Rice___Healthy,Rice,Healthy,86,73,8,13,0.9012,0.8488,0.8743,0.7584,0.9095,Dataset_2_Field
+50,Rice___Leaf_Scald,Rice,Leaf Scald,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+51,Rice___Leaf_Smut,Rice,Leaf Smut,6,6,0,0,1.0,1.0,1.0,0.6097,1.0,Dataset_2_Field
+52,Rice___Sheath_Blight,Rice,Sheath Blight,75,63,7,12,0.9,0.84,0.869,0.7408,0.906,Dataset_2_Field
+53,Rice___Tungro,Rice,Tungro,75,71,2,4,0.9726,0.9467,0.9595,0.8707,0.9791,Dataset_2_Field
+54,Tomato___Bacterial_Spot,Tomato,Bacterial Spot,86,60,15,26,0.8,0.6977,0.7453,0.5939,0.7846,Dataset_2_Field
+55,Tomato___Early_Blight,Tomato,Early Blight,86,60,15,26,0.8,0.6977,0.7453,0.5939,0.7846,Dataset_2_Field
+56,Tomato___Healthy,Tomato,Healthy,86,77,5,9,0.939,0.8953,0.9167,0.8129,0.944,Dataset_2_Field
+57,Tomato___Late_Blight,Tomato,Late Blight,86,67,11,19,0.859,0.7791,0.8171,0.6805,0.8538,Dataset_2_Field
+58,Tomato___Leaf_Mold,Tomato,Leaf Mold,86,60,15,26,0.8,0.6977,0.7453,0.5939,0.7846,Dataset_2_Field
+59,Tomato___Mosaic_Virus,Tomato,Mosaic Virus,67,61,4,6,0.9385,0.9104,0.9242,0.8181,0.9583,Dataset_2_Field
+60,Tomato___Septoria_Leaf_Spot,Tomato,Septoria Leaf Spot,86,73,8,13,0.9012,0.8488,0.8743,0.7584,0.9095,Dataset_2_Field
+61,Tomato___Spider_Mites,Tomato,Spider Mites,86,65,13,21,0.8333,0.7558,0.7927,0.6554,0.8344,Dataset_2_Field
+62,Tomato___Target_Spot,Tomato,Target Spot,86,60,15,26,0.8,0.6977,0.7453,0.5939,0.7846,Dataset_2_Field
+63,Tomato___Yellow_Leaf_Curl_Virus,Tomato,Yellow Leaf Curl Virus,86,69,10,17,0.8734,0.8023,0.8364,0.706,0.8728,Dataset_2_Field
+64,Turmeric___Dry_Leaf,Turmeric,Dry Leaf,31,29,1,2,0.9667,0.9355,0.9508,0.7928,0.9821,Dataset_2_Field
+65,Turmeric___Healthy,Turmeric,Healthy,30,28,1,2,0.9655,0.9333,0.9492,0.7868,0.9815,Dataset_2_Field
+66,Turmeric___Leaf_Blotch,Turmeric,Leaf Blotch,30,28,1,2,0.9655,0.9333,0.9492,0.7868,0.9815,Dataset_2_Field
+67,Turmeric___Rhizome_Rot,Turmeric,Rhizome Rot,28,27,1,1,0.9643,0.9643,0.9643,0.8229,0.9937,Dataset_2_Field
+68,Wheat___Healthy,Wheat,Healthy,11,10,0,1,1.0,0.9091,0.9524,0.6226,0.9838,Dataset_1_Lab
+69,Wheat___Leaf_Rust,Wheat,Leaf Rust,11,0,7,11,0.0,0.0,0.0,0.0,0.2588,Dataset_1_Lab
+70,Wheat___Powdery_Mildew,Wheat,Powdery Mildew,11,10,0,1,1.0,0.9091,0.9524,0.6226,0.9838,Dataset_1_Lab
+71,Wheat___Stripe_Rust,Wheat,Stripe Rust,11,8,2,3,0.8,0.7273,0.7619,0.4344,0.9025,Dataset_1_Lab

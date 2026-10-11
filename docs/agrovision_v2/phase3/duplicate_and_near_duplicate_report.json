@@ -1,0 +1,91 @@
+{
+  "audit_timestamp": "2026-10-11T11:25:00+05:30",
+  "exact_duplicates": {
+    "dataset_1_internal_duplicate_groups": 0,
+    "dataset_2_internal_duplicate_groups": 293,
+    "dataset_2_same_class_duplicate_groups": 212,
+    "dataset_2_cross_class_conflicting_groups": 81,
+    "dataset_2_total_duplicate_images": 643,
+    "dataset_2_redundant_copies": 350,
+    "cross_dataset_exact_collisions": 0
+  },
+  "cross_class_conflict_summary": {
+    "total_conflicting_clusters": 81,
+    "healthy_vs_diseased_conflicts": 1,
+    "healthy_vs_diseased_detail": {
+      "md5": "f4b76aabeacc2194e82d0796f70761bb",
+      "classes": ["Chilli_Healthy", "Chilli_Leaf Curl Virus"],
+      "files": [
+        "Andhra_Master_Dataset/Chilli_Healthy/Cabai sehat070.jpg",
+        "Andhra_Master_Dataset/Chilli_Leaf Curl Virus/images (6).jpg"
+      ]
+    },
+    "cross_disease_conflicts": 80,
+    "primary_conflicting_classes": [
+      ["Chilli_Yellowish", "Chilli_Leaf Curl Virus"],
+      ["Chilli_Whitefly", "Chilli_Leaf Curl Virus"]
+    ],
+    "etiology_and_root_cause": "Web scraping and synthetic augmentations (FLIPV, ROTATE) ingested identical source photographs under multiple class names (e.g. Indonesian terms 'Cabai sehat' vs 'Cabai virus kuning')."
+  },
+  "near_duplicates": {
+    "cross_dataset_perceptual_hash_clusters": 2,
+    "clusters": [
+      {
+        "ahash": "ffc783838383c7ff",
+        "d1_count": 1,
+        "d2_count": 1,
+        "d1_sample": "ml_models/disease_detection/dataset_prepared/train/Tomato___Leaf_Mold/Tomato___Leaf_Mold_train_29.jpg",
+        "d2_sample": "Andhra_Master_Dataset/Cotton_Verticillium Wilt/aug_verticillium_(435).png"
+      },
+      {
+        "ahash": "ffffc38181c3ffff",
+        "d1_count": 1,
+        "d2_count": 1,
+        "d1_sample": "ml_models/disease_detection/dataset_prepared/val/Tomato___Tomato_Yellow_Leaf_Curl_Virus/Tomato___Tomato_Yellow_Leaf_Curl_Virus_val_0.jpg",
+        "d2_sample": "Andhra_Master_Dataset/Cotton_Bacterial Blight/aug_bacterial_(1027).png"
+      }
+    ]
+  },
+  "sample_d2_duplicate_clusters": [
+    {
+      "md5": "f4b76aabeacc2194e82d0796f70761bb",
+      "count": 2,
+      "conflict": true,
+      "classes": ["Chilli_Healthy", "Chilli_Leaf Curl Virus"],
+      "paths": [
+        "Andhra_Master_Dataset/Chilli_Healthy/Cabai sehat070.jpg",
+        "Andhra_Master_Dataset/Chilli_Leaf Curl Virus/images (6).jpg"
+      ]
+    },
+    {
+      "md5": "ea2ec4715a05381b5442a1cddb3f7b7f",
+      "count": 2,
+      "conflict": true,
+      "classes": ["Chilli_Yellowish", "Chilli_Leaf Curl Virus"],
+      "paths": [
+        "Andhra_Master_Dataset/Chilli_Leaf Curl Virus/FLIPV-download (1).jpg",
+        "Andhra_Master_Dataset/Chilli_Yellowish/FLIPV-Cabai virus kuning07.jpg"
+      ]
+    },
+    {
+      "md5": "ed029ea941a12550a1eed54ee32654d8",
+      "count": 2,
+      "conflict": true,
+      "classes": ["Chilli_Whitefly", "Chilli_Leaf Curl Virus"],
+      "paths": [
+        "Andhra_Master_Dataset/Chilli_Leaf Curl Virus/FLIPV-download (6)a.jpg",
+        "Andhra_Master_Dataset/Chilli_Whitefly/FLIPV-download (24).jpg"
+      ]
+    },
+    {
+      "md5": "a3ab23a09602dbf4368da17b2066ac40",
+      "count": 2,
+      "conflict": false,
+      "classes": ["Banana_Black Sigatoka"],
+      "paths": [
+        "Andhra_Master_Dataset/Banana_Black Sigatoka/20230418_100953-2-_jpg.rf.efba0fce0e31e880d5e11234e5a902a3.jpg",
+        "Andhra_Master_Dataset/Banana_Black Sigatoka/20230418_100953-3-_jpg.rf.12e619621eb0b8f8a8b4cbb55cc82ca1.jpg"
+      ]
+    }
+  ]
+}

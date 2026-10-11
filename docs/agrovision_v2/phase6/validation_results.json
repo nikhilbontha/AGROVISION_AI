@@ -1,0 +1,75 @@
+{
+  "test_suite": "AgroVision AI 2.0 - Phase 6 Automated Model Experiments Test Suite",
+  "executed_at": "2026-10-11T06:31:28.658498+00:00",
+  "total_tests": 13,
+  "tests_passed": 13,
+  "tests_failed": 0,
+  "overall_status": "PASS",
+  "test_results": [
+    {
+      "test_name": "test_configuration_validity",
+      "status": "PASS",
+      "message": "All 4 strategy configurations validated with required schema properties and hyperparameters."
+    },
+    {
+      "test_name": "test_class_mapping_uniqueness",
+      "status": "PASS",
+      "message": "Verified local class index uniqueness and contiguous zero-based indexing for all 16 crop families."
+    },
+    {
+      "test_name": "test_taxonomy_compatibility",
+      "status": "PASS",
+      "message": "Verified 100% bijective compatibility between crop router targets and Phase 2 canonical crop registry."
+    },
+    {
+      "test_name": "test_train_validation_test_separation",
+      "status": "PASS",
+      "message": "Verified complete mutual exclusivity of record IDs across train (16,237), val (3,521), and test (3,522) partitions."
+    },
+    {
+      "test_name": "test_duplicate_group_leakage_controls",
+      "status": "PASS",
+      "message": "Confirmed zero duplicate-group or perceptual hash overlap across all partitions."
+    },
+    {
+      "test_name": "test_deterministic_data_loading",
+      "status": "PASS",
+      "message": "Deterministic partition generator verified: run1 and run2 partition MD5 checksums are identical."
+    },
+    {
+      "test_name": "test_preprocessing_consistency",
+      "status": "PASS",
+      "message": "Verified preprocessing configuration: strictly 224x224 target size and RGB 3-channel input."
+    },
+    {
+      "test_name": "test_model_output_dimensions",
+      "status": "PASS",
+      "message": "Verified physical model output dimension (Dense units = 72) matches 72-class unified label mapping."
+    },
+    {
+      "test_name": "test_checkpoint_reload",
+      "status": "PASS",
+      "message": "Successfully reloaded Crop Router serialized checkpoint (crop_identity_router.pkl) in fresh test process."
+    },
+    {
+      "test_name": "test_finite_outputs_and_probabilities",
+      "status": "PASS",
+      "message": "Verified all inference predictions are strictly finite real numbers summing to 1.0 across all output classes."
+    },
+    {
+      "test_name": "test_unsupported_crop_behavior",
+      "status": "PASS",
+      "message": "Verified unsupported crops (coffee, tea, soybean) are excluded from model mappings, forcing engine abstention."
+    },
+    {
+      "test_name": "test_reproducible_evaluation_calculations",
+      "status": "PASS",
+      "message": "Verified scikit-learn metric calculations (accuracy, balanced accuracy, macro F1) on deterministic fixtures."
+    },
+    {
+      "test_name": "test_artifact_metadata_completeness",
+      "status": "PASS",
+      "message": "All required Phase 6 plan, criteria, comparison, and mapping artifacts verified on disk."
+    }
+  ]
+}

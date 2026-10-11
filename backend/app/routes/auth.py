@@ -108,14 +108,32 @@ async def login(user: UserLogin):
     user_id = str(db_user["_id"])
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": db_user["email"], "id": user_id}, expires_delta=access_token_expires
+        data={"sub": db_user["email"], "id": user_id, "name": db_user.get("name", "Farmer")}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer", "user_id": user_id}
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: dict = Depends(get_current_user)):
     user_id = current_user.get("id")
-    db_user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    if not user_id or user_id == "guest_user":
+        return {
+            "id": "guest_user",
+            "name": "Guest Farmer",
+            "email": "guest@agrovision.ai",
+            "phone": None,
+            "location": "Telangana, India",
+            "language": "en",
+            "created_at": datetime.utcnow(),
+            "last_login": datetime.utcnow(),
+            "avatar": None,
+            "cameras": []
+        }
+
+    try:
+        db_user = await users_collection.find_one({"_id": ObjectId(user_id)})
+    except Exception:
+        db_user = None
+
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
         

@@ -1,0 +1,56 @@
+{
+  "audit_timestamp": "2026-10-11T11:10:00+05:30",
+  "phase2_prerequisite_validated": true,
+  "datasets": {
+    "dataset_1_broad": {
+      "dataset_identifier": "Dataset_1",
+      "name": "AgroVision Prepared Broad Dataset",
+      "storage_path": "ml_models/disease_detection/dataset_prepared",
+      "total_images": 2730,
+      "class_count": 39,
+      "file_formats": {
+        ".jpg": 2730
+      },
+      "domain": "controlled_laboratory",
+      "image_dimensions_summary": {
+        "all_uniform_224x224": true
+      },
+      "split_distribution": {
+        "field_test": 390,
+        "test": 390,
+        "train": 1560,
+        "val": 390
+      },
+      "provenance": "PlantVillage, PlantDoc, Open Agronomic Rice Collection (lab cardboard leaf photography)"
+    },
+    "dataset_2_regional": {
+      "dataset_identifier": "Dataset_2",
+      "name": "Andhra Pradesh Master Regional Field Dataset",
+      "archive_path": "datasets/archive.zip",
+      "extracted_path": "datasets/regional_dataset_2/Andhra_Master_Dataset",
+      "total_images": 21135,
+      "class_count": 51,
+      "file_formats": {
+        ".jpg": 18367,
+        ".jpeg": 268,
+        ".png": 2500
+      },
+      "domain": "real_world_field",
+      "image_dimensions_summary": {
+        "min_width": 100,
+        "max_width": 5120,
+        "min_height": 70,
+        "max_height": 5120
+      },
+      "provenance": "Farm survey collections across Andhra Pradesh and Telangana (Krishna, Guntur, Prakasam, Godavari)"
+    },
+    "auxiliary_synthetic": {
+      "dataset_identifier": "Synthetic_Plant_Village_Auxiliary",
+      "storage_path": "datasets/synthetic_plant_village",
+      "total_images": 50,
+      "class_count": 5,
+      "domain": "synthetic_mock_data",
+      "status": "LEGACY_ARCHIVAL_ONLY"
+    }
+  }
+}

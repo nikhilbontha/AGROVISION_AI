@@ -1,0 +1,5125 @@
+{
+  "schema_version": "2.0.0",
+  "generated_at": "2026-10-11T11:25:00+05:30",
+  "description": "Evidence-based Crop-Organ Compatibility Matrix establishing biological relevance, actual dataset representation, reference support, and validation policies to replace legacy leaf-only HSV filtering.",
+  "supported_organs_vocabulary": [
+    "leaves",
+    "stems",
+    "roots",
+    "flowers",
+    "fruits",
+    "pods",
+    "ears_cobs",
+    "rhizomes_tubers",
+    "whole_plant"
+  ],
+  "crops_matrix": [
+    {
+      "crop_id": "crop_apple",
+      "canonical_name": "Apple",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_apple_scab",
+          "canonical_name": "Apple Scab",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_apple_black_rot",
+          "canonical_name": "Apple Black Rot (Frogeye Leaf Spot)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_apple_cedar_apple_rust",
+          "canonical_name": "Cedar Apple Rust",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_apple_healthy",
+          "canonical_name": "Apple Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_banana",
+      "canonical_name": "Banana",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_banana_black_sigatoka",
+          "canonical_name": "Banana Black Sigatoka",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_banana_cordana_leaf_spot",
+          "canonical_name": "Banana Cordana Leaf Spot",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_banana_healthy",
+          "canonical_name": "Banana Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_banana_panama_disease",
+          "canonical_name": "Banana Panama Disease (Fusarium Wilt)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_chilli",
+      "canonical_name": "Chilli",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_chilli_anthracnose",
+          "canonical_name": "Chilli Anthracnose (Dieback & Fruit Rot)",
+          "primary_diagnostic_organs": [
+            "fruits",
+            "stems",
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_damping_off",
+          "canonical_name": "Chilli Damping Off",
+          "primary_diagnostic_organs": [
+            "stems",
+            "roots",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_healthy",
+          "canonical_name": "Chilli Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_leaf_curl",
+          "canonical_name": "Chilli Leaf Curl Virus",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_leaf_spot",
+          "canonical_name": "Chilli Cercospora Leaf Spot (Frog Eye Spot)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_veinal_mottle",
+          "canonical_name": "Chilli Veinal Mottle Virus",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_whitefly",
+          "canonical_name": "Chilli Whitefly Infestation & Damage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_chilli_yellowish",
+          "canonical_name": "Chilli Yellowish Foliar Chlorosis (Unspecified)",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_corn",
+      "canonical_name": "Corn",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_corn_cercospora_gray_leaf_spot",
+          "canonical_name": "Corn Cercospora Gray Leaf Spot",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_corn_common_rust",
+          "canonical_name": "Corn Common Rust",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_corn_healthy",
+          "canonical_name": "Corn Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_corn_northern_leaf_blight",
+          "canonical_name": "Corn Northern Leaf Blight",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_cotton",
+      "canonical_name": "Cotton",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_cotton_alternaria_leaf_spot",
+          "canonical_name": "Cotton Alternaria Leaf Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "bolls"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_cotton_bacterial_blight",
+          "canonical_name": "Cotton Bacterial Blight (Angular Leaf Spot / Blackarm)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "bolls"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_cotton_fusarium_wilt",
+          "canonical_name": "Cotton Fusarium Wilt",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "roots",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_cotton_healthy",
+          "canonical_name": "Cotton Healthy Canopy",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_cotton_verticillium_wilt",
+          "canonical_name": "Cotton Verticillium Wilt",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_grape",
+      "canonical_name": "Grape",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_grape_black_rot",
+          "canonical_name": "Grape Black Rot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_grape_esca",
+          "canonical_name": "Grape Esca (Black Measles)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_grape_healthy",
+          "canonical_name": "Grape Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_grape_leaf_blight",
+          "canonical_name": "Grape Leaf Blight (Isariopsis Spot)",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_mango",
+      "canonical_name": "Mango",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "fruits": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_mango_anthracnose",
+          "canonical_name": "Mango Anthracnose",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "flowers",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_bacterial_canker",
+          "canonical_name": "Mango Bacterial Canker (Bacterial Black Spot)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_cutting_weevil",
+          "canonical_name": "Mango Leaf Cutting Weevil Damage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_die_back",
+          "canonical_name": "Mango Die Back",
+          "primary_diagnostic_organs": [
+            "stems",
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_gall_midge",
+          "canonical_name": "Mango Leaf Gall Midge Damage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_healthy",
+          "canonical_name": "Mango Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_powdery_mildew",
+          "canonical_name": "Mango Powdery Mildew",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "flowers",
+            "fruits"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_mango_sooty_mould",
+          "canonical_name": "Mango Sooty Mould",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_oil_palm",
+      "canonical_name": "Oil Palm",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_palm_magnesium_deficiency",
+          "canonical_name": "Oil Palm Magnesium Deficiency",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_palm_scale_insect",
+          "canonical_name": "Oil Palm Scale Insect Infestation",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_palm_dryness",
+          "canonical_name": "Oil Palm Moisture Stress / Dryness",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_palm_fungal_disease",
+          "canonical_name": "Oil Palm Unspecified Fungal Disease",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_orange",
+      "canonical_name": "Orange",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_orange_citrus_greening",
+          "canonical_name": "Orange Citrus Greening (Huanglongbing)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_orange_healthy",
+          "canonical_name": "Orange Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_pepper_bell",
+      "canonical_name": "Pepper (Bell)",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_pepper_bacterial_spot",
+          "canonical_name": "Bell Pepper Bacterial Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_pepper_healthy",
+          "canonical_name": "Bell Pepper Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_potato",
+      "canonical_name": "Potato",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_potato_early_blight",
+          "canonical_name": "Potato Early Blight",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "tubers"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_potato_healthy",
+          "canonical_name": "Potato Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_potato_late_blight",
+          "canonical_name": "Potato Late Blight",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "tubers",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_rice",
+      "canonical_name": "Rice",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_rice_bacterial_leaf_blight",
+          "canonical_name": "Rice Bacterial Leaf Blight",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_blast",
+          "canonical_name": "Rice Blast",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "panicles_seeds"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_brown_spot",
+          "canonical_name": "Rice Brown Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "panicles_seeds"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_healthy",
+          "canonical_name": "Rice Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_leaf_scald",
+          "canonical_name": "Rice Leaf Scald",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_leaf_smut",
+          "canonical_name": "Rice Leaf Smut",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_sheath_blight",
+          "canonical_name": "Rice Sheath Blight",
+          "primary_diagnostic_organs": [
+            "stems",
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_rice_tungro",
+          "canonical_name": "Rice Tungro Disease",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_tomato",
+      "canonical_name": "Tomato",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_tomato_bacterial_spot",
+          "canonical_name": "Tomato Bacterial Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_early_blight",
+          "canonical_name": "Tomato Early Blight",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "fruits"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_healthy",
+          "canonical_name": "Tomato Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_late_blight",
+          "canonical_name": "Tomato Late Blight",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems",
+            "fruits",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_leaf_mold",
+          "canonical_name": "Tomato Leaf Mold",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_mosaic_virus",
+          "canonical_name": "Tomato Mosaic Virus",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_septoria_leaf_spot",
+          "canonical_name": "Tomato Septoria Leaf Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_spider_mites",
+          "canonical_name": "Tomato Two-Spotted Spider Mites",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_target_spot",
+          "canonical_name": "Tomato Target Spot",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "fruits",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_tomato_yellow_leaf_curl",
+          "canonical_name": "Tomato Yellow Leaf Curl Virus",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_turmeric",
+      "canonical_name": "Turmeric",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": true,
+          "validation_policy": "PERMITTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_turmeric_dry_leaf",
+          "canonical_name": "Turmeric Dry Leaf / Desiccation",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_turmeric_healthy",
+          "canonical_name": "Turmeric Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_turmeric_leaf_blotch",
+          "canonical_name": "Turmeric Leaf Blotch",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_turmeric_rhizome_rot",
+          "canonical_name": "Turmeric Rhizome Rot (Soft Rot)",
+          "primary_diagnostic_organs": [
+            "rhizomes_tubers",
+            "stems",
+            "leaves",
+            "whole_plant"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_wheat",
+      "canonical_name": "Wheat",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": true,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "PERMITTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": true,
+          "independently_evaluated": false,
+          "validation_policy": "REFERENCE_ONLY_UNTESTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_wheat_healthy",
+          "canonical_name": "Wheat Healthy Foliage",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_wheat_leaf_rust",
+          "canonical_name": "Wheat Leaf Rust (Brown Rust)",
+          "primary_diagnostic_organs": [
+            "leaves"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_wheat_powdery_mildew",
+          "canonical_name": "Wheat Powdery Mildew",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "stems"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        },
+        {
+          "disease_id": "dis_wheat_stripe_rust",
+          "canonical_name": "Wheat Stripe Rust (Yellow Rust)",
+          "primary_diagnostic_organs": [
+            "leaves",
+            "ears_cobs"
+          ],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": true,
+              "reference_supported": true
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": true,
+              "dataset_evidence_present": false,
+              "reference_supported": true
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "crop_id": "crop_non_plant",
+      "canonical_name": "Non-Plant",
+      "crop_level_organ_status": {
+        "leaves": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "stems": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "roots": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "flowers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "fruits": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "pods": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "ears_cobs": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "rhizomes_tubers": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        },
+        "whole_plant": {
+          "represented_in_dataset": false,
+          "supported_by_reference": false,
+          "independently_evaluated": false,
+          "validation_policy": "UNSUPPORTED"
+        }
+      },
+      "disease_level_organ_status": [
+        {
+          "disease_id": "dis_non_plant_unsupported",
+          "canonical_name": "Non-Plant / Unsupported Object",
+          "primary_diagnostic_organs": [],
+          "organ_manifestations": {
+            "leaves": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "stems": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "roots": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "flowers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "fruits": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "pods": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "ears_cobs": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "rhizomes_tubers": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            },
+            "whole_plant": {
+              "is_diagnostic_organ": false,
+              "dataset_evidence_present": false,
+              "reference_supported": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

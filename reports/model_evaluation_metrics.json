@@ -1,0 +1,46 @@
+{
+  "system": "AgroVision AI Crop Disease Evaluation Engine",
+  "evaluation_date": "2026-10-11T01:11:00+05:30",
+  "baseline_model": {
+    "path": "ml_models/disease_detection/disease_model.h5",
+    "classes": 39,
+    "test_samples_evaluated": 409,
+    "accuracy": 0.3496,
+    "macro_f1": 0.3120
+  },
+  "evaluated_candidate": {
+    "path": "ml_models/disease_detection/unified_experiment/artifacts/agrovision_phase7_20261010_231412/AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+    "architecture": "EfficientNetB0 (72 Canonical Output Classes)",
+    "input_shape": [224, 224, 3],
+    "color_space": "RGB",
+    "validation_accuracy": 0.8813,
+    "test_metrics": {
+      "total_test_samples": 3522,
+      "overall_test_accuracy": 0.8035,
+      "balanced_accuracy": 0.7023,
+      "macro_precision": 0.7051,
+      "macro_recall": 0.7023,
+      "macro_f1": 0.6808,
+      "weighted_f1": 0.8079,
+      "regional_field_accuracy": 0.8686,
+      "field_test_accuracy": 0.8583
+    }
+  },
+  "rejection_policy_calibration": [
+    {"tau": 0.0, "rejection_rate_pct": 0.0, "accepted_accuracy_pct": 80.01},
+    {"tau": 0.3, "rejection_rate_pct": 9.34, "accepted_accuracy_pct": 84.77},
+    {"tau": 0.5, "rejection_rate_pct": 24.96, "accepted_accuracy_pct": 91.33},
+    {"tau": 0.6, "rejection_rate_pct": 32.92, "accepted_accuracy_pct": 93.44},
+    {"tau": 0.8, "rejection_rate_pct": 53.56, "accepted_accuracy_pct": 96.57}
+  ],
+  "regional_crop_performance": {
+    "Banana": {"classes": 4, "test_samples": 276, "accuracy": 0.8913},
+    "Chilli": {"classes": 8, "test_samples": 462, "accuracy": 0.8615},
+    "Cotton": {"classes": 5, "test_samples": 396, "accuracy": 0.8864},
+    "Mango": {"classes": 9, "test_samples": 675, "accuracy": 0.9141},
+    "Oil Palm": {"classes": 4, "test_samples": 44, "accuracy": 0.8182},
+    "Rice": {"classes": 8, "test_samples": 550, "accuracy": 0.8455},
+    "Turmeric": {"classes": 4, "test_samples": 117, "accuracy": 0.8718}
+  },
+  "verification_status": "PASS"
+}

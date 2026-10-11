@@ -1,0 +1,144 @@
+{
+  "chemical_registry_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "regulatory_framework": "Insecticides Act, 1968 & CIBRC Approved Uses (July 2024)",
+  "compliance_statement": "All listed chemical treatments must hold statutory CIBRC label-claim registration or explicit State Agricultural University (PJTSAU/ANGRAU) package-of-practices approval for the EXACT crop and disease. Cross-crop extrapolation is strictly prohibited.",
+  "safety_mandates": [
+    "Always wear protective clothing, rubber gloves, and face masks during fungicide/insecticide preparation and spraying.",
+    "Do not spray chemicals during high wind speeds (>15 km/h) or during peak daytime heat (11:00 AM - 3:00 PM) to avoid drift and phototoxicity.",
+    "Strictly adhere to the Pre-Harvest Interval (PHI) before harvesting produce for food consumption or market sale.",
+    "Never mix chemical compounds arbitrarily without authorized compatibility verification.",
+    "Rotate fungicide chemical classes (FRAC groups) to prevent pathogen resistance development."
+  ],
+  "verified_crop_chemical_registry": [
+    {
+      "active_ingredient": "Tricyclazole",
+      "formulation": "75% WP",
+      "dosage_per_liter": "0.6 g/L (120 g/acre in 200L water)",
+      "target_crop": "Rice",
+      "target_disease_id": "dis_rice_blast",
+      "target_pathogen": "Magnaporthe oryzae",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 30,
+      "frac_code": "16.1 (Melanin Biosynthesis Inhibitor)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_PJTSAU_POP_2024",
+      "last_verified_date": "2024-07-01"
+    },
+    {
+      "active_ingredient": "Streptocycline + Copper Oxychloride",
+      "formulation": "Streptocycline 90:10 (0.1 g/L) + COC 50% WP (2.5 g/L)",
+      "dosage_per_liter": "Streptocycline 0.1 g/L + COC 2.5 g/L",
+      "target_crop": "Rice",
+      "target_disease_id": "dis_rice_bacterial_leaf_blight",
+      "target_pathogen": "Xanthomonas oryzae pv. oryzae",
+      "cibrc_status": "recommended_package_of_practices",
+      "pre_harvest_interval_days": 15,
+      "frac_code": "M01 (Copper) + Bactericide",
+      "authority_source": "SRC_PJTSAU_POP_2024",
+      "university_endorsement": "SRC_ANGRAU_DIAGNOSTIC_2024",
+      "last_verified_date": "2024-06-01"
+    },
+    {
+      "active_ingredient": "Hexaconazole",
+      "formulation": "5% EC",
+      "dosage_per_liter": "1.0 ml/L (200 ml/acre in 200L water)",
+      "target_crop": "Rice",
+      "target_disease_id": "dis_rice_sheath_blight",
+      "target_pathogen": "Rhizoctonia solani",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 30,
+      "frac_code": "3 (DMI Triazole)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_PJTSAU_POP_2024",
+      "last_verified_date": "2024-07-01"
+    },
+    {
+      "active_ingredient": "Azoxystrobin + Difenoconazole",
+      "formulation": "18.2% + 11.4% SC",
+      "dosage_per_liter": "1.0 ml/L",
+      "target_crop": "Chilli",
+      "target_disease_id": "dis_chilli_anthracnose",
+      "target_pathogen": "Colletotrichum capsici",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 5,
+      "frac_code": "11 + 3 (QoI + DMI)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_ANGRAU_DIAGNOSTIC_2024",
+      "last_verified_date": "2024-07-01"
+    },
+    {
+      "active_ingredient": "Metalaxyl-M + Mancozeb",
+      "formulation": "4% + 64% WP",
+      "dosage_per_liter": "2.5 g/L",
+      "target_crop": "Tomato",
+      "target_disease_id": "dis_tomato_late_blight",
+      "target_pathogen": "Phytophthora infestans",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 7,
+      "frac_code": "4 + M03 (PA + Dithiocarbamate)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_PJTSAU_POP_2024",
+      "last_verified_date": "2024-07-01"
+    },
+    {
+      "active_ingredient": "Chlorothalonil",
+      "formulation": "75% WP",
+      "dosage_per_liter": "2.0 g/L",
+      "target_crop": "Tomato",
+      "target_disease_id": "dis_tomato_early_blight",
+      "target_pathogen": "Alternaria solani",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 7,
+      "frac_code": "M05 (Multi-site Chloronitrile)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_ICAR_IPM_HORT_2023",
+      "last_verified_date": "2024-07-01"
+    },
+    {
+      "active_ingredient": "Copper Oxychloride",
+      "formulation": "50% WP",
+      "dosage_per_liter": "2.5 g/L",
+      "target_crop": "Cotton",
+      "target_disease_id": "dis_cotton_bacterial_blight",
+      "target_pathogen": "Xanthomonas citri pv. malvacearum",
+      "cibrc_status": "recommended_package_of_practices",
+      "pre_harvest_interval_days": 15,
+      "frac_code": "M01 (Inorganic Copper)",
+      "authority_source": "SRC_ICAR_CICR_COTTON_2023",
+      "university_endorsement": "SRC_PJTSAU_POP_2024",
+      "last_verified_date": "2024-06-01"
+    },
+    {
+      "active_ingredient": "Propiconazole",
+      "formulation": "25% EC",
+      "dosage_per_liter": "1.0 ml/L",
+      "target_crop": "Wheat",
+      "target_disease_id": "dis_wheat_leaf_rust",
+      "target_pathogen": "Puccinia triticina",
+      "cibrc_status": "approved_label_claim",
+      "pre_harvest_interval_days": 35,
+      "frac_code": "3 (Triazole DMI)",
+      "authority_source": "SRC_CIBRC_REGISTER_2024",
+      "university_endorsement": "SRC_CABI_PLANTWISE_2023",
+      "last_verified_date": "2024-07-01"
+    }
+  ],
+  "unverified_chemical_exclusions": [
+    {
+      "crop": "Tomato",
+      "disease_id": "dis_tomato_yellow_leaf_curl_virus",
+      "reason": "Viral pathogen cannot be controlled by fungicides or direct chemical cures. Chemical control is strictly restricted to vector management (imidacloprid / thiamethoxam for Bemisia tabaci whiteflies). Direct anti-viral claims are scientifically invalid and strictly excluded."
+    },
+    {
+      "crop": "Chilli",
+      "disease_id": "dis_chilli_mosaic_virus",
+      "reason": "Direct antiviral chemical curative treatments do not exist. Treatment is limited to vector eradication and rouging of infected plants."
+    },
+    {
+      "crop": "Orange",
+      "disease_id": "dis_orange_citrus_greening",
+      "reason": "Candidatus Liberibacter is a fastidious phloem-limited bacterium with no registered curative chemical spray under CIBRC. Claims of chemical cures are rejected; management is strictly vector control (Diaphorina citri) and infected tree removal."
+    }
+  ]
+}

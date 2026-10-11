@@ -1,0 +1,26 @@
+{
+  "protocol_version": "2.0.0",
+  "evaluated_system": "AgroVision AI 2.0 Disease Diagnostic System",
+  "evaluation_scope": {
+    "candidate_model": "AGROVISION_UNIFIED_72CLASS_MODEL.h5 (Phase 6 Master Candidate)",
+    "baseline_comparison": "disease_model.h5 (39-class production baseline)",
+    "taxonomy_version": "2.0.0 (16 crops, 75 diseases)",
+    "questionnaire_engine_version": "2.0.0",
+    "diagnosis_engine_version": "2.0.0",
+    "knowledge_base_version": "2.0.0"
+  },
+  "dataset_provenance": {
+    "source_1": "Dataset 1 (PlantVillage laboratory images on uniform cardboard background)",
+    "source_2": "Dataset 2 (Regional Andhra Pradesh & Telangana field images)",
+    "held_out_test_manifest": "test_manifest.json (3,522 records; 409 lab, 3,113 field)",
+    "field_test_manifest": "field_test_manifest.json (3,175 field records)",
+    "separation_guarantee": "Zero duplicate-group leakage verified by aHash and MD5 clustering in Phase 3/5"
+  },
+  "metrics_and_acceptance_criteria": {
+    "target_overall_accuracy": ">= 80.0%",
+    "target_regional_field_accuracy": ">= 85.0%",
+    "cross_crop_error_mitigation": "Requires Phase 8 Crop-Confirmation Gating",
+    "recommendation_safety_threshold": "100% safety invariant preservation (zero unsupported chemicals)"
+  },
+  "statistical_method": "Wilson score 95% confidence intervals for binomial accuracy and per-class metrics"
+}

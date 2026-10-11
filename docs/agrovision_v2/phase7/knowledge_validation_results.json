@@ -1,0 +1,70 @@
+{
+  "test_suite": "AgroVision AI 2.0 - Phase 7 Agricultural Knowledge Base & Recommendations Test Suite",
+  "executed_at": "2026-10-11T06:39:08.691610+00:00",
+  "total_tests": 12,
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "overall_status": "PASS",
+  "test_results": [
+    {
+      "test_name": "test_no_duplicate_knowledge_record_ids",
+      "status": "PASS",
+      "message": "Verified all 75 knowledge records have strictly unique IDs."
+    },
+    {
+      "test_name": "test_canonical_crop_disease_references",
+      "status": "PASS",
+      "message": "100% of knowledge records map to verified Phase 2 crop and disease canonical registries."
+    },
+    {
+      "test_name": "test_knowledge_base_json_schema_conformance",
+      "status": "PASS",
+      "message": "All 75 knowledge records strictly conform to knowledge_base_schema.json."
+    },
+    {
+      "test_name": "test_institutional_evidence_references_integrity",
+      "status": "PASS",
+      "message": "All knowledge records reference registered sources (PJTSAU, ANGRAU, ICAR, CIBRC)."
+    },
+    {
+      "test_name": "test_chemical_recommendations_compliance",
+      "status": "PASS",
+      "message": "Verified all chemical recommendations have CIBRC statutory registration or university POP backing."
+    },
+    {
+      "test_name": "test_antiviral_and_noncurative_chemical_exclusions",
+      "status": "PASS",
+      "message": "Verified viral diseases strictly omit direct chemical cures and restrict to vector IPM."
+    },
+    {
+      "test_name": "test_regional_applicability_telangana_and_ap",
+      "status": "PASS",
+      "message": "Verified regional applicability covers PJTSAU and ANGRAU agroclimatic zones in Telangana and AP."
+    },
+    {
+      "test_name": "test_status_gating_uncertain_diagnoses_withhold_chemicals",
+      "status": "PASS",
+      "message": "Verified all 8 non-supported diagnostic statuses strictly withhold chemical sprays and supply safe referral guidance."
+    },
+    {
+      "test_name": "test_supported_diagnosis_returns_verified_ipm",
+      "status": "PASS",
+      "message": "Successfully returned source-backed IPM, distinguishing symptoms, and Tricyclazole label treatment for Rice Blast."
+    },
+    {
+      "test_name": "test_missing_knowledge_record_fails_safely",
+      "status": "PASS",
+      "message": "Missing knowledge record failed safely with KVK referral without falling back to generic chemical sprays."
+    },
+    {
+      "test_name": "test_specific_disease_knowledge_endpoint",
+      "status": "PASS",
+      "message": "Verified GET /diagnosis/v1/knowledge/{disease_id} returns record on match and 404 on unknown."
+    },
+    {
+      "test_name": "test_regression_safety_yield_and_diagnosis",
+      "status": "PASS",
+      "message": "Zero regressions on /predict/predict-yield and Phase 5 diagnostic routers."
+    }
+  ]
+}

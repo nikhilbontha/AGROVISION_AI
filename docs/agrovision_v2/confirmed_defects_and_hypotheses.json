@@ -1,0 +1,66 @@
+{
+  "confirmed_defects": [
+    {
+      "defect_id": "DEF-001",
+      "summary": "Runtime TensorFlow DLL import blocked on Windows Python 3.13",
+      "status": "CONFIRMED_DEFECT",
+      "location": "backend/app/routes/predict.py (import tensorflow as tf)",
+      "mechanism": "Windows Application Control policy blocks loading of _pywrap_determinism.pyd from Python 3.13 site-packages. This causes get_disease_model() to return (None, None), and every disease inference request fails with HTTP error MODEL_UNAVAILABLE ('Crop Disease AI model is currently unavailable').",
+      "reproducible_command": "python -c \"import tensorflow as tf\"",
+      "reproducible_evidence": "ImportError: DLL load failed while importing _pywrap_determinism: An Application Control policy has blocked this file."
+    },
+    {
+      "defect_id": "DEF-002",
+      "summary": "Non-foliar plant organs (Corn cobs, ears, fruit, tubers) rejected by leaf-only HSV filter",
+      "status": "CONFIRMED_DEFECT",
+      "location": "backend/app/routes/predict.py (validate_leaf_image())",
+      "mechanism": "Hardcoded HSV thresholding strictly demands green/yellow foliage ratio >= 0.02. Corn cobs, yellow kernels, dry ears, tomato fruits, and potato tubers have < 2% green foliage and are rejected with 'No crop foliage or plant leaves detected'.",
+      "reproducible_command": "Tested on corn ear and non-foliar samples; validate_leaf_image returns False.",
+      "reproducible_evidence": "Direct code inspection lines 309-317: foliage_ratio < 0.02 returns NON_CROP_IMAGE."
+    },
+    {
+      "defect_id": "DEF-003",
+      "summary": "Artificial confidence floor and fabricated crop confidence score",
+      "status": "CONFIRMED_DEFECT",
+      "location": "backend/app/routes/predict.py (lines 526-527)",
+      "mechanism": "Code sets confidence_score = round(max(best_prob * 100.0, 65.0), 1) and crop_confidence = round(min(confidence_score + 10.0, 99.2), 1). Even marginal predictions (e.g. 51%) are reported as 65% confident, and crop species confidence is fabricated by adding 10.0%.",
+      "reproducible_evidence": "Verifiable in predict.py lines 526-527."
+    },
+    {
+      "defect_id": "DEF-004",
+      "summary": "Naive OpenCV HSV color mask disguised as AI lesion diagnosis",
+      "status": "CONFIRMED_DEFECT",
+      "location": "backend/app/routes/predict.py (analyze_lesion_masking())",
+      "mechanism": "Draws red bounding boxes around any brown or yellow HSV pixels (soil dust, natural leaf veins, shadows, dry edges). Counts them as 'infected_area_count' and assigns severity 'High' (>15), misleading farmers into thinking an AI pathology segmentation model verified active lesions.",
+      "reproducible_evidence": "Verifiable in predict.py lines 328-383."
+    },
+    {
+      "defect_id": "DEF-005",
+      "summary": "Severe cross-dataset class imbalance causing Solanaceae prior bias towards Chilli",
+      "status": "CONFIRMED_DEFECT",
+      "location": "Unified 72-class model training distribution (Dataset 1 vs Dataset 2)",
+      "mechanism": "Chilli has 3,363 outdoor field images in Dataset 2, while Potato has ONLY 120 total images (40 training images per class) in Dataset 1. Because Solanaceous crops share leaf morphology, the model posterior strongly favors Chilli over Potato and lab-trained Tomato.",
+      "reproducible_evidence": "Phase 7 training execution report confirms Dataset 2 validation accuracy was 94.88% while Dataset 1 accuracy collapsed to 35.34%."
+    }
+  ],
+  "unresolved_hypotheses": [
+    {
+      "hypothesis_id": "HYP-001",
+      "summary": "Model feature representation collapses when combining lab cardboard and field backgrounds",
+      "status": "UNRESOLVED_HYPOTHESIS",
+      "details": "Hypothesized that EfficientNetB0 in Strategy A learned to use lab gray/black cardboard as a shortcut feature for Dataset 1 classes, which causes it to fail when presented with field photos of the same diseases. Needs feature attribution (Grad-CAM) or lesion-isolated testing in Phase 2 to definitively prove."
+    },
+    {
+      "hypothesis_id": "HYP-002",
+      "summary": "Two-stage hierarchical cascade (Crop Classifier -> Crop Disease Expert) outperforms monolithic 72-class model",
+      "status": "UNRESOLVED_HYPOTHESIS",
+      "details": "Hypothesized that decoupling crop species identification from crop-specific disease diagnosis eliminates 100% of cross-crop misclassification errors (e.g., Tomato predicted as Chilli). Needs empirical benchmarking across unified validation split in Phase 2/3."
+    },
+    {
+      "hypothesis_id": "HYP-003",
+      "summary": "Adaptive farmer questionnaire improves diagnostic precision on visually ambiguous look-alikes by >15%",
+      "status": "UNRESOLVED_HYPOTHESIS",
+      "details": "Hypothesized that symptoms such as concentric rings (Alternaria) vs water-soaked lesions (Xanthomonas) can be disambiguated by asking symptom appearance and duration, resolving image model confusion. Requires structured evaluation on an annotated test cohort in Phase 3/4."
+    }
+  ]
+}

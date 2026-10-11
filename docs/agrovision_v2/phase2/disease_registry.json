@@ -1,0 +1,2498 @@
+{
+  "registry_version": "2.0.0",
+  "generated_at": "2026-10-11T11:15:00+05:30",
+  "total_diseases": 75,
+  "description": "AgroVision AI Canonical Disease Registry establishing stable IDs, condition types, verified pathogen types, observable symptoms, look-alikes, dataset aliases, and model class indices across all 75 dataset classes.",
+  "diseases": [
+    {
+      "disease_id": "dis_apple_scab",
+      "canonical_name": "Apple Scab",
+      "crop_id": "crop_apple",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Venturia inaequalis",
+      "supported_organs": [
+        "leaves",
+        "fruits"
+      ],
+      "observable_symptoms": [
+        "Dull olive-green to black velvety spots on leaf surface",
+        "Crinkled and distorted leaf margins in early stage",
+        "Scabby, corky, cracked lesions on apple fruit skin"
+      ],
+      "known_look_alikes": [
+        "dis_apple_black_rot",
+        "Cedar Apple Rust early lesions",
+        "Sooty blotch"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Apple___Apple_scab"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 0,
+        "v2_unified_72class": 0
+      },
+      "evidence_references": [
+        "ICAR-CITH Technical Bulletin on Temperate Fruit Pathology 2022",
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Laboratory cardboard background in Dataset 1. Foliar spots visually resemble black rot before sporulation."
+    },
+    {
+      "disease_id": "dis_apple_black_rot",
+      "canonical_name": "Apple Black Rot (Frogeye Leaf Spot)",
+      "crop_id": "crop_apple",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Botryosphaeria obtusa",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Small circular purple spots on leaves expanding to frogeye pattern with tan center and dark purple border",
+        "Firm brown to black rotting on fruit starting near calyx",
+        "Sunken cankers on twigs and branches"
+      ],
+      "known_look_alikes": [
+        "dis_apple_scab",
+        "Cedar Apple Rust",
+        "Spray phytotoxicity"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Apple___Black_rot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 1,
+        "v2_unified_72class": 1
+      },
+      "evidence_references": [
+        "ICAR-CITH Apple Disease Compendium 2022",
+        "Penn State Extension Tree Fruit Production Guide 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 images show isolated leaves with frogeye spotting; fruit rot stage is not represented in dataset."
+    },
+    {
+      "disease_id": "dis_apple_cedar_apple_rust",
+      "canonical_name": "Cedar Apple Rust",
+      "crop_id": "crop_apple",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Gymnosporangium juniperi-virginianae",
+      "supported_organs": [
+        "leaves",
+        "fruits"
+      ],
+      "observable_symptoms": [
+        "Bright yellow-orange circular spots on upper leaf surface with tiny dark pycnidia",
+        "Cluster cups (aecia) protruding from lower leaf surface in mature stage",
+        "Yellow swollen spots on calyx end of fruit"
+      ],
+      "known_look_alikes": [
+        "dis_apple_scab",
+        "Hawthorn rust",
+        "Physiological leaf spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Apple___Cedar_apple_rust"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 2,
+        "v2_unified_72class": 2
+      },
+      "evidence_references": [
+        "Cornell Cooperative Extension Cedar Apple Rust Fact Sheet 2023",
+        "PlantVillage Dataset (Hughes & Salathe, 2015)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Distinctive yellow-orange color simplifies image classification; only laboratory leaf images available."
+    },
+    {
+      "disease_id": "dis_apple_healthy",
+      "canonical_name": "Apple Healthy Foliage",
+      "crop_id": "crop_apple",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Malus domestica",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Uniform green leaf color, intact cuticle, absence of chlorotic halos or necrotic spots"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Apple___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 3,
+        "v2_unified_72class": 3
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 shows leaves on plain cardboard under flat artificial lighting."
+    },
+    {
+      "disease_id": "dis_banana_black_sigatoka",
+      "canonical_name": "Banana Black Sigatoka",
+      "crop_id": "crop_banana",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Pseudocercospora fijiensis",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Narrow reddish-brown streaks parallel to leaf veins",
+        "Streaks expanding into elliptical dark brown to black spots with grey centers and yellow halos",
+        "Extensive leaf blade collapse and drying"
+      ],
+      "known_look_alikes": [
+        "dis_banana_cordana_leaf_spot",
+        "Yellow Sigatoka (Pseudocercospora musae)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Banana_Black Sigatoka"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 4
+      },
+      "evidence_references": [
+        "ICAR-NRCB Technical Guide on Sigatoka Complex Management 2023",
+        "ANGRAU Horticultural Crop Protection Manual 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "High visual similarity to Yellow Sigatoka in early streak stage; Dataset 2 contains field photographs."
+    },
+    {
+      "disease_id": "dis_banana_cordana_leaf_spot",
+      "canonical_name": "Banana Cordana Leaf Spot",
+      "crop_id": "crop_banana",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Cordana musae",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Large oval to diamond-shaped pale brown lesions with distinct concentric zonate rings",
+        "Bright yellow border surrounding necrotic lesion",
+        "Lesions usually originate from leaf margin and expand inward"
+      ],
+      "known_look_alikes": [
+        "dis_banana_black_sigatoka",
+        "Leaf marginal scorch / Potassium deficiency"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Banana_Cordana Leaf Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 5
+      },
+      "evidence_references": [
+        "ICAR-NRCB Banana Pathology Compendium 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Characterized by concentric zonation and bright yellow halo; 342 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_banana_healthy",
+      "canonical_name": "Banana Healthy Foliage",
+      "crop_id": "crop_banana",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Musa acuminata",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Vibrant green leaf blade, broad intact lamina, absence of necrotic streaks or chlorotic spotting"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_2": "Banana_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 6
+      },
+      "evidence_references": [
+        "ANGRAU Package of Practices for Banana 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 2 contains 500 field canopy photographs."
+    },
+    {
+      "disease_id": "dis_banana_panama_disease",
+      "canonical_name": "Banana Panama Disease (Fusarium Wilt)",
+      "crop_id": "crop_banana",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Fusarium oxysporum f. sp. cubense",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Yellowing of lower/older leaves starting from margin and progressing toward midrib",
+        "Petiole buckling and leaves collapsing against pseudostem forming skirt of dead leaves",
+        "Longitudinal splitting of pseudostem base and internal vascular reddish-brown discoloration"
+      ],
+      "known_look_alikes": [
+        "Bacterial soft rot / Moko disease",
+        "Drought stress / Waterlogging"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Banana_Panama Disease"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 7
+      },
+      "evidence_references": [
+        "ICAR-NRCB Fusarium Wilt (TR4 / Race 1) Diagnostic Protocol 2023",
+        "FAO Global Programme on Banana Fusarium Wilt 2022"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Foliar yellowing can be mistaken for nutrient deficiency without inspecting stem vascular discoloration."
+    },
+    {
+      "disease_id": "dis_chilli_anthracnose",
+      "canonical_name": "Chilli Anthracnose (Dieback & Fruit Rot)",
+      "crop_id": "crop_chilli",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Colletotrichum capsici",
+      "supported_organs": [
+        "fruits",
+        "stems",
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Circular to elliptical sunken necrotic spots on ripe red chilli pods with concentric rings of black acervuli",
+        "Straw-colored dry rot of pod with shriveled seed cavity",
+        "Dieback of twig tips drying downwards into silvery-white twigs"
+      ],
+      "known_look_alikes": [
+        "Blossom end rot",
+        "Sunscald on chilli pods",
+        "dis_chilli_leaf_spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Anthracnose"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 8
+      },
+      "evidence_references": [
+        "ANGRAU Chilli Crop Protection Guidelines 2024",
+        "ICAR-IIHR Chilli Disease Management Compendium 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 2 contains images of both fruit rot and foliar lesions; non-foliar pod images must not be rejected by leaf-only filters."
+    },
+    {
+      "disease_id": "dis_chilli_damping_off",
+      "canonical_name": "Chilli Damping Off",
+      "crop_id": "crop_chilli",
+      "condition_type": "disease",
+      "pathogen_type": "oomycete",
+      "scientific_name": "Pythium aphanidermatum",
+      "supported_organs": [
+        "stems",
+        "roots",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Pre-emergence seed decay and failure of seedling emergence",
+        "Water-soaked brownish constriction of hypocotyl/collar at soil line",
+        "Seedlings toppling over in patches in the nursery bed"
+      ],
+      "known_look_alikes": [
+        "Rhizoctonia collar rot",
+        "Cutworm damage"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Damping Off"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 9
+      },
+      "evidence_references": [
+        "ANGRAU Chilli Nursery Management Manual 2023",
+        "TNAU Agritech Portal Chilli Damping Off Guide 2022"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Occurs exclusively at nursery/seedling stage (0-30 days); seedling collar photos must be supported."
+    },
+    {
+      "disease_id": "dis_chilli_healthy",
+      "canonical_name": "Chilli Healthy Foliage",
+      "crop_id": "crop_chilli",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Capsicum annuum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Vibrant green leaves, uniform growth, erect foliage, absence of puckering, spots, or pod lesions"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 10
+      },
+      "evidence_references": [
+        "ANGRAU Vyavasaya Panchangam 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Major prior attractor in monolithic 72-class model; Potato and Tomato field images misclassified here."
+    },
+    {
+      "disease_id": "dis_chilli_leaf_curl",
+      "canonical_name": "Chilli Leaf Curl Virus",
+      "crop_id": "crop_chilli",
+      "condition_type": "disease",
+      "pathogen_type": "viral",
+      "scientific_name": "Chilli leaf curl virus (ChiLCV)",
+      "supported_organs": [
+        "leaves",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Upward curling, puckering, and boat-shaped cupping of leaf margins",
+        "Shortening of internodes resulting in severe plant stunting and rosetting",
+        "Thickened veins, reduced leaf size, and flower drop with malformed fruit"
+      ],
+      "known_look_alikes": [
+        "Chilli Thrips damage (Scirtothrips dorsalis - causes upward boat-like curling)",
+        "Chilli Mite damage (Polyphagotarsonemus latus - downward curling)",
+        "Weedicide drift (2,4-D damage)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Leaf Curl Virus"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 11
+      },
+      "evidence_references": [
+        "ICAR-NCIPM Chilli IPM Manual 2023",
+        "ANGRAU Package of Practices for Chilli (Viral Diseases) 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Transmitted by whitefly vector (*Bemisia tabaci*); thrips and mite feeding cause nearly identical curling symptoms requiring questionnaire differentiation."
+    },
+    {
+      "disease_id": "dis_chilli_leaf_spot",
+      "canonical_name": "Chilli Cercospora Leaf Spot (Frog Eye Spot)",
+      "crop_id": "crop_chilli",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Cercospora capsici",
+      "supported_organs": [
+        "leaves",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Circular to oblong spots with pale grey/white center and prominent dark brown or reddish margin",
+        "Lesions surrounded by prominent chlorotic yellow halo",
+        "Severe leaf yellowing and defoliation when spots coalesce"
+      ],
+      "known_look_alikes": [
+        "Bacterial leaf spot (Xanthomonas)",
+        "Alternaria leaf spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Leaf Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 12
+      },
+      "evidence_references": [
+        "ANGRAU Chilli Disease Compendium 2024",
+        "TNAU Agritech Portal Chilli Protection 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Distinguished from bacterial spot by grey center and distinct circular shape rather than angular water-soaking."
+    },
+    {
+      "disease_id": "dis_chilli_veinal_mottle",
+      "canonical_name": "Chilli Veinal Mottle Virus",
+      "crop_id": "crop_chilli",
+      "condition_type": "disease",
+      "pathogen_type": "viral",
+      "scientific_name": "Chilli veinal mottle virus (ChiVMV)",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Dark green vein-banding and mottling along primary and secondary leaf veins",
+        "Interveinal chlorosis and mild leaf distortion",
+        "Slight reduction in plant height without severe rosetting"
+      ],
+      "known_look_alikes": [
+        "Cucumber Mosaic Virus (CMV)",
+        "Potato Virus Y (PVY)",
+        "Nutrient chlorosis"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Veinal Mottle Virus"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 13
+      },
+      "evidence_references": [
+        "ICAR-IIVR (Indian Institute of Vegetable Research) Virus Manual 2022"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Aphid-transmitted Potyvirus; lack of leaf curling distinguishes it from ChiLCV."
+    },
+    {
+      "disease_id": "dis_chilli_whitefly",
+      "canonical_name": "Chilli Whitefly Infestation & Damage",
+      "crop_id": "crop_chilli",
+      "condition_type": "pest_damage",
+      "pathogen_type": "pest",
+      "scientific_name": "Bemisia tabaci",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Tiny white-winged insects fluttering when plant is shaken",
+        "Scale-like translucent nymphs on underside of leaves",
+        "Chlorotic yellow speckling on upper leaf surface, sticky honeydew, and sooty mold development"
+      ],
+      "known_look_alikes": [
+        "Aphid infestation",
+        "Powdery mildew early coating",
+        "dis_chilli_leaf_curl"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Whitefly"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 14
+      },
+      "evidence_references": [
+        "ANGRAU Chilli Sucking Pest Management Protocol 2024",
+        "ICAR-NCIPM Whitefly Advisory 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Primary vector of ChiLCV; images in Dataset 2 depict underside leaf nymph colonies and sooty honeydew."
+    },
+    {
+      "disease_id": "dis_chilli_yellowish",
+      "canonical_name": "Chilli Yellowish Foliar Chlorosis (Unspecified)",
+      "crop_id": "crop_chilli",
+      "condition_type": "unknown",
+      "pathogen_type": "unknown",
+      "scientific_name": null,
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "General yellowing and chlorosis of foliage without diagnostic pathogen structures"
+      ],
+      "known_look_alikes": [
+        "Nitrogen deficiency",
+        "Iron chlorosis",
+        "Viral yellowing",
+        "Root knot nematode damage"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Chilli_Yellowish"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": null
+      },
+      "evidence_references": [
+        "AgroVision AI Phase 1 Dataset Quality Audit (docs/TWO_DATASET_QUALITY_REPORT.md)"
+      ],
+      "verification_status": "provisional",
+      "uncertainty_notes": "EXCLUDED from 72-class model (canonical ID -1). Label conflates multiple abiotic and viral causes. Must not be used for definitive chemical treatment."
+    },
+    {
+      "disease_id": "dis_corn_cercospora_gray_leaf_spot",
+      "canonical_name": "Corn Cercospora Gray Leaf Spot",
+      "crop_id": "crop_corn",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Cercospora zeae-maydis",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Tan to gray rectangular lesions strictly bounded by leaf veins",
+        "Lesions 1 to 6 cm long forming parallel-sided strips",
+        "Extensive blighting and premature death of leaves when lesions coalesce"
+      ],
+      "known_look_alikes": [
+        "dis_corn_northern_leaf_blight",
+        "Stewart's bacterial wilt",
+        "Diplodia leaf streak"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Corn___Cercospora_leaf_spot Gray_leaf_spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 4,
+        "v2_unified_72class": 15
+      },
+      "evidence_references": [
+        "ICAR-IIMR Maize Pathology Bulletin 2023",
+        "Purdue Extension Gray Leaf Spot Guide 2022"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Rectangular vein-limited shape is diagnostic; Dataset 1 images show laboratory cardboard backing."
+    },
+    {
+      "disease_id": "dis_corn_common_rust",
+      "canonical_name": "Corn Common Rust",
+      "crop_id": "crop_corn",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Puccinia sorghi",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Oval to elongate cinnamon-brown powdery pustules on both upper and lower leaf surfaces",
+        "Epidermis rupturing to release reddish-brown urediniospores",
+        "Pustules turning brownish-black late in season as teliospores form"
+      ],
+      "known_look_alikes": [
+        "Southern corn rust (Puccinia polysora - smaller orange pustules mainly on upper surface)",
+        "Physoderma brown spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Corn___Common_rust"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 5,
+        "v2_unified_72class": 16
+      },
+      "evidence_references": [
+        "ICAR-IIMR Maize Rust Diagnostic Protocol 2023",
+        "PJTSAU Maize Pest & Disease Manual 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Favored by cool humid conditions (16-25\u00b0C); Dataset 1 images only."
+    },
+    {
+      "disease_id": "dis_corn_healthy",
+      "canonical_name": "Corn Healthy Foliage",
+      "crop_id": "crop_corn",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Zea mays",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Deep green arching linear leaves, prominent midrib, smooth margins without pustules or rectangular striping"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Corn___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 7,
+        "v2_unified_72class": 17
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_corn_northern_leaf_blight",
+      "canonical_name": "Corn Northern Leaf Blight",
+      "crop_id": "crop_corn",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Exserohilum turcicum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Long, elliptical, cigar-shaped grayish-green to tan lesions (2.5 to 15 cm long)",
+        "Lesions not restricted by leaf veins (unlike Gray Leaf Spot)",
+        "Dark olive-gray fuzzy fungal sporulation inside lesions under humid conditions"
+      ],
+      "known_look_alikes": [
+        "dis_corn_cercospora_gray_leaf_spot",
+        "Southern leaf blight (Bipolaris maydis)",
+        "Goss's bacterial wilt"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Corn___Northern_Leaf_Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 6,
+        "v2_unified_72class": 18
+      },
+      "evidence_references": [
+        "ICAR-IIMR Maize Foliar Blight Manual 2023",
+        "CIMMYT Maize Diseases Identification Guide"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Cigar-shaped lesion morphology is diagnostic; Dataset 1 images only."
+    },
+    {
+      "disease_id": "dis_cotton_alternaria_leaf_spot",
+      "canonical_name": "Cotton Alternaria Leaf Spot",
+      "crop_id": "crop_cotton",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Alternaria macrospora",
+      "supported_organs": [
+        "leaves",
+        "bolls"
+      ],
+      "observable_symptoms": [
+        "Small circular brown spots with concentric target-like rings and dark purple margins",
+        "Centers of older lesions crack, drop out, producing shot-hole appearance",
+        "Premature defoliation during boll development stage"
+      ],
+      "known_look_alikes": [
+        "dis_cotton_bacterial_blight",
+        "Cercospora leaf spot",
+        "Potassium deficiency marginal necrosis"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Cotton_Alternaria Leaf Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 19
+      },
+      "evidence_references": [
+        "ICAR-CICR Cotton Disease Bulletin 2023",
+        "ANGRAU Cotton IPM Guidelines 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Concentric ring morphology differentiates it from angular bacterial lesions; 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_cotton_bacterial_blight",
+      "canonical_name": "Cotton Bacterial Blight (Angular Leaf Spot / Blackarm)",
+      "crop_id": "crop_cotton",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Xanthomonas citri pv. malvacearum",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "bolls"
+      ],
+      "observable_symptoms": [
+        "Small angular water-soaked lesions strictly delimited by veinlets on lower leaf surface",
+        "Lesions turning dark reddish-brown to black on upper surface",
+        "Elongated black lesions girdling stems and branches (blackarm phase)",
+        "Round water-soaked spots on bolls turning dark and sunken (boll rot phase)"
+      ],
+      "known_look_alikes": [
+        "dis_cotton_alternaria_leaf_spot",
+        "Myrothecium leaf spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Cotton___Bacterial_blight",
+        "Dataset_2": "Cotton_Bacterial Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 8,
+        "v2_unified_72class": 20
+      },
+      "evidence_references": [
+        "ICAR-CICR Bacterial Blight Monograph 2023",
+        "ANGRAU Cotton Protection Handbooks 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Verified bacterial pathogen; represented in both Dataset 1 (lab cardboard) and Dataset 2 (field)."
+    },
+    {
+      "disease_id": "dis_cotton_fusarium_wilt",
+      "canonical_name": "Cotton Fusarium Wilt",
+      "crop_id": "crop_cotton",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Fusarium oxysporum f. sp. vasinfectum",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "roots",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Loss of turgor and wilting starting from lower leaves and progressing upwards",
+        "Yellowing and browning of leaf margins and interveinal areas",
+        "Dark brown to black ring of vascular discoloration visible inside stem when split longitudinally",
+        "Stunting, browning, and collapse of entire plant"
+      ],
+      "known_look_alikes": [
+        "dis_cotton_verticillium_wilt",
+        "Rhizoctonia root rot",
+        "Drought wilting"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Cotton_Fusarium Wilt"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 21
+      },
+      "evidence_references": [
+        "ICAR-CICR Soil-Borne Fungal Wilts Guide 2023",
+        "USDA-ARS Cotton Fusarium Wilt Compendium"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Vascular stem browning distinguishes it from foliar leaf spots; 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_cotton_healthy",
+      "canonical_name": "Cotton Healthy Canopy",
+      "crop_id": "crop_cotton",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Gossypium hirsutum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Broad palmately lobed green leaves, erect vegetative canopy, absence of angular water-soaking or wilting"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Cotton___healthy",
+        "Dataset_2": "Cotton_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 9,
+        "v2_unified_72class": 22
+      },
+      "evidence_references": [
+        "ANGRAU Cotton Agronomy Guide 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Present in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_cotton_verticillium_wilt",
+      "canonical_name": "Cotton Verticillium Wilt",
+      "crop_id": "crop_cotton",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Verticillium dahliae",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Interveinal chlorosis and necrosis creating characteristic 'tiger-striped' leaf pattern",
+        "Marginal leaf curling and drying, leading to defoliation",
+        "Light brown vascular discoloration in outer stem cylinder",
+        "Favored by cooler temperatures (20-25\u00b0C) and heavy irrigated soils"
+      ],
+      "known_look_alikes": [
+        "dis_cotton_fusarium_wilt",
+        "Magnesium deficiency (reddening / chlorosis)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Cotton_Verticillium Wilt"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 23
+      },
+      "evidence_references": [
+        "ICAR-CICR Verticillium Wilt Diagnostic Guide 2023",
+        "Texas A&M AgriLife Cotton Disease Guide"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Tiger-stripe leaf pattern is distinctive; 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_grape_black_rot",
+      "canonical_name": "Grape Black Rot",
+      "crop_id": "crop_grape",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Phyllosticta ampelicida",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Small circular reddish-brown leaf spots with dark margins and tiny black pycnidia in rings",
+        "Infected fruit berries turn soft, brown, and shrivel into hard black wrinkled mummies",
+        "Elongated black sunken lesions on canes and petioles"
+      ],
+      "known_look_alikes": [
+        "Grape Anthracnose (Elsinoe ampelina)",
+        "dis_grape_esca",
+        "dis_grape_leaf_blight"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Grape___Black_rot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 10,
+        "v2_unified_72class": 24
+      },
+      "evidence_references": [
+        "ICAR-NRCG Grape Pathology Bulletin 2023",
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 shows laboratory leaf spots; fruit mummy phase not represented in dataset."
+    },
+    {
+      "disease_id": "dis_grape_esca",
+      "canonical_name": "Grape Esca (Black Measles)",
+      "crop_id": "crop_grape",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Phaeomoniella chlamydospora",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Interveinal chlorosis and necrosis producing 'tiger-stripe' pattern on leaves",
+        "Small dark purple to black flecks or speckles ('black measles') on berry skin",
+        "Sudden apoplexy (rapid wilting and vine death during hot dry spells)"
+      ],
+      "known_look_alikes": [
+        "dis_grape_black_rot",
+        "Grape leafroll disease",
+        "Eutypa dieback"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Grape___Esca_(Black_Measles)"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 11,
+        "v2_unified_72class": 25
+      },
+      "evidence_references": [
+        "ICAR-NRCG Trunk Diseases Guide 2023",
+        "UC Davis IPM Grape Esca Pest Note 2022"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Complex trunk fungal disease; foliar tiger-striping represented in Dataset 1."
+    },
+    {
+      "disease_id": "dis_grape_healthy",
+      "canonical_name": "Grape Healthy Foliage",
+      "crop_id": "crop_grape",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Vitis vinifera",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Uniformly green lobed vine leaves, smooth surface, intact margins without spots or tiger-striping"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Grape___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 13,
+        "v2_unified_72class": 26
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Laboratory cardboard background in Dataset 1."
+    },
+    {
+      "disease_id": "dis_grape_leaf_blight",
+      "canonical_name": "Grape Leaf Blight (Isariopsis Spot)",
+      "crop_id": "crop_grape",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Pseudocercospora cladosporioides",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Large irregular reddish-brown necrotic blotches on leaf blades",
+        "Olive-brown to black sooty spore growth on underside of lesions",
+        "Premature leaf drying and severe defoliation"
+      ],
+      "known_look_alikes": [
+        "dis_grape_black_rot",
+        "Downy mildew late scorch"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 12,
+        "v2_unified_72class": 27
+      },
+      "evidence_references": [
+        "ICAR-NRCG Foliar Diseases Manual 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 images only; syn. Isariopsis clavispora."
+    },
+    {
+      "disease_id": "dis_mango_anthracnose",
+      "canonical_name": "Mango Anthracnose",
+      "crop_id": "crop_mango",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Colletotrichum gloeosporioides",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "flowers",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Small dark brown to black circular spots coalescing into irregular leaf blights",
+        "Blossom blight causing blackening and dropping of panicle flowers",
+        "Tear-staining and sunken black rots on maturing and harvested mango fruit"
+      ],
+      "known_look_alikes": [
+        "dis_mango_bacterial_canker",
+        "dis_mango_die_back"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Anthracnose"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 28
+      },
+      "evidence_references": [
+        "ICAR-CISH Mango Anthracnose Management Guide 2023",
+        "YSRHU Horticultural Protection Bulletin 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 2 contains 500 orchard field photographs covering leaves and fruit."
+    },
+    {
+      "disease_id": "dis_mango_bacterial_canker",
+      "canonical_name": "Mango Bacterial Canker (Bacterial Black Spot)",
+      "crop_id": "crop_mango",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Xanthomonas citri pv. mangiferaeindicae",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Angular, water-soaked, black raised lesions delimited by leaf veins with yellow chlorotic halos",
+        "Lesions oozing bacterial gum droplets in wet weather",
+        "Star-shaped cracks with black margins on developing mango fruits leading to fruit drop"
+      ],
+      "known_look_alikes": [
+        "dis_mango_anthracnose",
+        "Scab / Elsinoe mangiferae"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Bacterial Canker"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 29
+      },
+      "evidence_references": [
+        "ICAR-CISH Bacterial Diseases of Subtropical Fruits 2023",
+        "EPPO Global Database on Xanthomonas citri pv. mangiferaeindicae"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Verified bacterial pathogen; distinguished from anthracnose by angular vein-limited margins and star-shaped fruit cracking."
+    },
+    {
+      "disease_id": "dis_mango_cutting_weevil",
+      "canonical_name": "Mango Leaf Cutting Weevil Damage",
+      "crop_id": "crop_mango",
+      "condition_type": "pest_damage",
+      "pathogen_type": "pest",
+      "scientific_name": "Deporaus marginatus",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Clean, sharp, transverse cut across the tender leaf blade as if cut with scissors",
+        "Basal portion of leaf remains attached to shoot while distal half drops to orchard floor",
+        "Damage occurs exclusively on new emerging copper-colored flush leaves"
+      ],
+      "known_look_alikes": [
+        "Mechanical damage / Hail tear",
+        "Leaf roller caterpillar damage"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Cutting Weevil"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 30
+      },
+      "evidence_references": [
+        "YSRHU Mango Pest Management Protocols 2024",
+        "TNAU Agritech Portal Mango Insect Pests 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Pest damage; clean scissor-like transverse cut on tender flush is pathognomonic."
+    },
+    {
+      "disease_id": "dis_mango_die_back",
+      "canonical_name": "Mango Die Back",
+      "crop_id": "crop_mango",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Lasiodiplodia theobromae",
+      "supported_organs": [
+        "stems",
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Drying of twigs and branches progressing from top downwards (dieback)",
+        "Leaves on affected branches wither, turn brown, and remain attached to dead twigs",
+        "Brown discoloration of vascular bundles when bark is scraped",
+        "Gum exudation from diseased branches"
+      ],
+      "known_look_alikes": [
+        "dis_mango_anthracnose dieback phase",
+        "Stem borer damage (Batocera rufomaculata)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Die Back"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 31
+      },
+      "evidence_references": [
+        "ICAR-CISH Mango Twig Pathology Guide 2023",
+        "ANGRAU Mango Package of Practices 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Twig and branch drying with persistent dead foliage; 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_mango_gall_midge",
+      "canonical_name": "Mango Leaf Gall Midge Damage",
+      "crop_id": "crop_mango",
+      "condition_type": "pest_damage",
+      "pathogen_type": "pest",
+      "scientific_name": "Procontarinia matteiana",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Small raised pimple-like or wart-like galls on upper and lower leaf surfaces",
+        "Galls initially pale green turning reddish-brown and finally black with exit holes",
+        "Severe gall density causes crinkling, curling, and premature leaf drop"
+      ],
+      "known_look_alikes": [
+        "Bacterial black spot early blisters",
+        "Eriophyid mite blister"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Gall Midge"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 32
+      },
+      "evidence_references": [
+        "ICAR-CISH Mango Entomology Technical Bulletin 2023",
+        "YSRHU Mango Pest Diagnostic Key 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Pest damage; physical blister galls on leaf blade are easily distinguished from flat fungal spots."
+    },
+    {
+      "disease_id": "dis_mango_healthy",
+      "canonical_name": "Mango Healthy Foliage",
+      "crop_id": "crop_mango",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Mangifera indica",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Dark green leathery lanceolate leaves, smooth surface, prominent venation, zero galls, spots, or dieback"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 33
+      },
+      "evidence_references": [
+        "ANGRAU Horticultural Crop Guide 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 2 contains 500 outdoor orchard photographs."
+    },
+    {
+      "disease_id": "dis_mango_powdery_mildew",
+      "canonical_name": "Mango Powdery Mildew",
+      "crop_id": "crop_mango",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Oidium mangiferae",
+      "supported_organs": [
+        "leaves",
+        "flowers",
+        "fruits"
+      ],
+      "observable_symptoms": [
+        "White to grayish powdery fungal growth on leaves, flower panicles, and young fruits",
+        "Infected flower buds fail to open and drop off causing severe yield loss",
+        "Distortion, purplish-brown blotching, and curling of young leaves"
+      ],
+      "known_look_alikes": [
+        "Pesticide powder spray residue",
+        "dis_mango_sooty_mould (black coating)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Powdery Mildew"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 34
+      },
+      "evidence_references": [
+        "ICAR-CISH Mango Blossom Pathology Guide 2023",
+        "YSRHU Powdery Mildew Advisory 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "White powdery coating is diagnostic; attacks panicles during December-February flowering."
+    },
+    {
+      "disease_id": "dis_mango_sooty_mould",
+      "canonical_name": "Mango Sooty Mould",
+      "crop_id": "crop_mango",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Capnodium mangiferae",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Superficial black, velvety or crusty fungal layer covering upper leaf surface",
+        "Fungal layer peels off in dry flakes, revealing green leaf tissue underneath",
+        "Associated with heavy infestation of sap-sucking mango hoppers (*Idioscopus* spp.)"
+      ],
+      "known_look_alikes": [
+        "dis_mango_anthracnose blackening",
+        "Dust pollution / industrial soot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Mango_Sooty Mould"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 35
+      },
+      "evidence_references": [
+        "ICAR-CISH Mango Sooty Mould Management Sheet 2023",
+        "ANGRAU Mango Package of Practices 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Non-parasitic superficial fungus growing on insect honeydew; primary management requires hopper control."
+    },
+    {
+      "disease_id": "dis_non_plant_unsupported",
+      "canonical_name": "Non-Plant / Unsupported Object",
+      "crop_id": "crop_non_plant",
+      "condition_type": "unknown",
+      "pathogen_type": "unknown",
+      "scientific_name": null,
+      "supported_organs": [],
+      "observable_symptoms": [
+        "Absence of botanical crop foliage, fruit, stem, or plant organ features"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Non_Plant___Unsupported"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 14,
+        "v2_unified_72class": 36
+      },
+      "evidence_references": [
+        "AgroVision AI Baseline Evaluation and OOD Rejection Protocol 2026"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Out-of-Distribution rejection class. Used to train selective prediction to abstain on non-plant inputs."
+    },
+    {
+      "disease_id": "dis_orange_citrus_greening",
+      "canonical_name": "Orange Citrus Greening (Huanglongbing)",
+      "crop_id": "crop_orange",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Candidatus Liberibacter asiaticus",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Asymmetric, blotchy mottle chlorosis crossing leaf veins",
+        "Yellow vein clearing, corky vein thickening, and small upright leaves",
+        "Lopsided, poorly colored fruit with inverted coloration (green at bottom when ripe) and aborted seeds"
+      ],
+      "known_look_alikes": [
+        "Zinc deficiency (symmetrical chlorosis)",
+        "Iron deficiency",
+        "Citrus Tristeza Virus (CTV)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Orange___Haunglongbing_(Citrus_greening)"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 15,
+        "v2_unified_72class": 37
+      },
+      "evidence_references": [
+        "ICAR-CCRI Huanglongbing Diagnostic Key 2023",
+        "USDA-APHIS Citrus Greening Program Manual"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Phloem-limited unculturable bacterium transmitted by Asian citrus psyllid (*Diaphorina citri*). Dataset 1 lab leaves."
+    },
+    {
+      "disease_id": "dis_orange_healthy",
+      "canonical_name": "Orange Healthy Foliage",
+      "crop_id": "crop_orange",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Citrus sinensis",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Glossy dark green winged-petiole leaves, uniform color, absence of blotchy mottle or vein corking"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Orange___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 16,
+        "v2_unified_72class": 38
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_palm_magnesium_deficiency",
+      "canonical_name": "Oil Palm Magnesium Deficiency",
+      "crop_id": "crop_oil_palm",
+      "condition_type": "nutrient_disorder",
+      "pathogen_type": "nutritional",
+      "scientific_name": null,
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Olive-green to bright orange-yellow discoloration of older fronds exposed to sunlight",
+        "Shaded portions of leaflets under overlapping fronds remain green",
+        "Necrotic desiccation and orange frond tips in advanced stages"
+      ],
+      "known_look_alikes": [
+        "Potassium deficiency (orange spotting)",
+        "Nitrogen deficiency (general pale yellowing)",
+        "dis_palm_dryness"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Palm_Magnesium Deficiency"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 39
+      },
+      "evidence_references": [
+        "ICAR-IIOPR (Pedavegi) Oil Palm Nutrition and Nutrient Deficiencies Atlas 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Abiotic nutritional disorder, not an infectious pathogen. 59 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_palm_scale_insect",
+      "canonical_name": "Oil Palm Scale Insect Infestation",
+      "crop_id": "crop_oil_palm",
+      "condition_type": "pest_damage",
+      "pathogen_type": "pest",
+      "scientific_name": "Ischnaspis longirostris",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Dense crust of small dark thread-like waxy scale coverings on lower surface of leaflets",
+        "Yellow chlorotic spots on upper leaf surface directly opposite feeding sites",
+        "Frond desiccation, yellowing, and premature senescence in severe infestations"
+      ],
+      "known_look_alikes": [
+        "Palm aphid colonies",
+        "Sooty mould early crust"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Palm_Scale Insect"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 40
+      },
+      "evidence_references": [
+        "ICAR-IIOPR Insect Pests of Oil Palm Manual 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Armored scale insect pest damage; 142 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_palm_dryness",
+      "canonical_name": "Oil Palm Moisture Stress / Dryness",
+      "crop_id": "crop_oil_palm",
+      "condition_type": "abiotic_stress",
+      "pathogen_type": "abiotic",
+      "scientific_name": null,
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Premature drying, wilting, and brown desiccated tips of lower fronds due to drought"
+      ],
+      "known_look_alikes": [
+        "dis_palm_magnesium_deficiency",
+        "Curvularia leaf spot late necrosis"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Palm_Dryness"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": null
+      },
+      "evidence_references": [
+        "AgroVision AI Phase 1 Dataset Quality Audit"
+      ],
+      "verification_status": "provisional",
+      "uncertainty_notes": "EXCLUDED from 72-class model (canonical ID -1). Label lacks pathology differentiation; 70 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_palm_fungal_disease",
+      "canonical_name": "Oil Palm Unspecified Fungal Disease",
+      "crop_id": "crop_oil_palm",
+      "condition_type": "unknown",
+      "pathogen_type": "unknown",
+      "scientific_name": null,
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "General necrotic foliar spotting of oil palm fronds"
+      ],
+      "known_look_alikes": [
+        "Curvularia leaf spot",
+        "Anthracnose",
+        "Pestalotiopsis leaf spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Palm_Fungal Disease"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": null
+      },
+      "evidence_references": [
+        "AgroVision AI Phase 1 Dataset Quality Audit"
+      ],
+      "verification_status": "provisional",
+      "uncertainty_notes": "EXCLUDED from 72-class model (canonical ID -1). Extremely small sample size (25 images) and generic undifferentiated label."
+    },
+    {
+      "disease_id": "dis_pepper_bacterial_spot",
+      "canonical_name": "Bell Pepper Bacterial Spot",
+      "crop_id": "crop_pepper_bell",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Xanthomonas euvesicatoria",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Small, irregular, water-soaked dark spots on leaves with pale yellow halos",
+        "Spots turn brown to black and coalesce, causing leaf tearing and extensive defoliation",
+        "Raised, wart-like brown scab lesions on green bell pepper fruit"
+      ],
+      "known_look_alikes": [
+        "dis_chilli_leaf_spot",
+        "Cercospora leaf spot",
+        "Phytophthora blight foliar spots"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Pepper,_bell___Bacterial_spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 17,
+        "v2_unified_72class": 41
+      },
+      "evidence_references": [
+        "TNAU Agritech Portal Bell Pepper Protection 2023",
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 images show greenhouse/lab bell pepper leaves; distinct from hot field chilli (*Capsicum annuum* hot cultivars)."
+    },
+    {
+      "disease_id": "dis_pepper_healthy",
+      "canonical_name": "Bell Pepper Healthy Foliage",
+      "crop_id": "crop_pepper_bell",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Capsicum annuum var. grossum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Broad, dark green ovate leaves, glossy surface, absence of water-soaked spots or puckering"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Pepper,_bell___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 18,
+        "v2_unified_72class": 42
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_potato_early_blight",
+      "canonical_name": "Potato Early Blight",
+      "crop_id": "crop_potato",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Alternaria solani",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "tubers"
+      ],
+      "observable_symptoms": [
+        "Dark brown to black necrotic spots with characteristic concentric rings (target-board pattern)",
+        "Yellow chlorotic halo surrounding lesions",
+        "Lesions start on older lower leaves and cause premature senescence",
+        "Sunken, dark, leathery dry rot on potato tubers with raised borders"
+      ],
+      "known_look_alikes": [
+        "dis_potato_late_blight",
+        "Potato brown spot (Alternaria alternata)",
+        "Ozone injury"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Potato___Early_blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 19,
+        "v2_unified_72class": 43
+      },
+      "evidence_references": [
+        "ICAR-CPRI Potato Early Blight Advisory 2023",
+        "University of Idaho Potato Early Blight Guide"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Concentric rings are diagnostic. Represented only in Dataset 1 (40 train images on cardboard). High risk of field misclassification as healthy chilli."
+    },
+    {
+      "disease_id": "dis_potato_healthy",
+      "canonical_name": "Potato Healthy Foliage",
+      "crop_id": "crop_potato",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Solanum tuberosum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Compound pinnate green leaves, smooth leaflets, absence of concentric spots, water-soaking, or wilting"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Potato___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 21,
+        "v2_unified_72class": 44
+      },
+      "evidence_references": [
+        "PlantVillage Benchmark Dataset (Mohanty et al., 2016)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_potato_late_blight",
+      "canonical_name": "Potato Late Blight",
+      "crop_id": "crop_potato",
+      "condition_type": "disease",
+      "pathogen_type": "oomycete",
+      "scientific_name": "Phytophthora infestans",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "tubers",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Large, irregular water-soaked pale to dark green lesions turning rapidly purplish-brown or black",
+        "White delicate fuzzy fungal-like sporulation on underside of leaves at lesion margin during humid morning hours",
+        "Rapid collapse, foul rot smell, and destruction of entire potato canopy in 3-7 days during cool wet weather",
+        "Brown granular dry rot extending 5-15 mm into tuber flesh"
+      ],
+      "known_look_alikes": [
+        "dis_potato_early_blight",
+        "Botrytis gray mold",
+        "Bacterial soft rot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Potato___Late_blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 20,
+        "v2_unified_72class": 45
+      },
+      "evidence_references": [
+        "ICAR-CPRI Late Blight Forecasting and Management Guide 2023",
+        "FAO Global Late Blight Protocol 2021"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Devastating oomycete pathogen (Irish Potato Famine). Dataset 1 only; zero field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_bacterial_leaf_blight",
+      "canonical_name": "Rice Bacterial Leaf Blight",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Xanthomonas oryzae pv. oryzae",
+      "supported_organs": [
+        "leaves",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Water-soaked stripes starting near leaf tips and margins, rapidly turning yellow to grayish-white with wavy edges",
+        "Bacterial ooze droplets (amber-colored beads) drying into encrustations on young lesions in morning dew",
+        "Kresek phase (systemic wilt of entire seedlings) 1-3 weeks after transplanting"
+      ],
+      "known_look_alikes": [
+        "dis_rice_leaf_scald",
+        "dis_rice_sheath_blight",
+        "Drying of leaf tips due to salinity"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Rice___Bacterial_leaf_blight",
+        "Dataset_2": "Rice_Bacterial Leaf Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 22,
+        "v2_unified_72class": 46
+      },
+      "evidence_references": [
+        "ICAR-IIRR Rice Bacterial Blight Monograph 2023",
+        "ANGRAU Rice Protection Package of Practices 2024",
+        "IRRI Rice Knowledge Bank: Bacterial Blight"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "CRITICAL PHASE 1 RESOLUTION: Verified bacterial pathogen. Casing mismatch in legacy metadata caused generic fungal fallback. Now strictly categorized as bacterial."
+    },
+    {
+      "disease_id": "dis_rice_blast",
+      "canonical_name": "Rice Blast",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Magnaporthe oryzae",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "panicles_seeds"
+      ],
+      "observable_symptoms": [
+        "Spindle-shaped / diamond-shaped / eye-shaped lesions with gray or whitish centers and brown or reddish margins",
+        "Lesions coalescing to blight entire leaf blade",
+        "Blackening and rotting of panicle neck (neck blast) causing blank, white, erect panicles"
+      ],
+      "known_look_alikes": [
+        "dis_rice_brown_spot",
+        "dis_rice_sheath_blight",
+        "Iron toxicity bronzing"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Rice___Blast",
+        "Dataset_2": "Rice_Blast"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 23,
+        "v2_unified_72class": 47
+      },
+      "evidence_references": [
+        "ICAR-IIRR Rice Blast Compendium 2023",
+        "ANGRAU Rice Disease Management Protocols 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Spindle shape with grey center is diagnostic. Represented in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_brown_spot",
+      "canonical_name": "Rice Brown Spot",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Bipolaris oryzae",
+      "supported_organs": [
+        "leaves",
+        "panicles_seeds"
+      ],
+      "observable_symptoms": [
+        "Small circular to oval dark brown spots resembling sesame seeds with yellow chlorotic halos",
+        "Lesion center turns grey or whitish as spot matures",
+        "Velvety black fungal growth on infected glumes and discolored seeds"
+      ],
+      "known_look_alikes": [
+        "dis_rice_blast",
+        "dis_rice_leaf_smut",
+        "Nutrient deficiency flecking"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Rice_Brownspot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 48
+      },
+      "evidence_references": [
+        "ICAR-IIRR Brown Spot Technical Bulletin 2023",
+        "IRRI Rice Knowledge Bank: Brown Spot"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Associated with poor soil fertility (silicon/potassium/nitrogen deficiency); 460 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_healthy",
+      "canonical_name": "Rice Healthy Foliage",
+      "crop_id": "crop_rice",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Oryza sativa",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Erect bright green linear leaf blades, smooth ligule and auricles, absence of spindle lesions or marginal blighting"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Rice___healthy",
+        "Dataset_2": "Rice_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 24,
+        "v2_unified_72class": 49
+      },
+      "evidence_references": [
+        "ANGRAU Rice Agronomy Guide 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Present in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_leaf_scald",
+      "canonical_name": "Rice Leaf Scald",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Microdochium oryzae",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Zonate chevron-like bands of alternating light tan and dark olive-brown drying starting from leaf tip",
+        "Distinct wavy or scalloped margins on advancing blighted areas",
+        "Entire leaf drying out and taking on a bleached scalded appearance"
+      ],
+      "known_look_alikes": [
+        "dis_rice_bacterial_leaf_blight",
+        "dis_rice_sheath_blight",
+        "Salinity leaf tip scorch"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Rice_Leaf Scald"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 50
+      },
+      "evidence_references": [
+        "ICAR-IIRR Minor Rice Diseases Guide 2023",
+        "IRRI Rice Knowledge Bank: Leaf Scald"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Chevron zonation starting at tips is diagnostic; 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_leaf_smut",
+      "canonical_name": "Rice Leaf Smut",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Entyloma oryzae",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Small, slightly raised, angular black leaden spots (0.5 to 2 mm long) scattered on mature leaf blades",
+        "Spots covered by leaf epidermis which ruptures during wet weather to expose black spore mass",
+        "Leaves turn prematurely yellow from the tip when spot density is high"
+      ],
+      "known_look_alikes": [
+        "dis_rice_brown_spot",
+        "Insect feeding frass spots"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Rice_Leaf Smut"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 51
+      },
+      "evidence_references": [
+        "ICAR-IIRR Rice Smut Disease Sheet 2022",
+        "IRRI Rice Knowledge Bank: Leaf Smut"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Small sample count in Dataset 2 (only 40 images). Minor economic importance; black angular leaden spots."
+    },
+    {
+      "disease_id": "dis_rice_sheath_blight",
+      "canonical_name": "Rice Sheath Blight",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Rhizoctonia solani",
+      "supported_organs": [
+        "stems",
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Oval or oblong greenish-gray water-soaked lesions on leaf sheaths near water line",
+        "Lesions expand into large irregular serpent-like blotches with bleached grey centers and dark brown margins",
+        "Lesions spreading up tillers onto upper leaves in dense canopies; brown sclerotia visible on lesions"
+      ],
+      "known_look_alikes": [
+        "dis_rice_bacterial_leaf_blight",
+        "Sheath rot (Sarocladium oryzae)",
+        "Stem rot (Sclerotium oryzae)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Rice_Sheath Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 52
+      },
+      "evidence_references": [
+        "ICAR-IIRR Sheath Blight IPM Manual 2023",
+        "ANGRAU Rice Disease Management Protocols 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Crucially affects lower leaf sheaths; photographs of lower stem/tillers must be supported. 500 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_rice_tungro",
+      "canonical_name": "Rice Tungro Disease",
+      "crop_id": "crop_rice",
+      "condition_type": "disease",
+      "pathogen_type": "viral",
+      "scientific_name": "Rice tungro bacilliform virus & Rice tungro spherical virus",
+      "supported_organs": [
+        "leaves",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Yellow to deep orange discoloration of leaves starting from the tips and progressing downward",
+        "Severe plant stunting, reduced tillering, and delayed flowering",
+        "Panicles small, sterile, or only partially exerted with discolored grains"
+      ],
+      "known_look_alikes": [
+        "Nitrogen deficiency chlorosis",
+        "Zinc deficiency (khaira disease)",
+        "Iron toxicity"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Rice_Tungro"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 53
+      },
+      "evidence_references": [
+        "ICAR-IIRR Tungro Epidemiology and Management Guide 2023",
+        "ANGRAU Green Leafhopper & Tungro Advisory 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Viral disease complex transmitted by green leafhopper (*Nephotettix virescens*). 500 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_bacterial_spot",
+      "canonical_name": "Tomato Bacterial Spot",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "bacterial",
+      "scientific_name": "Xanthomonas perforans",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Small, dark, circular to irregular water-soaked spots (< 3 mm) on leaves",
+        "Lesion centers dry, turn dark brown to black with yellow halos",
+        "Black raised blister-like scab lesions on green tomato fruits"
+      ],
+      "known_look_alikes": [
+        "dis_tomato_septoria_leaf_spot",
+        "dis_tomato_early_blight",
+        "Bacterial speck (Pseudomonas syringae)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Bacterial_spot",
+        "Dataset_2": "Tomato_Bacterial Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 25,
+        "v2_unified_72class": 54
+      },
+      "evidence_references": [
+        "ICAR-IIHR Tomato Disease Management Manual 2023",
+        "University of Florida Extension Bacterial Spot Guide"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Bacterial pathogen; represented in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_early_blight",
+      "canonical_name": "Tomato Early Blight",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Alternaria solani",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "fruits"
+      ],
+      "observable_symptoms": [
+        "Dark brown to black necrotic spots with concentric target-board ridges",
+        "Surrounding tissue turns chlorotic yellow, leading to defoliation from base upward",
+        "Sunken, dark, leathery lesions at stem end of tomato fruit"
+      ],
+      "known_look_alikes": [
+        "dis_tomato_target_spot",
+        "dis_tomato_septoria_leaf_spot",
+        "dis_tomato_late_blight"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Early_blight",
+        "Dataset_2": "Tomato_Early Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 26,
+        "v2_unified_72class": 55
+      },
+      "evidence_references": [
+        "ICAR-IIHR Tomato Early Blight Guide 2023",
+        "ANGRAU Vegetable Protection Manual 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Concentric rings are diagnostic. Represented in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_healthy",
+      "canonical_name": "Tomato Healthy Foliage",
+      "crop_id": "crop_tomato",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Solanum lycopersicum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Compound pinnate green leaves, serrated margins, absence of chlorotic yellowing, spots, or curling"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___healthy",
+        "Dataset_2": "Tomato_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 34,
+        "v2_unified_72class": 56
+      },
+      "evidence_references": [
+        "ANGRAU Tomato Cultivation Guidelines 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Present in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_late_blight",
+      "canonical_name": "Tomato Late Blight",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "oomycete",
+      "scientific_name": "Phytophthora infestans",
+      "supported_organs": [
+        "leaves",
+        "stems",
+        "fruits",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Large, irregular water-soaked pale green lesions rapidly expanding and turning dark brown to black",
+        "White cottony sporulation visible on underside of leaves in cool humid conditions",
+        "Firm, dark, greasy, olive-brown blotches on green and ripe tomato fruit"
+      ],
+      "known_look_alikes": [
+        "dis_tomato_early_blight",
+        "Buckeye rot (Phytophthora nicotianae)",
+        "Gray mold (Botrytis cinerea)"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Late_blight",
+        "Dataset_2": "Tomato_Late Blight"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 27,
+        "v2_unified_72class": 57
+      },
+      "evidence_references": [
+        "ICAR-IIHR Tomato Late Blight Alert 2023",
+        "FAO IPM Guidelines on Oomycete Pathogens 2021"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Verified oomycete pathogen; explosive spread in cool wet weather. Present in both Dataset 1 and Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_leaf_mold",
+      "canonical_name": "Tomato Leaf Mold",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Passalora fulva",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Pale green to yellowish diffuse spots on upper leaf surface",
+        "Dense olive-green to purplish-brown velvety mold on underside of corresponding leaf spots",
+        "Infected leaves wither, curl, and drop off prematurely"
+      ],
+      "known_look_alikes": [
+        "Powdery mildew (white growth)",
+        "Early blight chlorosis"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Leaf_Mold",
+        "Dataset_2": "Tomato_Leaf Mold"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 28,
+        "v2_unified_72class": 58
+      },
+      "evidence_references": [
+        "ICAR-IIHR Protected Cultivation Tomato Diseases 2023",
+        "Cornell Tomato Leaf Mold Fact Sheet"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Olive velvety sporulation on lower leaf surface is diagnostic; prevalent in polyhouses and humid field canopies."
+    },
+    {
+      "disease_id": "dis_tomato_mosaic_virus",
+      "canonical_name": "Tomato Mosaic Virus",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "viral",
+      "scientific_name": "Tomato mosaic virus (ToMV)",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Mottling of leaves with alternating light green and dark green mosaic patches",
+        "Leaf distortion, blistering, puckering, and strap-like 'fern leaf' narrowing",
+        "Internal brown necrosis inside fruit and uneven ripening"
+      ],
+      "known_look_alikes": [
+        "Tobacco Mosaic Virus (TMV)",
+        "Cucumber Mosaic Virus (CMV)",
+        "Herbicide injury"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Tomato_mosaic_virus",
+        "Dataset_2": "Tomato_Mosaic Virus"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 33,
+        "v2_unified_72class": 59
+      },
+      "evidence_references": [
+        "ICAR-IIVR Tomato Viral Diseases Bulletin 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Mechanically transmitted Tobamovirus; 373 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_tomato_septoria_leaf_spot",
+      "canonical_name": "Tomato Septoria Leaf Spot",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Septoria lycopersici",
+      "supported_organs": [
+        "leaves",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Numerous small, circular spots (2 to 3 mm diameter) with dark brown margins and gray/tan centers",
+        "Tiny black specks (pycnidia fruiting bodies) embedded in center of mature spots",
+        "Severe yellowing and leaf loss progressing from base of plant upwards"
+      ],
+      "known_look_alikes": [
+        "dis_tomato_bacterial_spot",
+        "dis_tomato_early_blight",
+        "Target spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Septoria_leaf_spot",
+        "Dataset_2": "Tomato_Septoria Leaf Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 29,
+        "v2_unified_72class": 60
+      },
+      "evidence_references": [
+        "ICAR-IIHR Foliar Fungal Diseases of Tomato 2023",
+        "Ohio State Extension Septoria Leaf Spot Guide"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Tiny black pycnidia in lesion center distinguish it from bacterial spot; present in both datasets."
+    },
+    {
+      "disease_id": "dis_tomato_spider_mites",
+      "canonical_name": "Tomato Two-Spotted Spider Mites",
+      "crop_id": "crop_tomato",
+      "condition_type": "pest_damage",
+      "pathogen_type": "pest",
+      "scientific_name": "Tetranychus urticae",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Fine yellow stippling, speckling, or flecking on upper leaf surface",
+        "Leaves turn bronze or grayish-brown and dry out",
+        "Fine silky webbing on underside of leaves and between petioles harboring tiny moving mites"
+      ],
+      "known_look_alikes": [
+        "Thrips damage",
+        "Ozone injury",
+        "Nutrient deficiency flecking"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "Dataset_2": "Tomato_Spider Mites"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 30,
+        "v2_unified_72class": 61
+      },
+      "evidence_references": [
+        "ICAR-NCIPM Tomato Mite Management Advisory 2023",
+        "ANGRAU Tomato Pest Control Guide 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Acarine pest damage; webbing on leaf undersides is diagnostic."
+    },
+    {
+      "disease_id": "dis_tomato_target_spot",
+      "canonical_name": "Tomato Target Spot",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Corynespora cassiicola",
+      "supported_organs": [
+        "leaves",
+        "fruits",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "Brown circular lesions with light brown centers and faint concentric zoning",
+        "Lesions typically smaller than early blight and surrounded by distinct chlorotic yellow halos",
+        "Deep, sunken, pitted brown lesions on tomato fruits"
+      ],
+      "known_look_alikes": [
+        "dis_tomato_early_blight",
+        "dis_tomato_bacterial_spot",
+        "dis_tomato_septoria_leaf_spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Target_Spot",
+        "Dataset_2": "Tomato_Target Spot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 31,
+        "v2_unified_72class": 62
+      },
+      "evidence_references": [
+        "ICAR-IIHR Tomato Pathology Guide 2023",
+        "University of Florida Target Spot of Tomato Publication"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "High visual similarity to Early Blight; yellow halo and smaller lesion size assist differentiation."
+    },
+    {
+      "disease_id": "dis_tomato_yellow_leaf_curl",
+      "canonical_name": "Tomato Yellow Leaf Curl Virus",
+      "crop_id": "crop_tomato",
+      "condition_type": "disease",
+      "pathogen_type": "viral",
+      "scientific_name": "Tomato yellow leaf curl virus (TYLCV)",
+      "supported_organs": [
+        "leaves",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Upward cupping, curling, and reduction in size of leaflets",
+        "Interveinal and marginal chlorosis giving foliage yellowed appearance",
+        "Marked stunting of shoots, erect bushy appearance, flower drop, and complete failure of fruit set"
+      ],
+      "known_look_alikes": [
+        "Tomato leaf curl New Delhi virus (ToLCNDV)",
+        "Herbicide injury",
+        "Mite damage"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "Dataset_2": "Tomato_Yellow Leaf Curl Virus"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 32,
+        "v2_unified_72class": 63
+      },
+      "evidence_references": [
+        "ICAR-IIHR Begomovirus Management Manual 2023",
+        "ANGRAU Tomato Crop Protection Guidelines 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Whitefly-transmitted Begomovirus; severe stunting and upward cupping."
+    },
+    {
+      "disease_id": "dis_turmeric_dry_leaf",
+      "canonical_name": "Turmeric Dry Leaf / Desiccation",
+      "crop_id": "crop_turmeric",
+      "condition_type": "abiotic_stress",
+      "pathogen_type": "abiotic",
+      "scientific_name": null,
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Drying and scorching of leaf margins and tips due to maturity senescence or moisture stress",
+        "Absence of discrete fungal blotches or water-soaked halos"
+      ],
+      "known_look_alikes": [
+        "dis_turmeric_leaf_blotch",
+        "Salinity tip burn"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Turmeric_Dry Leaf"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 64
+      },
+      "evidence_references": [
+        "ICAR-IISR Turmeric Production Guide 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Abiotic desiccation / physiological leaf drying; 203 field images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_turmeric_healthy",
+      "canonical_name": "Turmeric Healthy Foliage",
+      "crop_id": "crop_turmeric",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Curcuma longa",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Broad oblong-lanceolate rich green leaves, intact smooth blades, absence of necrotic blotches or rhizome rot"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_2": "Turmeric_Healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 65
+      },
+      "evidence_references": [
+        "ANGRAU Spices Protection Manual 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 2 contains 197 field photographs."
+    },
+    {
+      "disease_id": "dis_turmeric_leaf_blotch",
+      "canonical_name": "Turmeric Leaf Blotch",
+      "crop_id": "crop_turmeric",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Taphrina maculans",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Small, discrete reddish-brown to dirty-yellow spots on both upper and lower leaf surfaces",
+        "Spots rapidly coalesce into large irregular yellow-brown blotches arranged along veins",
+        "Leaves turn yellow and dry up prematurely from tips downward"
+      ],
+      "known_look_alikes": [
+        "Turmeric leaf spot (Colletotrichum curcumae)",
+        "dis_turmeric_dry_leaf"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Turmeric_Leaf Blotch"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 66
+      },
+      "evidence_references": [
+        "ICAR-IISR Turmeric Diseases Compendium 2023",
+        "ANGRAU Package of Practices for Turmeric 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Characteristic Taphrina blotches along veins; 199 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_turmeric_rhizome_rot",
+      "canonical_name": "Turmeric Rhizome Rot (Soft Rot)",
+      "crop_id": "crop_turmeric",
+      "condition_type": "disease",
+      "pathogen_type": "oomycete",
+      "scientific_name": "Pythium aphanidermatum",
+      "supported_organs": [
+        "rhizomes_tubers",
+        "stems",
+        "leaves",
+        "whole_plant"
+      ],
+      "observable_symptoms": [
+        "Progressive yellowing of lower leaves moving upward along margins, drying, and drooping",
+        "Water-soaked brown decay of pseudostem collar (easily pulls out from underground rhizome)",
+        "Soft, rotting, foul-smelling brown decay of mother and finger rhizomes with hollowed interior"
+      ],
+      "known_look_alikes": [
+        "Bacterial wilt / soft rot (Ralstonia solanacearum)",
+        "Rhizome scale damage"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_2": "Turmeric_Rhizome Rot"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": null,
+        "v2_unified_72class": 67
+      },
+      "evidence_references": [
+        "ICAR-IISR Rhizome Rot Management Protocol 2023",
+        "ANGRAU Turmeric Protection Advisory 2024"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Oomycete soil-borne rot. Crucially supports non-foliar rhizome/tuber photos. 182 images in Dataset 2."
+    },
+    {
+      "disease_id": "dis_wheat_healthy",
+      "canonical_name": "Wheat Healthy Foliage",
+      "crop_id": "crop_wheat",
+      "condition_type": "healthy",
+      "pathogen_type": "abiotic",
+      "scientific_name": "Triticum aestivum",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Uniform vibrant green linear leaves, absence of powdery mats, orange stripes, or brown pustules"
+      ],
+      "known_look_alikes": [],
+      "dataset_class_aliases": {
+        "Dataset_1": "Wheat___healthy"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 38,
+        "v2_unified_72class": 68
+      },
+      "evidence_references": [
+        "ICAR-IIWBR Wheat Diagnostic Key 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_wheat_leaf_rust",
+      "canonical_name": "Wheat Leaf Rust (Brown Rust)",
+      "crop_id": "crop_wheat",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Puccinia triticina",
+      "supported_organs": [
+        "leaves"
+      ],
+      "observable_symptoms": [
+        "Small, round to oval reddish-brown to cinnamon-brown pustules scattered randomly on upper leaf surface",
+        "Pustules rupture epidermis revealing dusty brown urediniospores",
+        "Surrounded by slight chlorotic halo; pustules never arranged in narrow stripes"
+      ],
+      "known_look_alikes": [
+        "dis_wheat_stripe_rust",
+        "Stem rust (Puccinia graminis)",
+        "Tan spot"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Wheat___Leaf_rust"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 35,
+        "v2_unified_72class": 69
+      },
+      "evidence_references": [
+        "ICAR-IIWBR Rust Bulletin 2023",
+        "CIMMYT Wheat Rust Atlas"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Randomly scattered round pustules differentiate it from linear stripe rust; Dataset 1 only."
+    },
+    {
+      "disease_id": "dis_wheat_powdery_mildew",
+      "canonical_name": "Wheat Powdery Mildew",
+      "crop_id": "crop_wheat",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Blumeria graminis f. sp. tritici",
+      "supported_organs": [
+        "leaves",
+        "stems"
+      ],
+      "observable_symptoms": [
+        "White to grayish-white cottony or powdery fungal mats on upper leaf surfaces and stems",
+        "Chlorotic yellow spots visible under fungal mats",
+        "Aging mats turn dull gray-brown with embedded tiny black cleistothecia specks"
+      ],
+      "known_look_alikes": [
+        "Chemical spray residue",
+        "Downy mildew"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Wheat___Powdery_mildew"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 36,
+        "v2_unified_72class": 70
+      },
+      "evidence_references": [
+        "ICAR-IIWBR Foliar Blight & Mildew Manual 2023"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Fluffy white powdery mats are diagnostic; Dataset 1 laboratory cardboard images only."
+    },
+    {
+      "disease_id": "dis_wheat_stripe_rust",
+      "canonical_name": "Wheat Stripe Rust (Yellow Rust)",
+      "crop_id": "crop_wheat",
+      "condition_type": "disease",
+      "pathogen_type": "fungal",
+      "scientific_name": "Puccinia striiformis f. sp. tritici",
+      "supported_organs": [
+        "leaves",
+        "ears_cobs"
+      ],
+      "observable_symptoms": [
+        "Bright yellow to orange-yellow pustules arranged in narrow, parallel linear stripes along leaf veins",
+        "Linear stripes resemble stitched seams of yellow powder",
+        "Premature drying, chlorotic yellowing, and shriveling of affected leaves and grain heads"
+      ],
+      "known_look_alikes": [
+        "dis_wheat_leaf_rust",
+        "Physiological leaf streak"
+      ],
+      "dataset_class_aliases": {
+        "Dataset_1": "Wheat___Stripe_rust"
+      },
+      "model_class_indices": {
+        "v1_baseline_39class": 37,
+        "v2_unified_72class": 71
+      },
+      "evidence_references": [
+        "ICAR-IIWBR Yellow Rust Surveillance Protocol 2023",
+        "FAO Global Rust Reference Center (GRRC)"
+      ],
+      "verification_status": "verified",
+      "uncertainty_notes": "Linear yellow stripe arrangement is pathognomonic. Favored by cool temperatures (10-18\u00b0C); Dataset 1 only."
+    }
+  ]
+}

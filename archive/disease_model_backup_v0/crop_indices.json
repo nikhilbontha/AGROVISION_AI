@@ -1,0 +1,13 @@
+{
+    "Apple": 0,
+    "Corn": 1,
+    "Cotton": 2,
+    "Grape": 3,
+    "Non_Plant": 4,
+    "Orange": 5,
+    "Pepper": 6,
+    "Potato": 7,
+    "Rice": 8,
+    "Tomato": 9,
+    "Wheat": 10
+}

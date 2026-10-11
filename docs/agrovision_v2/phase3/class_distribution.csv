@@ -1,0 +1,76 @@
+canonical_disease_id,canonical_crop_id,canonical_name,condition_type,pathogen_type,dataset_1_count,dataset_2_count,total_images,domain_representation,imbalance_category
+dis_apple_scab,crop_apple,Apple Scab,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_apple_black_rot,crop_apple,Apple Black Rot (Frogeye Leaf Spot),disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_apple_cedar_apple_rust,crop_apple,Cedar Apple Rust,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_apple_healthy,crop_apple,Apple Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_banana_black_sigatoka,crop_banana,Banana Black Sigatoka,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_banana_cordana_leaf_spot,crop_banana,Banana Cordana Leaf Spot,disease,fungal,0,342,342,regional_field_only,medium_sample
+dis_banana_healthy,crop_banana,Banana Healthy Foliage,healthy,abiotic,0,500,500,regional_field_only,high_sample_majority
+dis_banana_panama_disease,crop_banana,Banana Panama Disease (Fusarium Wilt),disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_chilli_anthracnose,crop_chilli,Chilli Anthracnose (Dieback & Fruit Rot),disease,fungal,0,465,465,regional_field_only,high_sample_majority
+dis_chilli_damping_off,crop_chilli,Chilli Damping Off,disease,oomycete,0,168,168,regional_field_only,medium_sample
+dis_chilli_healthy,crop_chilli,Chilli Healthy Foliage,healthy,abiotic,0,300,300,regional_field_only,medium_sample
+dis_chilli_leaf_curl,crop_chilli,Chilli Leaf Curl Virus,disease,viral,0,490,490,regional_field_only,high_sample_majority
+dis_chilli_leaf_spot,crop_chilli,Chilli Cercospora Leaf Spot (Frog Eye Spot),disease,fungal,0,490,490,regional_field_only,high_sample_majority
+dis_chilli_veinal_mottle,crop_chilli,Chilli Veinal Mottle Virus,disease,viral,0,490,490,regional_field_only,high_sample_majority
+dis_chilli_whitefly,crop_chilli,Chilli Whitefly Infestation & Damage,pest_damage,pest,0,490,490,regional_field_only,high_sample_majority
+dis_chilli_yellowish,crop_chilli,Chilli Yellowish Foliar Chlorosis (Unspecified),unknown,unknown,0,490,490,regional_field_only,high_sample_majority
+dis_corn_cercospora_gray_leaf_spot,crop_corn,Corn Cercospora Gray Leaf Spot,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_corn_common_rust,crop_corn,Corn Common Rust,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_corn_healthy,crop_corn,Corn Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_corn_northern_leaf_blight,crop_corn,Corn Northern Leaf Blight,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_cotton_alternaria_leaf_spot,crop_cotton,Cotton Alternaria Leaf Spot,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_cotton_bacterial_blight,crop_cotton,Cotton Bacterial Blight (Angular Leaf Spot / Blackarm),disease,bacterial,70,500,570,both_lab_and_field,high_sample_majority
+dis_cotton_fusarium_wilt,crop_cotton,Cotton Fusarium Wilt,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_cotton_healthy,crop_cotton,Cotton Healthy Canopy,healthy,abiotic,70,500,570,both_lab_and_field,high_sample_majority
+dis_cotton_verticillium_wilt,crop_cotton,Cotton Verticillium Wilt,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_grape_black_rot,crop_grape,Grape Black Rot,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_grape_esca,crop_grape,Grape Esca (Black Measles),disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_grape_healthy,crop_grape,Grape Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_grape_leaf_blight,crop_grape,Grape Leaf Blight (Isariopsis Spot),disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_mango_anthracnose,crop_mango,Mango Anthracnose,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_mango_bacterial_canker,crop_mango,Mango Bacterial Canker (Bacterial Black Spot),disease,bacterial,0,500,500,regional_field_only,high_sample_majority
+dis_mango_cutting_weevil,crop_mango,Mango Leaf Cutting Weevil Damage,pest_damage,pest,0,500,500,regional_field_only,high_sample_majority
+dis_mango_die_back,crop_mango,Mango Die Back,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_mango_gall_midge,crop_mango,Mango Leaf Gall Midge Damage,pest_damage,pest,0,500,500,regional_field_only,high_sample_majority
+dis_mango_healthy,crop_mango,Mango Healthy Foliage,healthy,abiotic,0,500,500,regional_field_only,high_sample_majority
+dis_mango_powdery_mildew,crop_mango,Mango Powdery Mildew,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_mango_sooty_mould,crop_mango,Mango Sooty Mould,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_non_plant_unsupported,crop_non_plant,Non-Plant / Unsupported Object,unknown,unknown,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_orange_citrus_greening,crop_orange,Orange Citrus Greening (Huanglongbing),disease,bacterial,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_orange_healthy,crop_orange,Orange Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_palm_magnesium_deficiency,crop_oil_palm,Oil Palm Magnesium Deficiency,nutrient_disorder,nutritional,0,59,59,regional_field_only,critically_rare (<60)
+dis_palm_scale_insect,crop_oil_palm,Oil Palm Scale Insect Infestation,pest_damage,pest,0,142,142,regional_field_only,low_sample_cardboard
+dis_palm_dryness,crop_oil_palm,Oil Palm Moisture Stress / Dryness,abiotic_stress,abiotic,0,70,70,regional_field_only,low_sample_cardboard
+dis_palm_fungal_disease,crop_oil_palm,Oil Palm Unspecified Fungal Disease,unknown,unknown,0,25,25,regional_field_only,critically_rare (<60)
+dis_pepper_bacterial_spot,crop_pepper_bell,Bell Pepper Bacterial Spot,disease,bacterial,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_pepper_healthy,crop_pepper_bell,Bell Pepper Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_potato_early_blight,crop_potato,Potato Early Blight,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_potato_healthy,crop_potato,Potato Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_potato_late_blight,crop_potato,Potato Late Blight,disease,oomycete,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_rice_bacterial_leaf_blight,crop_rice,Rice Bacterial Leaf Blight,disease,bacterial,70,460,530,both_lab_and_field,high_sample_majority
+dis_rice_blast,crop_rice,Rice Blast,disease,fungal,70,500,570,both_lab_and_field,high_sample_majority
+dis_rice_brown_spot,crop_rice,Rice Brown Spot,disease,fungal,0,460,460,regional_field_only,high_sample_majority
+dis_rice_healthy,crop_rice,Rice Healthy Foliage,healthy,abiotic,70,500,570,both_lab_and_field,high_sample_majority
+dis_rice_leaf_scald,crop_rice,Rice Leaf Scald,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_rice_leaf_smut,crop_rice,Rice Leaf Smut,disease,fungal,0,40,40,regional_field_only,critically_rare (<60)
+dis_rice_sheath_blight,crop_rice,Rice Sheath Blight,disease,fungal,0,500,500,regional_field_only,high_sample_majority
+dis_rice_tungro,crop_rice,Rice Tungro Disease,disease,viral,0,500,500,regional_field_only,high_sample_majority
+dis_tomato_bacterial_spot,crop_tomato,Tomato Bacterial Spot,disease,bacterial,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_early_blight,crop_tomato,Tomato Early Blight,disease,fungal,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_healthy,crop_tomato,Tomato Healthy Foliage,healthy,abiotic,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_late_blight,crop_tomato,Tomato Late Blight,disease,oomycete,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_leaf_mold,crop_tomato,Tomato Leaf Mold,disease,fungal,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_mosaic_virus,crop_tomato,Tomato Mosaic Virus,disease,viral,70,373,443,both_lab_and_field,high_sample_majority
+dis_tomato_septoria_leaf_spot,crop_tomato,Tomato Septoria Leaf Spot,disease,fungal,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_spider_mites,crop_tomato,Tomato Two-Spotted Spider Mites,pest_damage,pest,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_target_spot,crop_tomato,Tomato Target Spot,disease,fungal,70,500,570,both_lab_and_field,high_sample_majority
+dis_tomato_yellow_leaf_curl,crop_tomato,Tomato Yellow Leaf Curl Virus,disease,viral,70,500,570,both_lab_and_field,high_sample_majority
+dis_turmeric_dry_leaf,crop_turmeric,Turmeric Dry Leaf / Desiccation,abiotic_stress,abiotic,0,203,203,regional_field_only,medium_sample
+dis_turmeric_healthy,crop_turmeric,Turmeric Healthy Foliage,healthy,abiotic,0,197,197,regional_field_only,medium_sample
+dis_turmeric_leaf_blotch,crop_turmeric,Turmeric Leaf Blotch,disease,fungal,0,199,199,regional_field_only,medium_sample
+dis_turmeric_rhizome_rot,crop_turmeric,Turmeric Rhizome Rot (Soft Rot),disease,oomycete,0,182,182,regional_field_only,medium_sample
+dis_wheat_healthy,crop_wheat,Wheat Healthy Foliage,healthy,abiotic,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_wheat_leaf_rust,crop_wheat,Wheat Leaf Rust (Brown Rust),disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_wheat_powdery_mildew,crop_wheat,Wheat Powdery Mildew,disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard
+dis_wheat_stripe_rust,crop_wheat,Wheat Stripe Rust (Yellow Rust),disease,fungal,70,0,70,lab_cardboard_only,low_sample_cardboard

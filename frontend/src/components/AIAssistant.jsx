@@ -41,13 +41,38 @@ const AIAssistant = () => {
   const [inputValue, setInputValue] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
   const isFirstRender = useRef(true);
+  const activeAudioRef = useRef(null);
+
+  // Stop any ongoing audio playback or speech synthesis
+  const stopAllAudio = () => {
+    setIsPlayingAudio(false);
+    if (activeAudioRef.current) {
+      try {
+        activeAudioRef.current.pause();
+        activeAudioRef.current.currentTime = 0;
+      } catch (e) {
+        console.error("Error stopping audio:", e);
+      }
+      activeAudioRef.current = null;
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  // Cleanup audio when component unmounts
+  useEffect(() => {
+    return () => stopAllAudio();
+  }, []);
 
   // Append a welcome message when language changes
   useEffect(() => {
+    stopAllAudio();
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -112,24 +137,43 @@ const AIAssistant = () => {
     }
   };
 
-  // Play High-Quality Backend Audio
+  // Play High-Quality Backend Audio safely without overlap
   const playNeuralAudio = (audioBase64) => {
     if (!audioBase64) return;
+    stopAllAudio();
     try {
       const audio = new Audio(audioBase64);
-      audio.play().catch(e => console.error("Audio playback blocked by browser:", e));
+      activeAudioRef.current = audio;
+      setIsPlayingAudio(true);
+      audio.onended = () => {
+        setIsPlayingAudio(false);
+        if (activeAudioRef.current === audio) {
+          activeAudioRef.current = null;
+        }
+      };
+      audio.onerror = () => {
+        setIsPlayingAudio(false);
+      };
+      audio.play().catch(e => {
+        console.error("Audio playback blocked by browser:", e);
+        setIsPlayingAudio(false);
+      });
     } catch (e) {
       console.error("Audio creation failed", e);
+      setIsPlayingAudio(false);
     }
   };
 
   // Fallback for local system messages
   const speakTextFallback = (text) => {
+    stopAllAudio();
     if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = isTe ? 'te-IN' : 'en-IN';
       utterance.rate = isTe ? 0.85 : 0.9;
+      setIsPlayingAudio(true);
+      utterance.onend = () => setIsPlayingAudio(false);
+      utterance.onerror = () => setIsPlayingAudio(false);
       window.speechSynthesis.speak(utterance);
     }
   };
@@ -235,7 +279,7 @@ const AIAssistant = () => {
                 </div>
               </div>
               <button 
-                onClick={() => setIsOpen(false)}
+                onClick={() => { stopAllAudio(); setIsOpen(false); }}
                 className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
               >
                 <X size={20} className="text-green-100" />
@@ -313,36 +357,80 @@ const AIAssistant = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
+            {/* Input & Voice Controls */}
             <div className="p-4 bg-[#0d2116] border-t border-green-500/20 shrink-0">
+              
+              {/* Listening / Speaking Active Status Pill */}
+              <AnimatePresence>
+                {(isListening || isPlayingAudio) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 5 }}
+                    className={`mb-3 p-2 rounded-xl flex items-center justify-between text-xs font-bold border ${
+                      isListening 
+                        ? 'bg-rose-500/20 text-rose-300 border-rose-500/40' 
+                        : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      {isListening ? (
+                        <>
+                          <div className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
+                          <span>{isTe ? 'వింటున్నాను... స్పష్టంగా మాట్లాడండి' : 'Listening... Speak your question clearly'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-4 h-4 text-emerald-400 animate-bounce" />
+                          <span>{isTe ? 'సమాధానం చెప్తున్నాను...' : 'AgroVision AI Speaking...'}</span>
+                        </>
+                      )}
+                    </div>
+
+                    {isPlayingAudio && (
+                      <button
+                        onClick={stopAllAudio}
+                        className="px-2 py-0.5 rounded bg-rose-500/30 text-rose-200 hover:bg-rose-500/50 text-[10px] font-bold"
+                      >
+                        {isTe ? 'ఆపండి' : 'Stop Audio'}
+                      </button>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               {/* Suggestion Chips */}
-              <div className="flex overflow-x-auto gap-2 mb-3 pb-2 custom-scrollbar-hide">
+              <div className="flex overflow-x-auto gap-2 mb-3 pb-1 custom-scrollbar-hide">
                 {SUGGESTIONS[language].map((suggestion, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSend(suggestion)}
-                    className="whitespace-nowrap px-3 py-1.5 bg-[#1a3826] text-green-200 text-xs rounded-full border border-green-500/30 hover:bg-green-700 hover:text-white transition-colors"
+                    className="whitespace-nowrap px-3 py-1.5 bg-[#1a3826] text-green-200 text-xs rounded-full border border-green-500/30 hover:bg-green-600 hover:text-white transition-all shadow-sm flex items-center gap-1"
                   >
-                    {suggestion}
+                    <Sparkles className="w-3 h-3 text-amber-300" />
+                    <span>{suggestion}</span>
                   </button>
                 ))}
               </div>
 
               <div className="flex items-end gap-2 relative">
-                <div className="flex-1 bg-[#152e1f] rounded-2xl border border-green-500/30 overflow-hidden flex items-center pr-2 focus-within:border-green-400 transition-colors">
+                <div className="flex-1 bg-[#152e1f] rounded-2xl border border-green-500/30 overflow-hidden flex items-center pr-2 focus-within:border-green-400 transition-colors shadow-inner">
                   <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder={isTe ? 'ప్రశ్న టైప్ చేయండి...' : 'Type your question...'}
-                    className="flex-1 bg-transparent text-white p-3 outline-none placeholder:text-gray-400 text-sm"
+                    placeholder={isListening ? (isTe ? 'మాట్లాడండి...' : 'Listening now...') : (isTe ? 'ప్రశ్న టైప్ చేయండి లేదా మాట్లాడండి...' : 'Type or speak your farming question...')}
+                    className="flex-1 bg-transparent text-white p-3 outline-none placeholder:text-gray-400 text-sm font-medium"
                   />
                   
                   <button
                     onClick={toggleListen}
-                    className={`p-2 rounded-full transition-colors ${
-                      isListening ? 'bg-red-500 text-white animate-pulse' : 'text-green-400 hover:bg-green-500/20'
+                    title={isListening ? 'Stop Listening' : 'Start Voice Search'}
+                    className={`p-2.5 rounded-xl transition-all ${
+                      isListening 
+                        ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/50 animate-pulse' 
+                        : 'text-green-400 hover:bg-green-500/20 hover:text-green-300'
                     }`}
                   >
                     <Mic size={20} />
@@ -352,7 +440,7 @@ const AIAssistant = () => {
                 <button
                   onClick={() => handleSend()}
                   disabled={!inputValue.trim() || isLoading}
-                  className="bg-green-500 hover:bg-green-600 disabled:opacity-50 disabled:hover:bg-green-500 text-white p-3 rounded-full transition-colors shrink-0"
+                  className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-40 text-white p-3 rounded-2xl transition-all shadow-lg shadow-green-500/20 shrink-0"
                 >
                   <Send size={20} />
                 </button>

@@ -545,4 +545,13 @@ async def list_model_history():
     cursor = model_history_collection.find({}).sort("created_at", -1)
     async for doc in cursor:
         history.append(format_doc(doc))
+    # Ensure deployed/current model is ordered first, followed by descending training dates
+    history.sort(
+        key=lambda x: (
+            0 if x.get("status") in ["Deployed", "Active"] or "(Current)" in x.get("version", "") else 1,
+            x.get("training_date", "")
+        ),
+        reverse=False
+    )
     return {"history": history}
+

@@ -1,0 +1,100 @@
+{
+  "plan_version": "2.0.0",
+  "phase": "Phase 6: Crop-Specific Model Architecture and Controlled Training Experiments",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "author": "Senior Computer-Vision Researcher & Deep-Learning Engineer",
+  "status": "PARTIAL_ENVIRONMENT_BLOCKED_WITH_ROUTER_EVALUATION",
+  "preflight_review": {
+    "phase_1_audit_report": "REVIEWED (docs/agrovision_v2/PHASE_1_RESEARCH_AND_AUDIT_REPORT.md)",
+    "phase_2_taxonomy": "VERIFIED (crop_registry.json: 16 crops, disease_registry.json: 75 diseases)",
+    "phase_3_dataset_audit": "VERIFIED (23,280 samples, zero duplicate group leakage)",
+    "phase_4_questionnaires": "VERIFIED (adaptive schemas and valid payloads)",
+    "phase_5_diagnosis_engine": "VERIFIED (12-stage pipeline, 10 abstention states, 17/17 tests passing)",
+    "production_checkpoint_status": "PRESERVED_UNTOUCHED (disease_model.h5, yield_model.pkl)"
+  },
+  "training_environment_audit": {
+    "host_os": "Windows 11 Enterprise/Pro 10.0.26200 x64",
+    "python_executable": "C:\\Users\\nikhi\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "python_version": "3.13.14 x64",
+    "cpu_hardware": "Intel(R) Core(TM) 5 120U (10 Cores, 12 Logical Processors)",
+    "gpu_hardware": "Intel(R) Graphics (Integrated, No CUDA GPU available)",
+    "system_memory_gb": 16.0,
+    "free_memory_gb": 7.5,
+    "disk_free_gb_drive_e": 10.6,
+    "frameworks_installed": {
+      "scikit_learn": "1.8.0 (OPERATIONAL)",
+      "numpy": "2.4.2 (OPERATIONAL)",
+      "scipy": "1.17.1 (OPERATIONAL)",
+      "opencv_python": "4.13.0 (OPERATIONAL)",
+      "pillow": "12.1.0 (OPERATIONAL)",
+      "h5py": "3.14.0 (OPERATIONAL)",
+      "pytorch": "NOT_INSTALLED",
+      "tensorflow": "INSTALLED_BUT_RUNTIME_BLOCKED"
+    },
+    "runtime_blocker_reproduction": {
+      "error_type": "RuntimeError / ImportError",
+      "blocked_component": "litert.python._pywrap_tensorflow_lite_metrics_wrapper.pyd",
+      "root_cause": "Windows Defender Application Control (WDAC) / AppLocker security policy strictly blocks unsigned native DLLs in user profile and anaconda directories on this managed workstation.",
+      "impact": "Deep learning neural network GPU/CPU training via TensorFlow/Keras is blocked on the active host environment. Altering system security policies or global Python installations without approval is forbidden by non-negotiable preservation rules.",
+      "mitigation_and_status": "Prepare full reproducible training pipelines and configs; execute Scikit-Learn Crop Router natively on real partitions; evaluate baseline checkpoints via h5py; report deep learning training status as BLOCKED."
+    }
+  },
+  "dataset_manifest_specification": {
+    "partition_manifests": {
+      "train": "ml_models/disease_detection/unified_experiment/train_manifest.json (16,237 samples)",
+      "validation": "ml_models/disease_detection/unified_experiment/val_manifest.json (3,521 samples)",
+      "test": "ml_models/disease_detection/unified_experiment/test_manifest.json (3,522 samples)"
+    },
+    "leakage_controls": {
+      "duplicate_group_overlaps": 0,
+      "md5_hash_overlaps": 0,
+      "patient_id_overlaps": 0,
+      "reconciled_sum": 23280
+    }
+  },
+  "model_strategies": {
+    "strategy_a_unified_baseline": {
+      "name": "Strategy A: Unified Global Classifier",
+      "architecture": "EfficientNet-B0 (Single 72-class Softmax Head)",
+      "input_resolution": [224, 224, 3],
+      "config_file": "ml_models/disease_detection/agrovision_v2_experiments/configs/train_strategy_a_unified.json",
+      "script_file": "ml_models/disease_detection/agrovision_v2_experiments/scripts/train_strategy_a.py",
+      "evaluated_checkpoint": "ml_models/disease_detection/unified_experiment/artifacts/agrovision_phase7_20261010_231412/AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+      "findings": "Achieves 80.35% overall accuracy, but suffers from severe cross-crop confusion (264 / 692 failures are WRONG CROP, representing 38.15% of all errors). Disqualified for unconditioned standalone deployment."
+    },
+    "strategy_b_crop_specific": {
+      "name": "Strategy B: Crop-Specific Disease Classifiers",
+      "architecture": "MobileNetV3-Small / EfficientNet-B0 trained independently per crop family",
+      "crops_supported": 11,
+      "config_file": "ml_models/disease_detection/agrovision_v2_experiments/configs/train_strategy_b_cropspecific.json",
+      "mapping_file": "ml_models/disease_detection/agrovision_v2_experiments/mappings/crop_specific_class_mappings.json",
+      "script_file": "ml_models/disease_detection/agrovision_v2_experiments/scripts/train_strategy_b.py",
+      "findings": "Eliminates cross-crop confusion (0.00% by structural design). Lightweight edge model sizes (1.5-2.5 MB). Recommended for production deployment when conditioned on verified crop selection."
+    },
+    "strategy_c_crop_router": {
+      "name": "Strategy C: Two-Stage Crop Identity Router Architecture",
+      "stage_1_router": "16-Class Crop Identity Router with confidence gating (tau_crop = 0.65)",
+      "stage_2_classifier": "Route to Strategy B Crop-Specific Classifier upon verification",
+      "config_file": "ml_models/disease_detection/agrovision_v2_experiments/configs/train_strategy_c_croprouter.json",
+      "mapping_file": "ml_models/disease_detection/agrovision_v2_experiments/mappings/crop_router_mapping.json",
+      "script_file": "ml_models/disease_detection/agrovision_v2_experiments/scripts/train_strategy_c.py",
+      "executed_artifact": "ml_models/disease_detection/agrovision_v2_experiments/artifacts/strategy_c/crop_identity_router.pkl",
+      "measured_metrics": {
+        "test_overall_accuracy": 0.8600,
+        "test_balanced_accuracy": 0.5572,
+        "feature_dim": 136,
+        "test_samples": 600
+      },
+      "findings": "Successfully executes on host CPU; achieves 86.0% overall crop identification on held-out test data. When confidence is below 0.65, triggers Phase 5 abstention."
+    },
+    "strategy_d_multi_head": {
+      "name": "Strategy D: Shared Feature Extractor Trunk with Multi-Head Heads",
+      "architecture": "Shared EfficientNet-B0 trunk (1280 features) + 11 crop-conditioned classification heads",
+      "config_file": "ml_models/disease_detection/agrovision_v2_experiments/configs/train_strategy_d_multihead.json",
+      "script_file": "ml_models/disease_detection/agrovision_v2_experiments/scripts/train_strategy_d.py",
+      "findings": "Combines feature transfer efficiency with disjoint output spaces. Viable alternative for centralized server deployment."
+    }
+  },
+  "acceptance_criteria_reference": "docs/agrovision_v2/phase6/acceptance_criteria.json",
+  "comparison_matrix_reference": "docs/agrovision_v2/phase6/model_comparison.csv"
+}

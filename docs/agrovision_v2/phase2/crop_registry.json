@@ -1,0 +1,365 @@
+{
+  "registry_version": "2.0.0",
+  "generated_at": "2026-10-11T11:00:00+05:30",
+  "description": "AgroVision AI Canonical Crop Registry establishing authoritative crop identifiers, supported plant organs, associated canonical disease IDs, dataset provenance, and evidence-based verification statuses.",
+  "crops": [
+    {
+      "crop_id": "crop_apple",
+      "canonical_name": "Apple",
+      "aliases": ["Malus", "Seb"],
+      "scientific_name": "Malus domestica",
+      "botanical_family": "Rosaceae",
+      "supported_organs": ["leaves", "fruits", "stems"],
+      "supported_disease_ids": [
+        "dis_apple_scab",
+        "dis_apple_black_rot",
+        "dis_apple_cedar_apple_rust"
+      ],
+      "healthy_class_id": "dis_apple_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Temperate zones (Himachal Pradesh, Jammu & Kashmir). Minimal commercial cultivation in Southern India plains.",
+      "evidence_references": [
+        "ICAR-CITH (Central Institute of Temperate Horticulture) Apple Disease Compendium 2022",
+        "PlantVillage dataset publication (Mohanty et al., 2016)"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Represented only by 280 laboratory cardboard images in Dataset 1. Zero real-world field images available in Dataset 2 or regional farm surveys. Phase 8 independent test accuracy in unified model was low (30.8% broad set)."
+    },
+    {
+      "crop_id": "crop_banana",
+      "canonical_name": "Banana",
+      "aliases": ["Musa", "Plantain", "Arati"],
+      "scientific_name": "Musa acuminata",
+      "botanical_family": "Musaceae",
+      "supported_organs": ["leaves", "stems", "fruits", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_banana_black_sigatoka",
+        "dis_banana_cordana_leaf_spot",
+        "dis_banana_panama_disease"
+      ],
+      "healthy_class_id": "dis_banana_healthy",
+      "dataset_sources": ["Dataset_2"],
+      "regional_relevance": "Major cash crop in Andhra Pradesh (Krishna, Guntur, Kadapa, East/West Godavari), Tamil Nadu, and Maharashtra.",
+      "evidence_references": [
+        "ICAR-NRCB (National Research Centre for Banana) Disease Management Guide 2023",
+        "ANGRAU Package of Practices for Horticultural Crops (Banana Protection) 2024"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 1,842 real-world field photographs in Dataset 2. Evaluated on 276 locked field test images with 89.13% independent accuracy."
+    },
+    {
+      "crop_id": "crop_chilli",
+      "canonical_name": "Chilli",
+      "aliases": ["Hot Pepper", "Mirapa", "Mirchi", "Capsicum frutescens"],
+      "scientific_name": "Capsicum annuum",
+      "botanical_family": "Solanaceae",
+      "supported_organs": ["leaves", "fruits", "stems", "roots", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_chilli_anthracnose",
+        "dis_chilli_damping_off",
+        "dis_chilli_leaf_curl",
+        "dis_chilli_leaf_spot",
+        "dis_chilli_veinal_mottle",
+        "dis_chilli_whitefly"
+      ],
+      "healthy_class_id": "dis_chilli_healthy",
+      "dataset_sources": ["Dataset_2"],
+      "regional_relevance": "Premier commercial spice crop in Guntur, Prakasam, Khammam, and Warangal (major export belt).",
+      "evidence_references": [
+        "ANGRAU Vyavasaya Panchangam (Chilli IPM Guidelines) 2024",
+        "ICAR-IIHR (Indian Institute of Horticultural Research) Chilli Pest & Disease Bulletin 2022"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 3,363 outdoor field photographs in Dataset 2 across 7 canonical classes. Evaluated on 462 independent test images with 86.15% accuracy. Excluded ambiguous class Chilli_Yellowish."
+    },
+    {
+      "crop_id": "crop_corn",
+      "canonical_name": "Corn",
+      "aliases": ["Maize", "Makka", "Mokkajonna", "Zea"],
+      "scientific_name": "Zea mays",
+      "botanical_family": "Poaceae",
+      "supported_organs": ["leaves", "ears_cobs", "stems"],
+      "supported_disease_ids": [
+        "dis_corn_cercospora_gray_leaf_spot",
+        "dis_corn_common_rust",
+        "dis_corn_northern_leaf_blight"
+      ],
+      "healthy_class_id": "dis_corn_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Widely cultivated kharif/rabi cereal in Telangana (Nizamabad, Karimnagar) and Andhra Pradesh (Kurnool, Guntur).",
+      "evidence_references": [
+        "ICAR-IIMR (Indian Institute of Maize Research) Disease Atlas 2023",
+        "PJTSAU Maize Diagnostic Key and IPM Manual 2023"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Dataset 1 contains 280 leaf images on laboratory cardboard. Dataset 2 has zero corn images. Active interface erroneously rejects ears/cobs due to foliar-only validation. Requires organ-aware validation and field data."
+    },
+    {
+      "crop_id": "crop_cotton",
+      "canonical_name": "Cotton",
+      "aliases": ["Kapas", "Patti", "Gossypium"],
+      "scientific_name": "Gossypium hirsutum",
+      "botanical_family": "Malvaceae",
+      "supported_organs": ["leaves", "stems", "bolls", "roots", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_cotton_alternaria_leaf_spot",
+        "dis_cotton_bacterial_blight",
+        "dis_cotton_fusarium_wilt",
+        "dis_cotton_verticillium_wilt"
+      ],
+      "healthy_class_id": "dis_cotton_healthy",
+      "dataset_sources": ["Dataset_1", "Dataset_2"],
+      "regional_relevance": "Primary commercial cash crop in black cotton soils of Adilabad, Guntur, Kurnool, Warangal.",
+      "evidence_references": [
+        "ICAR-CICR (Central Institute for Cotton Research) Cotton Disease Identification Guide 2023",
+        "ANGRAU Cotton IPM Package of Practices 2024"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 2,570 combined images (Dataset 1 and Dataset 2). Tested on 396 independent field test records with 88.64% accuracy."
+    },
+    {
+      "crop_id": "crop_grape",
+      "canonical_name": "Grape",
+      "aliases": ["Vitis", "Draksha", "Angoor"],
+      "scientific_name": "Vitis vinifera",
+      "botanical_family": "Vitaceae",
+      "supported_organs": ["leaves", "fruits", "stems"],
+      "supported_disease_ids": [
+        "dis_grape_black_rot",
+        "dis_grape_esca",
+        "dis_grape_leaf_blight"
+      ],
+      "healthy_class_id": "dis_grape_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Cultivated in Maharashtra (Nashik), Karnataka (Vijayapura), and peri-urban Hyderabad (Anab-e-Shahi).",
+      "evidence_references": [
+        "ICAR-NRCG (National Research Centre for Grapes) Crop Protection Manual 2023",
+        "PlantVillage laboratory reference set (Hughes & Salathe, 2015)"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Dataset 1 contains 280 laboratory cardboard leaf images. Zero field vineyard photographs present in Dataset 2."
+    },
+    {
+      "crop_id": "crop_mango",
+      "canonical_name": "Mango",
+      "aliases": ["Mangifera", "Mamidi", "Aam"],
+      "scientific_name": "Mangifera indica",
+      "botanical_family": "Anacardiaceae",
+      "supported_organs": ["leaves", "fruits", "flowers", "stems"],
+      "supported_disease_ids": [
+        "dis_mango_anthracnose",
+        "dis_mango_bacterial_canker",
+        "dis_mango_cutting_weevil",
+        "dis_mango_die_back",
+        "dis_mango_gall_midge",
+        "dis_mango_powdery_mildew",
+        "dis_mango_sooty_mould"
+      ],
+      "healthy_class_id": "dis_mango_healthy",
+      "dataset_sources": ["Dataset_2"],
+      "regional_relevance": "Leading perennial fruit crop in Andhra Pradesh (Krishna Banganapalle, Chittoor Totapuri, Visakhapatnam).",
+      "evidence_references": [
+        "ICAR-CISH (Central Institute for Subtropical Horticulture) Mango Protection Guide 2023",
+        "Dr. YSR Horticultural University (YSRHU) Mango Pest & Disease Manual 2024"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 4,000 real-world orchard images in Dataset 2 across 8 canonical classes. Evaluated on 675 field test records with 91.41% accuracy."
+    },
+    {
+      "crop_id": "crop_oil_palm",
+      "canonical_name": "Oil Palm",
+      "aliases": ["Elaeis", "Pamayil", "Tadichettu"],
+      "scientific_name": "Elaeis guineensis",
+      "botanical_family": "Arecaceae",
+      "supported_organs": ["leaves", "fruits", "stems"],
+      "supported_disease_ids": [
+        "dis_palm_magnesium_deficiency",
+        "dis_palm_scale_insect"
+      ],
+      "healthy_class_id": null,
+      "dataset_sources": ["Dataset_2"],
+      "regional_relevance": "Rapidly expanding irrigated plantation crop in coastal Andhra Pradesh (West Godavari, East Godavari).",
+      "evidence_references": [
+        "ICAR-IIOPR (Indian Institute of Oil Palm Research, Pedavegi) Diagnostic Field Guide 2023"
+      ],
+      "verification_status": "insufficient_evidence",
+      "status_justification": "Dataset 2 contains only 296 total palm images with severe imbalance (Scale Insect 142, Mg Deficiency 59). Two classes (Palm_Dryness, Palm_Fungal Disease) excluded due to lack of specificity. No healthy palm baseline class in dataset."
+    },
+    {
+      "crop_id": "crop_orange",
+      "canonical_name": "Orange",
+      "aliases": ["Citrus", "Santra", "Mosambi", "Battayi"],
+      "scientific_name": "Citrus sinensis",
+      "botanical_family": "Rutaceae",
+      "supported_organs": ["leaves", "fruits", "stems", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_orange_citrus_greening"
+      ],
+      "healthy_class_id": "dis_orange_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Sweet orange (Battayi) majorly grown in Rayalaseema (Anantapur, Kadapa) and Nalgonda.",
+      "evidence_references": [
+        "ICAR-CCRI (Central Citrus Research Institute) Huanglongbing Diagnostic Key 2022",
+        "ANGRAU Sweet Orange Protection Protocols 2023"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Represented only by 140 laboratory leaf images in Dataset 1. Only 1 disease condition (Huanglongbing/Greening) present."
+    },
+    {
+      "crop_id": "crop_pepper_bell",
+      "canonical_name": "Pepper (Bell)",
+      "aliases": ["Capsicum", "Shimla Mirch", "Sweet Pepper"],
+      "scientific_name": "Capsicum annuum var. grossum",
+      "botanical_family": "Solanaceae",
+      "supported_organs": ["leaves", "fruits", "stems"],
+      "supported_disease_ids": [
+        "dis_pepper_bacterial_spot"
+      ],
+      "healthy_class_id": "dis_pepper_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Protected cultivation / polyhouse crop in peri-urban areas. Distinguished taxonomically from field hot chilli.",
+      "evidence_references": [
+        "PlantVillage benchmark taxonomy (Mohanty et al., 2016)",
+        "TNAU Agritech Portal Greenhouse Pepper Production 2023"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Dataset 1 contains 140 laboratory cardboard images. Must not be conflated with open-field hot chilli (*Capsicum annuum* hot cultivars)."
+    },
+    {
+      "crop_id": "crop_potato",
+      "canonical_name": "Potato",
+      "aliases": ["Solanum tuberosum", "Alu", "Bangaladumpa"],
+      "scientific_name": "Solanum tuberosum",
+      "botanical_family": "Solanaceae",
+      "supported_organs": ["leaves", "tubers", "stems", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_potato_early_blight",
+        "dis_potato_late_blight"
+      ],
+      "healthy_class_id": "dis_potato_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Major horticultural tuber crop in Indo-Gangetic plains, Hassan (Karnataka), and Medak (Telangana).",
+      "evidence_references": [
+        "ICAR-CPRI (Central Potato Research Institute) Technical Bulletin 2023",
+        "FAO Late Blight Management Protocol 2021"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Represented only by 210 laboratory cardboard images in Dataset 1. Zero field images in Dataset 2. Prime root cause of field misclassification: field potato leaves are falsely classified as healthy chilli due to class volume imbalance."
+    },
+    {
+      "crop_id": "crop_rice",
+      "canonical_name": "Rice",
+      "aliases": ["Paddy", "Oryza", "Vari", "Dhan"],
+      "scientific_name": "Oryza sativa",
+      "botanical_family": "Poaceae",
+      "supported_organs": ["leaves", "stems", "panicles_seeds", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_rice_bacterial_leaf_blight",
+        "dis_rice_blast",
+        "dis_rice_brown_spot",
+        "dis_rice_leaf_scald",
+        "dis_rice_leaf_smut",
+        "dis_rice_sheath_blight",
+        "dis_rice_tungro"
+      ],
+      "healthy_class_id": "dis_rice_healthy",
+      "dataset_sources": ["Dataset_1", "Dataset_2"],
+      "regional_relevance": "Primary staple food crop across Andhra Pradesh (Godavari & Krishna deltas) and Telangana.",
+      "evidence_references": [
+        "ICAR-IIRR (Indian Institute of Rice Research, Hyderabad) Rice IPM Manual 2023",
+        "ANGRAU Rice Production and Protection Guidelines 2024",
+        "IRRI (International Rice Research Institute) Rice Knowledge Bank"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 3,670 combined images across 8 canonical classes. Evaluated on 550 independent test records with 84.55% accuracy. Corrected Phase 1 metadata defect (Bacterial Leaf Blight properly designated as bacterial)."
+    },
+    {
+      "crop_id": "crop_tomato",
+      "canonical_name": "Tomato",
+      "aliases": ["Solanum lycopersicum", "Tamata", "Tamatar"],
+      "scientific_name": "Solanum lycopersicum",
+      "botanical_family": "Solanaceae",
+      "supported_organs": ["leaves", "fruits", "stems", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_tomato_bacterial_spot",
+        "dis_tomato_early_blight",
+        "dis_tomato_late_blight",
+        "dis_tomato_leaf_mold",
+        "dis_tomato_mosaic_virus",
+        "dis_tomato_septoria_leaf_spot",
+        "dis_tomato_spider_mites",
+        "dis_tomato_target_spot",
+        "dis_tomato_yellow_leaf_curl"
+      ],
+      "healthy_class_id": "dis_tomato_healthy",
+      "dataset_sources": ["Dataset_1", "Dataset_2"],
+      "regional_relevance": "Major horticultural vegetable crop across Madanapalle (Chittoor - largest tomato market in Asia), Rangareddy, and Kolar.",
+      "evidence_references": [
+        "ICAR-IIHR Tomato Disease & Pest Management Guide 2023",
+        "ANGRAU Package of Practices for Vegetable Crops 2024"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 5,573 combined images across 10 canonical classes. High sample count across both datasets. Evaluated on independent test sets."
+    },
+    {
+      "crop_id": "crop_turmeric",
+      "canonical_name": "Turmeric",
+      "aliases": ["Curcuma", "Pasupu", "Haldi"],
+      "scientific_name": "Curcuma longa",
+      "botanical_family": "Zingiberaceae",
+      "supported_organs": ["leaves", "rhizomes_tubers", "stems", "whole_plant"],
+      "supported_disease_ids": [
+        "dis_turmeric_dry_leaf",
+        "dis_turmeric_leaf_blotch",
+        "dis_turmeric_rhizome_rot"
+      ],
+      "healthy_class_id": "dis_turmeric_healthy",
+      "dataset_sources": ["Dataset_2"],
+      "regional_relevance": "Major commercial cash crop in Nizamabad, Duggirala (Guntur), and Kadapa.",
+      "evidence_references": [
+        "ICAR-IISR (Indian Institute of Spices Research) Turmeric Compendium 2023",
+        "ANGRAU Turmeric Protection Bulletins 2024"
+      ],
+      "verification_status": "supported_and_evaluated",
+      "status_justification": "Represented by 781 real-world field photographs in Dataset 2. Evaluated on 117 independent test records with 87.18% accuracy. Crucially supports non-foliar organ diagnosis (rhizome rot on fingers/mother rhizome)."
+    },
+    {
+      "crop_id": "crop_wheat",
+      "canonical_name": "Wheat",
+      "aliases": ["Triticum", "Godhuma", "Gehun"],
+      "scientific_name": "Triticum aestivum",
+      "botanical_family": "Poaceae",
+      "supported_organs": ["leaves", "stems", "ears_cobs"],
+      "supported_disease_ids": [
+        "dis_wheat_leaf_rust",
+        "dis_wheat_powdery_mildew",
+        "dis_wheat_stripe_rust"
+      ],
+      "healthy_class_id": "dis_wheat_healthy",
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Rabi cereal crop in Northern/Central India (Punjab, Haryana, MP, UP). Minimal cultivation in South India plains.",
+      "evidence_references": [
+        "ICAR-IIWBR (Indian Institute of Wheat and Barley Research, Karnal) Disease Management Manual 2023"
+      ],
+      "verification_status": "present_in_dataset_only",
+      "status_justification": "Dataset 1 contains 280 laboratory cardboard images. Zero field wheat images present in Dataset 2."
+    },
+    {
+      "crop_id": "crop_non_plant",
+      "canonical_name": "Non-Plant",
+      "aliases": ["Unsupported", "Background", "Artifact"],
+      "scientific_name": null,
+      "botanical_family": null,
+      "supported_organs": [],
+      "supported_disease_ids": [],
+      "healthy_class_id": null,
+      "dataset_sources": ["Dataset_1"],
+      "regional_relevance": "Negative control category for out-of-distribution rejection.",
+      "evidence_references": [
+        "AgroVision AI Baseline Evaluation and OOD Rejection Protocol 2026"
+      ],
+      "verification_status": "not_supported",
+      "status_justification": "Negative rejection class containing 70 non-plant baseline images (tools, soil, hands, buildings). Used strictly for selective prediction abstention."
+    }
+  ]
+}

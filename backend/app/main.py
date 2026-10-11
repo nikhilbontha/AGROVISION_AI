@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, predict, history, dashboard, assistant, admin
+from app.routes import auth, predict, history, dashboard, assistant, admin, questionnaire, diagnosis, health
 from app.database import test_connection
 
 app = FastAPI(
     title="AgroVision AI API",
     description="Smart Crop Disease Detection & Yield Prediction System",
-    version="1.0.0"
+    version="2.0.0"
 )
 
 # CORS configuration
@@ -29,22 +29,32 @@ async def startup_db_client():
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to AgroVision AI Backend!"}
+    return {"message": "Welcome to AgroVision AI Backend!", "version": "2.0.0", "status": "operational"}
 
 from fastapi.responses import JSONResponse
 import traceback
+import uuid
 
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
+    req_id = str(uuid.uuid4())[:8]
+    # Redact raw traceback in release mode
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal Server Error", "traceback": traceback.format_exc()}
+        content={
+            "detail": "Internal Server Error",
+            "correlation_id": req_id,
+            "message": "An error occurred during request processing. Please check operational logs with this correlation ID."
+        }
     )
 
 # Include routers
+app.include_router(health.router, prefix="/health", tags=["Health & Observability"])
 app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(predict.router, prefix="/predict", tags=["Predictions"])
 app.include_router(history.router, prefix="/history", tags=["History"])
 app.include_router(dashboard.router, prefix="/dashboard", tags=["Dashboard"])
 app.include_router(assistant.router, prefix="/assistant", tags=["Assistant"])
 app.include_router(admin.router, prefix="/admin", tags=["Admin"])
+app.include_router(questionnaire.router, prefix="/questionnaire", tags=["Questionnaire"])
+app.include_router(diagnosis.router, prefix="/diagnosis", tags=["Diagnosis"])

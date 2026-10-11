@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgroVision AI 2.0 Farmer Questionnaire Payload Schema",
+  "description": "Validation schema for structured evidence collected from farmers prior to multimodal diagnostic inference.",
+  "type": "object",
+  "required": [
+    "questionnaire_version",
+    "selected_crop_id",
+    "crop_selection_source",
+    "affected_organ",
+    "symptom_ids",
+    "symptom_location",
+    "symptom_duration",
+    "spread_rate",
+    "visible_pests",
+    "previous_treatment"
+  ],
+  "properties": {
+    "questionnaire_version": {
+      "type": "string",
+      "example": "2.0.0"
+    },
+    "image_reference": {
+      "type": ["object", "string", "null"],
+      "properties": {
+        "filename": { "type": "string" },
+        "content_type": { "type": "string" },
+        "size_bytes": { "type": "integer", "maximum": 15728640 },
+        "sha256": { "type": ["string", "null"] }
+      }
+    },
+    "selected_crop_id": {
+      "type": "string",
+      "pattern": "^(crop_[a-z0-9_]+|crop_unsure|crop_unsupported)$",
+      "description": "Canonical crop identifier from Phase 2 registry or explicit uncertainty indicator."
+    },
+    "crop_selection_source": {
+      "type": "string",
+      "enum": [
+        "farmer_manual",
+        "farmer_confirmed_model",
+        "farmer_override_model",
+        "unsure",
+        "unsupported"
+      ]
+    },
+    "affected_organ": {
+      "type": "string",
+      "enum": [
+        "leaves",
+        "stems",
+        "roots",
+        "flowers",
+        "fruits",
+        "pods",
+        "ears_cobs",
+        "rhizomes_tubers",
+        "bolls",
+        "panicles_seeds",
+        "whole_plant",
+        "unsure",
+        "other"
+      ]
+    },
+    "symptom_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "At least one observed symptom identifier or 'sym_unsure'."
+    },
+    "symptom_location": {
+      "type": "string",
+      "enum": [
+        "loc_single_part",
+        "loc_multiple_parts_single_plant",
+        "loc_multiple_plants",
+        "loc_whole_field",
+        "loc_unsure"
+      ]
+    },
+    "symptom_duration": {
+      "type": "string",
+      "enum": [
+        "dur_1_to_3_days",
+        "dur_4_to_7_days",
+        "dur_1_to_2_weeks",
+        "dur_over_2_weeks",
+        "dur_unsure"
+      ]
+    },
+    "spread_rate": {
+      "type": "string",
+      "enum": [
+        "spread_rapid",
+        "spread_slow",
+        "spread_none",
+        "spread_unsure"
+      ]
+    },
+    "growth_stage": {
+      "type": ["string", "null"],
+      "enum": [
+        "stage_seedling",
+        "stage_vegetative",
+        "stage_flowering",
+        "stage_fruiting",
+        "stage_maturity",
+        "stage_unsure",
+        null
+      ]
+    },
+    "weather_and_field_conditions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "visible_pests": {
+      "type": "string",
+      "enum": ["pest_yes", "pest_no", "pest_unsure"]
+    },
+    "previous_treatment": {
+      "type": "string",
+      "enum": ["treatment_yes", "treatment_no"]
+    },
+    "treatment_details": {
+      "type": ["string", "null"],
+      "maxLength": 300
+    },
+    "optional_location": {
+      "type": ["object", "null"],
+      "properties": {
+        "state": { "type": ["string", "null"], "maxLength": 100 },
+        "district": { "type": ["string", "null"], "maxLength": 100 }
+      }
+    },
+    "sowing_date": {
+      "type": ["string", "null"],
+      "maxLength": 30
+    },
+    "variety_name": {
+      "type": ["string", "null"],
+      "maxLength": 100
+    },
+    "irrigation_method": {
+      "type": ["string", "null"],
+      "maxLength": 100
+    },
+    "additional_notes": {
+      "type": ["string", "null"],
+      "maxLength": 1000
+    },
+    "unknown_or_skipped_fields": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

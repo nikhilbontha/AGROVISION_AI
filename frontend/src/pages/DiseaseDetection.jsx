@@ -3,49 +3,105 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Upload, Camera, AlertCircle, CheckCircle, BrainCircuit,
   ShieldAlert, ShieldCheck, Bug, Activity, Sparkles, RefreshCw,
-  Layers, FileImage, Cpu, ArrowRight, Eye, CheckCircle2,
-  Volume2, VolumeX, Download, ZoomIn, Info, Zap, Stethoscope,
-  ChevronRight, Play, Square, Crosshair, Check, Sparkle,
-  Thermometer, AlertTriangle, Lightbulb, Share2, Printer,
-  Sun, Compass, HelpCircle, BookOpen, Leaf, Shield, FolderPlus,
-  Dna, Calendar, Droplets, Wind, FlaskConical, Sprout
+  Layers, Eye, CheckCircle2, Volume2, Printer, Leaf, Shield,
+  Dna, Calendar, Droplets, Wind, FlaskConical, Sprout,
+  Lightbulb, AlertTriangle, ArrowRight, BookOpen, ArrowUpRight,
+  Zap, Info, X, Image as ImageIcon, Check, Thermometer
 } from 'lucide-react';
 import api from '../api';
 import { useLanguage } from '../context/LanguageContext';
+import AdaptiveQuestionnaire from '../components/AdaptiveQuestionnaire';
+import {
+  getLocalizedDossier,
+  getTeluguDiseaseTitle,
+  TELUGU_CROPS,
+  TELUGU_SEVERITIES
+} from '../utils/teluguDiseaseTranslations';
 
-const FEATURED_DISEASES_EN = [
-  { name: 'Wheat Stripe Rust', severity: 'High', crop: 'Wheat', remedy: 'Propiconazole or Tebuconazole fungicide spray' },
-  { name: 'Tomato Late Blight', severity: 'High', crop: 'Tomato & Potato', remedy: 'Metalaxyl + Mancozeb or Copper spray' },
-  { name: 'Corn Common Rust', severity: 'Medium', crop: 'Corn / Maize', remedy: 'Mancozeb 75% WP or Propiconazole spray' },
-  { name: 'Rice Blast', severity: 'High', crop: 'Paddy Rice', remedy: 'Tricyclazole 75% WP or Isoprothiolane' },
-  { name: 'Apple Scab', severity: 'High', crop: 'Apple', remedy: 'Captan or Myclobutanil early spray' },
-  { name: 'Citrus Greening', severity: 'Critical', crop: 'Orange / Citrus', remedy: 'Remove infected trees; spray Imidacloprid for psyllids' }
+const CROP_SELECTOR_OPTIONS = [
+  { id: 'Auto-Detect', labelEn: 'Auto-Detect', labelTe: 'ఆటో-డిటెక్ట్', emoji: '🤖' },
+  { id: 'Tomato', labelEn: 'Tomato', labelTe: 'టమాటా', emoji: '🍅' },
+  { id: 'Rice', labelEn: 'Rice', labelTe: 'వరి', emoji: '🌾' },
+  { id: 'Wheat', labelEn: 'Wheat', labelTe: 'గోధుమ', emoji: '🌾' },
+  { id: 'Corn', labelEn: 'Corn', labelTe: 'మొక్కజొన్న', emoji: '🌽' },
+  { id: 'Chilli', labelEn: 'Chilli', labelTe: 'మిరప', emoji: '🌶️' },
+  { id: 'Cotton', labelEn: 'Cotton', labelTe: 'పత్తి', emoji: '🪵' },
+  { id: 'Potato', labelEn: 'Potato', labelTe: 'బంగాళాదుంప', emoji: '🥔' },
+  { id: 'Apple', labelEn: 'Apple', labelTe: 'యాపిల్', emoji: '🍎' },
+  { id: 'Banana', labelEn: 'Banana', labelTe: 'అరటి', emoji: '🍌' },
+  { id: 'Grape', labelEn: 'Grape', labelTe: 'ద్రాక్ష', emoji: '🍇' },
+  { id: 'Orange', labelEn: 'Citrus', labelTe: 'సంత్రా', emoji: '🍊' }
 ];
 
-const FEATURED_DISEASES_TE = [
-  { name: 'గోధుమ పసుపు కుంకుమ తెగులు (Wheat Stripe Rust)', severity: 'అధిక', crop: 'గోధుమ', remedy: 'ప్రొపికోనజోల్ లేదా టెబుకోనజోల్ పిచికారీ' },
-  { name: 'టమాటా లేట్ బ్లైట్ (Tomato Late Blight)', severity: 'అధిక', crop: 'టమాటా & బంగాళాదుంప', remedy: 'మెటలాక్సిల్ + మ్యాంకోజెబ్ లేదా కాపర్ మందు' },
-  { name: 'మొక్కజొన్న కుంకుమ తెగులు (Corn Rust)', severity: 'మధ్యస్థ', crop: 'మొక్కజొన్న', remedy: 'మ్యాంకోజెబ్ 75% WP పిచికారీ' },
-  { name: 'వరి అగ్గి తెగులు (Rice Blast)', severity: 'అధిక', crop: 'వరి', remedy: 'ట్రైసైక్లాజోల్ 75% WP లేదా ఐసోప్రోతియోలేన్' },
-  { name: 'యాపిల్ స్కాబ్ తెగులు (Apple Scab)', severity: 'అధిక', crop: 'యాపిల్', remedy: 'క్యాప్టాన్ లేదా మైక్లోబుటానిల్ పిచికారీ' },
-  { name: 'సంత్రా గ్రీనింగ్ తెగులు (Citrus Greening)', severity: 'క్లిష్టమైన', crop: 'సంత్రా / నిమ్మ', remedy: 'వ్యాధి సోకిన చెట్లను తొలగించి ఇమిడాక్లోప్రిడ్ పిచికారీ' }
+const PRELOADED_SAMPLES = [
+  {
+    id: 'sample-tomato',
+    name: 'Tomato Late Blight',
+    nameTe: 'టమాటా లేట్ బ్లైట్ తెగులు',
+    crop: 'Tomato',
+    cropTe: 'టమాటా',
+    path: '/samples/tomato_blight.jpg',
+    filename: 'images (5).jpeg',
+    badge: 'Fruit & Leaf Rot',
+    badgeTe: 'ఆకు & కాయ కుళ్ళు',
+    emoji: '🍅'
+  },
+  {
+    id: 'sample-wheat',
+    name: 'Wheat Stripe Rust',
+    nameTe: 'గోధుమ పసుపు కుంకుమ తెగులు',
+    crop: 'Wheat',
+    cropTe: 'గోధుమ',
+    path: '/samples/wheat_rust.webp',
+    filename: 'Crop-Diseases_-Types-Causes-and-Symptoms-2-min.webp',
+    badge: 'Yellow Rust Stripes',
+    badgeTe: 'పసుపు చారల తెగులు',
+    emoji: '🌾'
+  },
+  {
+    id: 'sample-rice',
+    name: 'Rice Blast / Blight',
+    nameTe: 'వరి అగ్గి తెగులు / బ్లాస్ట్',
+    crop: 'Rice',
+    cropTe: 'వరి',
+    path: '/samples/rice_blast.jpg',
+    filename: 'images (3).jpeg',
+    badge: 'Panicle Infection',
+    badgeTe: 'వెన్ను ఇన్ఫెక్షన్',
+    emoji: '🌾'
+  },
+  {
+    id: 'sample-corn',
+    name: 'Corn Ear Damage',
+    nameTe: 'మొక్కజొన్న కంకి తెగులు',
+    crop: 'Corn',
+    cropTe: 'మొక్కజొన్న',
+    path: '/samples/corn_rot.jpg',
+    filename: 'images (2).jpeg',
+    badge: 'Kernel Rot',
+    badgeTe: 'గింజల కుళ్ళు తెగులు',
+    emoji: '🌽'
+  }
 ];
 
 const DiseaseDetection = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('overview'); // overview, cause, treatment, timeline, probabilities
+  const [errorPayload, setErrorPayload] = useState(null);
+  const [activeTab, setActiveTab] = useState('treatment'); // 'treatment', 'overview', 'cause', 'timeline', 'probabilities'
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isCameraActive, setIsCameraActive] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedCrop, setSelectedCrop] = useState('Auto-Detect');
+  const [workflowMode, setWorkflowMode] = useState('quick'); // 'quick' or 'guided'
 
   const fileInputRef = useRef(null);
   const videoRef = useRef(null);
+  const requestIdRef = useRef(0);
 
   useEffect(() => {
     return () => {
@@ -57,18 +113,27 @@ const DiseaseDetection = () => {
   }, []);
 
   const processFile = (file) => {
-    if (file && file.type.startsWith('image/')) {
-      setSelectedFile(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      setResult(null);
-      setError(null);
-      stopCamera();
-    } else {
+    if (!file) return;
+    if (!file.type || !file.type.startsWith('image/')) {
       setError(language === 'te' 
-        ? "దయచేసి చెల్లుబాటు అయ్యే పంట చిత్రం ఫైల్‌ను ఎంచుకోండి (JPG, PNG, WEBP)."
+        ? "దయచేసి చెల్లుబాటు అయ్యే పంట ఫోటోను ఎంచుకోండి (JPG, PNG, WEBP)."
         : "Please select a valid crop image file (JPG, PNG, WEBP)."
       );
+      return;
     }
+    if (file.size > 15 * 1024 * 1024) {
+      setError(language === 'te'
+        ? "ఫోటో పరిమాణం 15MB కంటే తక్కువగా ఉండాలి."
+        : "Image file size exceeds maximum allowed limit of 15MB."
+      );
+      return;
+    }
+    setSelectedFile(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setResult(null);
+    setError(null);
+    setErrorPayload(null);
+    stopCamera();
   };
 
   const handleFileChange = (e) => {
@@ -98,6 +163,18 @@ const DiseaseDetection = () => {
     }
   };
 
+  const loadSample = async (sample) => {
+    try {
+      setSelectedCrop(sample.crop);
+      const res = await fetch(sample.path);
+      const blob = await res.blob();
+      const file = new File([blob], sample.filename, { type: blob.type || 'image/jpeg' });
+      processFile(file);
+    } catch (err) {
+      console.error("Could not load sample:", err);
+    }
+  };
+
   const startCamera = async () => {
     setError(null);
     try {
@@ -111,11 +188,20 @@ const DiseaseDetection = () => {
     } catch (err) {
       console.error("Camera error:", err);
       setError(language === 'te' 
-        ? "కెమెరా అనుమతి తిరస్కరించబడింది లేదా పరికరంలో అందుబాటులో లేదు." 
+        ? "కెమెరా అనుమతి తిరస్కరించబడింది లేదా అందుబాటులో లేదు." 
         : "Camera access was denied or is unavailable on this device."
       );
       setIsCameraActive(false);
     }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject;
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+    }
+    setIsCameraActive(false);
   };
 
   const captureCameraPhoto = () => {
@@ -133,41 +219,49 @@ const DiseaseDetection = () => {
     }, 'image/jpeg');
   };
 
-  const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject;
-      const tracks = stream.getTracks();
-      tracks.forEach((track) => track.stop());
-    }
-    setIsCameraActive(false);
-  };
-
   const handlePredict = async () => {
     if (!selectedFile) return;
 
     setLoading(true);
     setError(null);
+    setErrorPayload(null);
+    setResult(null);
 
+    const reqId = ++requestIdRef.current;
     const formData = new FormData();
     formData.append('file', selectedFile);
     formData.append('crop_type', selectedCrop);
 
     try {
       const response = await api.post(`/predict/predict-disease?lang=${language}`, formData);
+      if (reqId !== requestIdRef.current) return;
+
       if (response.data && response.data.success) {
         setResult(response.data);
+        setError(null);
+        setErrorPayload(null);
         setActiveTab('overview');
       } else {
-        setError(response.data?.message || (language === 'te' ? "చిత్ర విశ్లేషణ విఫలమైంది. మరో ఫోటో ఉపయోగించండి." : "Failed to analyze crop image. Please try another photo."));
+        setResult(null);
+        setErrorPayload(response.data);
+        setError(response.data?.message || (language === 'te' 
+          ? "చిత్ర విశ్లేషణ విఫలమైంది. మరో ఫోటో ఉపయోగించండి." 
+          : "Failed to analyze crop image. Please try another photo."
+        ));
       }
     } catch (err) {
+      if (reqId !== requestIdRef.current) return;
       console.error(err);
+      setResult(null);
+      setErrorPayload(null);
       setError(language === 'te'
-        ? "AI సర్వర్‌కు కనెక్ట్ చేయడం వీలుకావడం లేదు. బ్యాకెండ్ రన్ అవుతుందో లేదో సరిచూసుకోండి."
-        : "Unable to connect to AI server. Please make sure backend is running."
+        ? "సర్వర్ లోపం ఏర్పడింది. దయచేసి మళ్ళీ ప్రయత్నించండి."
+        : (err.response?.data?.message || "Internal diagnosis error. Please try again.")
       );
     } finally {
-      setLoading(false);
+      if (reqId === requestIdRef.current) {
+        setLoading(false);
+      }
     }
   };
 
@@ -177,20 +271,33 @@ const DiseaseDetection = () => {
 
     setLoading(true);
     setError(null);
+    setErrorPayload(null);
 
+    const reqId = ++requestIdRef.current;
     const formData = new FormData();
     formData.append('file', selectedFile);
     formData.append('crop_type', targetCrop);
 
     try {
       const response = await api.post(`/predict/predict-disease?lang=${language}`, formData);
+      if (reqId !== requestIdRef.current) return;
+
       if (response.data && response.data.success) {
         setResult(response.data);
+        setError(null);
+        setErrorPayload(null);
+      } else {
+        setResult(null);
+        setErrorPayload(response.data);
+        setError(response.data?.message || "Crop target re-analysis failed.");
       }
     } catch (err) {
+      if (reqId !== requestIdRef.current) return;
       console.error(err);
     } finally {
-      setLoading(false);
+      if (reqId === requestIdRef.current) {
+        setLoading(false);
+      }
     }
   };
 
@@ -199,6 +306,7 @@ const DiseaseDetection = () => {
     setPreviewUrl(null);
     setResult(null);
     setError(null);
+    setErrorPayload(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -209,8 +317,10 @@ const DiseaseDetection = () => {
     stopCamera();
   };
 
+  const dossier = result ? getLocalizedDossier(result, language) : null;
+
   const speakDiagnosisText = () => {
-    if (!result || !('speechSynthesis' in window)) return;
+    if (!result || !dossier || !('speechSynthesis' in window)) return;
 
     if (isSpeaking) {
       window.speechSynthesis.cancel();
@@ -219,8 +329,8 @@ const DiseaseDetection = () => {
     }
 
     const narration = language === 'te'
-      ? `మీ పంట వ్యాధి నిర్ధారణ ఫలితం: ${result.disease}. శాస్త్రీయ నామం: ${result.scientific_name || 'తెలియదు'}. తీవ్రత: ${result.severity || 'సాధారణం'}. AI నమ్మక స్థాయి: ${result.confidence} శాతం. సూచించిన చికిత్స: ${result.organic_treatment || result.treatment || 'ప్రత్యేక చికిత్స అవసరం లేదు.'}`
-      : `Diagnostic result for your crop: ${result.disease}. Scientific pathogen: ${result.scientific_name || 'Not specified'}. Category: ${result.category || 'Pathogen'}. Severity level: ${result.severity || 'Normal'}. AI Confidence: ${result.confidence} percent. Recommended treatment: ${result.organic_treatment || result.treatment || 'No specific treatment required.'}`;
+      ? `మీ పంట వ్యాధి నిర్ధారణ: ${dossier.disease}. తీవ్రత: ${dossier.severity}. AI నమ్మక స్థాయి: ${result.confidence} శాతం. సూచించిన చికిత్స: ${dossier.organicTreatment}`
+      : `Diagnosis: ${result.disease}. Scientific pathogen: ${result.scientific_name || 'Not specified'}. Severity level: ${result.severity || 'Normal'}. AI Confidence: ${result.confidence} percent. Treatment: ${result.organic_treatment || result.treatment || 'No specific treatment required.'}`;
     
     const utterance = new SpeechSynthesisUtterance(narration);
     utterance.rate = 0.95;
@@ -238,10 +348,8 @@ const DiseaseDetection = () => {
     window.print();
   };
 
-  const featuredDiseases = language === 'te' ? FEATURED_DISEASES_TE : FEATURED_DISEASES_EN;
-
   return (
-    <div className="w-full py-2 animate-fade-in relative text-slate-100 print:py-0 print:bg-white print:text-black">
+    <div className="w-full min-h-screen py-4 sm:py-6 px-3 sm:px-6 max-w-6xl mx-auto space-y-6 text-slate-100 print:py-0 print:bg-white print:text-black">
       {/* Hidden File Input */}
       <input
         ref={fileInputRef}
@@ -251,319 +359,401 @@ const DiseaseDetection = () => {
         onChange={handleFileChange}
       />
 
-      {/* Background Ambient Glows */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] pointer-events-none print:hidden" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[180px] pointer-events-none print:hidden" />
+      {/* Atmospheric Ambient Glow */}
+      <div className="fixed top-12 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] pointer-events-none -z-10" />
+      <div className="fixed bottom-12 right-1/4 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[180px] pointer-events-none -z-10" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-b from-[#0a1526]/50 via-[#060e1a]/45 to-[#030710]/50 backdrop-blur-md rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6),0_0_50px_rgba(34,197,94,0.1)] border border-emerald-500/30 relative z-10 space-y-8 print:shadow-none print:border-none print:bg-white"
-      >
-        {/* HERO TITLE & TELEMETRY */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800/80 pb-5 print:border-slate-300">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-emerald-500/20 to-teal-500/10 border border-emerald-500/40 text-emerald-300 mb-2.5 shadow-lg shadow-emerald-500/5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-300 animate-pulse" />
-              <span>{t('disease.heroBadge')}</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3 print:text-black">
-              <Stethoscope className="w-7 h-7 sm:w-9 sm:h-9 text-emerald-400 print:text-emerald-700" />
-              {t('disease.heroTitle')}
-            </h2>
-            <p className="text-slate-300 text-xs sm:text-sm mt-1.5 max-w-2xl print:text-slate-700 leading-relaxed font-normal">
-              {t('disease.heroDesc')}
-            </p>
+      {/* ==================================================================== */}
+      {/* HEADER SECTION */}
+      {/* ==================================================================== */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <span>{language === 'te' ? 'AI పాథాలజీ స్టూడియో • 72 పంట రకాలు మద్దతు' : 'AI Pathology Studio • 72 Supported Species'}</span>
           </div>
-
-          {/* Telemetry Status Pills */}
-          <div className="flex flex-wrap items-center gap-2.5 print:hidden">
-            <div className="px-3.5 py-2 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/80 text-xs sm:text-sm text-slate-200 flex items-center gap-2 shadow-lg font-medium">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>{t('disease.aiEngine')}: <strong className="text-emerald-300 font-bold">{t('disease.active')}</strong></span>
-            </div>
-
-            <div className="px-3.5 py-2 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/80 text-xs sm:text-sm text-slate-200 flex items-center gap-2 shadow-lg font-medium">
-              <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{t('disease.precision')}: <strong className="text-cyan-300 font-bold">99.1%</strong></span>
-            </div>
-
-            {result && (
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={speakDiagnosisText}
-                  className={`p-2.5 rounded-xl border transition-all duration-300 ${
-                    isSpeaking
-                      ? 'bg-emerald-500 text-black border-emerald-400 shadow-[0_0_20px_rgba(34,197,94,0.6)] animate-pulse font-bold'
-                      : 'bg-slate-900/50 backdrop-blur-sm border-slate-800/80 text-slate-200 hover:text-emerald-400 hover:border-emerald-500/50'
-                  }`}
-                  title="Audio Narration"
-                >
-                  {isSpeaking ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                </button>
-                <button
-                  onClick={handlePrint}
-                  className="px-3.5 py-2 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800/80 text-slate-200 hover:text-emerald-300 hover:border-emerald-500/50 transition-colors text-xs font-bold flex items-center gap-1.5 shadow-lg"
-                >
-                  <Printer className="w-3.5 h-3.5" />
-                  <span>{t('disease.printReport')}</span>
-                </button>
-              </div>
-            )}
-          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight flex items-center gap-2.5">
+            <Sprout className="w-8 h-8 text-emerald-400" />
+            <span>{language === 'te' ? 'పంట వ్యాధి నిర్ధారణ' : 'Crop Disease Detection'}</span>
+          </h1>
+          <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl font-normal">
+            {language === 'te' 
+              ? 'పంట ఆకు ఫోటోను అప్‌లోడ్ చేసి వ్యాధిని, మచ్చలను మరియు నివారణా మందులను తక్షణమే తెలుసుకోండి.' 
+              : 'Scan diseased foliage for instant neural pathogen detection, lesion masking, and certified recovery remedies.'}
+          </p>
         </div>
 
-        {/* MAIN WORKSPACE GRID */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
-          
-          {/* LEFT COLUMN: Input Workspace */}
-          <div className="lg:col-span-5 flex flex-col gap-6 print:hidden">
-            
-            {/* Viewport Dropzone Container */}
-            <div
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              className={`relative group rounded-3xl overflow-hidden border-2 border-dashed transition-all duration-300 shadow-2xl flex flex-col items-center justify-center min-h-[340px] sm:min-h-[380px] p-4 text-center backdrop-blur-sm ${
-                previewUrl || isCameraActive
-                  ? 'border-slate-800/80 bg-slate-950/35'
-                  : isDragging
-                  ? 'border-emerald-400 bg-emerald-500/15 scale-[1.01]'
-                  : 'border-emerald-500/40 hover:border-emerald-400 bg-slate-950/35'
-              }`}
-            >
-              {/* Live Web Camera View */}
-              {isCameraActive ? (
-                <div className="relative w-full h-full min-h-[350px] rounded-2xl overflow-hidden bg-black flex flex-col items-center justify-center border border-emerald-500/50 shadow-2xl">
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Reticle Overlay */}
-                  <div className="absolute inset-0 border-2 border-emerald-400/40 rounded-2xl pointer-events-none flex items-center justify-center">
-                    <Crosshair className="w-16 h-16 text-emerald-400/70 animate-ping" />
-                  </div>
-                  <div className="absolute top-3 left-3 px-3.5 py-1.5 rounded-full bg-rose-600 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg animate-pulse">
-                    <span className="w-2.5 h-2.5 rounded-full bg-white" /> {language === 'te' ? 'లైవ్ కెమెరా స్ట్రీమ్' : 'Live Camera Stream'}
-                  </div>
-                  <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3 px-4 z-30">
-                    <button
-                      type="button"
-                      onClick={captureCameraPhoto}
-                      className="px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-black font-black text-xs sm:text-sm shadow-xl flex items-center gap-2 transform active:scale-95 transition-all"
-                    >
-                      <Camera className="w-4 h-4" /> {t('disease.capturePhoto')}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={stopCamera}
-                      className="px-4 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs sm:text-sm shadow-lg"
-                    >
-                      {t('disease.cancel')}
-                    </button>
-                  </div>
-                </div>
-              ) : previewUrl ? (
-                /* Loaded Image Preview State */
-                <div className="relative w-full h-full min-h-[340px] rounded-2xl overflow-hidden border border-slate-800 group-hover:border-emerald-500/40 transition-colors bg-black shadow-2xl">
-                  <img
-                    src={previewUrl}
-                    alt="Target Crop Leaf"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  
-                  {/* Laser Scan Beam effect during processing */}
-                  {loading && (
-                    <motion.div
-                      initial={{ top: '0%' }}
-                      animate={{ top: ['0%', '95%', '0%'] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-                      className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_20px_#10b981] z-20"
-                    />
-                  )}
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none" />
-
-                  <div className="absolute top-3 right-3 z-30 flex items-center gap-2">
-                    <span className="px-3.5 py-1.5 rounded-full bg-emerald-400 text-black text-xs font-bold shadow-lg flex items-center gap-1.5 backdrop-blur-md">
-                      <FileImage className="w-4 h-4" /> {t('disease.leafLoaded')}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-3 left-3 right-3 z-30 flex items-center justify-between text-xs text-slate-200">
-                    <span className="truncate max-w-[200px] font-semibold bg-black/80 px-3 py-1.5 rounded-xl border border-slate-700 text-xs text-slate-100">
-                      {selectedFile?.name || 'crop_leaf.jpg'}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={resetScanner}
-                      className="px-3.5 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs transition-colors shadow-lg pointer-events-auto"
-                    >
-                      {t('disease.changePhoto')}
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                /* Drag & Drop Initial State */
-                <div className="p-5 space-y-3 pointer-events-none">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/40 text-emerald-400 flex items-center justify-center group-hover:scale-105 group-hover:bg-emerald-500/30 transition-all duration-300 shadow-lg shadow-emerald-500/10">
-                    <Upload className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg sm:text-xl font-extrabold text-white group-hover:text-emerald-300 transition-colors">
-                      {t('disease.uploadTitle')}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xs mx-auto leading-relaxed font-normal">
-                      {t('disease.uploadSubtext')}
-                    </p>
-                  </div>
-                  
-                  <div className="pt-1 flex flex-wrap items-center justify-center gap-2.5 pointer-events-auto">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black text-xs sm:text-sm font-extrabold flex items-center gap-1.5 transition-all shadow-md active:scale-95"
-                    >
-                      <FolderPlus className="w-4 h-4" /> {t('disease.browseFiles')}
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={startCamera}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 hover:bg-emerald-500/20 text-emerald-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all shadow-md active:scale-95"
-                    >
-                      <Camera className="w-4 h-4" /> {t('disease.openCamera')}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-
-
-            {/* Run Diagnostics Primary Trigger Button */}
+        {/* Header Right Actions */}
+        <div className="flex items-center gap-2.5 self-start md:self-auto print:hidden">
+          {/* Mode Switcher */}
+          <div className="p-1 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center shadow-inner">
             <button
               type="button"
-              onClick={handlePredict}
-              disabled={!selectedFile || loading}
-              className={`w-full py-3.5 px-5 rounded-2xl font-extrabold text-sm sm:text-base transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 tracking-wide ${
-                !selectedFile || loading
-                  ? 'bg-slate-800/60 text-slate-400 cursor-not-allowed border border-slate-800'
-                  : 'bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500 hover:from-emerald-300 hover:to-cyan-400 text-black shadow-emerald-500/30 active:scale-[0.99] hover:shadow-[0_0_25px_rgba(46,204,113,0.4)]'
+              onClick={() => setWorkflowMode('quick')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                workflowMode === 'quick'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-black shadow-md font-black'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
-              {loading ? (
-                <div className="flex items-center gap-2.5">
-                  <RefreshCw className="w-5 h-5 animate-spin text-black" />
-                  <span>{t('disease.analyzingText')}</span>
-                </div>
-              ) : (
-                <>
-                  <BrainCircuit className="w-6 h-6" />
-                  <span>{t('disease.runDiagnostics')}</span>
-                  <ArrowRight className="w-5 h-5" />
-                </>
-              )}
+              <Zap className="w-3.5 h-3.5" />
+              <span>{language === 'te' ? 'విజన్ స్కాన్' : 'Vision Scan'}</span>
             </button>
 
-            {/* AI Scan Guidelines & Engine Capabilities Card (Compact Size) */}
-            <div className="bg-slate-950/40 backdrop-blur-sm rounded-xl p-3 border border-slate-800/80 space-y-2 shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
-                <span className="flex items-center gap-1.5 text-[11px] font-extrabold text-emerald-300 uppercase tracking-wider">
-                  <Sparkles className="w-3 h-3 text-emerald-400" />
-                  {language === 'te' ? 'AI స్కాన్ నిబంధనలు' : 'AI Scan Guidelines'}
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[9px] font-bold text-emerald-400">
-                  {language === 'te' ? 'స్మార్ట్ విజన్' : 'Smart Vision v2.4'}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-1 gap-1.5 text-[11px]">
-                <div className="flex items-start gap-2 p-1.5 rounded-lg bg-slate-900/60 border border-slate-800/60 hover:border-emerald-500/30 transition-all">
-                  <div className="p-1 rounded bg-cyan-500/10 text-cyan-400 flex-shrink-0 mt-0.5">
-                    <Crosshair className="w-3 h-3" />
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-white text-[11px] leading-tight">
-                      {language === 'te' ? 'మాక్రో ఫోకస్' : 'Macro Leaf Focus'}
-                    </h5>
-                    <p className="text-slate-300 text-[10px] leading-tight font-normal">
-                      {language === 'te' ? 'తెగులు మచ్చలను 10-20 సెం.మీ దగ్గర నుండి స్పష్టంగా ఫోటో తీయండి.' : 'Capture close-up (10-20 cm) centered on affected leaf surface.'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2 p-1.5 rounded-lg bg-slate-900/60 border border-slate-800/60 hover:border-emerald-500/30 transition-all">
-                  <div className="p-1 rounded bg-amber-500/10 text-amber-400 flex-shrink-0 mt-0.5">
-                    <Sun className="w-3 h-3" />
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-white text-[11px] leading-tight">
-                      {language === 'te' ? 'సహజ కాంతి' : 'Natural Daylight'}
-                    </h5>
-                    <p className="text-slate-300 text-[10px] leading-tight font-normal">
-                      {language === 'te' ? 'నీడలు మరియు వెలుతురు మెరుపులు లేకుండా తీయండి.' : 'Avoid harsh camera flash reflections or dark indoor shadows.'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2 p-1.5 rounded-lg bg-slate-900/60 border border-slate-800/60 hover:border-emerald-500/30 transition-all">
-                  <div className="p-1 rounded bg-emerald-500/10 text-emerald-400 flex-shrink-0 mt-0.5">
-                    <Activity className="w-3 h-3" />
-                  </div>
-                  <div>
-                    <h5 className="font-bold text-white text-[11px] leading-tight">
-                      {language === 'te' ? 'HSV ఆటో-మాస్కింగ్' : 'HSV Lesion Segmentation'}
-                    </h5>
-                    <p className="text-slate-300 text-[10px] leading-tight font-normal">
-                      {language === 'te' ? 'AI ఆటోమాటిక్‌గా తెగులు మచ్చలను లెక్కిస్తుంది.' : 'Real-time OpenCV vegetation channel analysis counts pathogen spots.'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-0.5 flex items-center justify-between text-[10px] text-slate-400 font-medium border-t border-slate-800/60">
-                <span className="flex items-center gap-1 text-slate-300 font-semibold">
-                  <FileImage className="w-3 h-3 text-emerald-400" />
-                  {language === 'te' ? 'JPG, PNG, WEBP' : 'Supported: JPG, PNG, WEBP'}
-                </span>
-                <span className="text-slate-400 font-medium">{language === 'te' ? '15MB వరకు' : 'Max 15MB'}</span>
-              </div>
-            </div>
-
-            {/* Error Container */}
-            {error && (
-              <div className="p-4 rounded-2xl bg-rose-950/80 border border-rose-500/40 text-rose-200 text-xs sm:text-sm font-medium flex items-center gap-3 shadow-xl animate-in fade-in">
-                <AlertCircle className="w-5 h-5 text-rose-400 flex-shrink-0" />
-                <span className="leading-relaxed">{error}</span>
-              </div>
-            )}
+            <button
+              type="button"
+              onClick={() => setWorkflowMode('guided')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                workflowMode === 'guided'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-black shadow-md font-black'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{language === 'te' ? 'ప్రశ్నావళి' : 'Questionnaire'}</span>
+            </button>
           </div>
 
-          {/* RIGHT COLUMN: Output Dashboard OR Awaiting View */}
-          <div className="lg:col-span-7 flex flex-col justify-between h-full">
-            {result ? (
-              /* Successful AI Diagnostic Output Dashboard */
+          {result && (
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={speakDiagnosisText}
+                className={`px-3.5 py-1.5 rounded-xl border text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
+                  isSpeaking
+                    ? 'bg-emerald-500 text-black border-emerald-400 animate-pulse'
+                    : 'bg-slate-900 border-slate-800 text-slate-200 hover:border-emerald-500/50'
+                }`}
+                title={language === 'te' ? 'వాయిస్ వినండి' : 'Audio Narration'}
+              >
+                <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{isSpeaking ? (language === 'te' ? 'చదువుతోంది...' : 'Speaking...') : (language === 'te' ? 'వినండి' : 'Listen')}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="px-3.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 hover:text-white text-xs font-bold flex items-center gap-1.5 shadow-sm"
+                title={language === 'te' ? 'నివేదిక ముద్రించండి' : 'Print Report'}
+              >
+                <Printer className="w-3.5 h-3.5 text-slate-400" />
+                <span>{language === 'te' ? 'ప్రింట్' : 'Print'}</span>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ==================================================================== */}
+      {/* WORKFLOW VIEW */}
+      {/* ==================================================================== */}
+      {workflowMode === 'guided' ? (
+        <AdaptiveQuestionnaire onResetToQuickScan={() => setWorkflowMode('quick')} />
+      ) : (
+        <div className="space-y-6">
+          {/* CROP SELECTOR HORIZONTAL STRIP */}
+          <div className="rounded-2xl bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 p-3.5 shadow-xl space-y-2">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
+              <span className="flex items-center gap-1.5 text-emerald-400">
+                <Sprout className="w-3.5 h-3.5" />
+                <span>{language === 'te' ? 'లక్ష్య పంట రకం' : 'Target Crop Species'}</span>
+              </span>
+              <span className="text-[11px] text-slate-400 font-medium">
+                {selectedCrop === 'Auto-Detect' 
+                  ? (language === 'te' ? 'ఆటో-వర్గీకరణ సక్రియంగా ఉంది' : 'Auto-Classification Active') 
+                  : (language === 'te' ? `ఎంచుకున్న పంట: ${TELUGU_CROPS[selectedCrop] || selectedCrop}` : `Species Locked: ${selectedCrop}`)}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar-hide">
+              {CROP_SELECTOR_OPTIONS.map((c) => {
+                const isSelected = selectedCrop === c.id;
+                return (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => setSelectedCrop(c.id)}
+                    className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap border ${
+                      isSelected
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-black border-emerald-400 shadow-md shadow-emerald-500/20 font-black'
+                        : 'bg-slate-950/80 text-slate-300 border-slate-800 hover:border-slate-700 hover:text-white'
+                    }`}
+                  >
+                    <span className="text-sm">{c.emoji}</span>
+                    <span>{language === 'te' ? c.labelTe : c.labelEn}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* MAIN DIAGNOSIS WORKSPACE */}
+          <div className="space-y-6">
+            {/* If no result yet: Centered Hero Upload & Sample Explorer Card */}
+            {!result ? (
+              <div className="rounded-3xl bg-slate-900/80 backdrop-blur-2xl border border-slate-800/80 p-6 sm:p-8 md:p-10 shadow-2xl space-y-6">
+                {/* Active Viewfinder / Dropzone */}
+                <div
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  className={`relative rounded-3xl overflow-hidden border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center min-h-[340px] p-6 text-center ${
+                    previewUrl || isCameraActive
+                      ? 'border-slate-800 bg-black'
+                      : isDragging
+                      ? 'border-emerald-400 bg-emerald-500/10 scale-[1.01]'
+                      : 'border-emerald-500/30 hover:border-emerald-400/70 bg-slate-950/70'
+                  }`}
+                >
+                  {/* Camera Active State */}
+                  {isCameraActive ? (
+                    <div className="relative w-full h-full min-h-[340px] rounded-2xl overflow-hidden bg-black flex flex-col items-center justify-center">
+                      <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-rose-600/90 text-white text-xs font-bold flex items-center gap-2 shadow">
+                        <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+                        <span>{language === 'te' ? 'ప్రత్యక్ష కెమెరా ఫీడ్' : 'Live Sensor Stream'}</span>
+                      </div>
+                      <div className="absolute bottom-5 left-0 right-0 flex items-center justify-center gap-3 px-4 z-20">
+                        <button
+                          type="button"
+                          onClick={captureCameraPhoto}
+                          className="px-6 py-2.5 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-black font-black text-xs sm:text-sm shadow-xl flex items-center gap-2"
+                        >
+                          <Camera className="w-4 h-4" />
+                          <span>{language === 'te' ? 'ఫోటో తీయండి' : 'Snap Photo'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={stopCamera}
+                          className="px-5 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs"
+                        >
+                          {language === 'te' ? 'రద్దు చేయి' : 'Cancel'}
+                        </button>
+                      </div>
+                    </div>
+                  ) : previewUrl ? (
+                    /* Image Loaded State */
+                    <div className="relative w-full h-full min-h-[340px] rounded-2xl overflow-hidden bg-black shadow group">
+                      <img
+                        src={previewUrl}
+                        alt="Crop Foliage Preview"
+                        className="w-full h-full object-contain max-h-[460px] mx-auto"
+                      />
+
+                      {/* Laser Scanner Line Animation */}
+                      {loading && (
+                        <motion.div
+                          initial={{ top: '0%' }}
+                          animate={{ top: ['0%', '95%', '0%'] }}
+                          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
+                          className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_20px_#10b981] z-20"
+                        />
+                      )}
+
+                      <div className="absolute top-3 right-3 z-20">
+                        <button
+                          type="button"
+                          onClick={resetScanner}
+                          className="px-3.5 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow flex items-center gap-1.5 transition-all"
+                        >
+                          <X className="w-3.5 h-3.5 text-rose-400" />
+                          <span>{language === 'te' ? 'ఫోటో మార్చండి' : 'Change Photo'}</span>
+                        </button>
+                      </div>
+
+                      <div className="absolute bottom-3 left-3 z-20">
+                        <span className="px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                          {language === 'te' ? `లక్ష్యం: ${TELUGU_CROPS[selectedCrop] || selectedCrop}` : `Target: ${selectedCrop}`}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Empty Upload Prompt */
+                    <div className="space-y-4 py-8 px-4 flex flex-col items-center justify-center max-w-md mx-auto">
+                      <div className="w-20 h-20 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/5">
+                        <Upload className="w-10 h-10" />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <h3 className="text-lg sm:text-xl font-bold text-white">
+                          {language === 'te' ? 'పంట ఆకు ఫోటోను అప్‌లోడ్ చేయండి' : 'Upload Crop Leaf Photo'}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+                          {language === 'te'
+                            ? 'పంట ఆకు ఫోటోను ఇక్కడ వేయండి, లేదా పరికరం నుండి ఎంచుకోండి (JPG, PNG, WEBP)'
+                            : 'Drag and drop leaf image here, or browse from your device (JPG, PNG, WEBP)'}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current?.click()}
+                          className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-black font-black text-xs sm:text-sm shadow-md flex items-center gap-2"
+                        >
+                          <ImageIcon className="w-4 h-4" />
+                          <span>{language === 'te' ? 'ఫైళ్లను ఎంచుకోండి' : 'Browse Files'}</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={startCamera}
+                          className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-bold text-xs sm:text-sm shadow-sm flex items-center gap-2"
+                        >
+                          <Camera className="w-4 h-4 text-emerald-400" />
+                          <span>{language === 'te' ? 'ఫోటో తీయండి' : 'Take Photo'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Big Diagnose Trigger Button (When Image Loaded) */}
+                {selectedFile && (
+                  <button
+                    type="button"
+                    onClick={handlePredict}
+                    disabled={loading}
+                    className="w-full py-4 px-6 rounded-2xl font-black text-sm sm:text-base transition-all shadow-xl flex items-center justify-center gap-3 tracking-wide bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-black shadow-emerald-500/20 active:scale-[0.99]"
+                  >
+                    {loading ? (
+                      <div className="flex items-center gap-2.5">
+                        <RefreshCw className="w-5 h-5 animate-spin text-black" />
+                        <span>{language === 'te' ? 'పంట తెగులు మరియు మచ్చలను విశ్లేషిస్తోంది...' : 'Analyzing Plant Pathology & Lesions...'}</span>
+                      </div>
+                    ) : (
+                      <>
+                        <BrainCircuit className="w-6 h-6 text-black" />
+                        <span>
+                          {language === 'te' 
+                            ? `AI వ్యాధి నిర్ధారణ ప్రారంభించండి (${TELUGU_CROPS[selectedCrop] || selectedCrop})` 
+                            : `Run AI Disease Diagnosis (${selectedCrop})`}
+                        </span>
+                        <ArrowRight className="w-5 h-5 text-black" />
+                      </>
+                    )}
+                  </button>
+                )}
+
+                {/* 1-Click Test Samples Strip */}
+                <div className="pt-2 border-t border-slate-800/80 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    <span className="flex items-center gap-1.5 text-amber-300">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <span>{language === 'te' ? 'తక్షణ 1-క్లిక్ పరీక్షా నమూనాలు:' : 'Instant 1-Click Test Samples:'}</span>
+                    </span>
+                    <span className="text-[11px] text-slate-400 lowercase font-normal">
+                      {language === 'te' ? 'పరీక్షించడానికి ఏదైనా నమూనాపై క్లిక్ చేయండి' : 'Click any sample to load & diagnose'}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {PRELOADED_SAMPLES.map((sample) => (
+                      <button
+                        key={sample.id}
+                        type="button"
+                        onClick={() => loadSample(sample)}
+                        disabled={loading}
+                        className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-900 transition-all text-left space-y-1.5 group shadow"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-xl">{sample.emoji}</span>
+                          <span className="px-2 py-0.5 rounded-md bg-slate-800 text-[10px] font-bold text-slate-300">
+                            {language === 'te' ? sample.cropTe : sample.crop}
+                          </span>
+                        </div>
+                        <div className="text-xs font-bold text-white truncate group-hover:text-emerald-300 transition-colors">
+                          {language === 'te' ? sample.nameTe : sample.name}
+                        </div>
+                        <div className="text-[11px] text-slate-400 truncate">
+                          {language === 'te' ? sample.badgeTe : sample.badge}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Error Banner if any */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="p-4 rounded-2xl bg-rose-950/80 border border-rose-500/40 text-rose-200 shadow-xl space-y-2.5"
+                  >
+                    <div className="flex items-start gap-3">
+                      <ShieldAlert className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-white text-sm">
+                          {errorPayload?.error_code === 'CROP_MISMATCH'
+                            ? (language === 'te' ? 'పంట రకం సరిపోలలేదు' : 'Crop Species Mismatch')
+                            : errorPayload?.error_code === 'UNCERTAIN_DIAGNOSIS'
+                            ? (language === 'te' ? 'ఖచ్చితత్వం తక్కువగా ఉంది' : 'Low Confidence / Uncertain Scan')
+                            : errorPayload?.error_code === 'NON_CROP_IMAGE'
+                            ? (language === 'te' ? 'పంట ఆకు గుర్తించబడలేదు' : 'No Crop Leaf Detected')
+                            : (language === 'te' ? 'హెచ్చరిక' : 'Diagnostic Alert')}
+                        </h4>
+                        <p className="text-xs text-rose-200 leading-relaxed font-normal">
+                          {error}
+                        </p>
+                      </div>
+                    </div>
+
+                    {errorPayload?.suggestion && (
+                      <div className="text-xs text-amber-200 bg-slate-950/80 p-2.5 rounded-xl border border-rose-900/40">
+                        💡 <strong>{language === 'te' ? 'సూచన:' : 'Suggestion:'}</strong> {errorPayload.suggestion}
+                      </div>
+                    )}
+
+                    <div className="flex justify-end gap-2 pt-1">
+                      {errorPayload?.error_code === 'CROP_MISMATCH' && errorPayload?.predicted_crop && (
+                        <button
+                          type="button"
+                          onClick={() => rePredictWithCrop(errorPayload.predicted_crop)}
+                          className="px-3 py-1.5 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-black font-black text-xs shadow flex items-center gap-1"
+                        >
+                          <Sparkles className="w-3.5 h-3.5" />
+                          <span>
+                            {language === 'te' 
+                              ? `${TELUGU_CROPS[errorPayload.predicted_crop] || errorPayload.predicted_crop} కు మారండి` 
+                              : `Switch to ${errorPayload.predicted_crop}`}
+                          </span>
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={resetScanner}
+                        className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs border border-slate-700"
+                      >
+                        {language === 'te' ? 'మరో ఫోటో ప్రయత్నించండి' : 'Try Another Photo'}
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            ) : (
+              /* ============================================================ */
+              /* SUCCESSFUL CLINICAL PATHOLOGY DOSSIER */
+              /* ============================================================ */
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-slate-950/40 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border border-slate-800/80 shadow-2xl space-y-6 flex flex-col justify-between h-full relative overflow-hidden print:bg-white print:border-none print:shadow-none"
+                className="rounded-3xl bg-slate-900/90 backdrop-blur-2xl border border-slate-800 p-6 sm:p-8 shadow-2xl space-y-6"
               >
-                {/* Subtle Glow */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none print:hidden" />
-
-                {/* Header Title & Severity Gauge */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-5 relative z-10 print:border-slate-300">
-                  <div className="flex items-center gap-3.5">
-                    <div className={`p-4 rounded-2xl border ${
+                {/* Hero Pathology Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pb-5 border-b border-slate-800">
+                  <div className="flex items-start gap-4">
+                    <div className={`p-3.5 rounded-2xl border flex-shrink-0 shadow-lg ${
                       result.disease.includes("Healthy") || result.disease.includes("ఆరోగ్యం")
-                        ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 shadow-emerald-500/10'
+                        ? 'bg-emerald-500/15 border-emerald-500/40 text-emerald-400'
                         : result.severity === 'High' || result.severity === 'Critical' || result.severity === 'అధిక'
-                        ? 'bg-rose-500/10 border-rose-500/30 text-rose-400 shadow-rose-500/10'
-                        : 'bg-amber-500/10 border-amber-500/30 text-amber-400 shadow-amber-500/10'
-                    } shadow-xl`}>
+                        ? 'bg-rose-500/15 border-rose-500/40 text-rose-400'
+                        : 'bg-amber-500/15 border-amber-500/40 text-amber-400'
+                    }`}>
                       {result.disease.includes("Healthy") || result.disease.includes("ఆరోగ్యం") ? (
                         <CheckCircle2 className="w-9 h-9 text-emerald-400" />
                       ) : (
@@ -571,110 +761,102 @@ const DiseaseDetection = () => {
                       )}
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wider block print:text-slate-600">
-                          {t('disease.identifiedCondition')}
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300">
+                          {language === 'te' ? `ఆతిథ్య పంట: ${dossier.cropName}` : `Host: ${result.crop?.name || selectedCrop}`}
                         </span>
-                        {result.category && (
-                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-xs font-bold text-emerald-300">
-                            {result.category}
+                        {dossier.category && (
+                          <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-xs font-semibold text-emerald-300">
+                            {dossier.category}
                           </span>
                         )}
                       </div>
-                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight print:text-black">
-                        {result.disease}
-                      </h3>
+
+                      <h2 className="text-2xl sm:text-3xl font-black text-white">
+                        {dossier.disease}
+                      </h2>
+
                       {result.scientific_name && (
-                        <p className="text-xs sm:text-sm text-emerald-300 italic font-bold mt-0.5 print:text-emerald-800">
+                        <p className="text-xs sm:text-sm font-mono text-emerald-300 italic font-medium">
                           {result.scientific_name}
                         </p>
                       )}
-                      <p className="text-xs sm:text-sm text-slate-200 mt-1 font-semibold flex items-center gap-2 print:text-slate-700">
-                        {t('disease.aiConfidence')}: <strong className="text-emerald-300 font-extrabold print:text-emerald-700">{result.confidence}%</strong>
-                        <span className="text-slate-600">•</span>
-                        <span>{language === 'te' ? (result.confidence >= 85 ? 'అధిక ఖచ్చితత్వం' : 'మధ్యస్థ ఖచ్చితత్వం') : `${result.certainty || 'High'} Certainty`}</span>
-                      </p>
                     </div>
                   </div>
 
-                  {/* Severity Pill Gauge */}
-                  <div className="flex items-center gap-2 print:hidden">
-                    <span className={`px-3.5 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider border inline-flex items-center gap-1.5 shadow-md ${
+                  {/* Confidence & Severity Badges */}
+                  <div className="flex flex-wrap sm:flex-col items-start sm:items-end gap-2.5">
+                    <div className="px-4 py-2 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-center gap-2 shadow">
+                      <div className="text-right">
+                        <div className="text-[10px] text-slate-400 uppercase font-bold">
+                          {language === 'te' ? 'AI నమ్మకం' : 'Neural Confidence'}
+                        </div>
+                        <div className="text-lg font-black text-emerald-300">{result.confidence}%</div>
+                      </div>
+                    </div>
+
+                    <span className={`px-3.5 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider border inline-flex items-center gap-1.5 ${
                       result.severity === 'High' || result.severity === 'Critical' || result.severity === 'అధిక'
-                        ? 'bg-rose-500/20 text-rose-200 border-rose-500/40 shadow-rose-500/10'
+                        ? 'bg-rose-500/20 text-rose-200 border-rose-500/40'
                         : result.severity === 'Medium' || result.severity === 'మధ్యస్థ'
-                        ? 'bg-amber-500/20 text-amber-200 border-amber-500/40 shadow-amber-500/10'
-                        : 'bg-emerald-500/20 text-emerald-200 border-emerald-500/40 shadow-emerald-500/10'
+                        ? 'bg-amber-500/20 text-amber-200 border-amber-500/40'
+                        : 'bg-emerald-500/20 text-emerald-200 border-emerald-500/40'
                     }`}>
                       <Activity className="w-3.5 h-3.5" />
-                      {language === 'te' 
-                        ? (result.severity === 'High' ? 'అధిక తీవ్రత' : result.severity === 'Critical' ? 'క్లిష్ట తీవ్రత' : result.severity === 'Medium' ? 'మధ్యస్థ తీవ్రత' : 'సాధారణం')
-                        : `${t('disease.severityLabel')}: ${result.severity || "None"}`}
+                      <span>{language === 'te' ? dossier.severity : `${result.severity || 'Normal'} Severity`}</span>
                     </span>
                   </div>
                 </div>
 
-                {/* 1-Click Target Crop Switcher Bar */}
-                <div className="bg-slate-950/60 backdrop-blur-sm p-3 rounded-xl border border-slate-800/80 space-y-2 print:hidden">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-200">
-                    <span className="flex items-center gap-1.5 text-amber-300 uppercase tracking-wider font-bold text-xs">
-                      <RefreshCw className="w-3.5 h-3.5 text-amber-300" /> {t('disease.switchTargetCrop')}
-                    </span>
-                    <span className="text-xs text-slate-300 font-medium">{t('disease.currentCropLabel')} <strong className="text-emerald-300 font-bold">{result.crop?.name || selectedCrop}</strong></span>
-                  </div>
-                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1">
-                    {[
-                      { name: 'Wheat', label: language === 'te' ? '🌾 గోధుమ' : '🌾 Wheat' },
-                      { name: 'Rice', label: language === 'te' ? '🌾 వరి' : '🌾 Rice' },
-                      { name: 'Corn', label: language === 'te' ? '🌽 మొక్కజొన్న' : '🌽 Corn' },
-                      { name: 'Tomato', label: language === 'te' ? '🍅 టమాటా' : '🍅 Tomato' },
-                      { name: 'Potato', label: language === 'te' ? '🥔 బంగాళాదుంప' : '🥔 Potato' },
-                      { name: 'Apple', label: language === 'te' ? '🍎 యాపిల్' : '🍎 Apple' },
-                      { name: 'Grape', label: language === 'te' ? '🍇 ద్రాక్ష' : '🍇 Grape' },
-                      { name: 'Pepper', label: language === 'te' ? '🫑 మిరప' : '🫑 Pepper' },
-                      { name: 'Cotton', label: language === 'te' ? '🪵 పత్తి' : '🪵 Cotton' },
-                      { name: 'Orange', label: language === 'te' ? '🍊 సంత్రా' : '🍊 Orange' }
-                    ].map((c) => {
-                      const active = (result.crop?.name === c.name || selectedCrop === c.name);
+                {/* 1-Click Recalibrate Pill Strip */}
+                <div className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800 flex items-center justify-between gap-2 overflow-x-auto print:hidden">
+                  <span className="text-xs font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap">
+                    <RefreshCw className="w-3.5 h-3.5 text-amber-400" />
+                    <span>{language === 'te' ? 'మళ్లీ లెక్కించండి:' : 'Recalibrate:'}</span>
+                  </span>
+                  <div className="flex items-center gap-1.5 overflow-x-auto custom-scrollbar-hide">
+                    {['Tomato', 'Rice', 'Wheat', 'Corn', 'Chilli', 'Cotton', 'Potato', 'Apple'].map((cropName) => {
+                      const isActive = (result.crop?.name === cropName || selectedCrop === cropName);
                       return (
                         <button
-                          key={c.name}
+                          key={cropName}
                           type="button"
-                          onClick={() => rePredictWithCrop(c.name)}
+                          onClick={() => rePredictWithCrop(cropName)}
                           disabled={loading}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 whitespace-nowrap border ${
-                            active
-                              ? 'bg-emerald-500/30 text-emerald-200 border-emerald-400 shadow-md font-bold ring-1 ring-emerald-400/40'
-                              : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white hover:border-slate-700'
+                          className={`px-3 py-1 rounded-xl text-xs font-bold transition-all whitespace-nowrap border ${
+                            isActive
+                              ? 'bg-emerald-500/25 text-emerald-200 border-emerald-400 shadow-sm font-black'
+                              : 'bg-slate-900 text-slate-400 border-slate-800 hover:text-white'
                           }`}
                         >
-                          <span>{c.label}</span>
+                          <span>{language === 'te' ? (TELUGU_CROPS[cropName] || cropName) : cropName}</span>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Tab Navigation */}
-                <div className="flex items-center gap-2 border-b border-slate-800/80 pb-2 overflow-x-auto print:hidden">
+                {/* TAB NAVIGATION */}
+                <div className="flex items-center gap-2 border-b border-slate-800 pb-2.5 overflow-x-auto custom-scrollbar-hide print:hidden">
                   {[
-                    { id: 'overview', label: t('disease.tabOverview'), icon: Eye },
-                    { id: 'cause', label: t('disease.tabCause'), icon: Dna },
-                    { id: 'treatment', label: t('disease.tabTreatment'), icon: ShieldCheck },
-                    { id: 'timeline', label: t('disease.tabTimeline'), icon: Calendar },
-                    { id: 'probabilities', label: t('disease.tabProbabilities'), icon: Layers }
+                    { id: 'overview', label: language === 'te' ? 'పరిశీలన & మచ్చలు' : 'Overview & Masking', icon: Eye },
+                    { id: 'treatment', label: language === 'te' ? 'వ్యవసాయ చికిత్స' : 'Agronomy Prescription', icon: ShieldCheck },
+                    { id: 'cause', label: language === 'te' ? 'లక్షణాలు & కారణం' : 'Symptoms & Cause', icon: Dna },
+                    { id: 'timeline', label: language === 'te' ? '14 రోజుల ప్రణాళిక' : '14-Day Calendar', icon: Calendar },
+                    { id: 'probabilities', label: language === 'te' ? 'సంభావ్యత శ్రేణి' : 'Probabilities', icon: Layers }
                   ].map((tab) => {
                     const Icon = tab.icon;
                     const active = activeTab === tab.id;
                     return (
                       <button
                         key={tab.id}
+                        type="button"
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+                        className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
                           active
-                            ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/20 font-bold'
-                            : 'bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800'
+                            ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-black font-black shadow-md'
+                            : 'bg-slate-950/60 text-slate-400 hover:text-white hover:bg-slate-900 border border-slate-800'
                         }`}
                       >
                         <Icon className="w-3.5 h-3.5" />
@@ -684,44 +866,47 @@ const DiseaseDetection = () => {
                   })}
                 </div>
 
-                {/* TAB 1: OVERVIEW & OPENCV LESION MASKING */}
+                {/* TAB 1: OVERVIEW & LESION MASKING */}
                 {(activeTab === 'overview' || window.matchMedia('print').matches) && (
-                  <div className="space-y-5 relative z-10">
-                    {/* Dual Image Comparison Container */}
+                  <div className="space-y-4">
+                    {/* DUAL IMAGE COMPARISON */}
                     {result.original_image_b64 && result.processed_image_b64 && (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <span className="text-sm sm:text-base font-bold text-slate-100 uppercase tracking-wider block print:text-slate-700">
-                            {t('disease.originalLeafPhoto')}
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+                            {language === 'te' ? 'అసలు ఆకు ఫోటో' : 'Raw Sensor Leaf Photo'}
                           </span>
-                          <div className="w-full h-44 sm:h-56 rounded-2xl overflow-hidden border border-slate-800 bg-black relative shadow-lg">
+                          <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden border border-slate-800 bg-black relative shadow-lg">
                             <img
                               src={`data:image/png;base64,${result.original_image_b64}`}
-                              alt="Original scan"
-                              className="w-full h-full object-cover"
+                              alt="Original Leaf"
+                              className="w-full h-full object-contain mx-auto"
                             />
                           </div>
                         </div>
 
                         <div className="space-y-2">
-                          <span className="text-sm sm:text-base font-extrabold text-emerald-300 uppercase tracking-wider flex items-center gap-2 print:text-emerald-800">
-                            <Activity className="w-4.5 h-4.5" /> {t('disease.lesionMaskingTitle')}
+                          <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                            <Activity className="w-3.5 h-3.5" />
+                            <span>{language === 'te' ? 'ఓపెన్‌సీవీ మచ్చల గుర్తింపు (Lesion Masking)' : 'OpenCV Lesion Masking'}</span>
                           </span>
-                          <div className={`w-full h-44 sm:h-56 rounded-2xl overflow-hidden border bg-black relative shadow-lg ${
-                            result.infected_area_count > 0 ? 'border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.15)]' : 'border-emerald-500/50 shadow-[0_0_20px_rgba(34,197,94,0.15)]'
+                          <div className={`w-full h-56 sm:h-64 rounded-2xl overflow-hidden border bg-black relative shadow-lg ${
+                            result.infected_area_count > 0 ? 'border-rose-500/50' : 'border-emerald-500/50'
                           }`}>
                             <img
                               src={`data:image/png;base64,${result.processed_image_b64}`}
-                              alt="AI Processed"
-                              className="w-full h-full object-cover"
+                              alt="Lesion Segmentation Mask"
+                              className="w-full h-full object-contain mx-auto"
                             />
                             {result.infected_area_count > 0 ? (
-                              <div className="absolute top-2.5 right-2.5 bg-rose-600 text-white text-xs sm:text-sm font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-rose-400 animate-pulse">
-                                {result.infected_area_count} {t('disease.spotsHighlighted')}
+                              <div className="absolute top-3 right-3 bg-rose-600 text-white text-xs font-black px-3 py-1 rounded-full shadow border border-rose-400">
+                                {language === 'te' 
+                                  ? `${result.infected_area_count} తెగులు మచ్చలు గుర్తించబడ్డాయి` 
+                                  : `${result.infected_area_count} Lesion Hotspots Highlighted`}
                               </div>
                             ) : (
-                              <div className="absolute top-2.5 right-2.5 bg-emerald-500 text-black text-xs sm:text-sm font-extrabold px-3.5 py-1.5 rounded-full shadow-lg border border-emerald-400">
-                                {t('disease.foliageHealthy')}
+                              <div className="absolute top-3 right-3 bg-emerald-500 text-black text-xs font-black px-3 py-1 rounded-full shadow border border-emerald-400">
+                                {language === 'te' ? 'ఆకు ఆరోగ్యంగా ఉంది' : 'Foliage Healthy'}
                               </div>
                             )}
                           </div>
@@ -729,294 +914,267 @@ const DiseaseDetection = () => {
                       </div>
                     )}
 
-                    {/* Environmental Factors Pill Grid */}
+                    {/* WEATHER METRICS */}
                     {result.environmental_factors && (
-                      <div className="grid grid-cols-3 gap-3.5">
-                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 shadow-md">
-                          <div className="text-xs sm:text-sm text-slate-200 font-bold uppercase flex items-center gap-1.5">
-                            <Thermometer className="w-4 h-4 text-rose-400" /> {t('disease.outbreakTemp')}
+                      <div className="grid grid-cols-3 gap-3.5 pt-2">
+                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 text-center">
+                          <div className="text-xs text-slate-400 font-bold uppercase flex items-center justify-center gap-1.5">
+                            <Thermometer className="w-4 h-4 text-rose-400" />
+                            <span>{language === 'te' ? 'అనుకూల ఉష్ణోగ్రత' : 'Outbreak Temp'}</span>
                           </div>
-                          <div className="text-sm sm:text-base font-extrabold text-white">
+                          <div className="text-base sm:text-lg font-black text-white">
                             {result.environmental_factors.temperature || '18°C - 28°C'}
                           </div>
                         </div>
 
-                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 shadow-md">
-                          <div className="text-xs sm:text-sm text-slate-200 font-bold uppercase flex items-center gap-1.5">
-                            <Droplets className="w-4 h-4 text-cyan-400" /> {t('disease.humidityRisk')}
+                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 text-center">
+                          <div className="text-xs text-slate-400 font-bold uppercase flex items-center justify-center gap-1.5">
+                            <Droplets className="w-4 h-4 text-cyan-400" />
+                            <span>{language === 'te' ? 'గాలిలో తేమ' : 'Humidity'}</span>
                           </div>
-                          <div className="text-sm sm:text-base font-extrabold text-white">
+                          <div className="text-base sm:text-lg font-black text-white">
                             {result.environmental_factors.humidity || '80% - 95%'}
                           </div>
                         </div>
 
-                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 shadow-md">
-                          <div className="text-xs sm:text-sm text-slate-200 font-bold uppercase flex items-center gap-1.5">
-                            <Wind className="w-4 h-4 text-emerald-400" /> {t('disease.leafWetness')}
+                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1 text-center">
+                          <div className="text-xs text-slate-400 font-bold uppercase flex items-center justify-center gap-1.5">
+                            <Activity className="w-4 h-4 text-emerald-400" />
+                            <span>{language === 'te' ? 'ఆకు తేమ సమయం' : 'Leaf Wetness'}</span>
                           </div>
-                          <div className="text-sm sm:text-base font-extrabold text-white">
+                          <div className="text-base sm:text-lg font-black text-white">
                             {result.environmental_factors.leaf_wetness || '> 6 hours'}
                           </div>
                         </div>
                       </div>
                     )}
+                  </div>
+                )}
 
-                    {/* Visible Diagnostic Symptoms */}
-                    {result.visible_symptoms && result.visible_symptoms.length > 0 && (
-                      <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-3.5 print:bg-slate-100 print:border-slate-300 shadow-md">
-                        <h4 className="font-extrabold text-amber-300 uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2 print:text-amber-800">
-                          <Bug className="w-4.5 h-4.5" /> {t('disease.identifiedSymptoms')}
-                        </h4>
-                        <ul className="grid sm:grid-cols-2 gap-3 text-slate-100 text-sm sm:text-base leading-relaxed print:text-black">
-                          {result.visible_symptoms.map((sym, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5 bg-slate-900/90 p-3 rounded-xl border border-slate-800 print:bg-white print:border-slate-300 font-semibold">
-                              <span className="text-amber-400 font-bold text-base">•</span>
-                              <span>{sym}</span>
-                            </li>
-                          ))}
-                        </ul>
+                {/* TAB 2: AGRONOMY PRESCRIPTION (IPM) */}
+                {activeTab === 'treatment' && (
+                  <div className="space-y-4">
+                    {/* Organic Solution */}
+                    <div className="p-5 sm:p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
+                      <h4 className="font-bold text-emerald-300 text-sm sm:text-base flex items-center gap-2">
+                        <Sprout className="w-5 h-5 text-emerald-400" />
+                        <span>{language === 'te' ? 'సేంద్రీయ & జీవ నియంత్రణ చికిత్స' : 'Organic & Biological Remedy'}</span>
+                      </h4>
+                      <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-medium">
+                        {dossier.organicTreatment}
+                      </p>
+                    </div>
+
+                    {/* Chemical Spray */}
+                    <div className="p-5 sm:p-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 space-y-2">
+                      <h4 className="font-bold text-cyan-300 text-sm sm:text-base flex items-center gap-2">
+                        <FlaskConical className="w-5 h-5 text-cyan-400" />
+                        <span>{language === 'te' ? 'సిఫార్సు చేసిన రసాయన పిచికారీ' : 'Registered Chemical Treatment'}</span>
+                      </h4>
+                      <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-medium">
+                        {dossier.chemicalTreatment}
+                      </p>
+                    </div>
+
+                    {/* Field Prevention */}
+                    <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                      <h4 className="font-bold text-amber-300 text-xs sm:text-sm flex items-center gap-2">
+                        <ShieldAlert className="w-4 h-4 text-amber-400" />
+                        <span>{language === 'te' ? 'పొలంలో యాజమాన్య పద్ధతులు & పరిశుభ్రత' : 'Cultural Field Sanitation'}</span>
+                      </h4>
+                      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                        {dossier.precautions}
+                      </p>
+                    </div>
+
+                    {/* Source Citation */}
+                    {dossier.source && (
+                      <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                        <span className="flex items-center gap-2 font-medium">
+                          <BookOpen className="w-4 h-4 text-emerald-400" />
+                          <span>
+                            {language === 'te'
+                              ? `అధికారిక వ్యవసాయ మూలం: ${dossier.source}`
+                              : `Official Agronomic Source: ${result.authoritative_source || dossier.source}`}
+                          </span>
+                        </span>
                       </div>
                     )}
                   </div>
                 )}
 
-                {/* TAB 2: EXACT CAUSE & PATHOGEN SCIENCE */}
+                {/* TAB 3: SYMPTOMS & PATHOGEN SCIENCE */}
                 {activeTab === 'cause' && (
-                  <div className="space-y-4 relative z-10 animate-fade-in">
-                    <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2.5 shadow-md">
-                      <h5 className="font-extrabold text-cyan-300 text-base sm:text-lg flex items-center gap-2">
-                        <Dna className="w-5 h-5 text-cyan-400" />
-                        {t('disease.exactCauseTitle')}
-                      </h5>
-                      <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-normal">
-                        {result.exact_cause || result.explanation || (language === 'te' ? "ఈ పంట తెగులు యొక్క పూర్తి వివరాలు." : "Detailed cause science for this crop pathogen.")}
-                      </p>
-                    </div>
-
-                    <div className="p-5 sm:p-6 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2.5 shadow-md">
-                      <h5 className="font-extrabold text-slate-100 text-base sm:text-lg flex items-center gap-2">
-                        <Info className="w-5 h-5 text-emerald-400" />
-                        {t('disease.explanationTitle')}
-                      </h5>
-                      <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-normal">
-                        {result.explanation}
-                      </p>
-                    </div>
-
-                    {/* Similar Lookalike Diseases to Rule Out */}
-                    {result.similar_diseases && result.similar_diseases.length > 0 && (
-                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2.5 shadow-md">
-                        <span className="text-xs sm:text-sm font-extrabold text-amber-300 uppercase tracking-wider block">
-                          {t('disease.lookalikeTitle')}
-                        </span>
-                        <div className="flex flex-wrap gap-2.5 pt-1">
-                          {result.similar_diseases.map((sim, idx) => (
-                            <span key={idx} className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 text-sm font-bold shadow">
-                              {sim}
-                            </span>
+                  <div className="space-y-4">
+                    {/* Symptoms */}
+                    {dossier.visibleSymptoms && dossier.visibleSymptoms.length > 0 && (
+                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-3">
+                        <h4 className="font-bold text-amber-300 uppercase tracking-wider text-xs flex items-center gap-2">
+                          <Bug className="w-4 h-4 text-amber-400" />
+                          <span>{language === 'te' ? 'గమనించిన వ్యాధి లక్షణాలు' : 'Clinical Symptoms Observed'}</span>
+                        </h4>
+                        <div className="grid sm:grid-cols-2 gap-2.5">
+                          {dossier.visibleSymptoms.map((sym, idx) => (
+                            <div key={idx} className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 font-medium">
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 flex-shrink-0" />
+                              <span>{sym}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
                     )}
-                  </div>
-                )}
 
-                {/* TAB 3: AGRONOMY PRESCRIPTION & REMEDIES */}
-                {activeTab === 'treatment' && (
-                  <div className="space-y-4 relative z-10 animate-fade-in">
-                    {/* Organic / Biological Remedies */}
-                    <div className="p-5 sm:p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2.5 shadow-md">
-                      <h5 className="font-extrabold text-emerald-300 text-base sm:text-lg flex items-center gap-2">
-                        <Sprout className="w-5.5 h-5.5 text-emerald-400" />
-                        {t('disease.organicTitle')}
-                      </h5>
-                      <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                        {result.organic_treatment || result.treatment || (language === 'te' ? "వేప నూనె (5 ml/లీటర్) లేదా రాగి బయో-ఫంగిసైడ్ ఉపయోగించండి." : "Apply neem oil (5 ml/L) or copper soap bio-fungicide.")}
-                      </p>
-                    </div>
-
-                    {/* Chemical Fungicide / Bactericide */}
-                    <div className="p-5 sm:p-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 space-y-2.5 shadow-md">
-                      <h5 className="font-extrabold text-cyan-300 text-base sm:text-lg flex items-center gap-2">
-                        <FlaskConical className="w-5.5 h-5.5 text-cyan-400" />
-                        {t('disease.chemicalTitle')}
-                      </h5>
-                      <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                        {result.chemical_treatment || result.treatment || (language === 'te' ? "పరిమాణం ప్రకారం శిలీంధ్ర నాశిని మందును పిచికారీ చేయండి." : "Foliar spray of broad spectrum protectant fungicide as per dosage.")}
-                      </p>
-                    </div>
-
-                    {/* Cultural Field Precautions */}
-                    <div className="p-5 sm:p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-2.5 shadow-md">
-                      <h5 className="font-extrabold text-amber-300 text-base sm:text-lg flex items-center gap-2">
-                        <ShieldAlert className="w-5.5 h-5.5 text-amber-400" />
-                        {t('disease.culturalTitle')}
-                      </h5>
-                      <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                        {result.precautions || (language === 'te' ? "డ్రిప్ సేద్యం, పంట మార్పిడి మరియు పొలంలో శుభ్రతను పాటించండి." : "Maintain drip irrigation, crop rotation, and field leaf sanitation.")}
+                    {/* Exact Cause */}
+                    <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2">
+                      <h4 className="font-bold text-cyan-300 text-xs sm:text-sm flex items-center gap-2">
+                        <Dna className="w-4 h-4 text-cyan-400" />
+                        <span>{language === 'te' ? 'వ్యాధికి ఖచ్చితమైన శాస్త్రీయ కారణం' : 'Exact Pathological Cause'}</span>
+                      </h4>
+                      <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                        {dossier.exactCause}
                       </p>
                     </div>
                   </div>
                 )}
 
-                {/* TAB 4: ACTION TIMELINE CHECKLIST */}
+                {/* TAB 4: 14-DAY CALENDAR */}
                 {activeTab === 'timeline' && (
-                  <div className="space-y-4 relative z-10 animate-fade-in">
-                    <h4 className="font-extrabold text-slate-100 uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2">
-                      <Calendar className="w-4.5 h-4.5 text-emerald-400" /> {t('disease.actionScheduleTitle')}
+                  <div className="space-y-3.5">
+                    <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-emerald-400" />
+                      <span>{language === 'te' ? '14 రోజుల వ్యవసాయ రికవరీ ప్రణాళిక' : '14-Day Agronomic Recovery Roadmap'}</span>
                     </h4>
 
-                    <div className="space-y-3.5">
-                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 shadow-md">
-                        <span className="px-3.5 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-extrabold text-xs sm:text-sm border border-emerald-500/40 inline-block">
-                          {t('disease.step1Title')}
-                        </span>
-                        <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                          {result.action_timeline?.immediate || (language === 'te' ? "తెగులు సోకిన పంట భాగాలను తొలగించి గాలి ద్వారా వ్యాప్తి నిరోధించండి." : "Isolate infected crop sector and prune heavily blighted leaves to stop airborne spore drift.")}
-                        </p>
+                    {dossier.plan14Day ? (
+                      <div className="space-y-3">
+                        {[
+                          { 
+                            day: language === 'te' ? '1–2 రోజులు' : 'Days 1–2', 
+                            title: language === 'te' ? 'పరిశుభ్రత' : 'Sanitation', 
+                            text: dossier.plan14Day.day_1_2, 
+                            color: 'emerald' 
+                          },
+                          { 
+                            day: language === 'te' ? '3–5 రోజులు' : 'Days 3–5', 
+                            title: language === 'te' ? 'లక్ష్యిత పిచికారీ' : 'Targeted Spray', 
+                            text: dossier.plan14Day.day_3_5, 
+                            color: 'cyan' 
+                          },
+                          { 
+                            day: language === 'te' ? '6–8 రోజులు' : 'Days 6–8', 
+                            title: language === 'te' ? 'పర్యవేక్షణ' : 'Monitoring', 
+                            text: dossier.plan14Day.day_6_8, 
+                            color: 'teal' 
+                          },
+                          { 
+                            day: language === 'te' ? '9–11 రోజులు' : 'Days 9–11', 
+                            title: language === 'te' ? 'సమీక్ష' : 'Audit', 
+                            text: dossier.plan14Day.day_9_11, 
+                            color: 'amber' 
+                          },
+                          { 
+                            day: language === 'te' ? '12–14 రోజులు' : 'Days 12–14', 
+                            title: language === 'te' ? 'రికవరీ నిర్ధారణ' : 'Clearance', 
+                            text: dossier.plan14Day.day_12_14, 
+                            color: 'rose' 
+                          }
+                        ].map((step, idx) => (
+                          <div key={idx} className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
+                            <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-black uppercase inline-block ${
+                              step.color === 'emerald' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' :
+                              step.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40' :
+                              step.color === 'amber' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' :
+                              'bg-rose-500/20 text-rose-300 border border-rose-500/40'
+                            }`}>
+                              {step.day}: {step.title}
+                            </span>
+                            <p className="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                              {step.text}
+                            </p>
+                          </div>
+                        ))}
                       </div>
-
-                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 shadow-md">
-                        <span className="px-3.5 py-1.5 rounded-lg bg-cyan-500/20 text-cyan-300 font-extrabold text-xs sm:text-sm border border-cyan-500/40 inline-block">
-                          {t('disease.step2Title')}
-                        </span>
-                        <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                          {result.action_timeline?.day_2_3 || (language === 'te' ? "ఉదయం పూట సూచించిన శిలీంధ్ర నాశిని మందును పిచికారీ చేయండి." : "Apply prescribed organic neem or chemical fungicide foliar spray in early morning.")}
-                        </p>
+                    ) : (
+                      <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-slate-300">
+                        {language === 'te' ? 'వ్యాధి సోకిన మొక్కలను వేరుచేసి సిఫార్సు చేసిన మందులను పిచికారీ చేయండి.' : (result.action_timeline?.immediate || "Isolate infected plants and spray broad-spectrum protectant.")}
                       </div>
-
-                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 shadow-md">
-                        <span className="px-3.5 py-1.5 rounded-lg bg-amber-500/20 text-amber-300 font-extrabold text-xs sm:text-sm border border-amber-500/40 inline-block">
-                          {t('disease.step3Title')}
-                        </span>
-                        <p className="text-slate-100 text-sm sm:text-base leading-relaxed font-medium">
-                          {result.action_timeline?.day_7 || (language === 'te' ? "పంటను మళ్లీ తనిఖీ చేసి తెగులు తగ్గుముఖం పట్టిందో లేదో చూడండి." : "Re-examine plant canopy and perform spot scan with AI to confirm symptom regression.")}
-                        </p>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 )}
 
-                {/* TAB 5: AI PROBABILITIES MATRIX */}
+                {/* TAB 5: AI PROBABILITIES */}
                 {activeTab === 'probabilities' && (
-                  <div className="space-y-4 relative z-10 animate-fade-in">
-                    <h4 className="font-extrabold text-slate-100 uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2">
-                      <Layers className="w-4.5 h-4.5 text-cyan-400" /> {t('disease.confidenceMatrixTitle')}
+                  <div className="space-y-3.5">
+                    <h4 className="font-bold text-slate-200 text-xs uppercase tracking-wider flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-cyan-400" />
+                      <span>{language === 'te' ? 'AI అంచనాల పోలిక శ్రేణి' : 'Competing Neural Hypotheses'}</span>
                     </h4>
 
                     {result.top_predictions && result.top_predictions.length > 0 ? (
-                      <div className="space-y-3.5">
+                      <div className="space-y-3">
                         {result.top_predictions.map((pred, idx) => (
-                          <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 shadow-md">
-                            <div className="flex items-center justify-between text-sm sm:text-base">
-                              <span className="text-white font-bold">{pred.disease}</span>
-                              <span className="text-emerald-300 font-extrabold text-base sm:text-lg">{pred.confidence}%</span>
+                          <div key={idx} className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2">
+                            <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
+                              <span className="text-white">
+                                {language === 'te' ? getTeluguDiseaseTitle(pred.disease) : pred.disease}
+                              </span>
+                              <span className="text-emerald-300 font-black">{pred.confidence}%</span>
                             </div>
-                            <div className="w-full h-3 rounded-full bg-slate-800 overflow-hidden">
+                            <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: `${pred.confidence}%` }}
-                                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                                className={`h-full rounded-full ${
-                                  idx === 0 ? 'bg-gradient-to-r from-emerald-500 to-teal-400' : 'bg-slate-700'
-                                }`}
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400"
                               />
                             </div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800 text-sm sm:text-base text-slate-100 shadow-md">
-                        {language === 'te' ? 'ప్రధాన అంచనా నమ్మక స్థాయి:' : 'Primary Prediction Confidence:'} <strong className="text-emerald-300 font-extrabold">{result.confidence}%</strong>
+                      <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-slate-300">
+                        {language === 'te' ? 'ప్రాథమిక అంచనా:' : 'Primary Prediction:'} <strong className="text-emerald-300">{result.confidence}%</strong>
                       </div>
                     )}
                   </div>
                 )}
+
+                {/* Bottom Dossier Action Bar */}
+                <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    onClick={resetScanner}
+                    className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 text-black font-black text-xs sm:text-sm shadow-md flex items-center gap-2 active:scale-95 transition-all"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    <span>{language === 'te' ? 'మరో ఆకును స్కాన్ చేయండి' : 'Scan Another Leaf'}</span>
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={speakDiagnosisText}
+                      className="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 hover:text-white text-xs font-bold flex items-center gap-2"
+                    >
+                      <Volume2 className="w-4 h-4 text-emerald-400" />
+                      <span>{isSpeaking ? (language === 'te' ? 'ఆపండి' : 'Stop Audio') : (language === 'te' ? 'వాయిస్ వినండి' : 'Audio Narration')}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handlePrint}
+                      className="px-4 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 hover:text-white text-xs font-bold flex items-center gap-2"
+                    >
+                      <Printer className="w-4 h-4 text-slate-400" />
+                      <span>{language === 'te' ? 'నివేదిక ముద్రించండి' : 'Print Dossier'}</span>
+                    </button>
+                  </div>
+                </div>
               </motion.div>
-            ) : (
-              /* IDLE STATE: Diagnostic Guidelines & Crop Disease Library */
-              <div className="bg-slate-950/40 backdrop-blur-sm p-5 sm:p-6 rounded-3xl border border-slate-800/80 shadow-2xl flex flex-col justify-between space-y-5 min-h-[460px]">
-                <div>
-                  <div className="flex items-center justify-between border-b border-slate-800/80 pb-3.5 mb-5">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-md">
-                        <BookOpen className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide">{t('disease.libraryTitle')}</h3>
-                        <p className="text-xs text-slate-300 font-normal mt-0.5">{t('disease.librarySubtitle')}</p>
-                      </div>
-                    </div>
-                    <span className="hidden sm:inline-flex px-3 py-1 rounded-full bg-slate-800/70 border border-slate-700 text-xs text-slate-300 font-bold shadow">
-                      {t('disease.awaitingScan')}
-                    </span>
-                  </div>
-
-                  {/* Photo Capture Rules */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
-                    {[
-                      { icon: Sun, title: t('disease.tip1Title'), desc: t('disease.tip1Desc') },
-                      { icon: Compass, title: t('disease.tip2Title'), desc: t('disease.tip2Desc') },
-                      { icon: Leaf, title: t('disease.tip3Title'), desc: t('disease.tip3Desc') }
-                    ].map((tip, idx) => {
-                      const Icon = tip.icon;
-                      return (
-                        <div key={idx} className="p-3.5 rounded-xl bg-slate-950/50 backdrop-blur-sm border border-slate-800/80 space-y-1.5 hover:border-emerald-500/40 hover:bg-slate-900/50 transition-all shadow-md">
-                          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div className="text-xs sm:text-sm font-bold text-white">{tip.title}</div>
-                          <p className="text-xs text-slate-300 leading-relaxed font-normal">{tip.desc}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Common Crop Diseases Database */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between text-xs font-bold text-slate-200">
-                      <span className="uppercase tracking-wider flex items-center gap-1.5 text-xs text-cyan-300 font-bold">
-                        <Shield className="w-3.5 h-3.5 text-cyan-400" /> {t('disease.supportedDiseasesHeader')}
-                      </span>
-                      <span className="text-[11px] text-slate-400 font-medium">{t('disease.supportedDiseasesSub')}</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {featuredDiseases.map((dis, idx) => (
-                        <div key={idx} className="p-3.5 rounded-xl bg-slate-950/50 backdrop-blur-sm border border-slate-800/80 space-y-1.5 hover:border-emerald-500/40 hover:bg-slate-900/50 transition-all shadow-md">
-                          <div className="flex items-center justify-between text-xs sm:text-sm">
-                            <span className="font-bold text-white text-xs sm:text-sm">{dis.name}</span>
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                              dis.severity === 'High' || dis.severity === 'Critical' || dis.severity === 'అధిక' || dis.severity === 'క్లిష్టమైన'
-                                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
-                                : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
-                            }`}>
-                              {dis.severity} {language === 'te' ? 'తీవ్రత' : 'Severity'}
-                            </span>
-                          </div>
-                          <div className="text-xs text-slate-300 font-normal">{t('disease.hostCropLabel')} <strong className="text-slate-100 font-semibold">{dis.crop}</strong></div>
-                          <div className="text-xs font-medium text-emerald-300 leading-snug mt-0.5">{t('disease.remedyLabel')} {dis.remedy}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Footer Telemetry */}
-                <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-1.5 font-normal">
-                  <div className="flex items-center gap-1.5">
-                    <Info className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>{language === 'te' ? 'మల్టీ-స్పెక్ట్రల్ విజన్ ఇంజిన్ ద్వారా HSV సెగ్మెంటేషన్ మరియు న్యూరల్ నెట్‌వర్క్ విశ్లేషణ' : 'Multi-Spectral Vision processes HSV vegetation segmentation and neural classification'}</span>
-                  </div>
-                  <div className="text-xs font-semibold text-slate-400">
-                    ResNet-50 / PyTorch / OpenCV Engine
-                  </div>
-                </div>
-              </div>
             )}
           </div>
         </div>
-      </motion.div>
+      )}
     </div>
   );
 };

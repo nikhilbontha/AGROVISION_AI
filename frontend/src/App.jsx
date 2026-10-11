@@ -53,9 +53,9 @@ const MainContent = () => {
   }
 
   return (
-    <div className="relative z-10 flex flex-col h-screen overflow-hidden">
+    <div className="relative z-10 flex flex-col h-screen overflow-hidden print:h-auto print:overflow-visible print:block">
       <Navbar />
-      <main className={`flex-1 overflow-auto flex flex-col ${isDashboard ? 'p-0' : 'p-4 md:p-8'}`}>
+      <main className={`flex-1 overflow-auto flex flex-col ${isDashboard ? 'p-0' : 'p-4 md:p-8'} print:overflow-visible print:h-auto print:block print:p-0`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/disease-detection" element={<DiseaseDetection />} />
@@ -66,7 +66,7 @@ const MainContent = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </main>
-      {!isDashboard && <AIAssistant />}
+      {!isDashboard && <div className="print:hidden"><AIAssistant /></div>}
     </div>
   );
 };
@@ -76,12 +76,12 @@ function App() {
   const isAdmin = location.pathname.startsWith('/admin');
 
   return (
-    <div className="min-h-screen bg-farm-dark text-white relative">
+    <div className="min-h-screen bg-farm-dark text-white relative print:bg-white print:text-black print:min-h-0">
       {!isAdmin && (
         <div
-          className="fixed top-0 left-0 w-full h-full z-0"
+          className="fixed top-0 left-0 w-full h-full z-0 print:hidden"
           style={{
-            backgroundImage: `linear-gradient(rgba(7,12,28,0.35), rgba(7,12,28,0.45)), url(${heroBg})`,
+            backgroundImage: `linear-gradient(rgba(7,12,24,0.78), rgba(4,8,16,0.88)), url(${heroBg})`,
             backgroundSize: "cover",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",

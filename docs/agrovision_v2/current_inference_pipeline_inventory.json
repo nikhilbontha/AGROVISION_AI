@@ -1,0 +1,68 @@
+{
+  "pipeline_inventory": {
+    "version": "1.0.0-legacy-audit",
+    "entry_point_frontend": "frontend/src/pages/DiseaseDetection.jsx",
+    "entry_point_backend": "backend/app/routes/predict.py",
+    "endpoint": "POST /predict/predict-disease",
+    "components": [
+      {
+        "stage": "1. Client Image Capture & Submission",
+        "implementation": "React file dropzone or navigator.mediaDevices webcam capture.",
+        "parameters_sent": {
+          "file": "Multipart image file (JPEG/PNG/WEBP, max 15MB)",
+          "crop_type": "Form string ('Auto-Detect' or 1 of 15 crop names)",
+          "lang": "Query string ('en' or 'te')"
+        },
+        "missing_inputs": [
+          "Plant part selector (leaf, fruit, stem, tuber, cob)",
+          "Growth stage selector (nursery, vegetative, flowering, maturity)",
+          "Symptom duration (<3 days, 1-2 weeks, etc.)",
+          "Spread & field pattern",
+          "Weather context"
+        ]
+      },
+      {
+        "stage": "2. Checkpoint Loading",
+        "implementation": "Lazy loader get_disease_model() in backend/app/routes/predict.py",
+        "primary_checkpoint": {
+          "path": "ml_models/disease_detection/unified_experiment/artifacts/agrovision_phase7_20261010_231412/AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+          "output_dim": 72,
+          "mapping_file": "ml_models/disease_detection/unified_experiment/unified_label_mapping.json"
+        },
+        "fallback_checkpoint": {
+          "path": "ml_models/disease_detection/disease_model.h5",
+          "output_dim": 39,
+          "mapping_file": "ml_models/disease_detection/class_indices.json"
+        },
+        "active_runtime_failure": "ImportError: DLL load failed while importing _pywrap_determinism: An Application Control policy has blocked this file. Prevents TensorFlow import under Windows Python 3.13, causing model loading to fail and returning MODEL_UNAVAILABLE."
+      },
+      {
+        "stage": "3. Image Validation & Non-Plant Filtering",
+        "implementation": "validate_leaf_image(cv_img, raw_preds) using OpenCV HSV thresholding.",
+        "critical_defect": "Requires foliage_ratio >= 0.02, green_yellow_ratio >= 0.025, and brown_ratio >= 0.04. Directly rejects non-foliar crop organs (yellow corn cobs, dry ears, potato tubers, cotton bolls, tomato fruits) with 'No crop foliage or plant leaves detected'."
+      },
+      {
+        "stage": "4. Neural Inference & Preprocessing",
+        "implementation": "PIL RGB resize to (224, 224), img_to_array, raw_preds = c_model.predict(img_arr)[0].",
+        "preprocessing_range": "Raw pixel floats [0, 255] fed into EfficientNetB0 internal rescaling layer."
+      },
+      {
+        "stage": "5. Post-Processing & Crop Mismatch Logic",
+        "implementation": "Unconstrained global argmax best_idx = np.argmax(raw_preds).",
+        "mismatch_policy": "If user selected crop != predicted crop and confidence >= 0.35, checks sum of probabilities for user crop. If sum < 0.25, returns CROP_MISMATCH warning.",
+        "rejection_policy": "If best_prob < 0.50, returns UNCERTAIN_DIAGNOSIS warning.",
+        "artificial_score_inflation": "Lines 526-527: confidence_score = round(max(best_prob * 100.0, 65.0), 1) and crop_confidence = round(min(confidence_score + 10.0, 99.2), 1). Artificially sets floor at 65% and fabricates crop confidence."
+      },
+      {
+        "stage": "6. Lesion Masking Heuristic",
+        "implementation": "analyze_lesion_masking(cv_img, is_healthy) via OpenCV HSV brown/yellow thresholding.",
+        "critical_defect": "Pure color heuristic with no semantic or pathological grounding. Flags dirt, shadows, leaf veins, and dried margins as lesions. Confuses farmers into believing AI has verified pathological lesions."
+      },
+      {
+        "stage": "7. Metadata Enrichment & Response",
+        "implementation": "get_disease_info(predicted_key, lang) in backend/app/utils/disease_info.py.",
+        "structure": "Flat dictionary DISEASE_INFO with case-insensitive fallback. Missing structured links to plant parts, growth stages, look-alike differentials, and expert escalation criteria."
+      }
+    ]
+  }
+}

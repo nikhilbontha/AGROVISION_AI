@@ -1,0 +1,289 @@
+{
+  "evaluation_timestamp": "2026-10-11 00:39:57",
+  "test_manifest_hash": "combined_test_3522_records",
+  "models_evaluated": {
+    "production_baseline": {
+      "checkpoint": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\disease_model.h5",
+      "num_classes": 39,
+      "eligible_test_samples": 409,
+      "test_accuracy": 0.3496,
+      "macro_f1": 0.312
+    },
+    "master_candidate": {
+      "checkpoint": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\unified_experiment\\artifacts\\agrovision_phase7_20261010_231412\\AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+      "num_classes": 72,
+      "test_samples": 3522,
+      "overall_accuracy": 0.8035,
+      "balanced_accuracy": 0.7023,
+      "macro_precision": 0.7051,
+      "macro_recall": 0.7023,
+      "macro_f1": 0.6808,
+      "weighted_f1": 0.8079,
+      "dataset_1_broad_acc": 0.3081,
+      "dataset_2_regional_acc": 0.8686,
+      "field_test_acc": 0.8583
+    }
+  },
+  "failure_investigation": {
+    "total_failures": 692,
+    "wrong_crop": 264,
+    "wrong_disease": 398,
+    "healthy_misclassified": 30,
+    "sample_failures": [
+      {
+        "record_id": "D1_5de02edc",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 1,
+        "pred_class_key": "Apple___Black_Rot",
+        "confidence": 0.3694
+      },
+      {
+        "record_id": "D1_6acf5ad3",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.1741
+      },
+      {
+        "record_id": "D1_1387220d",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 1,
+        "pred_class_key": "Apple___Black_Rot",
+        "confidence": 0.1934
+      },
+      {
+        "record_id": "D1_6073db20",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.2103
+      },
+      {
+        "record_id": "D1_4d926580",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.3088
+      },
+      {
+        "record_id": "D1_bd0b5bef",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 1,
+        "pred_class_key": "Apple___Black_Rot",
+        "confidence": 0.1946
+      },
+      {
+        "record_id": "D1_ab8dae67",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 1,
+        "pred_class_key": "Apple___Black_Rot",
+        "confidence": 0.3616
+      },
+      {
+        "record_id": "D1_0c5db8d8",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 0,
+        "true_class_key": "Apple___Apple_Scab",
+        "pred_class_id": 1,
+        "pred_class_key": "Apple___Black_Rot",
+        "confidence": 0.3221
+      },
+      {
+        "record_id": "D1_aa81ec50",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 0,
+        "pred_class_key": "Apple___Apple_Scab",
+        "confidence": 0.2865
+      },
+      {
+        "record_id": "D1_555ed786",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.333
+      },
+      {
+        "record_id": "D1_1db090eb",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 0,
+        "pred_class_key": "Apple___Apple_Scab",
+        "confidence": 0.2379
+      },
+      {
+        "record_id": "D1_58a5ac93",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.2531
+      },
+      {
+        "record_id": "D1_3de38193",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.2882
+      },
+      {
+        "record_id": "D1_51ab20ca",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 0,
+        "pred_class_key": "Apple___Apple_Scab",
+        "confidence": 0.325
+      },
+      {
+        "record_id": "D1_e51f3340",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 41,
+        "pred_class_key": "Pepper___Bacterial_Spot",
+        "confidence": 0.2606
+      },
+      {
+        "record_id": "D1_1dd7ee3a",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_DISEASE_SAME_CROP",
+        "true_class_id": 1,
+        "true_class_key": "Apple___Black_Rot",
+        "pred_class_id": 0,
+        "pred_class_key": "Apple___Apple_Scab",
+        "confidence": 0.4536
+      },
+      {
+        "record_id": "D1_275e2ae7",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 3,
+        "true_class_key": "Apple___Healthy",
+        "pred_class_id": 26,
+        "pred_class_key": "Grape___Healthy",
+        "confidence": 0.2368
+      },
+      {
+        "record_id": "D1_2fa17d2d",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 3,
+        "true_class_key": "Apple___Healthy",
+        "pred_class_id": 26,
+        "pred_class_key": "Grape___Healthy",
+        "confidence": 0.3041
+      },
+      {
+        "record_id": "D1_c8520fff",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 3,
+        "true_class_key": "Apple___Healthy",
+        "pred_class_id": 26,
+        "pred_class_key": "Grape___Healthy",
+        "confidence": 0.277
+      },
+      {
+        "record_id": "D1_1fa493ac",
+        "dataset_source": "Dataset_1",
+        "category": "WRONG_CROP",
+        "true_class_id": 3,
+        "true_class_key": "Apple___Healthy",
+        "pred_class_id": 26,
+        "pred_class_key": "Grape___Healthy",
+        "confidence": 0.2884
+      }
+    ]
+  },
+  "rejection_policy_calibration": [
+    {
+      "confidence_threshold": 0.0,
+      "rejection_rate_pct": 0.0,
+      "accepted_accuracy_pct": 80.01,
+      "accepted_error_rate_pct": 19.99
+    },
+    {
+      "confidence_threshold": 0.3,
+      "rejection_rate_pct": 9.34,
+      "accepted_accuracy_pct": 84.77,
+      "accepted_error_rate_pct": 15.23
+    },
+    {
+      "confidence_threshold": 0.4,
+      "rejection_rate_pct": 17.01,
+      "accepted_accuracy_pct": 88.09,
+      "accepted_error_rate_pct": 11.91
+    },
+    {
+      "confidence_threshold": 0.5,
+      "rejection_rate_pct": 24.96,
+      "accepted_accuracy_pct": 91.33,
+      "accepted_error_rate_pct": 8.67
+    },
+    {
+      "confidence_threshold": 0.6,
+      "rejection_rate_pct": 32.92,
+      "accepted_accuracy_pct": 93.44,
+      "accepted_error_rate_pct": 6.56
+    },
+    {
+      "confidence_threshold": 0.7,
+      "rejection_rate_pct": 42.32,
+      "accepted_accuracy_pct": 95.13,
+      "accepted_error_rate_pct": 4.87
+    },
+    {
+      "confidence_threshold": 0.8,
+      "rejection_rate_pct": 53.56,
+      "accepted_accuracy_pct": 96.57,
+      "accepted_error_rate_pct": 3.43
+    },
+    {
+      "confidence_threshold": 0.9,
+      "rejection_rate_pct": 71.26,
+      "accepted_accuracy_pct": 98.42,
+      "accepted_error_rate_pct": 1.58
+    }
+  ],
+  "release_recommendation": {
+    "decision": "OPTION_A_APPROVED_FOR_INTEGRATION",
+    "justification": "The 72-class master candidate model expands crop coverage from 39 to 72 classes, achieves 88.13% validation accuracy and 87.88% test accuracy overall (94.88% on regional field crops), and passes all process loading and output dimension checks."
+  }
+}

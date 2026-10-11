@@ -1,0 +1,124 @@
+{
+  "validation_timestamp": "2026-10-11T11:30:00+05:30",
+  "overall_status": "PASS",
+  "total_tests_executed": 12,
+  "tests_passed": 12,
+  "tests_failed": 0,
+  "artifacts_validated": [
+    "docs/agrovision_v2/phase2/crop_registry.json",
+    "docs/agrovision_v2/phase2/disease_registry.json",
+    "docs/agrovision_v2/phase2/model_class_mapping_proposal.json",
+    "docs/agrovision_v2/phase2/crop_organ_compatibility_matrix.json",
+    "docs/agrovision_v2/phase2/taxonomy_schema.json"
+  ],
+  "test_results": [
+    {
+      "test_id": "T2.1",
+      "category": "Identifier Integrity",
+      "test_name": "Canonical Crop IDs Uniqueness",
+      "status": "PASS",
+      "details": "Total crops: 16, Duplicates found: 0",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.2",
+      "category": "Identifier Integrity",
+      "test_name": "Canonical Disease IDs Uniqueness",
+      "status": "PASS",
+      "details": "Total diseases: 75, Duplicates found: 0",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.3",
+      "category": "Referential Integrity",
+      "test_name": "Disease-to-Crop Reference Validity",
+      "status": "PASS",
+      "details": "Verified 75 disease records against 16 crops.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.4",
+      "category": "Referential Integrity",
+      "test_name": "Crop-to-Disease Reference Validity",
+      "status": "PASS",
+      "details": "Verified all supported_disease_ids and healthy_class_ids.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.5",
+      "category": "Model Mapping",
+      "test_name": "Model v1 (39-Class) Output Index Uniqueness",
+      "status": "PASS",
+      "details": "Total v1 classes: 39, Duplicate indices: 0",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.6",
+      "category": "Model Mapping",
+      "test_name": "Model v2 (72-Class) Output Index Uniqueness",
+      "status": "PASS",
+      "details": "Total v2 classes: 72, Duplicate indices: 0",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.7",
+      "category": "Vocabulary Validation",
+      "test_name": "Condition Type Conformance",
+      "status": "PASS",
+      "details": "All 75 records conform to allowed condition types.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.8",
+      "category": "Vocabulary Validation",
+      "test_name": "Pathogen Type Conformance",
+      "status": "PASS",
+      "details": "All 75 records conform to allowed pathogen types (including distinct oomycete and bacterial entries).",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.9",
+      "category": "Evidence Quality",
+      "test_name": "Evidence Reference Requirement for Verified Records",
+      "status": "PASS",
+      "details": "Every verified crop and disease record possesses documented authoritative citations.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.10",
+      "category": "Organ Hierarchy",
+      "test_name": "Disease-to-Crop Organ Compatibility Invariance",
+      "status": "PASS",
+      "details": "All disease diagnostic organs are strictly subsets of parent crop supported organs.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.11",
+      "category": "Semantic Consistency",
+      "test_name": "Healthy Condition Consistency Check",
+      "status": "PASS",
+      "details": "Verified healthy condition records and non-pathogenic labeling.",
+      "error_count": 0,
+      "errors": []
+    },
+    {
+      "test_id": "T2.12",
+      "category": "Decoupling Policy",
+      "test_name": "Canonical ID vs Dataset Folder Independence",
+      "status": "PASS",
+      "details": "100% of canonical disease IDs are decoupled from raw dataset folder names.",
+      "error_count": 0,
+      "errors": []
+    }
+  ]
+}

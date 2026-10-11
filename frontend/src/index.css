@@ -37,3 +37,62 @@ code {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Print Stylesheet Overrides for Full Report Printing */
+@media print {
+  @page {
+    margin: 12mm;
+    size: auto;
+  }
+
+  html, body {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:block {
+    display: block !important;
+  }
+
+  .print\:bg-white {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  .print\:text-black {
+    color: #000000 !important;
+  }
+
+  .print\:border-none {
+    border: none !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  /* Ensure flex & grid containers flow naturally without clipping */
+  div, main, section, article {
+    overflow: visible !important;
+  }
+
+  /* Prevent card pagination splits */
+  .rounded-2xl, .rounded-3xl, .rounded-xl, .p-4, .p-5, .p-6 {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Format Recharts SVGs for print */
+  .recharts-responsive-container {
+    width: 100% !important;
+    height: 220px !important;
+  }
+}

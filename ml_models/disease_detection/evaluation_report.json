@@ -1,0 +1,17 @@
+{
+    "status": "SUCCESS",
+    "architecture": "EfficientNetB0",
+    "evaluation_metrics": {
+        "overall_accuracy": 0.3641025722026825,
+        "field_image_accuracy": 0.33076924085617065,
+        "val_accuracy": 0.3410256505012512,
+        "num_tested_images": 780
+    },
+    "artifacts_generated": [
+        "disease_model.h5",
+        "crop_classifier.h5",
+        "class_indices.json",
+        "model_metadata.json",
+        "evaluation_report.json"
+    ]
+}

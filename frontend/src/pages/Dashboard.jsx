@@ -39,14 +39,44 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const userId = localStorage.getItem('user_id');
 
-  const [loading, setLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState(null);
-  const [analytics, setAnalytics] = useState(null);
-  const [stats, setStats] = useState(null);
-
-  const [recentYield, setRecentYield] = useState([]);
-  const [diseaseHistory, setDiseaseHistory] = useState([]);
+  const [userInfo, setUserInfo] = useState(() => {
+    try {
+      const cached = localStorage.getItem('agrovision_user_info');
+      return cached ? JSON.parse(cached) : null;
+    } catch { return null; }
+  });
+  const [stats, setStats] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem('agrovision_stats_cache');
+      return cached ? JSON.parse(cached) : null;
+    } catch { return null; }
+  });
+  const [analytics, setAnalytics] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem('agrovision_analytics_cache');
+      return cached ? JSON.parse(cached) : null;
+    } catch { return null; }
+  });
+  const [recentYield, setRecentYield] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem('agrovision_recent_yield');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
+  const [diseaseHistory, setDiseaseHistory] = useState(() => {
+    try {
+      const cached = sessionStorage.getItem('agrovision_recent_disease');
+      return cached ? JSON.parse(cached) : [];
+    } catch { return []; }
+  });
   const [monthlyProfitData, setMonthlyProfitData] = useState([]);
+
+  // If cached data already exists, render instantly without blocking
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('agrovision_stats_cache') && !localStorage.getItem('agrovision_user_info');
+    } catch { return true; }
+  });
 
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'Dashboard');
@@ -63,6 +93,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!userId) { navigate('/login'); return; }
+
+    // Safety timeout: Never keep the user waiting on a black spinner screen for more than 1.5s
+    const safetyTimer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
 
     // Convert text selection to explicit day range
     let daysParam = '';
@@ -82,7 +117,7 @@ export default function Dashboard() {
 
     const fetchData = async () => {
       try {
-        const [statsRes, userRes, analyticsRes, recentYieldRes, diseaseHistRes, profitRes] = await Promise.all([
+        const results = await Promise.allSettled([
           api.get(`/dashboard/stats${daysParam}`),
           api.get('/auth/me'),
           api.get(`/dashboard/analytics${daysParam}`),
@@ -90,16 +125,44 @@ export default function Dashboard() {
           api.get('/dashboard/recent-disease'),
           api.get('/dashboard/profit-analysis')
         ]);
-        setStats(statsRes.data);
-        setUserInfo(userRes.data);
-        setAnalytics(analyticsRes.data);
-        setRecentYield(recentYieldRes.data || []);
-        setDiseaseHistory(diseaseHistRes.data || []);
-        setMonthlyProfitData(profitRes.data || []);
-      } catch (e) { console.error(e); }
-      finally { setLoading(false); }
+
+        const [statsRes, userRes, analyticsRes, recentYieldRes, diseaseHistRes, profitRes] = results;
+
+        if (statsRes.status === 'fulfilled' && statsRes.value?.data) {
+          setStats(statsRes.value.data);
+          try { sessionStorage.setItem('agrovision_stats_cache', JSON.stringify(statsRes.value.data)); } catch {}
+        }
+        if (userRes.status === 'fulfilled' && userRes.value?.data) {
+          setUserInfo(userRes.value.data);
+          try { localStorage.setItem('agrovision_user_info', JSON.stringify(userRes.value.data)); } catch {}
+        }
+        if (analyticsRes.status === 'fulfilled' && analyticsRes.value?.data) {
+          setAnalytics(analyticsRes.value.data);
+          try { sessionStorage.setItem('agrovision_analytics_cache', JSON.stringify(analyticsRes.value.data)); } catch {}
+        }
+        if (recentYieldRes.status === 'fulfilled' && recentYieldRes.value?.data) {
+          const data = recentYieldRes.value.data || [];
+          setRecentYield(data);
+          try { sessionStorage.setItem('agrovision_recent_yield', JSON.stringify(data)); } catch {}
+        }
+        if (diseaseHistRes.status === 'fulfilled' && diseaseHistRes.value?.data) {
+          const data = diseaseHistRes.value.data || [];
+          setDiseaseHistory(data);
+          try { sessionStorage.setItem('agrovision_recent_disease', JSON.stringify(data)); } catch {}
+        }
+        if (profitRes.status === 'fulfilled' && profitRes.value?.data) {
+          setMonthlyProfitData(profitRes.value.data || []);
+        }
+      } catch (e) {
+        console.error('Dashboard data fetch error:', e);
+      } finally {
+        clearTimeout(safetyTimer);
+        setLoading(false);
+      }
     };
     fetchData();
+
+    return () => clearTimeout(safetyTimer);
   }, [userId, navigate, selectedDateRange]);
 
   if (loading) {

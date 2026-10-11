@@ -1,0 +1,355 @@
+{
+  "config_version": "2.0.0",
+  "taxonomy_version": "2.0.0",
+  "generated_at": "2026-10-11T11:30:00+05:30",
+  "description": "AgroVision AI 2.0 Adaptive Farmer Questionnaire Configuration defining conditional questions, symptom vocabularies, organ compatibilities, and evidence references.",
+  "questions": [
+    {
+      "question_id": "q_symptoms_observed",
+      "question_text": "What visual symptoms do you observe on the affected plant?",
+      "help_text": "Select all visible abnormal patterns, discoloration, or structural changes.",
+      "answer_type": "multi_choice",
+      "allow_multiple": true,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "sym_yellowing",
+          "label": "Yellowing or Chlorosis",
+          "description": "Leaves or veins turning pale or yellow"
+        },
+        {
+          "option_id": "sym_spots",
+          "label": "Brown or Black Spots / Lesions",
+          "description": "Dark circular, angular, or irregular patches"
+        },
+        {
+          "option_id": "sym_white_powder",
+          "label": "White Powder-like Growth",
+          "description": "White talcum-like fungal film on leaf surface"
+        },
+        {
+          "option_id": "sym_water_soaked",
+          "label": "Water-soaked or Greasy Lesions",
+          "description": "Dark translucent wet-looking patches often with yellow halo"
+        },
+        {
+          "option_id": "sym_wilting",
+          "label": "Wilting or Drooping",
+          "description": "Loss of turgidity despite moist soil"
+        },
+        {
+          "option_id": "sym_insect_damage",
+          "label": "Chewed Holes or Insect Piercing",
+          "description": "Physical puncture marks, webbing, or frass"
+        },
+        {
+          "option_id": "sym_rot",
+          "label": "Rot or Soft Decaying Tissue",
+          "description": "Foul-smelling mushy or spongy decay"
+        },
+        {
+          "option_id": "sym_mosaic",
+          "label": "Mosaic or Mottled Leaf Pattern",
+          "description": "Alternating dark green and yellow patchy patterns or leaf curling"
+        },
+        {
+          "option_id": "sym_stunted",
+          "label": "Stunted Growth / Dwarfism",
+          "description": "Severe reduction in plant height or internode shortening"
+        },
+        {
+          "option_id": "sym_other",
+          "label": "Other Unlisted Symptom",
+          "description": "Abnormal signs not covered by standard options"
+        },
+        {
+          "option_id": "sym_unsure",
+          "label": "Not Sure / Unclear",
+          "description": "Symptoms are difficult to discern"
+        }
+      ],
+      "evidence_references": [
+        "CABI Crop Protection Compendium (Symptom Ontology 2023)",
+        "ICAR-ANGRAU Plant Pathology Diagnostic Field Manual 2024"
+      ]
+    },
+    {
+      "question_id": "q_symptom_location",
+      "question_text": "Where do the symptoms appear across the plant or field?",
+      "help_text": "Indicates whether the problem is localized, systemic, or field-wide.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "loc_single_part",
+          "label": "One leaf or isolated plant part",
+          "description": "Confined to a single branch, leaf, or fruit"
+        },
+        {
+          "option_id": "loc_multiple_parts_single_plant",
+          "label": "Several parts of a single plant",
+          "description": "Multiple leaves or organs on one plant are affected"
+        },
+        {
+          "option_id": "loc_multiple_plants",
+          "label": "Scattered cluster of plants",
+          "description": "Appearing across multiple neighboring plants in patches"
+        },
+        {
+          "option_id": "loc_whole_field",
+          "label": "Widespread across most of the field",
+          "description": "Generalized symptom throughout the entire crop stand"
+        },
+        {
+          "option_id": "loc_unsure",
+          "label": "Not Sure",
+          "description": "Field extent has not been surveyed"
+        }
+      ],
+      "evidence_references": ["FAO Field Problem Diagnosis Protocol 2021"]
+    },
+    {
+      "question_id": "q_symptom_duration",
+      "question_text": "When did you first notice these symptoms?",
+      "help_text": "Duration helps distinguish acute virulent infections from slow chronic stresses.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "dur_1_to_3_days",
+          "label": "Within the last 1 to 3 days",
+          "description": "Very recent acute onset"
+        },
+        {
+          "option_id": "dur_4_to_7_days",
+          "label": "4 to 7 days ago",
+          "description": "Appeared approximately one week ago"
+        },
+        {
+          "option_id": "dur_1_to_2_weeks",
+          "label": "1 to 2 weeks ago",
+          "description": "Ongoing for up to two weeks"
+        },
+        {
+          "option_id": "dur_over_2_weeks",
+          "label": "More than 2 weeks ago",
+          "description": "Long-standing or chronic symptom"
+        },
+        {
+          "option_id": "dur_unsure",
+          "label": "Not Sure",
+          "description": "Exact onset date is unknown"
+        }
+      ],
+      "evidence_references": ["Agrios Plant Pathology 5th Edition (Etiology & Disease Progress)"]
+    },
+    {
+      "question_id": "q_spread_rate",
+      "question_text": "How quickly is the problem spreading?",
+      "help_text": "Differentiates rapid airborne/secondary spread from stationary abiotic issues.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "spread_rapid",
+          "label": "Rapidly (multiplying daily)",
+          "description": "New lesions or infected plants appearing continuously"
+        },
+        {
+          "option_id": "spread_slow",
+          "label": "Slowly (gradual progression)",
+          "description": "Slowly expanding over days or weeks"
+        },
+        {
+          "option_id": "spread_none",
+          "label": "Not spreading (stationary)",
+          "description": "Existing spots remain same size without new infections"
+        },
+        {
+          "option_id": "spread_unsure",
+          "label": "Not Sure",
+          "description": "Spread rate has not been monitored"
+        }
+      ],
+      "evidence_references": ["EPPO Plant Disease Spread Dynamics Guidance"]
+    },
+    {
+      "question_id": "q_growth_stage",
+      "question_text": "What is the current crop growth stage?",
+      "help_text": "Plant age strongly influences susceptibility to specific pathogens.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": false,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "stage_seedling",
+          "label": "Seedling / Nursery Stage",
+          "description": "Young shoots, cotyledons, or recent transplants"
+        },
+        {
+          "option_id": "stage_vegetative",
+          "label": "Vegetative Growth / Tillering",
+          "description": "Active leaf, stem, or canopy expansion"
+        },
+        {
+          "option_id": "stage_flowering",
+          "label": "Flowering / Panicle Emergence",
+          "description": "Blossom or tassel development"
+        },
+        {
+          "option_id": "stage_fruiting",
+          "label": "Fruit Development / Pod / Grain Filling",
+          "description": "Developing fruit, grain, or pod enlargement"
+        },
+        {
+          "option_id": "stage_maturity",
+          "label": "Maturity / Ripening / Pre-Harvest",
+          "description": "Color change, drying, or physiological maturity"
+        },
+        {
+          "option_id": "stage_unsure",
+          "label": "Not Sure",
+          "description": "Growth stage is not known"
+        }
+      ],
+      "evidence_references": ["BBCH Growth Scale Monograph (Agro-Phenology)"]
+    },
+    {
+      "question_id": "q_recent_conditions",
+      "question_text": "What field or weather conditions occurred recently?",
+      "help_text": "High moisture and dew favor fungal sporulation; dry heat favors mites and viruses.",
+      "answer_type": "multi_choice",
+      "allow_multiple": true,
+      "required": false,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "cond_heavy_rain",
+          "label": "Heavy rain or thunderstorm",
+          "description": "Substantial rainfall in the preceding 7 days"
+        },
+        {
+          "option_id": "cond_high_humidity",
+          "label": "High humidity or persistent morning dew",
+          "description": "Prolonged leaf wetness duration"
+        },
+        {
+          "option_id": "cond_hot_dry",
+          "label": "Hot and dry conditions",
+          "description": "Elevated ambient temperatures with low atmospheric moisture"
+        },
+        {
+          "option_id": "cond_waterlogging",
+          "label": "Waterlogging or standing water",
+          "description": "Soil saturated with poor root aeration"
+        },
+        {
+          "option_id": "cond_recent_irrigation",
+          "label": "Recent heavy irrigation",
+          "description": "Furrow or flood irrigation within last 48 hours"
+        },
+        {
+          "option_id": "cond_normal",
+          "label": "No unusual weather or conditions",
+          "description": "Normal seasonal weather"
+        },
+        {
+          "option_id": "cond_unsure",
+          "label": "Not Sure",
+          "description": "Field conditions were not tracked"
+        }
+      ],
+      "evidence_references": ["IMD Agromet Advisory & Microclimate Epidemiology"]
+    },
+    {
+      "question_id": "q_visible_pests",
+      "question_text": "Are pests or insects visible on or near the affected plant?",
+      "help_text": "Insect vectors like whiteflies and aphids transmit viral mosaic and curl diseases.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "pest_yes",
+          "label": "Yes (insects, caterpillars, aphids, or whiteflies seen)",
+          "description": "Live insect activity detected"
+        },
+        {
+          "option_id": "pest_no",
+          "label": "No (no visible insects)",
+          "description": "Careful inspection revealed no live insects"
+        },
+        {
+          "option_id": "pest_unsure",
+          "label": "Not Sure",
+          "description": "Undersides of leaves were not checked"
+        }
+      ],
+      "evidence_references": ["ICAR Vector-Virus Interaction Database 2023"]
+    },
+    {
+      "question_id": "q_previous_treatment",
+      "question_text": "Have you already applied any chemical or organic treatment?",
+      "help_text": "Prior pesticide sprays can alter symptom appearance or induce phytotoxicity.",
+      "answer_type": "single_choice",
+      "allow_multiple": false,
+      "required": true,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": null,
+      "allowed_options": [
+        {
+          "option_id": "treatment_yes",
+          "label": "Yes",
+          "description": "A treatment was sprayed or applied"
+        },
+        {
+          "option_id": "treatment_no",
+          "label": "No",
+          "description": "No chemical or biological product has been applied"
+        }
+      ],
+      "evidence_references": ["CIBRC Pesticide Safety & Phytotoxicity Guidelines"]
+    },
+    {
+      "question_id": "q_treatment_details",
+      "question_text": "What treatment was applied?",
+      "help_text": "Enter the fungicide/insecticide name, organic spray, or dosage if known.",
+      "answer_type": "text",
+      "allow_multiple": false,
+      "required": false,
+      "applicable_crop_ids": ["*"],
+      "applicable_plant_organs": ["*"],
+      "display_conditions": {
+        "depends_on_question_id": "q_previous_treatment",
+        "operator": "equals",
+        "value": "treatment_yes"
+      },
+      "allowed_options": [],
+      "evidence_references": ["CIBRC Product Register"]
+    }
+  ]
+}

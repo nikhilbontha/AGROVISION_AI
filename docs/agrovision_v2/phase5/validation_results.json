@@ -1,0 +1,95 @@
+{
+  "test_suite": "AgroVision AI 2.0 - Phase 5 Automated Diagnosis Engine Test Suite",
+  "executed_at": "2026-10-11T06:09:42.377185+00:00",
+  "total_tests": 17,
+  "tests_passed": 17,
+  "tests_failed": 0,
+  "overall_status": "PASS",
+  "test_results": [
+    {
+      "test_name": "test_valid_model_output_and_class_mapping",
+      "status": "PASS",
+      "message": "Model output indices 26, 27 correctly resolved to canonical disease IDs dis_tomato_early_blight and dis_tomato_late_blight."
+    },
+    {
+      "test_name": "test_unknown_or_duplicate_model_indices",
+      "status": "PASS",
+      "message": "Correctly detected duplicate index 0 and out-of-bounds index 999, halting with status invalid_input."
+    },
+    {
+      "test_name": "test_missing_model_and_runtime_failure",
+      "status": "PASS",
+      "message": "TensorFlow runtime DLL block reported honestly as model_unavailable without fabricating predictions."
+    },
+    {
+      "test_name": "test_invalid_input_payload",
+      "status": "PASS",
+      "message": "Correctly caught empty required fields and rejected with validation error."
+    },
+    {
+      "test_name": "test_unsupported_crop",
+      "status": "PASS",
+      "message": "Selected unsupported crop returned explicit status unsupported_crop with referral to extension clinic."
+    },
+    {
+      "test_name": "test_crop_conflict_preservation",
+      "status": "PASS",
+      "message": "Disagreement between farmer Chilli and visual model Tomato preserved as crop_mismatch without silent overwrite."
+    },
+    {
+      "test_name": "test_unsupported_or_incompatible_organ",
+      "status": "PASS",
+      "message": "Apple + ears_cobs flagged as incompatible organ and triggered organ_mismatch abstention."
+    },
+    {
+      "test_name": "test_contradictory_symptom_answers",
+      "status": "PASS",
+      "message": "Contradiction between healthy model prediction and severe rot/wilting triggered expert_review_recommended."
+    },
+    {
+      "test_name": "test_missing_questionnaire_answers",
+      "status": "PASS",
+      "message": "Handled sparse/unsure answers gracefully without failing pipeline execution."
+    },
+    {
+      "test_name": "test_multiple_candidates_differential_diagnosis",
+      "status": "PASS",
+      "message": "Detected close candidate margin (0.04 < 0.15) and correctly reported multiple_candidates differential diagnosis."
+    },
+    {
+      "test_name": "test_insufficient_evidence_and_abstention",
+      "status": "PASS",
+      "message": "Low scores (<0.35) and unsure symptoms correctly triggered abstention status insufficient_evidence."
+    },
+    {
+      "test_name": "test_provisional_threshold_handling",
+      "status": "PASS",
+      "message": "Verified provisional decision thresholds are explicitly configured and documented as uncalibrated heuristics."
+    },
+    {
+      "test_name": "test_calibrated_vs_uncalibrated_metadata",
+      "status": "PASS",
+      "message": "Response metadata accurately labels scores as uncalibrated_softmax without pretending statistical calibration."
+    },
+    {
+      "test_name": "test_knowledge_base_references_integrity",
+      "status": "PASS",
+      "message": "Verified diagnostic report includes 3 authoritative agricultural knowledge-base references."
+    },
+    {
+      "test_name": "test_follow_up_question_selection",
+      "status": "PASS",
+      "message": "Successfully generated 2 targeted follow-up questions from Phase 4 config to resolve ambiguity."
+    },
+    {
+      "test_name": "test_schema_valid_api_responses",
+      "status": "PASS",
+      "message": "Full diagnosis response payload strictly conforms to JSON Schema draft-07 specification."
+    },
+    {
+      "test_name": "test_regression_protection_for_yield_and_legacy",
+      "status": "PASS",
+      "message": "Verified 100% regression protection: /predict/predict-yield executed with success=True and valid yield output."
+    }
+  ]
+}

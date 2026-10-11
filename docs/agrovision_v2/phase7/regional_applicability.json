@@ -1,0 +1,97 @@
+{
+  "regional_framework_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "target_geographies": [
+    {
+      "state_id": "TELANGANA",
+      "state_name": "Telangana",
+      "statutory_authority": "PJTSAU (Professor Jayashankar Telangana State Agricultural University)",
+      "agroclimatic_zones": [
+        {
+          "zone_id": "TS_NORTHERN_ZONE",
+          "zone_name": "Northern Telangana Zone",
+          "districts": ["Adilabad", "Nirmal", "Komaram Bheem Asifabad", "Mancherial", "Nizamabad", "Jagtial", "Peddapalli", "Rajanna Sircilla"],
+          "major_crops": ["Rice", "Cotton", "Maize", "Turmeric", "Soybean"],
+          "rainfall_pattern": "900 - 1150 mm (Predominantly South-West Monsoon)",
+          "soil_types": ["Black Cotton (Vertisols)", "Chalka (Red Sandy Loams)"]
+        },
+        {
+          "zone_id": "TS_CENTRAL_ZONE",
+          "zone_name": "Central Telangana Zone",
+          "districts": ["Warangal", "Hanamkonda", "Jangaon", "Jayashankar Bhupalpally", "Mahabubabad", "Karimnagar", "Khammam", "Bhadradri Kothagudem"],
+          "major_crops": ["Cotton", "Chilli", "Rice", "Maize", "Mango"],
+          "rainfall_pattern": "850 - 1050 mm",
+          "soil_types": ["Red Sandy Loams", "Black Soils"]
+        },
+        {
+          "zone_id": "TS_SOUTHERN_ZONE",
+          "zone_name": "Southern Telangana Zone",
+          "districts": ["Mahabubnagar", "Nagarkurnool", "Wanaparthy", "Jogulamba Gadwal", "Narayanpet", "Ranga Reddy", "Vikarabad", "Medchal-Malkajgiri", "Nalgonda", "Suryapet", "Yadadri Bhuvanagiri"],
+          "major_crops": ["Cotton", "Rice", "Maize", "Groundnut", "Castor", "Tomato", "Vegetables"],
+          "rainfall_pattern": "600 - 800 mm (Semi-arid, High Heat)",
+          "soil_types": ["Red Loams (Dubba)", "Black Soils"]
+        }
+      ],
+      "cropping_seasons": {
+        "kharif": {
+          "local_name": "Vanakkalam",
+          "months": "June to November",
+          "climate": "Monsoon rains, elevated relative humidity (>80%), high fungal foliar pathogen pressure"
+        },
+        "rabi": {
+          "local_name": "Yasangi",
+          "months": "October to March",
+          "climate": "Dry cool winter transitioning to heat, heavy morning dew favoring stripe rust and powdery mildew"
+        }
+      }
+    },
+    {
+      "state_id": "ANDHRA_PRADESH",
+      "state_name": "Andhra Pradesh",
+      "statutory_authority": "ANGRAU (Acharya N.G. Ranga Agricultural University)",
+      "agroclimatic_zones": [
+        {
+          "zone_id": "AP_NORTH_COASTAL",
+          "zone_name": "North Coastal Zone",
+          "districts": ["Srikakulam", "Vizianagaram", "Parvathipuram Manyam", "Visakhapatnam", "Alluri Sitharama Raju", "Anakapalli"],
+          "major_crops": ["Rice", "Sugarcane", "Groundnut", "Cashew", "Mango"],
+          "rainfall_pattern": "1000 - 1200 mm (Coastal Cyclonic Activity)",
+          "soil_types": ["Red Loams", "Coastal Alluvial"]
+        },
+        {
+          "zone_id": "AP_KRISHNA_GODAVARI",
+          "zone_name": "Krishna-Godavari Zone (Delta)",
+          "districts": ["Kakinada", "Dr. B.R. Ambedkar Konaseema", "East Godavari", "West Godavari", "Eluru", "Krishna", "NTR", "Guntur", "Bapatla", "Palnadu"],
+          "major_crops": ["Rice", "Cotton", "Chilli", "Blackgram", "Banana", "Turmeric"],
+          "rainfall_pattern": "950 - 1100 mm",
+          "soil_types": ["Deep Black Soils", "Deltaic Alluvium"]
+        },
+        {
+          "zone_id": "AP_SCARCE_RAINFALL_RAYALASEEMA",
+          "zone_name": "Scarce Rainfall Zone of Rayalaseema",
+          "districts": ["Kurnool", "Nandyal", "Ananthapuramu", "Sri Sathya Sai", "YSR Kadapa", "Annamayya"],
+          "major_crops": ["Groundnut", "Cotton", "Bengalgram", "Chilli", "Sweet Orange", "Pomegranate"],
+          "rainfall_pattern": "500 - 650 mm (Drought Prone)",
+          "soil_types": ["Red Sandy Soils", "Black Vertisols"]
+        }
+      ],
+      "cropping_seasons": {
+        "kharif": {
+          "local_name": "Sarva",
+          "months": "June to November",
+          "climate": "Heavy coastal moisture, high leaf wetness duration"
+        },
+        "rabi": {
+          "local_name": "Dalva",
+          "months": "November to April",
+          "climate": "Intensive irrigation, winter dew, followed by high pre-harvest temperatures"
+        }
+      }
+    }
+  ],
+  "regional_filtering_rules": {
+    "district_matching": "Optional contextual parameter. If district is supplied, match to parent agroclimatic zone and prioritize university extension advisory.",
+    "season_matching": "Derived from current calendar date or farmer input. Alerts for seasonal disease outbreaks (e.g. Rice Blast in cool Kharif humid spells; Chilli Anthracnose fruit rot during unseasonal October rains).",
+    "fallback_rule": "When no state/district is specified, default to general South Indian subtropical IPM guidance with an explicit limitation disclaimer."
+  }
+}

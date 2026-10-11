@@ -1,0 +1,86 @@
+{
+  "inventory_metadata": {
+    "report_name": "AgroVision AI 2.0 Dataset & Class Inventory",
+    "generated_at": "2026-10-11T10:45:00+05:30",
+    "version": "2.0.0",
+    "audit_status": "VERIFIED_READ_ONLY"
+  },
+  "datasets": {
+    "dataset_1": {
+      "name": "Broad Crop Disease Dataset (Dataset 1)",
+      "filesystem_path": "ml_models/disease_detection/dataset_prepared",
+      "storage_format": "Directory tree (JPG images, 224x224 RGB)",
+      "total_images": 2730,
+      "num_classes": 39,
+      "provenance": [
+        "PlantVillage (CC BY 4.0)",
+        "PlantDoc (MIT License)",
+        "Open Agronomic Rice Collection (CC BY-SA 4.0)"
+      ],
+      "image_modality": "Predominantly controlled-background laboratory photographs (detached leaves mounted on uniform gray/black paper boards under flat artificial lighting). Minor real-world field images in field_test.",
+      "plant_organs_represented": ["Leaves only (foliar)"],
+      "class_balance": "Strictly artificial balance: exactly 70 images per class.",
+      "partitions": {
+        "train": 1560,
+        "val": 390,
+        "test": 390,
+        "field_test": 390
+      },
+      "crops": [
+        "Apple", "Corn", "Cotton", "Grape", "Orange", 
+        "Pepper", "Potato", "Rice", "Tomato", "Wheat", "Non_Plant"
+      ],
+      "healthy_vs_diseased": {
+        "healthy_classes": 10,
+        "healthy_samples": 700,
+        "diseased_classes": 28,
+        "diseased_samples": 1960,
+        "non_plant_classes": 1,
+        "non_plant_samples": 70
+      },
+      "independence_risk": "High risk of specimen leakage if test set contains different angles of the same physical leaf specimen photographed in the PlantVillage laboratory."
+    },
+    "dataset_2": {
+      "name": "Andhra Pradesh Master Regional Dataset (Dataset 2)",
+      "filesystem_path_archive": "datasets/archive.zip",
+      "filesystem_path_extracted": "datasets/regional_dataset_2/Andhra_Master_Dataset",
+      "archive_size_bytes": 2176274134,
+      "total_images": 21135,
+      "num_classes": 51,
+      "provenance": "Regional farm survey & field extension collections in Andhra Pradesh and Telangana.",
+      "image_modality": "Real-world field photographs taken with mobile devices under natural outdoor illumination, featuring complex backgrounds (soil, weeds, hands, sky, shadows, irrigation furrows) and variable resolutions.",
+      "plant_organs_represented": [
+        "Leaves", "Stems", "Fruit / Pods (Chilli pods, Mango fruit, Banana bunches)",
+        "Rhizomes (Turmeric)", "Bolls (Cotton)"
+      ],
+      "class_balance": "Highly imbalanced: ranges from 25 images (Palm_Fungal Disease) and 40 images (Rice_Leaf Smut) up to 500 images per class (Mango, Banana, Tomato, Rice).",
+      "crops": [
+        "Banana", "Chilli", "Cotton", "Mango", 
+        "Oil Palm", "Rice", "Tomato", "Turmeric"
+      ],
+      "healthy_vs_diseased": {
+        "healthy_classes": 8,
+        "healthy_samples": 3497,
+        "diseased_classes": 43,
+        "diseased_samples": 17638
+      },
+      "data_quality_flags": {
+        "exact_md5_duplicate_clusters": 293,
+        "exact_md5_duplicate_images": 412,
+        "cross_dataset_exact_duplicates": 0,
+        "ambiguous_or_unsupported_classes": [
+          "Chilli_Yellowish (490 images - ambiguous chlorosis/virus/abiotic)",
+          "Palm_Dryness (70 images - abiotic stress)",
+          "Palm_Fungal Disease (25 images - generic undifferentiated tag)"
+        ]
+      }
+    }
+  },
+  "cross_dataset_comparison": {
+    "total_combined_raw_images": 23865,
+    "shared_crop_families": ["Cotton", "Rice", "Tomato"],
+    "dataset_1_exclusive_crops": ["Apple", "Corn", "Grape", "Orange", "Pepper (Bell)", "Potato", "Wheat"],
+    "dataset_2_exclusive_crops": ["Banana", "Chilli (Hot)", "Mango", "Oil Palm", "Turmeric"],
+    "domain_shift_impact": "Severe. Dataset 1 lab leaves create a massive domain gap when evaluated alongside Dataset 2 outdoor farm photos. Training a unified model without domain adaptation or crop routing resulted in Dataset 1 validation accuracy collapsing from 99.2% to 35.3%."
+  }
+}

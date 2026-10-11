@@ -1,0 +1,86 @@
+{
+  "criteria_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "status": "PROVISIONAL",
+  "description": "Pre-deployment candidate acceptance gate criteria for AgroVision AI 2.0 disease detection models. All quantitative thresholds are provisional and subject to empirical validation on real-world multi-season field trials.",
+  "hard_gates": [
+    {
+      "gate_id": "GATE_RELOAD_FRESH_PROCESS",
+      "description": "Model checkpoint must reload successfully in a completely isolated fresh Python process without relying on active training state.",
+      "requirement": "Clean deserialization without errors or unhandled warnings."
+    },
+    {
+      "gate_id": "GATE_FINITE_OUTPUTS",
+      "description": "Inference outputs must contain strictly finite real numbers (no NaNs, no Infs) under all valid image inputs.",
+      "requirement": "np.all(np.isfinite(preds)) == True and np.isclose(np.sum(preds), 1.0, atol=1e-3)."
+    },
+    {
+      "gate_id": "GATE_OUTPUT_DIMENSION_MATCH",
+      "description": "Output tensor shape must exactly match the documented class mapping length.",
+      "requirement": "output_dim == len(canonical_class_mapping)."
+    },
+    {
+      "gate_id": "GATE_CANONICAL_TAXONOMY_MAPPING",
+      "description": "Every model output index must map 1-to-1 to a valid canonical disease ID in Phase 2 disease_registry.json without ambiguous string labels.",
+      "requirement": "100% bijective mapping to canonical disease registry."
+    },
+    {
+      "gate_id": "GATE_PREPROCESSING_CONSISTENCY",
+      "description": "Inference image preprocessing (resolution, color channels, normalization range) must identically mirror the training pipeline.",
+      "requirement": "RGB channels, 224x224 dimensions, verified scaling range."
+    },
+    {
+      "gate_id": "GATE_ZERO_LEAKAGE",
+      "description": "Model must be evaluated strictly on the approved held-out test manifest with zero duplicate-group or patient-level overlap with training data.",
+      "requirement": "duplicate_group_overlaps == 0."
+    }
+  ],
+  "performance_benchmarks": {
+    "strategy_a_unified": {
+      "min_overall_accuracy": 0.80,
+      "min_balanced_accuracy": 0.70,
+      "min_macro_f1": 0.65,
+      "max_cross_crop_confusion_rate": 0.15,
+      "provisional": true
+    },
+    "strategy_b_crop_specific": {
+      "min_overall_accuracy": 0.85,
+      "min_balanced_accuracy": 0.75,
+      "min_macro_f1": 0.75,
+      "max_cross_crop_confusion_rate": 0.00,
+      "note": "Cross-crop confusion is 0.0% by structural design because the output space contains only host-supported diseases.",
+      "provisional": true
+    },
+    "strategy_c_crop_router": {
+      "min_crop_top1_accuracy": 0.90,
+      "min_crop_balanced_accuracy": 0.85,
+      "max_crop_routing_error_rate": 0.08,
+      "abstention_threshold": 0.65,
+      "provisional": true
+    },
+    "strategy_d_multi_head": {
+      "min_overall_accuracy": 0.82,
+      "min_balanced_accuracy": 0.72,
+      "min_macro_f1": 0.70,
+      "max_cross_crop_confusion_rate": 0.00,
+      "provisional": true
+    }
+  },
+  "safety_and_robustness_criteria": [
+    {
+      "rule_id": "UNSUPPORTED_CROP_HANDLING",
+      "description": "When an unsupported crop image is presented, the system must trigger abstention (unsupported_crop or crop_mismatch) rather than returning a high-confidence false diagnosis.",
+      "acceptable_behavior": "Engine reports unsupported_crop with referral to extension clinic."
+    },
+    {
+      "rule_id": "UNSUPPORTED_ORGAN_HANDLING",
+      "description": "When an incompatible plant organ is evaluated, evidence fusion must down-weight candidate scores or trigger organ_mismatch.",
+      "acceptable_behavior": "Strict compliance with crop_organ_compatibility_matrix.json."
+    },
+    {
+      "rule_id": "ZERO_CRITICAL_REGRESSION",
+      "description": "Performance on major staple food-security crops (Rice, Wheat, Tomato, Potato) must not degrade compared to the production baseline.",
+      "acceptable_behavior": "Delta macro F1 >= -0.02 across core food crops."
+    }
+  ]
+}

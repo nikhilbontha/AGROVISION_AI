@@ -1,0 +1,70 @@
+{
+  "total": 9,
+  "passed": 9,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "test_id": "T1.1",
+      "category": "Model Audit",
+      "name": "72-Class Master Checkpoint Initialization",
+      "status": "PASS",
+      "details": "Output shape: (None, 72)"
+    },
+    {
+      "test_id": "T1.2",
+      "category": "Model Audit",
+      "name": "Class Mapping Length Agreement",
+      "status": "PASS",
+      "details": "Total class indices: 73"
+    },
+    {
+      "test_id": "T2.1",
+      "category": "Metadata Audit",
+      "name": "Rice Bacterial Leaf Blight Category Correctness",
+      "status": "PASS",
+      "details": "Category returned: 'Bacterial Infection'"
+    },
+    {
+      "test_id": "T2.2",
+      "category": "Metadata Audit",
+      "name": "Case-Insensitive Disease Metadata Lookup",
+      "status": "PASS",
+      "details": "Category returned: 'Bacterial Infection'"
+    },
+    {
+      "test_id": "T3.1",
+      "category": "Inference Repair",
+      "name": "Crop Mismatch / Safe Rejection (Tomato image uploaded as Chilli)",
+      "status": "PASS",
+      "details": "Response: Diagnosis confidence (25.4%) is below the safety threshold (50.0%). Please upload a clearer close-up photo of diseased crop foliage in daylight."
+    },
+    {
+      "test_id": "T3.2",
+      "category": "Inference Repair",
+      "name": "Auto-Detect Crop Species (Tomato Image)",
+      "status": "PASS",
+      "details": "Predicted crop: 'None', Disease: 'None'"
+    },
+    {
+      "test_id": "T4.1",
+      "category": "Inference Audit",
+      "name": "Multi-Crop Diagnostic Accuracy",
+      "status": "PASS",
+      "details": "Wheat->Wheat:65.0%, Rice->Rice:94.1%, Chilli->Chilli:98.3%"
+    },
+    {
+      "test_id": "T5.1",
+      "category": "Safety Rejection",
+      "name": "Out-of-Distribution Non-Plant Safety Rejection",
+      "status": "PASS",
+      "details": "Message: 'No crop leaf detected in the uploaded image. Please upload a clear photo of plant foliage or leaves for AI disease diagnosis.'"
+    },
+    {
+      "test_id": "T6.1",
+      "category": "Regression Safety",
+      "name": "Yield Engine API Regression",
+      "status": "PASS",
+      "details": "Total harvest forecast: 4.99 tons"
+    }
+  ]
+}

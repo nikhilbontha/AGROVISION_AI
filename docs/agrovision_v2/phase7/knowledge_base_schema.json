@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgroVision AI 2.0 - Agricultural Knowledge Base Schema",
+  "version": "2.0.0",
+  "description": "Standardized schema for crop disease knowledge records, symptom distinctions, look-alikes, IPM options, and evidence references.",
+  "type": "object",
+  "required": [
+    "knowledge_record_id",
+    "crop_id",
+    "disease_id",
+    "canonical_name",
+    "condition_type",
+    "pathogen_type",
+    "affected_organs",
+    "typical_symptoms",
+    "management_options",
+    "prevention_practices",
+    "monitoring_guidance",
+    "when_to_seek_expert_help",
+    "regional_applicability",
+    "evidence_references",
+    "review_status",
+    "last_reviewed_date",
+    "knowledge_version"
+  ],
+  "properties": {
+    "knowledge_record_id": {
+      "type": "string",
+      "pattern": "^kb_[a-z0-9_]+$"
+    },
+    "crop_id": {
+      "type": "string",
+      "pattern": "^crop_[a-z0-9_]+$"
+    },
+    "disease_id": {
+      "type": "string",
+      "pattern": "^dis_[a-z0-9_]+$"
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "scientific_name": {
+      "type": ["string", "null"]
+    },
+    "condition_type": {
+      "type": "string",
+      "enum": [
+        "infectious_disease",
+        "physiological_disorder",
+        "pest_infestation",
+        "healthy_condition"
+      ]
+    },
+    "pathogen_type": {
+      "type": "string",
+      "enum": [
+        "fungal",
+        "bacterial",
+        "viral",
+        "oomycete",
+        "phytoplasma",
+        "physiological",
+        "insect_pest",
+        "none"
+      ]
+    },
+    "affected_organs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "typical_symptoms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "early_symptoms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "advanced_symptoms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conditions_favoring_development": {
+      "type": ["object", "null"],
+      "properties": {
+        "optimal_temperature_c": { "type": ["string", "null"] },
+        "relative_humidity_pct": { "type": ["string", "null"] },
+        "leaf_wetness_hours": { "type": ["string", "null"] },
+        "favorable_weather": { "type": ["string", "null"] }
+      }
+    },
+    "transmission_or_spread": {
+      "type": ["string", "null"]
+    },
+    "common_look_alikes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "diagnostic_distinguishing_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "management_options": {
+      "type": "object",
+      "required": ["cultural", "mechanical", "biological", "chemical"],
+      "properties": {
+        "cultural": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mechanical": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "biological": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "chemical": {
+          "type": "object",
+          "required": ["verified_treatments", "cautions"],
+          "properties": {
+            "verified_treatments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["active_ingredient", "formulation", "dosage_per_liter", "cibrc_status", "source_reference_id"],
+                "properties": {
+                  "active_ingredient": { "type": "string" },
+                  "formulation": { "type": "string" },
+                  "dosage_per_liter": { "type": "string" },
+                  "cibrc_status": { "type": "string", "enum": ["approved_label_claim", "recommended_package_of_practices", "restricted_use", "provisional_review"] },
+                  "pre_harvest_interval_days": { "type": ["integer", "string", "null"] },
+                  "source_reference_id": { "type": "string" }
+                }
+              }
+            },
+            "cautions": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "prevention_practices": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "monitoring_guidance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "when_to_seek_expert_help": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "regional_applicability": {
+      "type": "object",
+      "required": ["states", "seasons", "regional_varieties"],
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "districts_priority": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "seasons": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "regional_varieties": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "evidence_references": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "verified_expert",
+        "peer_reviewed",
+        "provisional_review",
+        "unverified"
+      ]
+    },
+    "last_reviewed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "knowledge_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    }
+  }
+}

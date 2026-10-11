@@ -1,0 +1,95 @@
+{
+  "manifest_version": "2.0.0",
+  "build_timestamp": "2026-10-11T12:46:00+05:30",
+  "verification_timestamp": "2026-10-11T12:46:00+05:30",
+  "release_status": "READY_WITH_LIMITATIONS",
+  "application": {
+    "name": "AgroVision AI",
+    "version": "2.0.0",
+    "repository": "nikhilbontha/AGROVISION_AI",
+    "source_revision": {
+      "git_branch": "main",
+      "git_commit": "d8df06c1637e1b9b5cc5fa0a5254f717370a621d",
+      "working_tree_state": "dirty_uncommitted_phase_artifacts_preserved"
+    }
+  },
+  "backend": {
+    "framework": "FastAPI",
+    "framework_version": "0.136.1",
+    "asgi_server": "uvicorn 0.47.0",
+    "schema_validator": "pydantic 2.13.4",
+    "api_version": "2.0.0",
+    "runtime": {
+      "python_version": "3.13.14 (tags/v3.13.14:fd17997)",
+      "target_platform": "Linux Container (Ubuntu 22.04 LTS / AMD64 recommended for TF C++ runtime)",
+      "verification_platform": "Windows-11-10.0.26200-SP0 (AMD64)"
+    }
+  },
+  "frontend": {
+    "framework": "React 19.2.6 (Vite 8.0.13)",
+    "package_version": "1.0.0",
+    "styling": "TailwindCSS 3.4.19 / Vanilla CSS tokens",
+    "production_build_status": "built_verified",
+    "production_dist_entry": "frontend/dist/index.html",
+    "dist_bundle_hash_css": "dist/assets/index--d5O7L7j.css",
+    "dist_bundle_hash_js": "dist/assets/index-aIqms0Xo.js"
+  },
+  "models": {
+    "active_production_baseline": {
+      "model_version": "v1_baseline_39class",
+      "architecture": "MobileNetV2-unified-classifier",
+      "relative_path": "ml_models/disease_detection/disease_model.h5",
+      "sha256_checksum": "6ce987f81f3f72ad8e13d16680ea93d294fbc42f4f1f3644796cc6ccce3831a9",
+      "size_bytes": 42876776,
+      "output_dimensions": 39,
+      "class_mapping_path": "ml_models/disease_detection/class_indices.json",
+      "class_mapping_sha256": "5553ee48f93e1d20115145337640e733605909ad6d5f275c8ddf9a1052d152b1",
+      "status": "active_production_fallback"
+    },
+    "evaluated_master_candidate": {
+      "model_version": "v2_candidate_72class",
+      "architecture": "AgroVision-Unified-72Class-CNN (ResNet50/MobileNetV2 Hybrid)",
+      "relative_path": "ml_models/disease_detection/unified_experiment/artifacts/agrovision_phase7_20261010_231412/AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+      "sha256_checksum": "b4206b1d98173e89e3534fa206d4aaa8f283856ad52581e4585a11d5c4a4135c",
+      "size_bytes": 34265504,
+      "output_dimensions": 72,
+      "class_mapping_path": "ml_models/disease_detection/unified_experiment/unified_label_mapping.json",
+      "class_mapping_sha256": "2f117191c702f42074e2cbb22607db1f5e464f64b63574c5426711689db7ee3e",
+      "status": "evaluated_candidate_gated_extension_pilot"
+    },
+    "yield_prediction_engine": {
+      "model_version": "v2_smart_agronomic_hybrid",
+      "relative_path": "ml_models/yield_prediction/yield_model.pkl",
+      "sha256_checksum": "1a06a98b0b20b2ce885cee9433f327413aa5e53e386f3b093769536a8151b2eb",
+      "size_bytes": 10460163,
+      "status": "active_production"
+    }
+  },
+  "subsystem_versions": {
+    "canonical_taxonomy_version": "2.0.0",
+    "taxonomy_registry_reference": "docs/agrovision_v2/phase2/crop_registry.json",
+    "disease_registry_reference": "docs/agrovision_v2/phase2/disease_registry.json",
+    "questionnaire_schema_version": "2.0.0",
+    "questionnaire_config_reference": "docs/agrovision_v2/phase4/questionnaire_config.json",
+    "diagnosis_engine_version": "2.0.0",
+    "evidence_fusion_rules_reference": "docs/agrovision_v2/phase5/evidence_fusion_rules.json",
+    "knowledge_base_version": "2.0.0",
+    "knowledge_base_reference": "docs/agrovision_v2/phase7/crop_disease_knowledge.json"
+  },
+  "evaluation_reference": {
+    "independent_evaluation_report": "docs/agrovision_v2/phase9/PHASE_9_EVALUATION_REPORT.md",
+    "evaluation_metrics_summary": "docs/agrovision_v2/phase9/evaluation_summary_metrics.json",
+    "release_decision_document": "docs/agrovision_v2/phase9/release_acceptance_decision.json",
+    "phase9_decision": "CONDITIONAL_PASS",
+    "overall_accuracy_field_domain": 0.8686,
+    "cross_crop_error_unconditioned": 0.3815,
+    "cross_crop_error_crop_conditioned": 0.0000,
+    "calibrated_rejection_threshold_tau": 0.50
+  },
+  "known_limitations": [
+    "Unconditioned 72-class inference displays 38.15% cross-crop confusion. Mandatory crop species selection in UI is enforced to reduce this to 0.00%.",
+    "Lab-domain cardboard background images achieve only 30.81% accuracy due to severe distribution mismatch compared to realistic agricultural field foliage.",
+    "Local Windows 11 host WDAC policy blocks C++ .pyd tensor runtime libraries. Native containerized Linux deployment (Ubuntu 22.04 LTS / Docker) is mandatory for TensorFlow GPU/CPU execution.",
+    "Direct chemical pesticide recommendations remain strictly locked unless diagnosis confidence exceeds calibrated tau >= 0.50 and symptoms match organ ontology."
+  ]
+}

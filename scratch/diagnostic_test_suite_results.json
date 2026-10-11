@@ -1,0 +1,211 @@
+[
+  {
+    "scenario_id": 1,
+    "name": "Tomato healthy leaf",
+    "expected_crop": "Tomato",
+    "expected_disease": "Healthy",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_tomato",
+    "top_candidate": "Tomato Healthy Foliage",
+    "top_evidence_score": 0.8165,
+    "raw_model_score": 0.4452,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_tomato'. Visual feature distribution: crop_tomato (54.5%), crop_tomato (54.5%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 2,
+    "name": "Tomato leaf with known disease",
+    "expected_crop": "Tomato",
+    "expected_disease": "Late Blight",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_tomato",
+    "top_candidate": "Tomato Late Blight",
+    "top_evidence_score": 1.0,
+    "raw_model_score": 0.9769,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_tomato'. Visual feature distribution: crop_tomato (99.4%), crop_tomato (99.4%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 3,
+    "name": "Chilli healthy leaf",
+    "expected_crop": "Chilli",
+    "expected_disease": "Healthy",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_chilli",
+    "top_candidate": "Chilli Healthy Foliage",
+    "top_evidence_score": 0.9798,
+    "raw_model_score": 0.9479,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_chilli'. Visual feature distribution: crop_chilli (96.8%), crop_chilli (96.8%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 4,
+    "name": "Chilli leaf with known disease",
+    "expected_crop": "Chilli",
+    "expected_disease": "Anthracnose",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_chilli",
+    "top_candidate": "Chilli Anthracnose (Dieback & Fruit Rot)",
+    "top_evidence_score": 1.0,
+    "raw_model_score": 0.4684,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_chilli'. Visual feature distribution: crop_chilli (89.2%), crop_chilli (89.2%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 5,
+    "name": "Potato disease image",
+    "expected_crop": "Potato",
+    "expected_disease": "Early Blight",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_apple",
+    "top_candidate": "Potato Late Blight",
+    "top_evidence_score": 0.6535,
+    "raw_model_score": 0.1165,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_potato'. Visual feature distribution: crop_apple (32.7%), crop_potato (17.8%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 6,
+    "name": "Wheat disease image",
+    "expected_crop": "Wheat",
+    "expected_disease": "Leaf Rust",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_wheat",
+    "top_candidate": "Wheat Stripe Rust (Yellow Rust)",
+    "top_evidence_score": 0.7444,
+    "raw_model_score": 0.5762,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_wheat'. Visual feature distribution: crop_wheat (77.4%), crop_wheat (77.4%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 7,
+    "name": "Corn disease image",
+    "expected_crop": "Corn",
+    "expected_disease": "Common Rust",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_corn",
+    "top_candidate": "Corn Common Rust",
+    "top_evidence_score": 0.9297,
+    "raw_model_score": 0.4147,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_corn'. Visual feature distribution: crop_corn (44.6%), crop_corn (44.6%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 8,
+    "name": "Blurry or low-quality plant image",
+    "expected_crop": "Tomato (Degraded)",
+    "expected_disease": "Uncertain / Diffuse",
+    "inference_type": "REAL_MODEL",
+    "status": "insufficient_evidence",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_rice",
+    "top_candidate": "Tomato Bacterial Spot",
+    "top_evidence_score": 0.2682,
+    "raw_model_score": 0.0156,
+    "abstention_reasons": [
+      "ALL_CANDIDATE_SCORES_BELOW_BASELINE_THRESHOLD",
+      "Diagnosis conditioned on farmer-selected host 'crop_tomato'. Visual feature distribution: crop_rice (22.7%), crop_tomato (5.8%)."
+    ],
+    "guidance_permitted": false
+  },
+  {
+    "scenario_id": 9,
+    "name": "Non-plant image",
+    "expected_crop": "Non-Plant / Uncertain",
+    "expected_disease": "Abstain",
+    "inference_type": "REAL_MODEL",
+    "status": "organ_mismatch",
+    "crop_selection_status": "auto_routed",
+    "visual_predicted_crop": "crop_apple",
+    "top_candidate": "Apple Black Rot (Frogeye Leaf Spot)",
+    "top_evidence_score": 0.0,
+    "raw_model_score": 0.2581,
+    "abstention_reasons": [
+      "Auto-routed to visual dominant crop 'crop_apple' (36.0% confidence).",
+      "INCOMPATIBLE_ORGAN: Organ 'leaves' is biologically unsupported for 'crop_unsure'.",
+      "FARMER_UNCERTAIN_OF_CROP",
+      "ORGAN_POLICY_UNSUPPORTED"
+    ],
+    "guidance_permitted": false
+  },
+  {
+    "scenario_id": 10,
+    "name": "Supported crop paired with cross-crop / mismatched organ",
+    "expected_crop": "Tomato",
+    "expected_disease": "Penalized / Abstain",
+    "inference_type": "REAL_MODEL",
+    "status": "diagnosis_supported",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_tomato",
+    "top_candidate": "Tomato Late Blight",
+    "top_evidence_score": 0.9827,
+    "raw_model_score": 0.9769,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_tomato'. Visual feature distribution: crop_tomato (99.4%), crop_tomato (99.4%)."
+    ],
+    "guidance_permitted": true
+  },
+  {
+    "scenario_id": 11,
+    "name": "Unknown or unsupported crop",
+    "expected_crop": "Unsupported Crop",
+    "expected_disease": "Abstain",
+    "inference_type": "REAL_MODEL",
+    "status": "unsupported_crop",
+    "crop_selection_status": "unsupported_crop",
+    "visual_predicted_crop": null,
+    "top_candidate": null,
+    "top_evidence_score": 0.0,
+    "raw_model_score": 0.0,
+    "abstention_reasons": [
+      "CROP_SPECIES_NOT_IN_CANONICAL_CATALOG"
+    ],
+    "guidance_permitted": false
+  },
+  {
+    "scenario_id": 12,
+    "name": "Missing or contradictory questionnaire evidence",
+    "expected_crop": "Tomato",
+    "expected_disease": "Expert Review Recommended",
+    "inference_type": "REAL_MODEL",
+    "status": "expert_review_recommended",
+    "crop_selection_status": "user_conditioned_verified",
+    "visual_predicted_crop": "crop_tomato",
+    "top_candidate": "Tomato Healthy Foliage",
+    "top_evidence_score": 0.8165,
+    "raw_model_score": 0.4452,
+    "abstention_reasons": [
+      "Diagnosis conditioned on farmer-selected host 'crop_tomato'. Visual feature distribution: crop_tomato (54.5%), crop_tomato (54.5%).",
+      "HEALTHY_MODEL_VS_SEVERE_ROT_CONTRADICTION"
+    ],
+    "guidance_permitted": false
+  }
+]

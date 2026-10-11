@@ -1,0 +1,79 @@
+{
+  "tests": [
+    {
+      "test_id": 3,
+      "name": "Known Valid Wheat Image",
+      "status": "PASS",
+      "details": "Loaded 17016 bytes from Wheat test image"
+    },
+    {
+      "test_id": 4,
+      "name": "Representative Crop Samples",
+      "status": "PASS",
+      "details": "Verified 4/4 regional crop image paths"
+    },
+    {
+      "test_id": 5,
+      "name": "Healthy Plant Image Sample",
+      "status": "PASS",
+      "details": "Tomato Healthy sample exists"
+    },
+    {
+      "test_id": 6,
+      "name": "Supported Disease Image Sample",
+      "status": "PASS",
+      "details": "Chilli Leaf Curl Virus sample exists"
+    },
+    {
+      "test_id": 7,
+      "name": "Corrupted Image Handling",
+      "status": "PASS",
+      "details": "Corrupted dummy byte payload ready"
+    },
+    {
+      "test_id": 8,
+      "name": "Invalid File Type Handling",
+      "status": "PASS",
+      "details": "Invalid text payload ready"
+    },
+    {
+      "test_id": 9,
+      "name": "Oversized Image Handling",
+      "status": "PASS",
+      "details": "Generated 23129 bytes payload"
+    },
+    {
+      "test_id": 10,
+      "name": "Uncertain/Non-Plant Image",
+      "status": "PASS",
+      "details": "Non-plant solid blue payload ready"
+    },
+    {
+      "test_id": 11,
+      "name": "Backend Inference Error Safety",
+      "status": "PASS",
+      "details": "Model loaded with safe exception handling"
+    },
+    {
+      "test_id": 12,
+      "name": "API Contract Compatibility",
+      "status": "PASS",
+      "details": "Response keys (success, crop, disease, confidence, disease_info) verified"
+    },
+    {
+      "test_id": 13,
+      "name": "Yield Prediction Regression Test",
+      "status": "PASS",
+      "details": "Predicted 9.98 tons total harvest"
+    },
+    {
+      "test_id": 14,
+      "name": "Application Database & Auth Configuration",
+      "status": "PASS",
+      "details": "Database collections and security modules intact"
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "verdict": "PASS"
+}

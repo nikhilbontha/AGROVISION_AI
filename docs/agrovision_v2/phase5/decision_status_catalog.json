@@ -1,0 +1,124 @@
+{
+  "catalog_version": "2.0.0",
+  "generated_at": "2026-10-11T11:40:00+05:30",
+  "description": "AgroVision AI 2.0 Decision Status Catalog establishing explicit selective prediction, abstention, and referral states.",
+  "statuses": [
+    {
+      "status_id": "diagnosis_supported",
+      "display_label": "Diagnosis Supported by Evidence",
+      "description": "Image candidate scores, verified crop selection, plant organ, and farmer symptoms align without critical contradictions.",
+      "trigger_conditions": [
+        "Farmer selected crop matches candidate disease host in canonical registry",
+        "Plant organ is PERMITTED or REFERENCE_ONLY_UNTESTED in compatibility matrix",
+        "At least one reported symptom matches disease pathology profile",
+        "No critical contradictory symptoms (e.g. Healthy vs Severe Rot)",
+        "Top candidate score exceeds ambiguity margin"
+      ],
+      "farmer_action": "Review diagnostic findings, confirm visual symptom match, and follow validated integrated pest management (IPM) guidelines.",
+      "allows_treatment_recommendation": true
+    },
+    {
+      "status_id": "multiple_candidates",
+      "display_label": "Multiple Plausible Candidates (Differential Diagnosis)",
+      "description": "Two or more candidate diseases have comparable visual and symptom evidence. Diagnostic engine refuses to declare a single forced winner.",
+      "trigger_conditions": [
+        "Margin between top-1 and top-2 candidate evidence scores is below provisional ambiguity threshold (margin < 0.15)",
+        "Both candidates share similar foliar symptoms or look-alike lesion morphology",
+        "Crop matches both candidates"
+      ],
+      "farmer_action": "Review the differential candidate comparison and answer the provided targeted follow-up question to distinguish between them.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "needs_more_information",
+      "display_label": "Additional Information Needed",
+      "description": "Crucial diagnostic context is missing or uncertain, preventing reliable conclusion.",
+      "trigger_conditions": [
+        "Symptom answers marked 'unsure' or essential progression details omitted",
+        "Image candidate score is moderate and symptom overlap is high",
+        "Targeted follow-up question is available in Phase 4 questionnaire configuration"
+      ],
+      "farmer_action": "Answer the recommended follow-up questions regarding lesion color, pattern, or moisture conditions to refine the assessment.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "crop_mismatch",
+      "display_label": "Crop Identity Mismatch",
+      "description": "Disagreement between farmer-selected crop and visual model feature evidence. The system preserves the disagreement and refuses silent overwrite.",
+      "trigger_conditions": [
+        "Farmer explicitly selected Crop A, but visual image classifier predicted Crop B with high confidence",
+        "Model top candidate belongs to a botanical species different from farmer's selection"
+      ],
+      "farmer_action": "Confirm whether the photo shows the selected crop or re-upload a close-up image showing clear foliage and plant structure.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "organ_mismatch",
+      "display_label": "Incompatible Plant Part",
+      "description": "The affected plant organ is biologically incompatible with the candidate disease or unrepresented in training data.",
+      "trigger_conditions": [
+        "Organ policy is UNSUPPORTED for the selected crop in crop_organ_compatibility_matrix.json",
+        "Candidate disease affects foliage only, but farmer reported root/tuber infection"
+      ],
+      "farmer_action": "Verify the affected plant part. If symptoms are on stems or roots, consult local agricultural extension officers as foliar models cannot evaluate root pathogens.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "unsupported_crop",
+      "display_label": "Unsupported Crop Species",
+      "description": "The selected crop is not part of the validated 15 canonical crop species in AgroVision AI 2.0.",
+      "trigger_conditions": [
+        "Farmer selected 'crop_unsupported' or an uncataloged botanical species"
+      ],
+      "farmer_action": "Automated AI diagnosis is currently uncalibrated for this crop. Please take physical plant samples to your nearest Krishi Vigyan Kendra (KVK) or university extension clinic.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "model_unavailable",
+      "display_label": "Vision Model Runtime Unavailable",
+      "description": "Neural network model checkpoint could not be executed due to system runtime or operating system DLL policy restrictions.",
+      "trigger_conditions": [
+        "TensorFlow/TFLite C++ wrapper blocked by OS Application Control policy",
+        "Missing model checkpoint file on disk",
+        "Corrupted weights file"
+      ],
+      "farmer_action": "Vision inference is temporarily paused. The system provides rule-based symptom triage based on your questionnaire answers.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "invalid_input",
+      "display_label": "Invalid Diagnostic Input",
+      "description": "The submitted payload contains malformed parameters, corrupted image data, or invalid identifiers.",
+      "trigger_conditions": [
+        "Invalid canonical crop ID not found in registry",
+        "Unknown symptom identifiers not in configuration",
+        "Image file unreadable or zero-byte"
+      ],
+      "farmer_action": "Please re-submit the questionnaire with valid inputs.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "insufficient_evidence",
+      "display_label": "Insufficient Diagnostic Evidence",
+      "description": "Neither visual features nor reported symptoms provide sufficient evidence to support any disease hypothesis.",
+      "trigger_conditions": [
+        "Visual model scores are uniformly low (maximum score below baseline threshold)",
+        "No distinctive symptoms reported (only general uninformative signs)",
+        "High uncertainty across all evaluation dimensions"
+      ],
+      "farmer_action": "Capture a clearer, well-lit photo in natural daylight focusing on the boundary between healthy and diseased tissue.",
+      "allows_treatment_recommendation": false
+    },
+    {
+      "status_id": "expert_review_recommended",
+      "display_label": "Expert Human Review Recommended",
+      "description": "Severe contradictions, suspected novel pathogen, or high-consequence symptom pattern warranting professional plant pathologist evaluation.",
+      "trigger_conditions": [
+        "Severe contradiction between visual model and farmer symptoms (e.g. Model says Healthy, but farmer reports Rapid Field Wilting)",
+        "Suspected quarantine pathogen or unusual vector outbreak"
+      ],
+      "farmer_action": "Contact your local agricultural extension officer, state horticulture department, or KVK plant pathologist immediately with fresh plant specimens.",
+      "allows_treatment_recommendation": false
+    }
+  ]
+}

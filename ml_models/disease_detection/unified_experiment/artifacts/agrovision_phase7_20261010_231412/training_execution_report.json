@@ -1,0 +1,776 @@
+{
+  "execution_status": "PASS",
+  "timestamp": "20261010_231412",
+  "artifact_directory": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\unified_experiment\\artifacts\\agrovision_phase7_20261010_231412",
+  "best_candidate": "STRATEGY_A_COMBINED_BASELINE",
+  "master_checkpoint_path": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\unified_experiment\\artifacts\\agrovision_phase7_20261010_231412\\AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+  "candidate_results": {
+    "strategy_a": {
+      "checkpoint": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\unified_experiment\\artifacts\\agrovision_phase7_20261010_231412\\checkpoints\\AGROVISION_EFFNET_U72_STRATEGY_A.h5",
+      "history": {
+        "stage1": {
+          "accuracy": [
+            0.651228666305542,
+            0.7892467975616455,
+            0.814436137676239
+          ],
+          "loss": [
+            2.252798318862915,
+            1.8107987642288208,
+            1.7464666366577148
+          ],
+          "top_3_accuracy": [
+            0.8250292539596558,
+            0.919812798500061,
+            0.9270185232162476
+          ],
+          "val_accuracy": [
+            0.8091451525688171,
+            0.8437944054603577,
+            0.8562908172607422
+          ],
+          "val_loss": [
+            1.4538357257843018,
+            1.3672651052474976,
+            1.3688077926635742
+          ],
+          "val_top_3_accuracy": [
+            0.9335415959358215,
+            0.9372337460517883,
+            0.942345917224884
+          ]
+        },
+        "stage2": {
+          "accuracy": [
+            0.7928188443183899,
+            0.8349449038505554,
+            0.850280225276947,
+            0.8602574467658997,
+            0.8709737062454224
+          ],
+          "loss": [
+            1.7073242664337158,
+            1.5651614665985107,
+            1.505874752998352,
+            1.4799209833145142,
+            1.4524319171905518
+          ],
+          "top_3_accuracy": [
+            0.9158711433410645,
+            0.9342858791351318,
+            0.9416148066520691,
+            0.9448173642158508,
+            0.9464802742004395
+          ],
+          "val_accuracy": [
+            0.8531666994094849,
+            0.8767395615577698,
+            0.8778756260871887,
+            0.881283700466156,
+            0.8787276148796082
+          ],
+          "val_loss": [
+            1.3237459659576416,
+            1.2803082466125488,
+            1.23792564868927,
+            1.219627857208252,
+            1.2206447124481201
+          ],
+          "val_top_3_accuracy": [
+            0.9463220834732056,
+            0.9474580883979797,
+            0.9502981901168823,
+            0.9528542757034302,
+            0.9554104208946228
+          ]
+        },
+        "stage1_duration_sec": 734.4706280231476,
+        "stage2_duration_sec": 1531.0707046985626,
+        "total_duration_sec": 2265.54133272171
+      },
+      "eval": {
+        "overall_val_accuracy": 0.8813,
+        "dataset_1_broad_val_accuracy": 0.3534,
+        "dataset_2_regional_val_accuracy": 0.9488,
+        "predictions_finite": true,
+        "per_class_val_accuracy": {
+          "Apple___Apple_Scab": {
+            "accuracy": 0.1818,
+            "samples": 11
+          },
+          "Apple___Black_Rot": {
+            "accuracy": 0.0909,
+            "samples": 11
+          },
+          "Apple___Cedar_Apple_Rust": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Apple___Healthy": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Banana___Black_Sigatoka": {
+            "accuracy": 0.92,
+            "samples": 75
+          },
+          "Banana___Cordana_Leaf_Spot": {
+            "accuracy": 0.9808,
+            "samples": 52
+          },
+          "Banana___Healthy": {
+            "accuracy": 0.9333,
+            "samples": 75
+          },
+          "Banana___Panama_Disease": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Chilli___Anthracnose": {
+            "accuracy": 1.0,
+            "samples": 70
+          },
+          "Chilli___Damping_Off": {
+            "accuracy": 1.0,
+            "samples": 26
+          },
+          "Chilli___Healthy": {
+            "accuracy": 0.9565,
+            "samples": 46
+          },
+          "Chilli___Leaf_Curl_Virus": {
+            "accuracy": 0.9733,
+            "samples": 75
+          },
+          "Chilli___Leaf_Spot": {
+            "accuracy": 0.973,
+            "samples": 74
+          },
+          "Chilli___Veinal_Mottle_Virus": {
+            "accuracy": 1.0,
+            "samples": 74
+          },
+          "Chilli___Whitefly": {
+            "accuracy": 0.9315,
+            "samples": 73
+          },
+          "Corn___Cercospora_Gray_Leaf_Spot": {
+            "accuracy": 0.9091,
+            "samples": 11
+          },
+          "Corn___Common_Rust": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Corn___Healthy": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Corn___Northern_Leaf_Blight": {
+            "accuracy": 0.1818,
+            "samples": 11
+          },
+          "Cotton___Alternaria_Leaf_Spot": {
+            "accuracy": 0.9733,
+            "samples": 75
+          },
+          "Cotton___Bacterial_Blight": {
+            "accuracy": 0.814,
+            "samples": 86
+          },
+          "Cotton___Fusarium_Wilt": {
+            "accuracy": 0.9867,
+            "samples": 75
+          },
+          "Cotton___Healthy": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Cotton___Verticillium_Wilt": {
+            "accuracy": 0.9333,
+            "samples": 75
+          },
+          "Grape___Black_Rot": {
+            "accuracy": 0.5455,
+            "samples": 11
+          },
+          "Grape___Esca_Black_Measles": {
+            "accuracy": 0.4545,
+            "samples": 11
+          },
+          "Grape___Healthy": {
+            "accuracy": 0.1818,
+            "samples": 11
+          },
+          "Grape___Leaf_Blight_Isariopsis_Spot": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Mango___Anthracnose": {
+            "accuracy": 0.9867,
+            "samples": 75
+          },
+          "Mango___Bacterial_Canker": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Cutting_Weevil": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Die_Back": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Gall_Midge": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Healthy": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Powdery_Mildew": {
+            "accuracy": 0.9733,
+            "samples": 75
+          },
+          "Mango___Sooty_Mould": {
+            "accuracy": 0.9733,
+            "samples": 75
+          },
+          "Non_Plant___Unsupported_Object": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Orange___Citrus_Greening": {
+            "accuracy": 0.2727,
+            "samples": 11
+          },
+          "Orange___Healthy": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Palm___Magnesium_Deficiency": {
+            "accuracy": 0.9091,
+            "samples": 11
+          },
+          "Palm___Scale_Insect": {
+            "accuracy": 0.5,
+            "samples": 22
+          },
+          "Pepper___Bacterial_Spot": {
+            "accuracy": 0.5455,
+            "samples": 11
+          },
+          "Pepper___Healthy": {
+            "accuracy": 0.0909,
+            "samples": 11
+          },
+          "Potato___Early_Blight": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Potato___Healthy": {
+            "accuracy": 0.6364,
+            "samples": 11
+          },
+          "Potato___Late_Blight": {
+            "accuracy": 0.1818,
+            "samples": 11
+          },
+          "Rice___Bacterial_Leaf_Blight": {
+            "accuracy": 1.0,
+            "samples": 80
+          },
+          "Rice___Blast": {
+            "accuracy": 0.8605,
+            "samples": 86
+          },
+          "Rice___Brown_Spot": {
+            "accuracy": 0.9275,
+            "samples": 69
+          },
+          "Rice___Healthy": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Rice___Leaf_Scald": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Rice___Leaf_Smut": {
+            "accuracy": 1.0,
+            "samples": 6
+          },
+          "Rice___Sheath_Blight": {
+            "accuracy": 0.88,
+            "samples": 75
+          },
+          "Rice___Tungro": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Tomato___Bacterial_Spot": {
+            "accuracy": 0.686,
+            "samples": 86
+          },
+          "Tomato___Early_Blight": {
+            "accuracy": 0.6395,
+            "samples": 86
+          },
+          "Tomato___Healthy": {
+            "accuracy": 0.9419,
+            "samples": 86
+          },
+          "Tomato___Late_Blight": {
+            "accuracy": 0.8256,
+            "samples": 86
+          },
+          "Tomato___Leaf_Mold": {
+            "accuracy": 0.7326,
+            "samples": 86
+          },
+          "Tomato___Mosaic_Virus": {
+            "accuracy": 0.9552,
+            "samples": 67
+          },
+          "Tomato___Septoria_Leaf_Spot": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Tomato___Spider_Mites": {
+            "accuracy": 0.7907,
+            "samples": 86
+          },
+          "Tomato___Target_Spot": {
+            "accuracy": 0.7326,
+            "samples": 86
+          },
+          "Tomato___Yellow_Leaf_Curl_Virus": {
+            "accuracy": 0.8488,
+            "samples": 86
+          },
+          "Turmeric___Dry_Leaf": {
+            "accuracy": 1.0,
+            "samples": 31
+          },
+          "Turmeric___Healthy": {
+            "accuracy": 1.0,
+            "samples": 30
+          },
+          "Turmeric___Leaf_Blotch": {
+            "accuracy": 1.0,
+            "samples": 30
+          },
+          "Turmeric___Rhizome_Rot": {
+            "accuracy": 1.0,
+            "samples": 28
+          },
+          "Wheat___Healthy": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Wheat___Leaf_Rust": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Wheat___Powdery_Mildew": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Wheat___Stripe_Rust": {
+            "accuracy": 0.7273,
+            "samples": 11
+          }
+        }
+      }
+    },
+    "strategy_b": {
+      "checkpoint": "e:\\tekworks_projects\\crop\\ml_models\\disease_detection\\unified_experiment\\artifacts\\agrovision_phase7_20261010_231412\\checkpoints\\AGROVISION_EFFNET_U72_STRATEGY_B.h5",
+      "history": {
+        "stage1": {
+          "accuracy": [
+            0.03159450739622116,
+            0.0656525194644928,
+            0.09817084670066833
+          ],
+          "loss": [
+            4.077156066894531,
+            3.6318297386169434,
+            3.422055244445801
+          ],
+          "top_3_accuracy": [
+            0.08332820236682892,
+            0.16548623144626617,
+            0.22337870299816132
+          ],
+          "val_accuracy": [
+            0.1502414047718048,
+            0.24879296123981476,
+            0.3047429621219635
+          ],
+          "val_loss": [
+            4.10793924331665,
+            3.742267370223999,
+            3.5856473445892334
+          ],
+          "val_top_3_accuracy": [
+            0.3016188442707062,
+            0.45839250087738037,
+            0.5268389582633972
+          ]
+        },
+        "stage2": {
+          "accuracy": [
+            0.20822812616825104,
+            0.3444601893424988,
+            0.4251401126384735,
+            0.49682822823524475,
+            0.5473917722702026
+          ],
+          "loss": [
+            3.037095546722412,
+            2.6771421432495117,
+            2.510357618331909,
+            2.373547315597534,
+            2.2641570568084717
+          ],
+          "top_3_accuracy": [
+            0.4100511074066162,
+            0.5988790988922119,
+            0.6827616095542908,
+            0.7554351091384888,
+            0.7958366870880127
+          ],
+          "val_accuracy": [
+            0.46719682216644287,
+            0.5782448053359985,
+            0.6512354612350464,
+            0.7034932971000671,
+            0.7367225289344788
+          ],
+          "val_loss": [
+            2.7095069885253906,
+            2.4388346672058105,
+            2.2129242420196533,
+            2.057267665863037,
+            1.8813034296035767
+          ],
+          "val_top_3_accuracy": [
+            0.7344504594802856,
+            0.828173816204071,
+            0.8792956471443176,
+            0.9028685092926025,
+            0.9182050824165344
+          ]
+        },
+        "stage1_duration_sec": 757.8270206451416,
+        "stage2_duration_sec": 1578.7469589710236,
+        "total_duration_sec": 2336.573979616165
+      },
+      "eval": {
+        "overall_val_accuracy": 0.7367,
+        "dataset_1_broad_val_accuracy": 0.3584,
+        "dataset_2_regional_val_accuracy": 0.7851,
+        "predictions_finite": true,
+        "per_class_val_accuracy": {
+          "Apple___Apple_Scab": {
+            "accuracy": 0.4545,
+            "samples": 11
+          },
+          "Apple___Black_Rot": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Apple___Cedar_Apple_Rust": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Apple___Healthy": {
+            "accuracy": 0.4545,
+            "samples": 11
+          },
+          "Banana___Black_Sigatoka": {
+            "accuracy": 0.84,
+            "samples": 75
+          },
+          "Banana___Cordana_Leaf_Spot": {
+            "accuracy": 1.0,
+            "samples": 52
+          },
+          "Banana___Healthy": {
+            "accuracy": 0.96,
+            "samples": 75
+          },
+          "Banana___Panama_Disease": {
+            "accuracy": 0.6533,
+            "samples": 75
+          },
+          "Chilli___Anthracnose": {
+            "accuracy": 0.9857,
+            "samples": 70
+          },
+          "Chilli___Damping_Off": {
+            "accuracy": 0.9231,
+            "samples": 26
+          },
+          "Chilli___Healthy": {
+            "accuracy": 0.5,
+            "samples": 46
+          },
+          "Chilli___Leaf_Curl_Virus": {
+            "accuracy": 0.9067,
+            "samples": 75
+          },
+          "Chilli___Leaf_Spot": {
+            "accuracy": 0.9459,
+            "samples": 74
+          },
+          "Chilli___Veinal_Mottle_Virus": {
+            "accuracy": 1.0,
+            "samples": 74
+          },
+          "Chilli___Whitefly": {
+            "accuracy": 0.4795,
+            "samples": 73
+          },
+          "Corn___Cercospora_Gray_Leaf_Spot": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Corn___Common_Rust": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Corn___Healthy": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Corn___Northern_Leaf_Blight": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Cotton___Alternaria_Leaf_Spot": {
+            "accuracy": 0.9733,
+            "samples": 75
+          },
+          "Cotton___Bacterial_Blight": {
+            "accuracy": 0.3837,
+            "samples": 86
+          },
+          "Cotton___Fusarium_Wilt": {
+            "accuracy": 0.92,
+            "samples": 75
+          },
+          "Cotton___Healthy": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Cotton___Verticillium_Wilt": {
+            "accuracy": 0.9067,
+            "samples": 75
+          },
+          "Grape___Black_Rot": {
+            "accuracy": 0.1818,
+            "samples": 11
+          },
+          "Grape___Esca_Black_Measles": {
+            "accuracy": 0.9091,
+            "samples": 11
+          },
+          "Grape___Healthy": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Grape___Leaf_Blight_Isariopsis_Spot": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Mango___Anthracnose": {
+            "accuracy": 0.9067,
+            "samples": 75
+          },
+          "Mango___Bacterial_Canker": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Cutting_Weevil": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Die_Back": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Gall_Midge": {
+            "accuracy": 0.9867,
+            "samples": 75
+          },
+          "Mango___Healthy": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Mango___Powdery_Mildew": {
+            "accuracy": 0.9867,
+            "samples": 75
+          },
+          "Mango___Sooty_Mould": {
+            "accuracy": 0.8667,
+            "samples": 75
+          },
+          "Non_Plant___Unsupported_Object": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Orange___Citrus_Greening": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Orange___Healthy": {
+            "accuracy": 0.5455,
+            "samples": 11
+          },
+          "Palm___Magnesium_Deficiency": {
+            "accuracy": 0.3636,
+            "samples": 11
+          },
+          "Palm___Scale_Insect": {
+            "accuracy": 0.8182,
+            "samples": 22
+          },
+          "Pepper___Bacterial_Spot": {
+            "accuracy": 0.6364,
+            "samples": 11
+          },
+          "Pepper___Healthy": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Potato___Early_Blight": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Potato___Healthy": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Potato___Late_Blight": {
+            "accuracy": 0.0,
+            "samples": 11
+          },
+          "Rice___Bacterial_Leaf_Blight": {
+            "accuracy": 0.6,
+            "samples": 80
+          },
+          "Rice___Blast": {
+            "accuracy": 0.3605,
+            "samples": 86
+          },
+          "Rice___Brown_Spot": {
+            "accuracy": 0.913,
+            "samples": 69
+          },
+          "Rice___Healthy": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Rice___Leaf_Scald": {
+            "accuracy": 0.8933,
+            "samples": 75
+          },
+          "Rice___Leaf_Smut": {
+            "accuracy": 0.5,
+            "samples": 6
+          },
+          "Rice___Sheath_Blight": {
+            "accuracy": 0.4267,
+            "samples": 75
+          },
+          "Rice___Tungro": {
+            "accuracy": 1.0,
+            "samples": 75
+          },
+          "Tomato___Bacterial_Spot": {
+            "accuracy": 0.5581,
+            "samples": 86
+          },
+          "Tomato___Early_Blight": {
+            "accuracy": 0.1628,
+            "samples": 86
+          },
+          "Tomato___Healthy": {
+            "accuracy": 0.5581,
+            "samples": 86
+          },
+          "Tomato___Late_Blight": {
+            "accuracy": 0.1628,
+            "samples": 86
+          },
+          "Tomato___Leaf_Mold": {
+            "accuracy": 0.3837,
+            "samples": 86
+          },
+          "Tomato___Mosaic_Virus": {
+            "accuracy": 0.9104,
+            "samples": 67
+          },
+          "Tomato___Septoria_Leaf_Spot": {
+            "accuracy": 0.407,
+            "samples": 86
+          },
+          "Tomato___Spider_Mites": {
+            "accuracy": 0.8488,
+            "samples": 86
+          },
+          "Tomato___Target_Spot": {
+            "accuracy": 0.3953,
+            "samples": 86
+          },
+          "Tomato___Yellow_Leaf_Curl_Virus": {
+            "accuracy": 0.8953,
+            "samples": 86
+          },
+          "Turmeric___Dry_Leaf": {
+            "accuracy": 0.9677,
+            "samples": 31
+          },
+          "Turmeric___Healthy": {
+            "accuracy": 1.0,
+            "samples": 30
+          },
+          "Turmeric___Leaf_Blotch": {
+            "accuracy": 0.9667,
+            "samples": 30
+          },
+          "Turmeric___Rhizome_Rot": {
+            "accuracy": 0.9643,
+            "samples": 28
+          },
+          "Wheat___Healthy": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Wheat___Leaf_Rust": {
+            "accuracy": 0.6364,
+            "samples": 11
+          },
+          "Wheat___Powdery_Mildew": {
+            "accuracy": 1.0,
+            "samples": 11
+          },
+          "Wheat___Stripe_Rust": {
+            "accuracy": 0.3636,
+            "samples": 11
+          }
+        }
+      }
+    }
+  },
+  "fresh_load_verification": {
+    "load_successful": true,
+    "output_dimension": 72,
+    "dimension_match_72": true,
+    "predictions_finite": true
+  },
+  "reproducibility_command": "python scratch/run_phase7_controlled_training.py"
+}

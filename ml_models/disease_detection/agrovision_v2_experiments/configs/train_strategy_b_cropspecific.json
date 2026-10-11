@@ -1,0 +1,115 @@
+{
+  "experiment_id": "EXP_STRATEGY_B_CROP_SPECIFIC_FAMILY",
+  "strategy": "B_CROP_SPECIFIC_CLASSIFIERS",
+  "version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "description": "Strategy B: Dedicated crop-specific neural classifiers for each major crop family, completely preventing cross-crop false positives.",
+  "dataset": {
+    "manifest_version": "2.0.0",
+    "train_manifest": "ml_models/disease_detection/unified_experiment/train_manifest.json",
+    "val_manifest": "ml_models/disease_detection/unified_experiment/val_manifest.json",
+    "test_manifest": "ml_models/disease_detection/unified_experiment/test_manifest.json",
+    "crop_filtering": "Conditioned strictly per host crop ID"
+  },
+  "supported_crop_classifiers": [
+    {
+      "crop_id": "crop_tomato",
+      "crop_name": "Tomato",
+      "num_classes": 20,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_tomato_20class.h5"
+    },
+    {
+      "crop_id": "crop_rice",
+      "crop_name": "Rice",
+      "num_classes": 11,
+      "min_train_samples": 50,
+      "checkpoint_name": "crop_specific_rice_11class.h5"
+    },
+    {
+      "crop_id": "crop_chilli",
+      "crop_name": "Chilli",
+      "num_classes": 8,
+      "min_train_samples": 50,
+      "checkpoint_name": "crop_specific_chilli_8class.h5"
+    },
+    {
+      "crop_id": "crop_mango",
+      "crop_name": "Mango",
+      "num_classes": 8,
+      "min_train_samples": 50,
+      "checkpoint_name": "crop_specific_mango_8class.h5"
+    },
+    {
+      "crop_id": "crop_cotton",
+      "crop_name": "Cotton",
+      "num_classes": 7,
+      "min_train_samples": 50,
+      "checkpoint_name": "crop_specific_cotton_7class.h5"
+    },
+    {
+      "crop_id": "crop_apple",
+      "crop_name": "Apple",
+      "num_classes": 4,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_apple_4class.h5"
+    },
+    {
+      "crop_id": "crop_corn",
+      "crop_name": "Corn",
+      "num_classes": 4,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_corn_4class.h5"
+    },
+    {
+      "crop_id": "crop_grape",
+      "crop_name": "Grape",
+      "num_classes": 4,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_grape_4class.h5"
+    },
+    {
+      "crop_id": "crop_potato",
+      "crop_name": "Potato",
+      "num_classes": 3,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_potato_3class.h5"
+    },
+    {
+      "crop_id": "crop_wheat",
+      "crop_name": "Wheat",
+      "num_classes": 4,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_wheat_4class.h5"
+    },
+    {
+      "crop_id": "crop_banana",
+      "crop_name": "Banana",
+      "num_classes": 4,
+      "min_train_samples": 40,
+      "checkpoint_name": "crop_specific_banana_4class.h5"
+    }
+  ],
+  "model_architecture": {
+    "backbone": "MobileNetV3Small",
+    "backbone_weights": "imagenet",
+    "pooling": "GlobalAveragePooling2D",
+    "dropout": 0.25,
+    "advantage": "Lightweight per-crop footprint (1.5-2.5 MB per model), fast edge inference, zero cross-crop confusion"
+  },
+  "training_hyperparameters": {
+    "random_seed": 42,
+    "batch_size": 32,
+    "epochs": 20,
+    "optimizer": "AdamW",
+    "initial_learning_rate": 0.0003,
+    "early_stopping_patience": 4
+  },
+  "preprocessing": {
+    "target_size": [224, 224],
+    "color_mode": "rgb",
+    "normalization": "scaled_minus1_to_plus1_mobilenet_standard"
+  },
+  "mappings_file": "ml_models/disease_detection/agrovision_v2_experiments/mappings/crop_specific_class_mappings.json",
+  "output_dir": "ml_models/disease_detection/agrovision_v2_experiments/artifacts/strategy_b/"
+}

@@ -1,0 +1,33 @@
+{
+  "decision_document": "AgroVision AI 2.0 Final Release Acceptance Decision",
+  "generated_at": "2026-10-11T12:47:30+05:30",
+  "overall_release_status": "READY_WITH_LIMITATIONS",
+  "justification": "The software application, database layer, adaptive questionnaire, evidence fusion engine, knowledge base, and yield forecasting models are fully integrated, operationally stable, and 100% verified across regression tests. However, the disease diagnosis neural model exhibits known cross-crop confusion (38.15% when unconditioned) and laboratory domain degradation (30.81%). It achieves high clinical accuracy (86.86% field accuracy, 91.33% accepted accuracy) ONLY under two mandatory operational constraints: (1) mandatory crop species confirmation by the user in the UI, and (2) active calibrated rejection gating at tau = 0.50. Therefore, the release is approved strictly under controlled pilot conditions with these active limitations.",
+  "gate_evaluation": {
+    "prior_phases_reviewed": "PASS",
+    "release_manifest_verified": "PASS",
+    "runtime_and_model_readiness": "PASS",
+    "model_unavailability_reporting_honest": "PASS",
+    "configuration_and_secrets_handled_safely": "PASS",
+    "health_checks_and_logs_redacted": "PASS",
+    "model_versioning_and_rollback_tested": "PASS",
+    "regression_tests_passed": "PASS (13/13)",
+    "yield_prediction_intact": "PASS",
+    "monitoring_and_maintenance_documented": "PASS",
+    "consistency_with_independent_evaluation": "PASS",
+    "no_unapproved_live_deployment": "PASS",
+    "unresolved_defects_cataloged": "PASS"
+  },
+  "operational_conditions_for_release": [
+    "CONDITION-1: Mandatory Crop Selection — The web UI must require the farmer to select or confirm the crop species prior to final diagnostic commitment. Bypassing crop selection to rely purely on unconstrained 72-class argmax is prohibited.",
+    "CONDITION-2: Calibrated Rejection Gating — The confidence threshold tau = 0.50 must remain strictly active. Diagnoses with confidence below tau must trigger safe abstention (multiple_candidates or abstained_low_confidence).",
+    "CONDITION-3: Chemical Treatment Gating — Chemical pesticide recommendations must remain strictly locked whenever diagnosis decision status is anything other than diagnosis_supported or single_candidate_confirmed.",
+    "CONDITION-4: Environment Credential Rotation — Hardcoded database fallback credentials in backend/app/database.py must be removed and database password rotated before publicly exposing network endpoints.",
+    "CONDITION-5: Containerized Linux Deployment — Live deployment must utilize Linux containers (e.g. Ubuntu 22.04 LTS / Docker) to ensure unrestricted C++ tensor library runtime execution."
+  ],
+  "sign_off": {
+    "mlops_release_lead": "Antigravity MLOps & QA Lead",
+    "decision_date": "2026-10-11",
+    "status": "APPROVED_FOR_GATED_PILOT_WITH_LIMITATIONS"
+  }
+}

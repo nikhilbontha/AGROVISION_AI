@@ -1,0 +1,580 @@
+{
+    "version": "2.0.0",
+    "total_classes": 39,
+    "total_crops": 11,
+    "crops": [
+        "Apple",
+        "Corn",
+        "Cotton",
+        "Grape",
+        "Non_Plant",
+        "Orange",
+        "Pepper",
+        "Potato",
+        "Rice",
+        "Tomato",
+        "Wheat"
+    ],
+    "classes": [
+        {
+            "class_id": 0,
+            "class_name": "Apple___Apple_scab",
+            "crop": "Apple",
+            "disease": "Apple Scab",
+            "is_healthy": false,
+            "scientific_name": "Venturia inaequalis",
+            "synonyms": [
+                "Apple Scab Spot",
+                "Venturia Leaf Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Can be confused with Black Rot in early stage."
+        },
+        {
+            "class_id": 1,
+            "class_name": "Apple___Black_rot",
+            "crop": "Apple",
+            "disease": "Black Rot",
+            "is_healthy": false,
+            "scientific_name": "Botryosphaeria obtusa",
+            "synonyms": [
+                "Frogeye Leaf Spot",
+                "Black Rot Canker"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Concentric rings resemble Cedar Apple Rust spots."
+        },
+        {
+            "class_id": 2,
+            "class_name": "Apple___Cedar_apple_rust",
+            "crop": "Apple",
+            "disease": "Cedar Apple Rust",
+            "is_healthy": false,
+            "scientific_name": "Gymnosporangium juniperi-virginianae",
+            "synonyms": [
+                "Apple Rust",
+                "Cedar Rust"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Bright yellow-orange spots distinct from scab."
+        },
+        {
+            "class_id": 3,
+            "class_name": "Apple___healthy",
+            "crop": "Apple",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Malus domestica",
+            "synonyms": [
+                "Normal Foliage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Healthy foliage without lesions."
+        },
+        {
+            "class_id": 4,
+            "class_name": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+            "crop": "Corn",
+            "disease": "Cercospora Gray Leaf Spot",
+            "is_healthy": false,
+            "scientific_name": "Cercospora zeae-maydis",
+            "synonyms": [
+                "Gray Leaf Spot",
+                "Corn Cercospora"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Rectangular lesions bounded by leaf veins."
+        },
+        {
+            "class_id": 5,
+            "class_name": "Corn___Common_rust",
+            "crop": "Corn",
+            "disease": "Common Rust",
+            "is_healthy": false,
+            "scientific_name": "Puccinia sorghi",
+            "synonyms": [
+                "Corn Rust",
+                "Maize Rust"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Cinnamon-brown pustules on upper and lower surfaces."
+        },
+        {
+            "class_id": 6,
+            "class_name": "Corn___Northern_Leaf_Blight",
+            "crop": "Corn",
+            "disease": "Northern Leaf Blight",
+            "is_healthy": false,
+            "scientific_name": "Exserohilum turcicum",
+            "synonyms": [
+                "NBLT",
+                "Turcicum Leaf Blight"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Long elliptical grayish-green or tan lesions."
+        },
+        {
+            "class_id": 7,
+            "class_name": "Corn___healthy",
+            "crop": "Corn",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Zea mays",
+            "synonyms": [
+                "Healthy Maize Foliage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Clean golden green maize foliage."
+        },
+        {
+            "class_id": 8,
+            "class_name": "Cotton___Bacterial_blight",
+            "crop": "Cotton",
+            "disease": "Bacterial Blight",
+            "is_healthy": false,
+            "scientific_name": "Xanthomonas citri pv. malvacearum",
+            "synonyms": [
+                "Angular Leaf Spot",
+                "Blackarm"
+            ],
+            "source": "PlantVillage / Field Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Water-soaked angular lesions bounded by veinlets."
+        },
+        {
+            "class_id": 9,
+            "class_name": "Cotton___healthy",
+            "crop": "Cotton",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Gossypium hirsutum",
+            "synonyms": [
+                "Healthy Cotton Canopy"
+            ],
+            "source": "PlantVillage / Field Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Clean green cotton leaf blades."
+        },
+        {
+            "class_id": 10,
+            "class_name": "Grape___Black_rot",
+            "crop": "Grape",
+            "disease": "Black Rot",
+            "is_healthy": false,
+            "scientific_name": "Guignardia bidwellii",
+            "synonyms": [
+                "Grape Black Rot Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Small reddish-brown circular spots with dark borders."
+        },
+        {
+            "class_id": 11,
+            "class_name": "Grape___Esca_(Black_Measles)",
+            "crop": "Grape",
+            "disease": "Esca (Black Measles)",
+            "is_healthy": false,
+            "scientific_name": "Phaeomoniella chlamydospora",
+            "synonyms": [
+                "Grape Esca Complex",
+                "Tiger Stripe Leaf"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Interveinal necrosis creating tiger-stripe appearance."
+        },
+        {
+            "class_id": 12,
+            "class_name": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+            "crop": "Grape",
+            "disease": "Leaf Blight (Isariopsis Spot)",
+            "is_healthy": false,
+            "scientific_name": "Pseudocercospora vitis",
+            "synonyms": [
+                "Isariopsis Leaf Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Irregular brown spots with subtle yellow halo."
+        },
+        {
+            "class_id": 13,
+            "class_name": "Grape___healthy",
+            "crop": "Grape",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Vitis vinifera",
+            "synonyms": [
+                "Healthy Vine Leaf"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Normal vine leaf canopy."
+        },
+        {
+            "class_id": 14,
+            "class_name": "Non_Plant___Unsupported",
+            "crop": "Non_Plant",
+            "disease": "Non-Plant / Out of Distribution",
+            "is_healthy": false,
+            "scientific_name": "N/A",
+            "synonyms": [
+                "Out Of Distribution",
+                "Noise",
+                "Document"
+            ],
+            "source": "AgroVision Noise & Out-of-distribution Set",
+            "license": "Public Domain",
+            "ambiguities": "Non-plant background images, furniture, documents, arbitrary textures."
+        },
+        {
+            "class_id": 15,
+            "class_name": "Orange___Haunglongbing_(Citrus_greening)",
+            "crop": "Orange",
+            "disease": "Citrus Greening",
+            "is_healthy": false,
+            "scientific_name": "Candidatus Liberibacter asiaticus",
+            "synonyms": [
+                "HLB",
+                "Yellow Dragon Disease"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Asymmetrical yellow mottle pattern on leaves."
+        },
+        {
+            "class_id": 16,
+            "class_name": "Orange___healthy",
+            "crop": "Orange",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Citrus sinensis",
+            "synonyms": [
+                "Healthy Citrus Foliage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Deep green citrus leaf blades."
+        },
+        {
+            "class_id": 17,
+            "class_name": "Pepper,_bell___Bacterial_spot",
+            "crop": "Pepper",
+            "disease": "Bacterial Spot",
+            "is_healthy": false,
+            "scientific_name": "Xanthomonas euvesicatoria",
+            "synonyms": [
+                "Chili Bacterial Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Small dark water-soaked lesions turning necrotic."
+        },
+        {
+            "class_id": 18,
+            "class_name": "Pepper,_bell___healthy",
+            "crop": "Pepper",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Capsicum annuum",
+            "synonyms": [
+                "Healthy Bell Pepper Foliage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Normal green pepper leaf canopy."
+        },
+        {
+            "class_id": 19,
+            "class_name": "Potato___Early_blight",
+            "crop": "Potato",
+            "disease": "Early Blight",
+            "is_healthy": false,
+            "scientific_name": "Alternaria solani",
+            "synonyms": [
+                "Alternaria Leaf Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Concentric target-board ring spots."
+        },
+        {
+            "class_id": 20,
+            "class_name": "Potato___Late_blight",
+            "crop": "Potato",
+            "disease": "Late Blight",
+            "is_healthy": false,
+            "scientific_name": "Phytophthora infestans",
+            "synonyms": [
+                "Potato Phytophthora Blight"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Water-soaked dark lesions spreading rapidly."
+        },
+        {
+            "class_id": 21,
+            "class_name": "Potato___healthy",
+            "crop": "Potato",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Solanum tuberosum",
+            "synonyms": [
+                "Healthy Potato Foliage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Clean green potato canopy."
+        },
+        {
+            "class_id": 22,
+            "class_name": "Rice___Bacterial_leaf_blight",
+            "crop": "Rice",
+            "disease": "Bacterial Leaf Blight",
+            "is_healthy": false,
+            "scientific_name": "Xanthomonas oryzae pv. oryzae",
+            "synonyms": [
+                "Paddy Bacterial Blight",
+                "BLB"
+            ],
+            "source": "PlantVillage / Rice Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Wavy yellow-white lesions starting from leaf tip/edges."
+        },
+        {
+            "class_id": 23,
+            "class_name": "Rice___Blast",
+            "crop": "Rice",
+            "disease": "Rice Blast",
+            "is_healthy": false,
+            "scientific_name": "Magnaporthe oryzae",
+            "synonyms": [
+                "Paddy Blast",
+                "Spindle-shaped Leaf Blast"
+            ],
+            "source": "PlantVillage / Rice Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Spindle-shaped elliptical spots with gray center."
+        },
+        {
+            "class_id": 24,
+            "class_name": "Rice___healthy",
+            "crop": "Rice",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Oryza sativa",
+            "synonyms": [
+                "Healthy Paddy Rice Canopy"
+            ],
+            "source": "PlantVillage / Rice Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Clean slender rice leaf blades."
+        },
+        {
+            "class_id": 25,
+            "class_name": "Tomato___Bacterial_spot",
+            "crop": "Tomato",
+            "disease": "Bacterial Spot",
+            "is_healthy": false,
+            "scientific_name": "Xanthomonas vesicatoria",
+            "synonyms": [
+                "Tomato Xanthomonas Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Small dark greasy spots surrounded by yellowing."
+        },
+        {
+            "class_id": 26,
+            "class_name": "Tomato___Early_blight",
+            "crop": "Tomato",
+            "disease": "Early Blight",
+            "is_healthy": false,
+            "scientific_name": "Alternaria linariae",
+            "synonyms": [
+                "Tomato Alternaria Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Bullseye concentric rings on mature leaves."
+        },
+        {
+            "class_id": 27,
+            "class_name": "Tomato___Late_blight",
+            "crop": "Tomato",
+            "disease": "Late Blight",
+            "is_healthy": false,
+            "scientific_name": "Phytophthora infestans",
+            "synonyms": [
+                "Tomato Phytophthora Blight"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Large gray-green water-soaked lesions turning brown."
+        },
+        {
+            "class_id": 28,
+            "class_name": "Tomato___Leaf_Mold",
+            "crop": "Tomato",
+            "disease": "Leaf Mold",
+            "is_healthy": false,
+            "scientific_name": "Passalora fulva",
+            "synonyms": [
+                "Cladosporium Leaf Mold"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Pale green or yellow spots on upper surface with velvet mold underneath."
+        },
+        {
+            "class_id": 29,
+            "class_name": "Tomato___Septoria_leaf_spot",
+            "crop": "Tomato",
+            "disease": "Septoria Leaf Spot",
+            "is_healthy": false,
+            "scientific_name": "Septoria lycopersici",
+            "synonyms": [
+                "Tomato Septoria Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Numerous small circular spots with dark brown margins."
+        },
+        {
+            "class_id": 30,
+            "class_name": "Tomato___Spider_mites Two-spotted_spider_mite",
+            "crop": "Tomato",
+            "disease": "Spider Mites",
+            "is_healthy": false,
+            "scientific_name": "Tetranychus urticae",
+            "synonyms": [
+                "Two-Spotted Mite Damage"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Fine yellow stippling and webbing on leaf undersides."
+        },
+        {
+            "class_id": 31,
+            "class_name": "Tomato___Target_Spot",
+            "crop": "Tomato",
+            "disease": "Target Spot",
+            "is_healthy": false,
+            "scientific_name": "Corynespora cassiicola",
+            "synonyms": [
+                "Corynespora Leaf Spot"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Pinpoint spots expanding into target-like brown lesions."
+        },
+        {
+            "class_id": 32,
+            "class_name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+            "crop": "Tomato",
+            "disease": "Yellow Leaf Curl Virus",
+            "is_healthy": false,
+            "scientific_name": "TYLCV (Begomovirus)",
+            "synonyms": [
+                "TYLCV",
+                "Tomato Yellow Curl"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Severe upward leaf curling and chlorosis."
+        },
+        {
+            "class_id": 33,
+            "class_name": "Tomato___Tomato_mosaic_virus",
+            "crop": "Tomato",
+            "disease": "Mosaic Virus",
+            "is_healthy": false,
+            "scientific_name": "ToMV (Tobamovirus)",
+            "synonyms": [
+                "Tomato Mosaic Disease"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Mottled light/dark green mosaic patches and blistering."
+        },
+        {
+            "class_id": 34,
+            "class_name": "Tomato___healthy",
+            "crop": "Tomato",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Solanum lycopersicum",
+            "synonyms": [
+                "Healthy Tomato Leaf Canopy"
+            ],
+            "source": "PlantVillage / Mendeley Data",
+            "license": "CC BY 4.0",
+            "ambiguities": "Normal dark green tomato compound foliage."
+        },
+        {
+            "class_id": 35,
+            "class_name": "Wheat___Leaf_rust",
+            "crop": "Wheat",
+            "disease": "Leaf Rust",
+            "is_healthy": false,
+            "scientific_name": "Puccinia triticina",
+            "synonyms": [
+                "Brown Rust of Wheat"
+            ],
+            "source": "PlantVillage / Wheat Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Small round reddish-orange pustules scattered on upper surface."
+        },
+        {
+            "class_id": 36,
+            "class_name": "Wheat___Powdery_mildew",
+            "crop": "Wheat",
+            "disease": "Powdery Mildew",
+            "is_healthy": false,
+            "scientific_name": "Blumeria graminis f. sp. tritici",
+            "synonyms": [
+                "Wheat Mildew"
+            ],
+            "source": "PlantVillage / Wheat Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "White to gray powdery fungal patches on leaves/sheaths."
+        },
+        {
+            "class_id": 37,
+            "class_name": "Wheat___Stripe_rust",
+            "crop": "Wheat",
+            "disease": "Stripe Rust",
+            "is_healthy": false,
+            "scientific_name": "Puccinia striiformis f. sp. tritici",
+            "synonyms": [
+                "Yellow Rust of Wheat"
+            ],
+            "source": "PlantVillage / Wheat Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Bright yellow pustules forming elongated stripes along veins."
+        },
+        {
+            "class_id": 38,
+            "class_name": "Wheat___healthy",
+            "crop": "Wheat",
+            "disease": "Healthy",
+            "is_healthy": true,
+            "scientific_name": "Triticum aestivum",
+            "synonyms": [
+                "Healthy Wheat Canopy"
+            ],
+            "source": "PlantVillage / Wheat Disease Dataset",
+            "license": "CC BY 4.0",
+            "ambiguities": "Clean green wheat foliage."
+        }
+    ]
+}

@@ -1,0 +1,82 @@
+{
+  "existing_feature_inventory": {
+    "system_name": "AgroVision AI 1.0 (Baseline)",
+    "modules": [
+      {
+        "module_name": "Yield Prediction Engine",
+        "entry_point": "POST /predict/predict-yield",
+        "implementation_file": "backend/app/services/yield_engine.py",
+        "model_file": "ml_models/yield_prediction/yield_model.pkl",
+        "status": "OPERATIONAL & INDEPENDENT",
+        "capabilities": [
+          "Cultivated area conversion (Acres, Hectares, Sq Metres)",
+          "PJTSAU & ICAR APMC baseline statistics for 13 crops",
+          "Soil type multipliers (Loamy, Sandy Loam, Clay, Black Cotton, Alluvial, Red)",
+          "Soil health test parameters (pH, organic carbon, NPK)",
+          "Irrigation method adjustments (Drip, Sprinkler, Canal, Rainfed)",
+          "Crop growth stage timeline",
+          "Cost of cultivation, gross revenue, net profit calculations",
+          "Monte Carlo / Low-Base-High financial scenario modeling",
+          "Price sensitivity matrix against APMC market trends"
+        ],
+        "preservation_requirement": "STRICT PRESERVATION — Must not be modified or affected by disease detection changes."
+      },
+      {
+        "module_name": "Disease Detection Web Interface",
+        "entry_point": "frontend/src/pages/DiseaseDetection.jsx",
+        "status": "OPERATIONAL WITH LIMITATIONS",
+        "capabilities": [
+          "Drag & drop and file input for crop photos",
+          "Live camera stream and snapshot capture",
+          "Bilingual support (English and Telugu)",
+          "Text-to-speech audio narration for diagnosis",
+          "Tabbed display (Overview, Cause, Treatment, 14-day Timeline, Probabilities)",
+          "OpenCV lesion mask overlay visualization toggle",
+          "Auto-detect / Crop selector dropdown (15 crops)"
+        ],
+        "limitations": [
+          "No guided questionnaire",
+          "No affected plant part input",
+          "No growth stage or symptom duration questions",
+          "Rejection errors are confusing (blames non-plant background instead of model uncertainty)"
+        ]
+      },
+      {
+        "module_name": "AI Assistant & Agronomic Chatbot",
+        "entry_point": "POST /assistant/chat",
+        "service_file": "backend/app/services/assistant_service.py",
+        "status": "OPERATIONAL",
+        "capabilities": [
+          "Gemini API / LLM-based agricultural advisory",
+          "Context-aware recommendations using weather and market price services",
+          "Bilingual English / Telugu responses"
+        ]
+      },
+      {
+        "module_name": "Weather & Market Services",
+        "files": [
+          "backend/app/services/weather_service.py",
+          "backend/app/services/market_service.py"
+        ],
+        "status": "OPERATIONAL",
+        "capabilities": [
+          "OpenWeatherMap integration for real-time temperature, humidity, rainfall",
+          "Agmarknet mandi market price fetching for Andhra Pradesh & Telangana mandis"
+        ]
+      },
+      {
+        "module_name": "Authentication & History Persistence",
+        "files": [
+          "backend/app/routes/auth.py",
+          "backend/app/database.py"
+        ],
+        "status": "OPERATIONAL",
+        "capabilities": [
+          "MongoDB user authentication with JWT tokens",
+          "Diagnosis history collection",
+          "Yield prediction history collection"
+        ]
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@ from typing import Optional
 
 class ChatRequest(BaseModel):
     message: str
-    language: str = "te"
+    language: str = "en"
     page_context: str = ""
 
 class ChatResponse(BaseModel):

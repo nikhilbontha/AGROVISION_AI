@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgroVision AI 2.0 Prepared Data Manifest Schema",
+  "description": "Validation schema for versioned prepared dataset manifests ensuring exact sample traceability, canonical taxonomy binding, cryptographic hash integrity, duplicate group locking, and label review tracking.",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "taxonomy_version",
+    "generated_at",
+    "total_samples",
+    "samples"
+  ],
+  "properties": {
+    "manifest_version": { "type": "string", "example": "2.0.0" },
+    "taxonomy_version": { "type": "string", "example": "2.0.0" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "total_samples": { "type": "integer", "minimum": 1 },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sample_id",
+          "relative_path",
+          "dataset_source",
+          "canonical_crop_id",
+          "canonical_disease_id",
+          "original_label",
+          "image_sha256",
+          "quality_flags",
+          "label_review_status",
+          "field_or_lab_domain"
+        ],
+        "properties": {
+          "sample_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-\\.]+$",
+            "description": "Unique immutable sample identifier."
+          },
+          "relative_path": {
+            "type": "string",
+            "description": "Relative filesystem path from repository root or dataset archive."
+          },
+          "dataset_source": {
+            "type": "string",
+            "enum": ["Dataset_1", "Dataset_2", "Synthetic_Mock", "External_Field"]
+          },
+          "source_split": {
+            "type": ["string", "null"],
+            "enum": ["train", "val", "test", "field_test", null]
+          },
+          "canonical_crop_id": {
+            "type": "string",
+            "pattern": "^crop_[a-z0-9_]+$"
+          },
+          "canonical_disease_id": {
+            "type": "string",
+            "pattern": "^dis_[a-z0-9_]+$"
+          },
+          "original_label": {
+            "type": "string"
+          },
+          "plant_organ": {
+            "type": ["string", "null"],
+            "enum": [
+              "leaves", "stems", "roots", "flowers", "fruits",
+              "pods", "ears_cobs", "rhizomes_tubers", "bolls",
+              "panicles_seeds", "whole_plant", "unknown", null
+            ]
+          },
+          "image_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 cryptographic digest of the raw image bytes."
+          },
+          "duplicate_group_id": {
+            "type": ["string", "null"],
+            "description": "Cluster identifier grouping exact duplicate images."
+          },
+          "near_duplicate_group_id": {
+            "type": ["string", "null"],
+            "description": "Cluster identifier grouping perceptual near-duplicate images."
+          },
+          "quality_flags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "label_review_status": {
+            "type": "string",
+            "enum": [
+              "unreviewed",
+              "needs_expert_review",
+              "confirmed_label",
+              "confirmed_mislabeled",
+              "ambiguous",
+              "not_relevant",
+              "unresolved"
+            ]
+          },
+          "field_or_lab_domain": {
+            "type": "string",
+            "enum": ["controlled_laboratory", "real_world_field", "synthetic", "unknown"]
+          },
+          "provenance_metadata": {
+            "type": ["object", "null"],
+            "properties": {
+              "collection_location": { "type": ["string", "null"] },
+              "collection_date": { "type": ["string", "null"] },
+              "capture_device": { "type": ["string", "null"] },
+              "license": { "type": ["string", "null"] }
+            }
+          },
+          "planned_split": {
+            "type": ["string", "null"],
+            "enum": ["train", "val", "test", "quarantine", null]
+          },
+          "taxonomy_version": {
+            "type": "string",
+            "example": "2.0.0"
+          }
+        }
+      }
+    }
+  }
+}

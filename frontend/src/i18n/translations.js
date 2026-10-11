@@ -97,7 +97,7 @@ export const translations = {
       hostCropLabel: "Host Crop:",
       remedyLabel: "Remedy:",
       changePhoto: "Change Photo",
-      leafLoaded: "Leaf Image Loaded",
+      leafLoaded: "Crop Photo Loaded",
       uploadLeaf: "Upload a leaf image",
       noFile: "No file chosen",
       clickUpload: "Click to upload image",

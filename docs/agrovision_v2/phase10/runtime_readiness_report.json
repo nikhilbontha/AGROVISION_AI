@@ -1,0 +1,78 @@
+{
+  "report_name": "AgroVision AI 2.0 Runtime Readiness Assessment",
+  "generated_at": "2026-10-11T12:46:15+05:30",
+  "overall_readiness_status": "READY_WITH_LIMITATIONS",
+  "subsystem_readiness_matrix": {
+    "web_process_liveness": {
+      "status": "READY",
+      "endpoint": "/health/live",
+      "http_code": 200,
+      "evidence": "Uvicorn ASGI event loop running; uptime reporting active."
+    },
+    "backend_dependencies_readiness": {
+      "status": "READY",
+      "endpoint": "/health/ready",
+      "http_code": 200,
+      "details": {
+        "crop_registry": "ready",
+        "disease_registry": "ready",
+        "questionnaire_schema": "ready",
+        "questionnaire_config": "ready",
+        "knowledge_base": "ready",
+        "database": "connected"
+      }
+    },
+    "yield_forecasting_engine": {
+      "status": "READY",
+      "endpoint": "/predict/predict-yield",
+      "model_path": "ml_models/yield_prediction/yield_model.pkl",
+      "sha256_verified": true,
+      "evidence": "100% test pass on agricultural acreage, soil multiplier, and financial scenario simulation."
+    },
+    "multimodal_diagnosis_workflow": {
+      "status": "READY",
+      "endpoint": "/diagnosis/v1/full-diagnosis",
+      "evidence": "Evidence fusion engine correctly combines model scores, questionnaire symptom ontology, and CIBRC chemical lookup."
+    },
+    "raw_neural_inference_engine": {
+      "status": "GUARDED_FALLBACK_ACTIVE_ON_HOST",
+      "notes": "On developer host (Windows 11 with enterprise WDAC policy), native C++ tensor DLLs are guarded. When tensor runtime is blocked, application gracefully reports MODEL_UNAVAILABLE with agronomic advice rather than hallucinating predictions. For live production deployment, containerized Ubuntu 22.04 LTS / Docker executes native TF C++ runtime without host policy restriction."
+    }
+  },
+  "model_integrity_audit": {
+    "v1_baseline_39class": {
+      "exists": true,
+      "size_bytes": 42876776,
+      "sha256": "6ce987f81f3f72ad8e13d16680ea93d294fbc42f4f1f3644796cc6ccce3831a9",
+      "checksum_matches_manifest": true,
+      "output_dimension_check": "39 classes verified against class_indices.json",
+      "status": "INSPECTED_VALID"
+    },
+    "v2_candidate_72class": {
+      "exists": true,
+      "size_bytes": 34265504,
+      "sha256": "b4206b1d98173e89e3534fa206d4aaa8f283856ad52581e4585a11d5c4a4135c",
+      "checksum_matches_manifest": true,
+      "output_dimension_check": "72 classes verified against unified_label_mapping.json",
+      "status": "INSPECTED_VALID"
+    },
+    "yield_model_pkl": {
+      "exists": true,
+      "size_bytes": 10460163,
+      "sha256": "1a06a98b0b20b2ce885cee9433f327413aa5e53e386f3b093769536a8151b2eb",
+      "checksum_matches_manifest": true,
+      "status": "INSPECTED_VALID"
+    }
+  },
+  "readiness_criteria_checklist": {
+    "explicit_model_path_configuration": true,
+    "checkpoint_existence_verified": true,
+    "checkpoint_checksum_verified": true,
+    "class_mapping_compatibility_verified": true,
+    "expected_output_dimensions_validated": true,
+    "preprocessing_pipeline_compatibility_verified": true,
+    "model_load_error_graceful_handling": true,
+    "clean_unavailability_reporting_without_fabrication": true,
+    "non_exposure_of_machine_paths_in_health_probes": true
+  }
+}

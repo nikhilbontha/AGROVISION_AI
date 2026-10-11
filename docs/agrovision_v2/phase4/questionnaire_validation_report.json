@@ -1,0 +1,75 @@
+{
+  "test_suite": "AgroVision AI 2.0 - Phase 4 Automated Questionnaire Test Suite",
+  "executed_at": "2026-10-11T05:58:36.654581+00:00",
+  "total_tests": 13,
+  "tests_passed": 13,
+  "tests_failed": 0,
+  "overall_status": "PASS",
+  "test_results": [
+    {
+      "test_name": "test_valid_questionnaire_configuration",
+      "status": "PASS",
+      "message": "Successfully loaded configuration v2.0.0 with 9 validated questions."
+    },
+    {
+      "test_name": "test_unknown_crop_ids",
+      "status": "PASS",
+      "message": "Correctly rejected unknown crop ID 'crop_nonexistent_xyz' with HTTP 400."
+    },
+    {
+      "test_name": "test_unsupported_crop_organ_combinations",
+      "status": "PASS",
+      "message": "Validated that Apple + ears_cobs is UNSUPPORTED while Corn + ears_cobs is PERMITTED."
+    },
+    {
+      "test_name": "test_invalid_symptom_ids",
+      "status": "PASS",
+      "message": "Correctly rejected unrecognized symptom ID 'sym_laser_burns_alien' with HTTP 400."
+    },
+    {
+      "test_name": "test_missing_optional_answers",
+      "status": "PASS",
+      "message": "Minimal payload accepted without blocking. Unanswered fields tracked in unknown_or_skipped_fields."
+    },
+    {
+      "test_name": "test_conditional_question_visibility",
+      "status": "PASS",
+      "message": "Verified conditional dependency validation. Detected details provided when treatment was marked 'No'."
+    },
+    {
+      "test_name": "test_changing_previous_answer_and_refreshing_dependent_questions",
+      "status": "PASS",
+      "message": "Changing crop correctly triggers organ compatibility refresh; ears_cobs becomes invalid when switching from Corn to Apple."
+    },
+    {
+      "test_name": "test_navigating_backward_without_losing_answers",
+      "status": "PASS",
+      "message": "Verified multi-step form state preservation invariant during wizard step navigation."
+    },
+    {
+      "test_name": "test_malformed_or_oversized_request_payloads",
+      "status": "PASS",
+      "message": "Correctly rejected oversized payload (>1000 character notes) with HTTP 422 Unprocessable Entity."
+    },
+    {
+      "test_name": "test_frontend_backend_schema_consistency",
+      "status": "PASS",
+      "message": "Verified full JSON Schema draft-07 conformance between frontend payload and backend schema."
+    },
+    {
+      "test_name": "test_crop_selection_conflicting_with_metadata",
+      "status": "PASS",
+      "message": "Farmer manual crop selection preserved as contextual evidence without silent override."
+    },
+    {
+      "test_name": "test_unsupported_crop_handling",
+      "status": "PASS",
+      "message": "Handled unsupported crop gracefully: preserved evidence and flagged UNSUPPORTED_CROP_REQUESTED."
+    },
+    {
+      "test_name": "test_api_failure_and_retry_behavior",
+      "status": "PASS",
+      "message": "Simulated endpoint failure (404) and confirmed successful client recovery and retry (200)."
+    }
+  ]
+}

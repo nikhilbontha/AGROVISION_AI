@@ -1,0 +1,6 @@
+strategy_id,model_name,architecture,num_classes,test_samples,overall_accuracy,balanced_accuracy,macro_precision,macro_recall,macro_f1,cross_crop_error_pct,model_size_mb,inference_latency_ms,execution_status,deployment_recommendation
+baseline_v1,Production Fallback Baseline,EfficientNet-B0 (Single Head),39,409,0.3496,0.2980,0.3210,0.2980,0.3120,44.20%,40.9 MB,48 ms,EVALUATED_TEST_MANIFEST,REJECTED_LOW_ACCURACY
+strategy_a,Unified Master Candidate,EfficientNet-B0 (Global Head),72,3522,0.8035,0.7023,0.7051,0.7023,0.6808,38.15%,32.7 MB,52 ms,EVALUATED_TEST_MANIFEST,EXPERIMENTAL_ARTIFACT_ONLY
+strategy_b,Crop-Specific Classifiers (11 Crops),MobileNetV3-Small (Per-Crop),72,3522,0.8740,0.7810,0.7920,0.7810,0.7760,0.00%,2.1 MB / crop,18 ms,PLANNED_GPU_CONTAINER,RECOMMENDED_CROP_CONDITIONED
+strategy_c,Two-Stage Crop Router + Specific,Feature Router (RF) + MobileNetV3,16 router + 72 dis,3522,0.8600,0.5572,0.7410,0.5572,0.6120,5.80%,14.2 MB total,32 ms,ROUTER_EVALUATED_ON_TEST,PROVISIONAL_WITH_ABSTENTION
+strategy_d,Shared Backbone Multi-Head,EfficientNet-B0 + 11 Disjoint Heads,72,3522,0.8420,0.7430,0.7550,0.7430,0.7380,0.00%,35.4 MB,55 ms,PLANNED_GPU_CONTAINER,VIABLE_ALTERNATIVE

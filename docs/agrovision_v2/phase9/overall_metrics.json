@@ -1,0 +1,46 @@
+{
+  "model_under_test": {
+    "model_name": "AgroVision AI 2.0 Unified Master Candidate",
+    "model_identifier": "AGROVISION_UNIFIED_72CLASS_MODEL.h5",
+    "architecture": "EfficientNet-B0 Backbone (Fine-tuned Two-Stage)",
+    "classes_supported": 72,
+    "weights_format": "HDF5 Keras 3",
+    "file_size_mb": 32.68
+  },
+  "evaluation_dataset": {
+    "manifest_name": "test_manifest.json",
+    "total_samples": 3522,
+    "provenance": {
+      "dataset_1_lab_plantvillage": 409,
+      "dataset_2_regional_field": 3113
+    },
+    "field_test_subset_samples": 3175
+  },
+  "summary_metrics": {
+    "overall_accuracy": 0.8035,
+    "accuracy_wilson_95_ci": [
+      0.7901,
+      0.8163
+    ],
+    "correct_predictions": 2830,
+    "incorrect_predictions": 692,
+    "balanced_accuracy": 0.7023,
+    "macro_precision": 0.7051,
+    "macro_recall": 0.7023,
+    "macro_f1": 0.6808,
+    "weighted_f1": 0.8079,
+    "top_3_accuracy": 0.9465
+  },
+  "domain_robustness_metrics": {
+    "dataset_1_broad_lab_accuracy": 0.3081,
+    "dataset_2_regional_field_accuracy": 0.8686,
+    "field_test_accuracy": 0.8583
+  },
+  "error_distribution": {
+    "total_errors": 692,
+    "wrong_crop_errors": 264,
+    "wrong_crop_pct_of_all_errors": 38.15,
+    "wrong_disease_same_crop": 398,
+    "healthy_misclassified_as_diseased": 30
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "mapping_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "description": "Stage-1 Crop Identity Router class index mapping for Strategy C.",
+  "num_router_classes": 16,
+  "router_classes": [
+    {
+      "router_output_index": 0,
+      "canonical_crop_id": "crop_apple",
+      "crop_display_name": "Apple",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 1,
+      "canonical_crop_id": "crop_banana",
+      "crop_display_name": "Banana",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 2,
+      "canonical_crop_id": "crop_chilli",
+      "crop_display_name": "Chilli",
+      "num_diseases": 8
+    },
+    {
+      "router_output_index": 3,
+      "canonical_crop_id": "crop_corn",
+      "crop_display_name": "Corn",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 4,
+      "canonical_crop_id": "crop_cotton",
+      "crop_display_name": "Cotton",
+      "num_diseases": 7
+    },
+    {
+      "router_output_index": 5,
+      "canonical_crop_id": "crop_grape",
+      "crop_display_name": "Grape",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 6,
+      "canonical_crop_id": "crop_mango",
+      "crop_display_name": "Mango",
+      "num_diseases": 8
+    },
+    {
+      "router_output_index": 7,
+      "canonical_crop_id": "crop_non_plant",
+      "crop_display_name": "Non_Plant",
+      "num_diseases": 1
+    },
+    {
+      "router_output_index": 8,
+      "canonical_crop_id": "crop_orange",
+      "crop_display_name": "Orange",
+      "num_diseases": 2
+    },
+    {
+      "router_output_index": 9,
+      "canonical_crop_id": "crop_oil_palm",
+      "crop_display_name": "Palm",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 10,
+      "canonical_crop_id": "crop_pepper_bell",
+      "crop_display_name": "Pepper",
+      "num_diseases": 2
+    },
+    {
+      "router_output_index": 11,
+      "canonical_crop_id": "crop_potato",
+      "crop_display_name": "Potato",
+      "num_diseases": 3
+    },
+    {
+      "router_output_index": 12,
+      "canonical_crop_id": "crop_rice",
+      "crop_display_name": "Rice",
+      "num_diseases": 11
+    },
+    {
+      "router_output_index": 13,
+      "canonical_crop_id": "crop_tomato",
+      "crop_display_name": "Tomato",
+      "num_diseases": 20
+    },
+    {
+      "router_output_index": 14,
+      "canonical_crop_id": "crop_turmeric",
+      "crop_display_name": "Turmeric",
+      "num_diseases": 4
+    },
+    {
+      "router_output_index": 15,
+      "canonical_crop_id": "crop_wheat",
+      "crop_display_name": "Wheat",
+      "num_diseases": 4
+    }
+  ]
+}

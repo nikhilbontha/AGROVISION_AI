@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-10-11T06:54:11Z",
+  "endpoints_evaluated": [
+    {
+      "path": "/diagnosis/v1/full-diagnosis-upload",
+      "method": "POST",
+      "content_type": "multipart/form-data",
+      "consumer": "AdaptiveQuestionnaire.jsx (Step 6/7)",
+      "contract_status": "VALIDATED"
+    },
+    {
+      "path": "/diagnosis/v1/full-diagnosis",
+      "method": "POST",
+      "content_type": "application/json",
+      "consumer": "Automated Multimodal Integration Services",
+      "contract_status": "VALIDATED"
+    },
+    {
+      "path": "/diagnosis/v1/knowledge/{disease_id}",
+      "method": "GET",
+      "content_type": "application/json",
+      "consumer": "Diagnostic Detail Modals & Extension Officers",
+      "contract_status": "VALIDATED"
+    },
+    {
+      "path": "/diagnosis/v1/statuses",
+      "method": "GET",
+      "content_type": "application/json",
+      "consumer": "Frontend Decision Status Badges & Catalogs",
+      "contract_status": "VALIDATED"
+    },
+    {
+      "path": "/predict/predict-yield",
+      "method": "POST",
+      "content_type": "application/json",
+      "consumer": "YieldPrediction.jsx & Advisory Dashboard",
+      "contract_status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "path": "/assistant/chat",
+      "method": "POST",
+      "content_type": "application/json",
+      "consumer": "ChatbotWidget.jsx & Assistant Drawer",
+      "contract_status": "PRESERVED_UNCHANGED"
+    }
+  ]
+}

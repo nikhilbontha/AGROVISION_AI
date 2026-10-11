@@ -1,0 +1,113 @@
+{
+  "rules_version": "2.0.0",
+  "generated_at": "2026-10-11T11:42:00+05:30",
+  "status": "PROVISIONAL_CONFIGURABLE_HEURISTIC",
+  "description": "Transparent, provisional evidence fusion rules defining crop gating, organ compatibility, symptom matching, environmental priors, and contradiction handling.",
+  "crop_gating": {
+    "strict_host_filtering": true,
+    "description": "Candidate diseases belonging to a botanical host different from the farmer-selected crop are gated out unless farmer explicitly selected 'crop_unsure'.",
+    "mismatch_policy": "ISOLATE_AND_EXPLAIN"
+  },
+  "organ_compatibility_weights": {
+    "PERMITTED": {
+      "weight": 1.0,
+      "description": "Organ biologically confirmed and represented in agricultural training collections."
+    },
+    "REFERENCE_ONLY_UNTESTED": {
+      "weight": 0.75,
+      "description": "Organ biologically confirmed in scientific literature, but lacking independent visual test images in current dataset."
+    },
+    "UNSUPPORTED": {
+      "weight": 0.0,
+      "description": "Organ biologically unsupported for this crop species or disease pathology. Triggers organ mismatch."
+    },
+    "PRESERVED_UNCERTAINTY": {
+      "weight": 0.85,
+      "description": "Organ marked 'unsure' or 'whole_plant'. Uncertainty is preserved without penalizing foliar candidates."
+    }
+  },
+  "symptom_pathology_matrix": {
+    "sym_spots": {
+      "supports_pathogens": ["fungal", "bacterial"],
+      "typical_diseases": ["dis_apple_scab", "dis_apple_black_rot", "dis_tomato_early_blight", "dis_tomato_septoria_leaf_spot", "dis_tomato_bacterial_spot", "dis_rice_bacterial_leaf_blight", "dis_chilli_anthracnose"],
+      "conflicts_with": ["dis_apple_healthy", "dis_tomato_healthy", "dis_corn_healthy", "dis_chilli_healthy"]
+    },
+    "sym_yellowing": {
+      "supports_pathogens": ["viral", "abiotic_deficiency", "fungal_vascular"],
+      "typical_diseases": ["dis_tomato_yellow_leaf_curl", "dis_chilli_leaf_curl", "dis_orange_citrus_greening", "dis_palm_magnesium_deficiency"],
+      "conflicts_with": ["dis_apple_healthy", "dis_tomato_healthy", "dis_corn_healthy"]
+    },
+    "sym_white_powder": {
+      "supports_pathogens": ["fungal_powdery_mildew"],
+      "typical_diseases": ["dis_cherry_powdery_mildew", "dis_squash_powdery_mildew", "dis_wheat_powdery_mildew"],
+      "conflicts_with": ["dis_apple_healthy", "dis_tomato_healthy"]
+    },
+    "sym_water_soaked": {
+      "supports_pathogens": ["bacterial", "oomycete"],
+      "typical_diseases": ["dis_tomato_late_blight", "dis_potato_late_blight", "dis_cotton_bacterial_blight", "dis_rice_bacterial_leaf_blight"],
+      "conflicts_with": ["dis_apple_healthy", "dis_potato_healthy"]
+    },
+    "sym_wilting": {
+      "supports_pathogens": ["vascular_wilt", "root_rot"],
+      "typical_diseases": ["dis_banana_panama_disease", "dis_cotton_verticillium_wilt", "dis_chilli_damping_off"],
+      "conflicts_with": ["dis_banana_healthy", "dis_chilli_healthy"]
+    },
+    "sym_mosaic": {
+      "supports_pathogens": ["viral"],
+      "typical_diseases": ["dis_tomato_mosaic_virus", "dis_chilli_veinal_mottle_virus"],
+      "conflicts_with": ["dis_tomato_healthy", "dis_chilli_healthy"]
+    },
+    "sym_rot": {
+      "supports_pathogens": ["soft_rot", "fruit_rot"],
+      "typical_diseases": ["dis_chilli_anthracnose", "dis_apple_black_rot", "dis_grape_black_rot"],
+      "conflicts_with": ["dis_apple_healthy", "dis_chilli_healthy"]
+    }
+  },
+  "environmental_priors": {
+    "cond_high_humidity": {
+      "favored_pathogens": ["fungal", "oomycete"],
+      "weight_modifier": 0.12
+    },
+    "cond_heavy_rain": {
+      "favored_pathogens": ["bacterial", "oomycete"],
+      "weight_modifier": 0.12
+    },
+    "cond_hot_dry": {
+      "favored_pathogens": ["viral", "pest_mite"],
+      "weight_modifier": 0.10
+    },
+    "cond_waterlogging": {
+      "favored_pathogens": ["root_rot", "damping_off"],
+      "weight_modifier": 0.15
+    }
+  },
+  "contradiction_rules": [
+    {
+      "rule_id": "CR_001",
+      "name": "healthy_model_vs_severe_symptom",
+      "description": "Visual model predicts healthy leaf, but farmer reports rot, wilting, or severe water-soaked lesions.",
+      "severity": "CRITICAL",
+      "action": "TRIGGER_EXPERT_REVIEW_OR_ABSTAIN"
+    },
+    {
+      "rule_id": "CR_002",
+      "name": "foliar_disease_on_subterranean_organ",
+      "description": "Candidate disease is strictly a foliar leaf spot, but affected organ is a root or tuber.",
+      "severity": "HIGH",
+      "action": "PENALIZE_CANDIDATE_AND_TRIGGER_ORGAN_MISMATCH"
+    },
+    {
+      "rule_id": "CR_003",
+      "name": "viral_claim_without_symptoms_or_vectors",
+      "description": "Visual model predicts yellow leaf curl, but farmer reports isolated black spots without yellowing or insect vectors.",
+      "severity": "MEDIUM",
+      "action": "LOWER_CANDIDATE_EVIDENCE_RANK"
+    }
+  ],
+  "provisional_decision_thresholds": {
+    "diagnosis_supported_min_score": 0.55,
+    "multiple_candidates_margin": 0.15,
+    "insufficient_evidence_max_score": 0.35,
+    "calibration_note": "Thresholds are provisional heuristics. They must be validated against real agricultural test sets before claiming operational statistical calibration."
+  }
+}

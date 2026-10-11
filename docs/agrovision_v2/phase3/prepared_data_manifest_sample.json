@@ -1,0 +1,152 @@
+{
+  "manifest_version": "2.0.0",
+  "taxonomy_version": "2.0.0",
+  "generated_at": "2026-10-11T11:25:00+05:30",
+  "total_samples": 6,
+  "samples": [
+    {
+      "sample_id": "D1_APPLE_SCAB_0001",
+      "relative_path": "ml_models/disease_detection/dataset_prepared/train/Apple___Apple_scab/Apple___Apple_scab_train_0.jpg",
+      "dataset_source": "Dataset_1",
+      "source_split": "train",
+      "canonical_crop_id": "crop_apple",
+      "canonical_disease_id": "dis_apple_scab",
+      "original_label": "Apple___Apple_scab",
+      "plant_organ": "leaves",
+      "image_sha256": "d766973c402a2123eaf4b44ff5fd7c9bb50661154abf2b7b8c1b3b19f9ab26d8",
+      "duplicate_group_id": null,
+      "near_duplicate_group_id": null,
+      "quality_flags": [],
+      "label_review_status": "confirmed_label",
+      "field_or_lab_domain": "controlled_laboratory",
+      "provenance_metadata": {
+        "collection_location": "PlantVillage Lab Archive",
+        "collection_date": null,
+        "capture_device": "Standard DSLR flatbed/bench",
+        "license": "CC-BY 4.0"
+      },
+      "planned_split": "train",
+      "taxonomy_version": "2.0.0"
+    },
+    {
+      "sample_id": "D1_TOMATO_LATE_BLIGHT_0002",
+      "relative_path": "ml_models/disease_detection/dataset_prepared/val/Tomato___Late_blight/Tomato___Late_blight_val_0.jpg",
+      "dataset_source": "Dataset_1",
+      "source_split": "val",
+      "canonical_crop_id": "crop_tomato",
+      "canonical_disease_id": "dis_tomato_late_blight",
+      "original_label": "Tomato___Late_blight",
+      "plant_organ": "leaves",
+      "image_sha256": "bcf89aa0b59ef8bccf7e34cb3bf0dab1247bdabbb24929f7f1e718402d3b034c",
+      "duplicate_group_id": null,
+      "near_duplicate_group_id": null,
+      "quality_flags": [],
+      "label_review_status": "confirmed_label",
+      "field_or_lab_domain": "controlled_laboratory",
+      "provenance_metadata": {
+        "collection_location": "PlantVillage Lab Archive",
+        "collection_date": null,
+        "capture_device": null,
+        "license": "CC-BY 4.0"
+      },
+      "planned_split": "val",
+      "taxonomy_version": "2.0.0"
+    },
+    {
+      "sample_id": "D2_CHILLI_LEAF_CURL_0001",
+      "relative_path": "datasets/regional_dataset_2/Andhra_Master_Dataset/Chilli_Leaf Curl Virus/download (1).jpg",
+      "dataset_source": "Dataset_2",
+      "source_split": null,
+      "canonical_crop_id": "crop_chilli",
+      "canonical_disease_id": "dis_chilli_leaf_curl",
+      "original_label": "Chilli_Leaf Curl Virus",
+      "plant_organ": "leaves",
+      "image_sha256": "216ee24be41c531d0216031910ce43a1b7af5ba5b0d7604c8022c37d59dcdf06",
+      "duplicate_group_id": null,
+      "near_duplicate_group_id": null,
+      "quality_flags": [],
+      "label_review_status": "confirmed_label",
+      "field_or_lab_domain": "real_world_field",
+      "provenance_metadata": {
+        "collection_location": "Guntur District, Andhra Pradesh",
+        "collection_date": "2023-03-15",
+        "capture_device": "Smartphone camera",
+        "license": "Regional Survey"
+      },
+      "planned_split": "train",
+      "taxonomy_version": "2.0.0"
+    },
+    {
+      "sample_id": "D2_BANANA_SIGATOKA_DUP_0001",
+      "relative_path": "datasets/regional_dataset_2/Andhra_Master_Dataset/Banana_Black Sigatoka/20230418_100953-2-_jpg.rf.efba0fce0e31e880d5e11234e5a902a3.jpg",
+      "dataset_source": "Dataset_2",
+      "source_split": null,
+      "canonical_crop_id": "crop_banana",
+      "canonical_disease_id": "dis_banana_black_sigatoka",
+      "original_label": "Banana_Black Sigatoka",
+      "plant_organ": "leaves",
+      "image_sha256": "c97bcefe4d1f4b1f0b817ddddab5117d3922066bc8041f016f441ab4bfb3170f",
+      "duplicate_group_id": "DUP_MD5_a3ab23a09602dbf4368da17b2066ac40",
+      "near_duplicate_group_id": null,
+      "quality_flags": [],
+      "label_review_status": "confirmed_label",
+      "field_or_lab_domain": "real_world_field",
+      "provenance_metadata": {
+        "collection_location": "East Godavari, Andhra Pradesh",
+        "collection_date": "2023-04-18",
+        "capture_device": "Roboflow exported phone capture",
+        "license": "Regional Survey"
+      },
+      "planned_split": "train",
+      "taxonomy_version": "2.0.0"
+    },
+    {
+      "sample_id": "D2_PALM_FUNGAL_0001",
+      "relative_path": "datasets/regional_dataset_2/Andhra_Master_Dataset/Palm_Fungal Disease/20240927_080145.jpg",
+      "dataset_source": "Dataset_2",
+      "source_split": null,
+      "canonical_crop_id": "crop_oil_palm",
+      "canonical_disease_id": "dis_palm_fungal_disease",
+      "original_label": "Palm_Fungal Disease",
+      "plant_organ": "leaves",
+      "image_sha256": "43910291f9db3530e1084f0f8b22dd583a50c36072093cdbb4ae179d2ff05c5d",
+      "duplicate_group_id": null,
+      "near_duplicate_group_id": null,
+      "quality_flags": ["small_sample_size_25", "unresolved_etiology"],
+      "label_review_status": "unresolved",
+      "field_or_lab_domain": "real_world_field",
+      "provenance_metadata": {
+        "collection_location": "West Godavari, Andhra Pradesh",
+        "collection_date": null,
+        "capture_device": null,
+        "license": "Regional Survey"
+      },
+      "planned_split": "quarantine",
+      "taxonomy_version": "2.0.0"
+    },
+    {
+      "sample_id": "SYN_POTATO_EARLY_BLIGHT_0001",
+      "relative_path": "datasets/synthetic_plant_village/Early_Blight/Early_Blight_0.jpg",
+      "dataset_source": "Synthetic_Mock",
+      "source_split": null,
+      "canonical_crop_id": "crop_potato",
+      "canonical_disease_id": "dis_potato_early_blight",
+      "original_label": "Potato___Early_blight",
+      "plant_organ": "leaves",
+      "image_sha256": "9153d73aa54a0851e220992fedcc997bfc35998dc72cdacc5177b362620d363d",
+      "duplicate_group_id": null,
+      "near_duplicate_group_id": null,
+      "quality_flags": ["synthetic_generative_content"],
+      "label_review_status": "not_relevant",
+      "field_or_lab_domain": "synthetic",
+      "provenance_metadata": {
+        "collection_location": "Generative synthetic mock pipeline",
+        "collection_date": "2026-01-01",
+        "capture_device": "Diffusion model generator",
+        "license": "Internal synthetic benchmark"
+      },
+      "planned_split": "quarantine",
+      "taxonomy_version": "2.0.0"
+    }
+  ]
+}

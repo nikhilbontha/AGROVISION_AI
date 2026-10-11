@@ -1,0 +1,201 @@
+{
+  "registry_version": "1.0.0",
+  "generated_at": "2026-10-11T13:55:00Z",
+  "dataset_domain": "AgroVision AI Sample Image Quality & Evaluation Registry",
+  "sample_count": 9,
+  "samples": [
+    {
+      "sample_id": "SAMPLE_01",
+      "filename": "images (5).jpeg",
+      "crop_name": "Tomato",
+      "canonical_crop_id": "crop_tomato",
+      "suspected_disease": "Tomato Late Blight Fruit Rot / Anthracnose",
+      "canonical_disease_id": "unverified",
+      "scientific_name": "Phytophthora infestans / Colletotrichum coccodes (suspected)",
+      "visible_symptoms": "Large sunken dark-brown/black necrotic rot lesion at the calyx/stem attachment spreading onto the fruit shoulder; green foliage in background",
+      "affected_plant_part": "fruits",
+      "possible_alternative_diagnoses": [
+        "Tomato Late Blight Fruit Rot (Phytophthora infestans)",
+        "Tomato Anthracnose Fruit Rot (Colletotrichum coccodes)",
+        "Buckeye Rot (Phytophthora nicotianae)",
+        "Sunscald with secondary fungal decay"
+      ],
+      "label_source": "Provisional visual interpretation / Unverified web image",
+      "label_status": "unverified",
+      "verification_notes": "Depicts tomato fruit with necrotic rot rather than foliar blight. Organ is fruit, whereas model training dataset for Tomato Late Blight consists of foliar leaflets. Pathogen cannot be definitively confirmed without microbiological culture or source provenance.",
+      "expected_prediction": "Abstain / Organ Mismatch / Tomato Late Blight",
+      "evaluation_eligible": false
+    },
+    {
+      "sample_id": "SAMPLE_02",
+      "filename": "images (4).jpeg",
+      "crop_name": "Tomato",
+      "canonical_crop_id": "crop_tomato",
+      "suspected_disease": "Tomato Fruit Spots (Ghost Spot / Early Blight / Anthracnose)",
+      "canonical_disease_id": "unverified",
+      "scientific_name": "Unconfirmed fungal/bacterial fruit spot",
+      "visible_symptoms": "Multiple brownish sunken spots and circular necrotic speckling across unripe green/yellow tomato fruit skins",
+      "affected_plant_part": "fruits",
+      "possible_alternative_diagnoses": [
+        "Ghost Spot (Botrytis cinerea)",
+        "Early Blight Fruit Lesions (Alternaria solani)",
+        "Bacterial Canker / Speck (Clavibacter / Pseudomonas)",
+        "Anthracnose (Colletotrichum spp.)"
+      ],
+      "label_source": "Provisional visual interpretation / Unverified web image",
+      "label_status": "unverified",
+      "verification_notes": "Depicts green tomato fruits with extensive circular pitting/speckling. Affected plant organ is fruit. Since the dataset classes represent foliar diseases, fruit lesions represent out-of-distribution or cross-organ manifestations. Specific pathogen unverified.",
+      "expected_prediction": "Abstain / Low Confidence / Organ Mismatch",
+      "evaluation_eligible": false
+    },
+    {
+      "sample_id": "SAMPLE_03",
+      "filename": "images (3).jpeg",
+      "crop_name": "Rice",
+      "canonical_crop_id": "crop_rice",
+      "suspected_disease": "Rice Panicle Blast / Grain Discoloration",
+      "canonical_disease_id": "unverified",
+      "scientific_name": "Magnaporthe oryzae / Bipolaris oryzae / complex",
+      "visible_symptoms": "Dark brown-to-black discolored spikelets and necrotic grains on emerging green-yellow rice panicle",
+      "affected_plant_part": "panicles_seeds",
+      "possible_alternative_diagnoses": [
+        "Glume Blight / Grain Discoloration (Bipolaris oryzae / Curvularia lunata)",
+        "Panicle / Neck Blast (Magnaporthe oryzae)",
+        "Sheath Rot (Sarocladium oryzae)",
+        "Bacterial Panicle Blight (Burkholderia glumae)"
+      ],
+      "label_source": "Provisional visual interpretation / Unverified web image",
+      "label_status": "unverified",
+      "verification_notes": "Depicts rice reproductive panicle with grain glume discoloration. The model's Rice Blast class was predominantly trained on leaf blast lesions. Grain discoloration and panicle blast have distinct visual morphology. Ground-truth pathogen unverified.",
+      "expected_prediction": "Abstain / Rice Blast / Rice Bacterial Leaf Blight",
+      "evaluation_eligible": false
+    },
+    {
+      "sample_id": "SAMPLE_04",
+      "filename": "false-smut-in-rice.jpg",
+      "crop_name": "Rice",
+      "canonical_crop_id": "crop_rice",
+      "suspected_disease": "Rice False Smut",
+      "canonical_disease_id": "unsupported",
+      "scientific_name": "Ustilaginoidea virens (teleomorph: Villosiclava virens)",
+      "visible_symptoms": "Characteristic enlarged velvety greenish-black smut balls (pseudomorphs) replacing individual grains on ripening rice panicle",
+      "affected_plant_part": "panicles_seeds",
+      "possible_alternative_diagnoses": [
+        "Kernel Smut (Tilletia horrida)",
+        "Green Ustilaginoidea spore ball"
+      ],
+      "label_source": "Filename descriptor & diagnostic symptom morphology",
+      "label_status": "verified_crop_and_symptom_unsupported_disease",
+      "verification_notes": "Symptom morphology is unambiguous for Rice False Smut (Ustilaginoidea virens). However, False Smut is NOT present in the 72-class model or Phase 2 disease registry (which includes Rice Blast, Brown Spot, Leaf Smut, Sheath Blight, Bacterial Blight, Tungro, Leaf Scald). The model must not hallucinate a supported disease with high confidence; it should safely abstain.",
+      "expected_prediction": "Abstain / Unsupported Disease Warning",
+      "evaluation_eligible": true
+    },
+    {
+      "sample_id": "SAMPLE_05",
+      "filename": "images (2).jpeg",
+      "crop_name": "Corn",
+      "canonical_crop_id": "crop_corn",
+      "suspected_disease": "Corn Ear Rot / Pest Injury",
+      "canonical_disease_id": "ambiguous",
+      "scientific_name": "Unconfirmed fungal ear rot / secondary pest damage",
+      "affected_plant_part": "ears_cobs",
+      "visible_symptoms": "Exposed ear of corn with husk opened at the middle/tip, showing yellow kernels with localized dark necrotic/black kernel rot and insect damage",
+      "possible_alternative_diagnoses": [
+        "Fusarium Ear Rot (Fusarium verticillioides)",
+        "Gibberella Ear Rot (Gibberella zeae)",
+        "Corn Earworm (Helicoverpa zea) injury with secondary rot",
+        "Corn Smut (Ustilago maydis) early stage"
+      ],
+      "label_source": "Provisional visual interpretation / Shutterstock stock photo",
+      "label_status": "ambiguous",
+      "verification_notes": "Depicts a maize ear/cob rather than maize foliage. Model classes for Corn are strictly foliar (Common Rust, Northern Leaf Blight, Cercospora Gray Leaf Spot). Kernel damage may be primary insect injury followed by opportunistic saprophytes. Pathogen unconfirmed.",
+      "expected_prediction": "Abstain / Organ Mismatch / Low Confidence",
+      "evaluation_eligible": false
+    },
+    {
+      "sample_id": "SAMPLE_06",
+      "filename": "images (1).jpeg",
+      "crop_name": "Corn",
+      "canonical_crop_id": "crop_corn",
+      "suspected_disease": "Non-Disease Foliar Pest Chewing Damage",
+      "canonical_disease_id": "non_disease_pest_damage",
+      "scientific_name": "Insect injury (likely Spodoptera frugiperda / Fall Armyworm)",
+      "affected_plant_part": "leaves",
+      "visible_symptoms": "Severe foliar chewing injury: large ragged holes, window-paning, and lamina tears held by a human hand, without chlorotic or fungal sporulation halos",
+      "possible_alternative_diagnoses": [
+        "Grasshopper feeding damage",
+        "Armyworm (Mythimna separata)",
+        "Hail / physical tearing injury"
+      ],
+      "label_source": "Diagnostic morphological inspection (chewing patterns vs microbial lesion)",
+      "label_status": "verified_non_disease_injury",
+      "verification_notes": "Classic mechanical/insect mastication damage (chewed leaf blade). It is NOT a microbial disease. Must not be classified as Common Rust or Northern Leaf Blight. The model should abstain due to low disease feature confidence.",
+      "expected_prediction": "Abstain / Low Confidence (Safety Policy Rejection)",
+      "evaluation_eligible": true
+    },
+    {
+      "sample_id": "SAMPLE_07",
+      "filename": "images.jpeg",
+      "crop_name": "Soybean",
+      "canonical_crop_id": "crop_unsupported",
+      "suspected_disease": "Soybean Foliar Necrosis (Sudden Death Syndrome / Brown Spot / Target Spot)",
+      "canonical_disease_id": "unsupported",
+      "scientific_name": "Glycine max foliar pathogen (Fusarium virguliforme / Septoria glycines / Corynespora cassiicola)",
+      "affected_plant_part": "leaves",
+      "visible_symptoms": "Trifoliate ovate pubescent leaflets with prominent interveinal necrotic brown blotches bordered by chlorotic yellow margins",
+      "possible_alternative_diagnoses": [
+        "Soybean Sudden Death Syndrome",
+        "Soybean Brown Spot (Septoria glycines)",
+        "Target Spot (Corynespora cassiicola)",
+        "Stem Canker foliar symptoms",
+        "Cowpea / Bean foliar anthracnose"
+      ],
+      "label_source": "Botanical leaflet morphology (trifoliate pubescent leaflet) & lesion inspection",
+      "label_status": "verified_crop_unsupported_in_model",
+      "verification_notes": "Botanical morphology clearly indicates Soybean (Glycine max). While PlantVillage had 'Soybean___healthy', diseased soybean classes were excluded from the unified 72-class crop disease model. The system must not force this image into Chilli, Tomato, or Grape.",
+      "expected_prediction": "Abstain / Out-of-Distribution Rejection",
+      "evaluation_eligible": true
+    },
+    {
+      "sample_id": "SAMPLE_08",
+      "filename": "Crop-Diseases_-Types-Causes-and-Symptoms-2-min.webp",
+      "crop_name": "Wheat",
+      "canonical_crop_id": "crop_wheat",
+      "suspected_disease": "Wheat Stripe Rust (Yellow Rust)",
+      "canonical_disease_id": "dis_wheat_stripe_rust",
+      "scientific_name": "Puccinia striiformis f. sp. tritici",
+      "affected_plant_part": "leaves",
+      "visible_symptoms": "Linear parallel stripes of bright yellow-orange powdery pustules (urediniospores) aligned along leaf veins of cereal blades, flanked by chlorosis",
+      "possible_alternative_diagnoses": [
+        "Wheat Leaf Rust (Puccinia triticina) - though linear striping is diagnostic for stripe rust",
+        "Barley Stripe Rust (Puccinia striiformis f. sp. hordei)"
+      ],
+      "label_source": "Educational agricultural guide illustration & characteristic linear pustule morphology",
+      "label_status": "verified_ground_truth",
+      "verification_notes": "Definitive morphological manifestation of Stripe Rust / Yellow Rust on wheat foliage. Linear parallel stripe formation is pathognomonic for Puccinia striiformis on Poaceae. This class exists in the 72-class model ('Wheat___Stripe_rust') and Phase 2 registry ('dis_wheat_stripe_rust').",
+      "expected_prediction": "Wheat Stripe Rust (Yellow Rust)",
+      "evaluation_eligible": true
+    },
+    {
+      "sample_id": "SAMPLE_09",
+      "filename": "Rust_leaves_MAIN.jpg",
+      "crop_name": "Wheat",
+      "canonical_crop_id": "crop_wheat",
+      "suspected_disease": "Wheat Stem Rust (Black Rust) / Leaf Rust",
+      "canonical_disease_id": "dis_wheat_leaf_rust",
+      "scientific_name": "Puccinia graminis f. sp. tritici / Puccinia triticina",
+      "affected_plant_part": "leaves",
+      "visible_symptoms": "Dense reddish-brown to dark brown erumpent pustules erupting across cereal stems and drying leaf sheaths/blades",
+      "possible_alternative_diagnoses": [
+        "Wheat Stem Rust (Puccinia graminis) - predominant on culms",
+        "Wheat Leaf Rust (Puccinia triticina) - on foliage",
+        "Barley Rust (Puccinia hordei)"
+      ],
+      "label_source": "Agricultural extension field publication on cereal rusts",
+      "label_status": "verified_crop_rust_complex",
+      "verification_notes": "Definitive cereal rust on wheat stems/leaves. In the unified model, wheat rust classes include 'Wheat___Leaf_rust' and 'Wheat___Stripe_rust'. Stem rust is not a distinct class in the model (often absorbed into leaf rust or out-of-class). The crop is verified as Wheat, and the pathogen is verified as Puccinia rust complex.",
+      "expected_prediction": "Wheat Leaf Rust or Wheat Stripe Rust",
+      "evaluation_eligible": true
+    }
+  ]
+}

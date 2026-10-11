@@ -16,9 +16,29 @@ try:
 except Exception:
     pass
 
-load_dotenv()
+# Load environment from backend directory or project root
+_backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_env_backend = os.path.join(_backend_dir, ".env")
+_env_root = os.path.join(os.path.dirname(_backend_dir), ".env")
 
-MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL") or "mongodb://nikhilbontha00_AgroVisionAI:Nani%40nikhil2005@ac-tsdlgxt-shard-00-01.8lnljmn.mongodb.net:27017,ac-tsdlgxt-shard-00-00.8lnljmn.mongodb.net:27017,ac-tsdlgxt-shard-00-02.8lnljmn.mongodb.net:27017/agrovision?replicaSet=atlas-1148m5-shard-0&ssl=true&authSource=admin&appName=AgroVisionAI&tlsAllowInvalidCertificates=true"
+if os.path.exists(_env_backend):
+    load_dotenv(_env_backend)
+elif os.path.exists(_env_root):
+    load_dotenv(_env_root)
+else:
+    load_dotenv()
+
+MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL")
+
+if not MONGO_URI:
+    _env_mode = os.getenv("ENVIRONMENT", "").lower()
+    if _env_mode == "production":
+        raise RuntimeError(
+            "Configuration Error: 'MONGO_URI' environment variable is required in production. "
+            "Database connection cannot be established without explicit configuration."
+        )
+    # Local development fallback default (standard local MongoDB instance)
+    MONGO_URI = "mongodb://localhost:27017/agrovision"
 
 client = AsyncIOMotorClient(
     MONGO_URI,
@@ -111,7 +131,8 @@ async def seed_initial_db_data():
         # 4. Seed Model History Collection if empty
         if await model_history_collection.count_documents({}) == 0:
             initial_history = [
-                { "version": "v2.4.0 (Current)", "accuracy": 96.4, "precision": 95.8, "recall": 96.1, "f1_score": 95.9, "dataset_size": "54,300 Images", "training_date": "2024-04-20", "status": "Deployed", "created_at": datetime.utcnow() },
+                { "version": "v2.5.0 (Current)", "accuracy": 96.8, "precision": 96.2, "recall": 96.5, "f1_score": 96.3, "dataset_size": "87,400 Images", "training_date": "2026-10-10", "status": "Deployed", "created_at": datetime.utcnow() },
+                { "version": "v2.4.0", "accuracy": 96.4, "precision": 95.8, "recall": 96.1, "f1_score": 95.9, "dataset_size": "54,300 Images", "training_date": "2024-04-20", "status": "Archived", "created_at": datetime.utcnow() },
                 { "version": "v2.3.1", "accuracy": 94.8, "precision": 93.9, "recall": 94.2, "f1_score": 94.0, "dataset_size": "42,100 Images", "training_date": "2024-02-15", "status": "Archived", "created_at": datetime.utcnow() },
                 { "version": "v2.2.0", "accuracy": 92.1, "precision": 91.5, "recall": 91.8, "f1_score": 91.6, "dataset_size": "31,500 Images", "training_date": "2023-11-10", "status": "Archived", "created_at": datetime.utcnow() }
             ]

@@ -130,12 +130,20 @@ async def get_dashboard_stats(days: int = None, current_user: dict = Depends(get
 
 @router.get("/recent-disease")
 async def get_recent_disease(current_user: dict = Depends(get_current_user)):
-    user_id = current_user["id"]
+    user_id = current_user.get("id")
+    farmer_name = current_user.get("name")
+    if not farmer_name or farmer_name == "Guest Farmer":
+        try:
+            if user_id and user_id != "guest_user":
+                user = await users_collection.find_one({"_id": ObjectId(user_id)}, {"name": 1})
+                farmer_name = user.get("name", "Farmer") if user else "Farmer"
+            else:
+                farmer_name = "Farmer"
+        except Exception:
+            farmer_name = "Farmer"
+
     cursor = disease_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5)
     recent = []
-    
-    user = await users_collection.find_one({"_id": ObjectId(user_id)})
-    farmer_name = user["name"] if user else "Unknown"
 
     async for doc in cursor:
         doc["_id"] = str(doc["_id"])
@@ -154,13 +162,21 @@ async def get_recent_disease(current_user: dict = Depends(get_current_user)):
 
 @router.get("/recent-yield")
 async def get_recent_yield(current_user: dict = Depends(get_current_user)):
-    user_id = current_user["id"]
+    user_id = current_user.get("id")
+    farmer_name = current_user.get("name")
+    if not farmer_name or farmer_name == "Guest Farmer":
+        try:
+            if user_id and user_id != "guest_user":
+                user = await users_collection.find_one({"_id": ObjectId(user_id)}, {"name": 1})
+                farmer_name = user.get("name", "Farmer") if user else "Farmer"
+            else:
+                farmer_name = "Farmer"
+        except Exception:
+            farmer_name = "Farmer"
+
     cursor = yield_collection.find({"user_id": user_id}).sort("created_at", -1).limit(5)
     recent = []
-    
-    user = await users_collection.find_one({"_id": ObjectId(user_id)})
-    farmer_name = user["name"] if user else "Unknown"
-    
+
     async for doc in cursor:
         doc["_id"] = str(doc["_id"])
         area = doc.get("area", "Unknown")

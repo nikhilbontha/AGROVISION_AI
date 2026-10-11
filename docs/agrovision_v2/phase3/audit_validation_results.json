@@ -1,0 +1,60 @@
+{
+  "test_suite": "AgroVision AI 2.0 - Phase 3 Automated Audit Test Suite",
+  "executed_at": "2026-10-11T11:14:04.179001",
+  "total_tests": 10,
+  "tests_passed": 10,
+  "tests_failed": 0,
+  "overall_status": "PASS",
+  "test_results": [
+    {
+      "test_name": "test_manifest_schema_validity",
+      "status": "PASS",
+      "message": "Sample manifest strictly adheres to prepared_data_manifest.schema.json."
+    },
+    {
+      "test_name": "test_duplicate_sample_ids",
+      "status": "PASS",
+      "message": "All 6 sample IDs in manifest are strictly unique."
+    },
+    {
+      "test_name": "test_missing_source_files",
+      "status": "PASS",
+      "message": "All 6 sample paths exist and are accessible on disk."
+    },
+    {
+      "test_name": "test_invalid_taxonomy_ids",
+      "status": "PASS",
+      "message": "All sample crop and disease IDs strictly resolve to valid Phase 2 canonical registries."
+    },
+    {
+      "test_name": "test_conflicting_class_labels_in_duplicate_groups",
+      "status": "PASS",
+      "message": "Successfully audited 81 cross-class conflicting clusters in Dataset 2 (including 1 Healthy vs Leaf Curl collision). Verified 0 conflicting labels within prepared manifest duplicate groups."
+    },
+    {
+      "test_name": "test_train_test_leakage_through_duplicate_groups",
+      "status": "PASS",
+      "message": "All duplicate groups are locked to single split partitions; zero cross-partition leakage."
+    },
+    {
+      "test_name": "test_split_overlap",
+      "status": "PASS",
+      "message": "Partitions are strictly mutually exclusive; zero sample ID overlap between splits."
+    },
+    {
+      "test_name": "test_missing_required_fields",
+      "status": "PASS",
+      "message": "All 6 samples contain 100% of required schema fields."
+    },
+    {
+      "test_name": "test_reproducibility_of_inventory_counts",
+      "status": "PASS",
+      "message": "Physical disk counts independently verified: Dataset 1 = 2730 (expected 2730), Dataset 2 = 21135 (expected 21135), Synthetic = 50 (expected 50)."
+    },
+    {
+      "test_name": "test_quality_flags_integrity",
+      "status": "PASS",
+      "message": "Verified image_quality_flags.csv has valid headers and exactly 885 traceable flag records."
+    }
+  ]
+}

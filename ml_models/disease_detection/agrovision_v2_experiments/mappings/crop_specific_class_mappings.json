@@ -1,0 +1,839 @@
+{
+  "mapping_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "description": "Crop-specific disease index mappings for Strategy B and Strategy D multi-head classifiers.",
+  "crops": {
+    "crop_apple": {
+      "crop_id": "crop_apple",
+      "crop_name": "Apple",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 0,
+          "canonical_class_key": "Apple___Apple_Scab",
+          "canonical_disease_id": "dis_apple_scab",
+          "canonical_disease_name": "Apple Scab",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 1,
+          "canonical_class_key": "Apple___Black_Rot",
+          "canonical_disease_id": "dis_apple_black_rot",
+          "canonical_disease_name": "Black Rot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 2,
+          "canonical_class_key": "Apple___Cedar_Apple_Rust",
+          "canonical_disease_id": "dis_apple_cedar_apple_rust",
+          "canonical_disease_name": "Cedar Apple Rust",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 3,
+          "canonical_class_key": "Apple___Healthy",
+          "canonical_disease_id": "dis_apple_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_corn": {
+      "crop_id": "crop_corn",
+      "crop_name": "Corn",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 15,
+          "canonical_class_key": "Corn___Cercospora_Gray_Leaf_Spot",
+          "canonical_disease_id": "dis_corn_cercospora_gray_leaf_spot",
+          "canonical_disease_name": "Cercospora Gray Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 16,
+          "canonical_class_key": "Corn___Common_Rust",
+          "canonical_disease_id": "dis_corn_common_rust",
+          "canonical_disease_name": "Common Rust",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 18,
+          "canonical_class_key": "Corn___Northern_Leaf_Blight",
+          "canonical_disease_id": "dis_corn_northern_leaf_blight",
+          "canonical_disease_name": "Northern Leaf Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 17,
+          "canonical_class_key": "Corn___Healthy",
+          "canonical_disease_id": "dis_corn_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_cotton": {
+      "crop_id": "crop_cotton",
+      "crop_name": "Cotton",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 20,
+          "canonical_class_key": "Cotton___Bacterial_Blight",
+          "canonical_disease_id": "dis_cotton_bacterial_blight",
+          "canonical_disease_name": "Bacterial Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 22,
+          "canonical_class_key": "Cotton___Healthy",
+          "canonical_disease_id": "dis_cotton_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 19,
+          "canonical_class_key": "Cotton___Alternaria_Leaf_Spot",
+          "canonical_disease_id": "dis_cotton_alternaria_leaf_spot",
+          "canonical_disease_name": "Alternaria Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 20,
+          "canonical_class_key": "Cotton___Bacterial_Blight",
+          "canonical_disease_id": "dis_cotton_bacterial_blight",
+          "canonical_disease_name": "Bacterial Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 4,
+          "global_canonical_id": 21,
+          "canonical_class_key": "Cotton___Fusarium_Wilt",
+          "canonical_disease_id": "dis_cotton_fusarium_wilt",
+          "canonical_disease_name": "Fusarium Wilt",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 5,
+          "global_canonical_id": 22,
+          "canonical_class_key": "Cotton___Healthy",
+          "canonical_disease_id": "dis_cotton_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 6,
+          "global_canonical_id": 23,
+          "canonical_class_key": "Cotton___Verticillium_Wilt",
+          "canonical_disease_id": "dis_cotton_verticillium_wilt",
+          "canonical_disease_name": "Verticillium Wilt",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 7
+    },
+    "crop_grape": {
+      "crop_id": "crop_grape",
+      "crop_name": "Grape",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 24,
+          "canonical_class_key": "Grape___Black_Rot",
+          "canonical_disease_id": "dis_grape_black_rot",
+          "canonical_disease_name": "Black Rot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 25,
+          "canonical_class_key": "Grape___Esca_Black_Measles",
+          "canonical_disease_id": "dis_grape_esca_black_measles",
+          "canonical_disease_name": "Esca Black Measles",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 27,
+          "canonical_class_key": "Grape___Leaf_Blight_Isariopsis_Spot",
+          "canonical_disease_id": "dis_grape_leaf_blight",
+          "canonical_disease_name": "Leaf Blight Isariopsis Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 26,
+          "canonical_class_key": "Grape___Healthy",
+          "canonical_disease_id": "dis_grape_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_non_plant": {
+      "crop_id": "crop_non_plant",
+      "crop_name": "Non_Plant",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 36,
+          "canonical_class_key": "Non_Plant___Unsupported_Object",
+          "canonical_disease_id": "dis_non_plant_unsupported",
+          "canonical_disease_name": "Unsupported Object",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 1
+    },
+    "crop_orange": {
+      "crop_id": "crop_orange",
+      "crop_name": "Orange",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 37,
+          "canonical_class_key": "Orange___Citrus_Greening",
+          "canonical_disease_id": "dis_orange_citrus_greening",
+          "canonical_disease_name": "Citrus Greening",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 38,
+          "canonical_class_key": "Orange___Healthy",
+          "canonical_disease_id": "dis_orange_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 2
+    },
+    "crop_pepper_bell": {
+      "crop_id": "crop_pepper_bell",
+      "crop_name": "Pepper",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 41,
+          "canonical_class_key": "Pepper___Bacterial_Spot",
+          "canonical_disease_id": "dis_pepper_bell_bacterial_spot",
+          "canonical_disease_name": "Bacterial Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 42,
+          "canonical_class_key": "Pepper___Healthy",
+          "canonical_disease_id": "dis_pepper_bell_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 2
+    },
+    "crop_potato": {
+      "crop_id": "crop_potato",
+      "crop_name": "Potato",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 43,
+          "canonical_class_key": "Potato___Early_Blight",
+          "canonical_disease_id": "dis_potato_early_blight",
+          "canonical_disease_name": "Early Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 45,
+          "canonical_class_key": "Potato___Late_Blight",
+          "canonical_disease_id": "dis_potato_late_blight",
+          "canonical_disease_name": "Late Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 44,
+          "canonical_class_key": "Potato___Healthy",
+          "canonical_disease_id": "dis_potato_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 3
+    },
+    "crop_rice": {
+      "crop_id": "crop_rice",
+      "crop_name": "Rice",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 46,
+          "canonical_class_key": "Rice___Bacterial_Leaf_Blight",
+          "canonical_disease_id": "dis_rice_bacterial_leaf_blight",
+          "canonical_disease_name": "Bacterial Leaf Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 47,
+          "canonical_class_key": "Rice___Blast",
+          "canonical_disease_id": "dis_rice_blast",
+          "canonical_disease_name": "Blast",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 49,
+          "canonical_class_key": "Rice___Healthy",
+          "canonical_disease_id": "dis_rice_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 46,
+          "canonical_class_key": "Rice___Bacterial_Leaf_Blight",
+          "canonical_disease_id": "dis_rice_bacterial_leaf_blight",
+          "canonical_disease_name": "Bacterial Leaf Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 4,
+          "global_canonical_id": 47,
+          "canonical_class_key": "Rice___Blast",
+          "canonical_disease_id": "dis_rice_blast",
+          "canonical_disease_name": "Blast",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 5,
+          "global_canonical_id": 48,
+          "canonical_class_key": "Rice___Brown_Spot",
+          "canonical_disease_id": "dis_rice_brown_spot",
+          "canonical_disease_name": "Brown Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 6,
+          "global_canonical_id": 49,
+          "canonical_class_key": "Rice___Healthy",
+          "canonical_disease_id": "dis_rice_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 7,
+          "global_canonical_id": 50,
+          "canonical_class_key": "Rice___Leaf_Scald",
+          "canonical_disease_id": "dis_rice_leaf_scald",
+          "canonical_disease_name": "Leaf Scald",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 8,
+          "global_canonical_id": 51,
+          "canonical_class_key": "Rice___Leaf_Smut",
+          "canonical_disease_id": "dis_rice_leaf_smut",
+          "canonical_disease_name": "Leaf Smut",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 9,
+          "global_canonical_id": 52,
+          "canonical_class_key": "Rice___Sheath_Blight",
+          "canonical_disease_id": "dis_rice_sheath_blight",
+          "canonical_disease_name": "Sheath Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 10,
+          "global_canonical_id": 53,
+          "canonical_class_key": "Rice___Tungro",
+          "canonical_disease_id": "dis_rice_tungro",
+          "canonical_disease_name": "Tungro",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 11
+    },
+    "crop_tomato": {
+      "crop_id": "crop_tomato",
+      "crop_name": "Tomato",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 54,
+          "canonical_class_key": "Tomato___Bacterial_Spot",
+          "canonical_disease_id": "dis_tomato_bacterial_spot",
+          "canonical_disease_name": "Bacterial Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 55,
+          "canonical_class_key": "Tomato___Early_Blight",
+          "canonical_disease_id": "dis_tomato_early_blight",
+          "canonical_disease_name": "Early Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 57,
+          "canonical_class_key": "Tomato___Late_Blight",
+          "canonical_disease_id": "dis_tomato_late_blight",
+          "canonical_disease_name": "Late Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 58,
+          "canonical_class_key": "Tomato___Leaf_Mold",
+          "canonical_disease_id": "dis_tomato_leaf_mold",
+          "canonical_disease_name": "Leaf Mold",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 4,
+          "global_canonical_id": 60,
+          "canonical_class_key": "Tomato___Septoria_Leaf_Spot",
+          "canonical_disease_id": "dis_tomato_septoria_leaf_spot",
+          "canonical_disease_name": "Septoria Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 5,
+          "global_canonical_id": 61,
+          "canonical_class_key": "Tomato___Spider_Mites",
+          "canonical_disease_id": "dis_tomato_spider_mites",
+          "canonical_disease_name": "Spider Mites",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 6,
+          "global_canonical_id": 62,
+          "canonical_class_key": "Tomato___Target_Spot",
+          "canonical_disease_id": "dis_tomato_target_spot",
+          "canonical_disease_name": "Target Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 7,
+          "global_canonical_id": 63,
+          "canonical_class_key": "Tomato___Yellow_Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_tomato_yellow_leaf_curl",
+          "canonical_disease_name": "Yellow Leaf Curl Virus",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 8,
+          "global_canonical_id": 59,
+          "canonical_class_key": "Tomato___Mosaic_Virus",
+          "canonical_disease_id": "dis_tomato_mosaic_virus",
+          "canonical_disease_name": "Mosaic Virus",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 9,
+          "global_canonical_id": 56,
+          "canonical_class_key": "Tomato___Healthy",
+          "canonical_disease_id": "dis_tomato_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 10,
+          "global_canonical_id": 54,
+          "canonical_class_key": "Tomato___Bacterial_Spot",
+          "canonical_disease_id": "dis_tomato_bacterial_spot",
+          "canonical_disease_name": "Bacterial Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 11,
+          "global_canonical_id": 55,
+          "canonical_class_key": "Tomato___Early_Blight",
+          "canonical_disease_id": "dis_tomato_early_blight",
+          "canonical_disease_name": "Early Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 12,
+          "global_canonical_id": 56,
+          "canonical_class_key": "Tomato___Healthy",
+          "canonical_disease_id": "dis_tomato_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 13,
+          "global_canonical_id": 57,
+          "canonical_class_key": "Tomato___Late_Blight",
+          "canonical_disease_id": "dis_tomato_late_blight",
+          "canonical_disease_name": "Late Blight",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 14,
+          "global_canonical_id": 58,
+          "canonical_class_key": "Tomato___Leaf_Mold",
+          "canonical_disease_id": "dis_tomato_leaf_mold",
+          "canonical_disease_name": "Leaf Mold",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 15,
+          "global_canonical_id": 59,
+          "canonical_class_key": "Tomato___Mosaic_Virus",
+          "canonical_disease_id": "dis_tomato_mosaic_virus",
+          "canonical_disease_name": "Mosaic Virus",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 16,
+          "global_canonical_id": 60,
+          "canonical_class_key": "Tomato___Septoria_Leaf_Spot",
+          "canonical_disease_id": "dis_tomato_septoria_leaf_spot",
+          "canonical_disease_name": "Septoria Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 17,
+          "global_canonical_id": 61,
+          "canonical_class_key": "Tomato___Spider_Mites",
+          "canonical_disease_id": "dis_tomato_spider_mites",
+          "canonical_disease_name": "Spider Mites",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 18,
+          "global_canonical_id": 62,
+          "canonical_class_key": "Tomato___Target_Spot",
+          "canonical_disease_id": "dis_tomato_target_spot",
+          "canonical_disease_name": "Target Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 19,
+          "global_canonical_id": 63,
+          "canonical_class_key": "Tomato___Yellow_Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_tomato_yellow_leaf_curl",
+          "canonical_disease_name": "Yellow Leaf Curl Virus",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 20
+    },
+    "crop_wheat": {
+      "crop_id": "crop_wheat",
+      "crop_name": "Wheat",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 69,
+          "canonical_class_key": "Wheat___Leaf_Rust",
+          "canonical_disease_id": "dis_wheat_leaf_rust",
+          "canonical_disease_name": "Leaf Rust",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 70,
+          "canonical_class_key": "Wheat___Powdery_Mildew",
+          "canonical_disease_id": "dis_wheat_powdery_mildew",
+          "canonical_disease_name": "Powdery Mildew",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 71,
+          "canonical_class_key": "Wheat___Stripe_Rust",
+          "canonical_disease_id": "dis_wheat_stripe_rust",
+          "canonical_disease_name": "Stripe Rust",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 68,
+          "canonical_class_key": "Wheat___Healthy",
+          "canonical_disease_id": "dis_wheat_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_banana": {
+      "crop_id": "crop_banana",
+      "crop_name": "Banana",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 4,
+          "canonical_class_key": "Banana___Black_Sigatoka",
+          "canonical_disease_id": "dis_banana_black_sigatoka",
+          "canonical_disease_name": "Black Sigatoka",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 5,
+          "canonical_class_key": "Banana___Cordana_Leaf_Spot",
+          "canonical_disease_id": "dis_banana_cordana_leaf_spot",
+          "canonical_disease_name": "Cordana Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 6,
+          "canonical_class_key": "Banana___Healthy",
+          "canonical_disease_id": "dis_banana_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 7,
+          "canonical_class_key": "Banana___Panama_Disease",
+          "canonical_disease_id": "dis_banana_panama_disease",
+          "canonical_disease_name": "Panama Disease",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_chilli": {
+      "crop_id": "crop_chilli",
+      "crop_name": "Chilli",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 8,
+          "canonical_class_key": "Chilli___Anthracnose",
+          "canonical_disease_id": "dis_chilli_anthracnose",
+          "canonical_disease_name": "Anthracnose",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 9,
+          "canonical_class_key": "Chilli___Damping_Off",
+          "canonical_disease_id": "dis_chilli_damping_off",
+          "canonical_disease_name": "Damping Off",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 10,
+          "canonical_class_key": "Chilli___Healthy",
+          "canonical_disease_id": "dis_chilli_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 11,
+          "canonical_class_key": "Chilli___Leaf_Curl_Virus",
+          "canonical_disease_id": "dis_chilli_leaf_curl",
+          "canonical_disease_name": "Leaf Curl Virus",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 4,
+          "global_canonical_id": 12,
+          "canonical_class_key": "Chilli___Leaf_Spot",
+          "canonical_disease_id": "dis_chilli_leaf_spot",
+          "canonical_disease_name": "Leaf Spot",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 5,
+          "global_canonical_id": 13,
+          "canonical_class_key": "Chilli___Veinal_Mottle_Virus",
+          "canonical_disease_id": "dis_chilli_veinal_mottle",
+          "canonical_disease_name": "Veinal Mottle Virus",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 6,
+          "global_canonical_id": 14,
+          "canonical_class_key": "Chilli___Whitefly",
+          "canonical_disease_id": "dis_chilli_whitefly",
+          "canonical_disease_name": "Whitefly",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 7,
+          "global_canonical_id": -1,
+          "canonical_class_key": "Chilli___Yellowish_Chlorosis",
+          "canonical_disease_id": "dis_chilli_yellowish",
+          "canonical_disease_name": "Yellowish Chlorosis",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 8
+    },
+    "crop_mango": {
+      "crop_id": "crop_mango",
+      "crop_name": "Mango",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 28,
+          "canonical_class_key": "Mango___Anthracnose",
+          "canonical_disease_id": "dis_mango_anthracnose",
+          "canonical_disease_name": "Anthracnose",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 29,
+          "canonical_class_key": "Mango___Bacterial_Canker",
+          "canonical_disease_id": "dis_mango_bacterial_canker",
+          "canonical_disease_name": "Bacterial Canker",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 30,
+          "canonical_class_key": "Mango___Cutting_Weevil",
+          "canonical_disease_id": "dis_mango_cutting_weevil",
+          "canonical_disease_name": "Cutting Weevil",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 31,
+          "canonical_class_key": "Mango___Die_Back",
+          "canonical_disease_id": "dis_mango_die_back",
+          "canonical_disease_name": "Die Back",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 4,
+          "global_canonical_id": 32,
+          "canonical_class_key": "Mango___Gall_Midge",
+          "canonical_disease_id": "dis_mango_gall_midge",
+          "canonical_disease_name": "Gall Midge",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 5,
+          "global_canonical_id": 33,
+          "canonical_class_key": "Mango___Healthy",
+          "canonical_disease_id": "dis_mango_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 6,
+          "global_canonical_id": 34,
+          "canonical_class_key": "Mango___Powdery_Mildew",
+          "canonical_disease_id": "dis_mango_powdery_mildew",
+          "canonical_disease_name": "Powdery Mildew",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 7,
+          "global_canonical_id": 35,
+          "canonical_class_key": "Mango___Sooty_Mould",
+          "canonical_disease_id": "dis_mango_sooty_mould",
+          "canonical_disease_name": "Sooty Mould",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 8
+    },
+    "crop_oil_palm": {
+      "crop_id": "crop_oil_palm",
+      "crop_name": "Palm",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": -1,
+          "canonical_class_key": "Palm___Dryness",
+          "canonical_disease_id": "dis_oil_palm_dryness",
+          "canonical_disease_name": "Dryness",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": -1,
+          "canonical_class_key": "Palm___Fungal_Disease",
+          "canonical_disease_id": "dis_oil_palm_fungal_disease",
+          "canonical_disease_name": "Fungal Disease",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 39,
+          "canonical_class_key": "Palm___Magnesium_Deficiency",
+          "canonical_disease_id": "dis_oil_palm_magnesium_deficiency",
+          "canonical_disease_name": "Magnesium Deficiency",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 40,
+          "canonical_class_key": "Palm___Scale_Insect",
+          "canonical_disease_id": "dis_oil_palm_scale_insect",
+          "canonical_disease_name": "Scale Insect",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 4
+    },
+    "crop_turmeric": {
+      "crop_id": "crop_turmeric",
+      "crop_name": "Turmeric",
+      "classes": [
+        {
+          "local_class_index": 0,
+          "global_canonical_id": 64,
+          "canonical_class_key": "Turmeric___Dry_Leaf",
+          "canonical_disease_id": "dis_turmeric_dry_leaf",
+          "canonical_disease_name": "Dry Leaf",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 1,
+          "global_canonical_id": 65,
+          "canonical_class_key": "Turmeric___Healthy",
+          "canonical_disease_id": "dis_turmeric_healthy",
+          "canonical_disease_name": "Healthy",
+          "is_healthy": true
+        },
+        {
+          "local_class_index": 2,
+          "global_canonical_id": 66,
+          "canonical_class_key": "Turmeric___Leaf_Blotch",
+          "canonical_disease_id": "dis_turmeric_leaf_blotch",
+          "canonical_disease_name": "Leaf Blotch",
+          "is_healthy": false
+        },
+        {
+          "local_class_index": 3,
+          "global_canonical_id": 67,
+          "canonical_class_key": "Turmeric___Rhizome_Rot",
+          "canonical_disease_id": "dis_turmeric_rhizome_rot",
+          "canonical_disease_name": "Rhizome Rot",
+          "is_healthy": false
+        }
+      ],
+      "num_classes": 4
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "experiment_id": "EXP_STRATEGY_C_CROP_IDENTITY_ROUTER",
+  "strategy": "C_CROP_ROUTING_ARCHITECTURE",
+  "version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "description": "Strategy C: Stage-1 Crop Identity Router classifying 16 crops before routing to crop-specific models, with explicit abstention when confidence is below tau_crop.",
+  "dataset": {
+    "manifest_version": "2.0.0",
+    "train_manifest": "ml_models/disease_detection/unified_experiment/train_manifest.json",
+    "val_manifest": "ml_models/disease_detection/unified_experiment/val_manifest.json",
+    "test_manifest": "ml_models/disease_detection/unified_experiment/test_manifest.json",
+    "class_label": "canonical_crop"
+  },
+  "router_model": {
+    "num_crops": 16,
+    "class_mapping_path": "ml_models/disease_detection/agrovision_v2_experiments/mappings/crop_router_mapping.json",
+    "architectures": [
+      {
+        "type": "scikit_learn_visual_feature_router",
+        "classifier": "CalibratedClassifierCV(RandomForestClassifier(n_estimators=100))",
+        "feature_extractor": "HSV_Color_Histograms_Plus_Texture_Moments",
+        "feature_dim": 136,
+        "execution_status": "EXECUTED_AND_EVALUATED"
+      },
+      {
+        "type": "deep_cnn_router",
+        "backbone": "EfficientNetB0",
+        "head": "Dense(16, activation='softmax')",
+        "execution_status": "CONTAINER_GPU_PLANNED"
+      }
+    ]
+  },
+  "routing_decision_rules": {
+    "tau_high_confidence": 0.65,
+    "tau_uncertain_abstain": 0.40,
+    "disagreement_handling": "IF farmer_selected_crop != router_predicted_crop AND router_confidence >= 0.65 THEN trigger Phase 5 'crop_mismatch' abstention. NEVER silently override farmer."
+  },
+  "output_artifacts": {
+    "artifacts_dir": "ml_models/disease_detection/agrovision_v2_experiments/artifacts/strategy_c/",
+    "model_filename": "crop_identity_router.pkl",
+    "metrics_json": "crop_router_metrics.json"
+  }
+}

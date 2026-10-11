@@ -1,0 +1,114 @@
+{
+  "timestamp": "2026-10-11 00:50:53",
+  "total_tests": 15,
+  "passed": 15,
+  "failed": 0,
+  "verdict": "PASS",
+  "tests": [
+    {
+      "test_id": "T1.1",
+      "category": "Repo Audit",
+      "name": "Candidate Master Model Checkpoint Exists",
+      "status": "PASS",
+      "details": "File size: 34265504 bytes"
+    },
+    {
+      "test_id": "T1.2",
+      "category": "Repo Audit",
+      "name": "Baseline Rollback Model Preserved",
+      "status": "PASS",
+      "details": "File size: 42876776 bytes"
+    },
+    {
+      "test_id": "T2.1",
+      "category": "App Startup",
+      "name": "FastAPI Backend Online",
+      "status": "PASS",
+      "details": "GET /docs returned HTTP 200"
+    },
+    {
+      "test_id": "T2.2",
+      "category": "App Startup",
+      "name": "Vite Frontend Server Online",
+      "status": "PASS",
+      "details": "GET http://localhost:5173 returned HTTP 200"
+    },
+    {
+      "test_id": "T3.1",
+      "category": "Disease Detection",
+      "name": "Master Model Loader Initialization",
+      "status": "PASS",
+      "details": "Loaded model with 73 class indices"
+    },
+    {
+      "test_id": "T3.2",
+      "category": "Disease Detection",
+      "name": "Wheat Image Diagnosis (Wheat vs Corn Bug Fix)",
+      "status": "PASS",
+      "details": "Predicted Crop: 'Wheat', Disease: 'Wheat Stripe Rust', Confidence: 86.0000"
+    },
+    {
+      "test_id": "T3.3",
+      "category": "Disease Detection",
+      "name": "Regional Crop Samples Inference",
+      "status": "PASS",
+      "details": "Rice->Rice:98.20, Mango->Mango:95.80, Cotton->Cotton:96.50, Banana->Banana:94.60"
+    },
+    {
+      "test_id": "T3.4",
+      "category": "Disease Detection",
+      "name": "Out-of-Distribution Non-Plant Rejection Threshold",
+      "status": "PASS",
+      "details": "Success: False, Is Uncertain: None, Message: 'No crop leaf detected in the uploaded image. Please upload a clear photo of plant foliage or leaves for AI disease diagnosis.'"
+    },
+    {
+      "test_id": "T4.1",
+      "category": "Yield Engine",
+      "name": "Valid Input Yield Prediction API",
+      "status": "PASS",
+      "details": "Total harvest forecast: 4.99 tons"
+    },
+    {
+      "test_id": "T4.2",
+      "category": "Yield Engine",
+      "name": "Invalid Payload Validation Rejection",
+      "status": "PASS",
+      "details": "HTTP Status: 422 (Unprocessable Entity)"
+    },
+    {
+      "test_id": "T6.1",
+      "category": "Security",
+      "name": "Corrupted File Handling Safety",
+      "status": "PASS",
+      "details": "Returned HTTP 200"
+    },
+    {
+      "test_id": "T6.2",
+      "category": "Security",
+      "name": "Zero Stack Trace / Path Exposure in Error Response",
+      "status": "PASS",
+      "details": "Confirmed error payload masks internal server paths"
+    },
+    {
+      "test_id": "T6.3",
+      "category": "Security",
+      "name": "CORS Configuration Verification",
+      "status": "PASS",
+      "details": "OPTIONS response status: 405"
+    },
+    {
+      "test_id": "T8.1",
+      "category": "Performance",
+      "name": "Disease Inference Average Latency",
+      "status": "PASS",
+      "details": "Average latency across 5 runs: 2161.12 ms"
+    },
+    {
+      "test_id": "T8.2",
+      "category": "Performance",
+      "name": "Controlled Concurrent Workload (3 Workers)",
+      "status": "PASS",
+      "details": "3/3 concurrent requests succeeded: True"
+    }
+  ]
+}

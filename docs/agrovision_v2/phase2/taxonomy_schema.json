@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgroVision AI 2.0 Canonical Taxonomy Schema",
+  "description": "JSON Schema specification defining validation constraints for the canonical crop registry, disease registry, model class mappings, and crop-organ compatibility matrix.",
+  "definitions": {
+    "VerificationStatus": {
+      "type": "string",
+      "enum": [
+        "supported_and_evaluated",
+        "present_in_dataset_only",
+        "insufficient_evidence",
+        "not_supported"
+      ]
+    },
+    "DiseaseVerificationStatus": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "provisional",
+        "unsupported"
+      ]
+    },
+    "ConditionType": {
+      "type": "string",
+      "enum": [
+        "healthy",
+        "disease",
+        "pest_damage",
+        "nutrient_disorder",
+        "abiotic_stress",
+        "unknown"
+      ]
+    },
+    "PathogenType": {
+      "type": "string",
+      "enum": [
+        "fungal",
+        "bacterial",
+        "viral",
+        "oomycete",
+        "pest",
+        "abiotic",
+        "nutritional",
+        "mixed",
+        "unknown"
+      ]
+    },
+    "PlantOrgan": {
+      "type": "string",
+      "enum": [
+        "leaves",
+        "stems",
+        "roots",
+        "flowers",
+        "fruits",
+        "pods",
+        "ears_cobs",
+        "rhizomes_tubers",
+        "bolls",
+        "panicles_seeds",
+        "whole_plant"
+      ]
+    },
+    "CropRecord": {
+      "type": "object",
+      "required": [
+        "crop_id",
+        "canonical_name",
+        "aliases",
+        "supported_organs",
+        "supported_disease_ids",
+        "dataset_sources",
+        "regional_relevance",
+        "evidence_references",
+        "verification_status",
+        "status_justification"
+      ],
+      "properties": {
+        "crop_id": { "type": "string", "pattern": "^crop_[a-z0-9_]+$" },
+        "canonical_name": { "type": "string", "minLength": 2 },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "scientific_name": { "type": ["string", "null"] },
+        "botanical_family": { "type": ["string", "null"] },
+        "supported_organs": { "type": "array", "items": { "$ref": "#/definitions/PlantOrgan" } },
+        "supported_disease_ids": { "type": "array", "items": { "type": "string" } },
+        "healthy_class_id": { "type": ["string", "null"] },
+        "dataset_sources": { "type": "array", "items": { "type": "string" } },
+        "regional_relevance": { "type": "string" },
+        "evidence_references": { "type": "array", "items": { "type": "string" } },
+        "verification_status": { "$ref": "#/definitions/VerificationStatus" },
+        "status_justification": { "type": "string" }
+      }
+    },
+    "DiseaseRecord": {
+      "type": "object",
+      "required": [
+        "disease_id",
+        "canonical_name",
+        "crop_id",
+        "condition_type",
+        "pathogen_type",
+        "supported_organs",
+        "observable_symptoms",
+        "known_look_alikes",
+        "dataset_class_aliases",
+        "model_class_indices",
+        "evidence_references",
+        "verification_status",
+        "uncertainty_notes"
+      ],
+      "properties": {
+        "disease_id": { "type": "string", "pattern": "^dis_[a-z0-9_]+$" },
+        "canonical_name": { "type": "string", "minLength": 2 },
+        "crop_id": { "type": "string", "pattern": "^crop_[a-z0-9_]+$" },
+        "condition_type": { "$ref": "#/definitions/ConditionType" },
+        "pathogen_type": { "$ref": "#/definitions/PathogenType" },
+        "scientific_name": { "type": ["string", "null"] },
+        "supported_organs": { "type": "array", "items": { "$ref": "#/definitions/PlantOrgan" } },
+        "observable_symptoms": { "type": "array", "items": { "type": "string" } },
+        "known_look_alikes": { "type": "array", "items": { "type": "string" } },
+        "dataset_class_aliases": { "type": "object" },
+        "model_class_indices": { "type": "object" },
+        "evidence_references": { "type": "array", "items": { "type": "string" } },
+        "verification_status": { "$ref": "#/definitions/DiseaseVerificationStatus" },
+        "uncertainty_notes": { "type": "string" }
+      }
+    }
+  }
+}

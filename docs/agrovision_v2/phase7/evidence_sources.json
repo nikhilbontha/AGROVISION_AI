@@ -1,0 +1,91 @@
+{
+  "source_registry_version": "2.0.0",
+  "generated_at": "2026-10-11T12:00:00+05:30",
+  "description": "Authoritative institutional knowledge sources, agricultural research compendia, and regulatory pesticide registers for AgroVision AI 2.0.",
+  "sources": [
+    {
+      "source_id": "SRC_PJTSAU_POP_2024",
+      "title": "PJTSAU Vyavasaya Panchangam (Agronomic Package of Practices for Field and Horticultural Crops)",
+      "organization": "Professor Jayashankar Telangana State Agricultural University (PJTSAU), Hyderabad",
+      "persistent_identifier": "PJTSAU-EXT-POP-2024",
+      "publication_date": "2024-05-15",
+      "knowledge_claim_supported": "Official crop-specific disease diagnostic milestones, symptom descriptions, and recommended IPM management packages for Telangana agro-climatic zones.",
+      "state_applicability": ["Telangana"],
+      "crop_applicability": ["Rice", "Cotton", "Chilli", "Tomato", "Maize", "Mango", "Turmeric"],
+      "authority_type": "State Agricultural University (Statutory Extension Authority)",
+      "review_status": "verified_expert"
+    },
+    {
+      "source_id": "SRC_ANGRAU_DIAGNOSTIC_2024",
+      "title": "ANGRAU Crop Protection Guide and Disease Diagnostic Field Compendium",
+      "organization": "Acharya N.G. Ranga Agricultural University (ANGRAU), Guntur, Andhra Pradesh",
+      "persistent_identifier": "ANGRAU-CP-GUIDE-2024",
+      "publication_date": "2024-06-01",
+      "knowledge_claim_supported": "Pathogen biology, look-alike field differentiators, foliar diagnostic keys, and integrated management for coastal and Rayalaseema agricultural zones.",
+      "state_applicability": ["Andhra Pradesh"],
+      "crop_applicability": ["Rice", "Chilli", "Cotton", "Groundnut", "Mango", "Banana", "Tomato"],
+      "authority_type": "State Agricultural University (Statutory Extension Authority)",
+      "review_status": "verified_expert"
+    },
+    {
+      "source_id": "SRC_ICAR_IPM_HORT_2023",
+      "title": "ICAR National Integrated Pest Management Packages for Major Horticultural Crops",
+      "organization": "Indian Council of Agricultural Research (ICAR) - NCIPM, New Delhi",
+      "persistent_identifier": "ICAR-NCIPM-IPM-HORT-2023",
+      "publication_date": "2023-11-20",
+      "knowledge_claim_supported": "Bio-control agents (Trichoderma viride, Pseudomonas fluorescens, Bacillus subtilis), cultural sanitation, and economic threshold levels (ETL).",
+      "state_applicability": ["Telangana", "Andhra Pradesh", "All India"],
+      "crop_applicability": ["Tomato", "Chilli", "Potato", "Mango", "Banana", "Grape", "Apple"],
+      "authority_type": "National Apex Agricultural Research Organization",
+      "review_status": "verified_expert"
+    },
+    {
+      "source_id": "SRC_ICAR_IIRR_RICE_2024",
+      "title": "ICAR-IIRR Rice Diseases Compendium and Eco-Friendly Management Guidelines",
+      "organization": "ICAR - Indian Institute of Rice Research (IIRR), Rajendranagar, Hyderabad",
+      "persistent_identifier": "ICAR-IIRR-TECH-BULL-92",
+      "publication_date": "2024-02-10",
+      "knowledge_claim_supported": "Differential diagnostic keys for Rice Blast (Magnaporthe oryzae) vs Brown Spot (Bipolaris oryzae) vs Bacterial Leaf Blight (Xanthomonas oryzae pv. oryzae).",
+      "state_applicability": ["Telangana", "Andhra Pradesh", "All India"],
+      "crop_applicability": ["Rice"],
+      "authority_type": "National Commodity Research Institute",
+      "review_status": "verified_expert"
+    },
+    {
+      "source_id": "SRC_CIBRC_REGISTER_2024",
+      "title": "Major Uses of Pesticides Registered Under the Insecticides Act, 1968",
+      "organization": "Central Insecticides Board and Registration Committee (CIBRC), Directorate of Plant Protection, Quarantine & Storage, Ministry of Agriculture, Govt. of India",
+      "persistent_identifier": "GOI-DAC-CIBRC-REGISTER-JULY-2024",
+      "publication_date": "2024-07-01",
+      "knowledge_claim_supported": "Approved active ingredients, formulation types, statutory crop-target combinations, dilution rates, and pre-harvest intervals (PHI).",
+      "state_applicability": ["All India"],
+      "crop_applicability": ["Rice", "Cotton", "Chilli", "Tomato", "Wheat", "Potato", "Maize", "Mango"],
+      "authority_type": "National Statutory Pesticide Regulatory Authority",
+      "review_status": "verified_expert"
+    },
+    {
+      "source_id": "SRC_CABI_PLANTWISE_2023",
+      "title": "CABI PlantwisePlus Knowledge Bank: Pest and Disease Management Decision Guides",
+      "organization": "Centre for Agriculture and Bioscience International (CABI), Wallingford, UK",
+      "persistent_identifier": "CABI-PW-KNOWLEDGEBANK-2023",
+      "publication_date": "2023-09-12",
+      "knowledge_claim_supported": "Global symptom ontology, pathogen etiology, secondary spread dynamics, and cultural prevention measures for tropical and subtropical crops.",
+      "state_applicability": ["All India", "Global Subtropics"],
+      "crop_applicability": ["Tomato", "Potato", "Chilli", "Cotton", "Maize", "Rice", "Wheat"],
+      "authority_type": "International Agricultural Science Organization",
+      "review_status": "peer_reviewed"
+    },
+    {
+      "source_id": "SRC_ICAR_CICR_COTTON_2023",
+      "title": "ICAR-CICR Cotton Disease Diagnosis and Integrated Disease Management Manual",
+      "organization": "ICAR - Central Institute for Cotton Research (CICR), Nagpur",
+      "persistent_identifier": "ICAR-CICR-MANUAL-COT-2023",
+      "publication_date": "2023-08-15",
+      "knowledge_claim_supported": "Cotton Bacterial Blight (Xanthomonas citri pv. malvacearum), Alternaria Leaf Spot, and Fusarium Wilt diagnostic criteria and weather-based risk warnings.",
+      "state_applicability": ["Telangana", "Andhra Pradesh", "Maharashtra"],
+      "crop_applicability": ["Cotton"],
+      "authority_type": "National Commodity Research Institute",
+      "review_status": "verified_expert"
+    }
+  ]
+}

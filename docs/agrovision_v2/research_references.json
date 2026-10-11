@@ -1,0 +1,82 @@
+{
+  "research_references": [
+    {
+      "citation_key": "MOHANTY2016",
+      "authors": "Sharada P. Mohanty, David P. Hughes, Marcel Salathé",
+      "year": 2016,
+      "title": "Using Deep Learning for Image-Based Plant Disease Detection",
+      "journal": "Frontiers in Plant Science",
+      "doi_or_url": "10.3389/fpls.2016.01419",
+      "relevant_findings": "Demonstrated that deep convolutional networks achieve 99.35% accuracy on controlled lab images (PlantVillage), but model accuracy plummets to 31.4% when evaluated on field photographs under varying illumination and natural backgrounds. Emphasized that background shortcuts prevent true generalization to real-world farms."
+    },
+    {
+      "citation_key": "BARBEDO2018",
+      "authors": "Jayme Garcia Arnal Barbedo",
+      "year": 2018,
+      "title": "Factors influencing the use of deep learning for plant disease recognition",
+      "journal": "Biosystems Engineering",
+      "doi_or_url": "10.1016/j.biosystemseng.2018.05.013",
+      "relevant_findings": "Identified that whole-leaf images suffer from severe confounding: leaf age, nutrient chlorosis look-alikes, multiple co-occurring diseases, and lighting glare. Emphasized the necessity of symptom-level analysis and structured metadata (growth stage, weather)."
+    },
+    {
+      "citation_key": "BARBEDO2019",
+      "authors": "Jayme Garcia Arnal Barbedo",
+      "year": 2019,
+      "title": "Plant disease identification from individual lesions and spots using deep learning",
+      "journal": "Biosystems Engineering",
+      "doi_or_url": "10.1016/j.biosystemseng.2019.02.002",
+      "relevant_findings": "Demonstrated that isolating and classifying individual lesions/spots significantly outperforms whole-image classification, particularly when distinguishing similar foliar diseases across solanaceous and cereal crops."
+    },
+    {
+      "citation_key": "GUO2017",
+      "authors": "Chuan Guo, Geoff Pleiss, Yu Sun, Kilian Q. Weinberger",
+      "year": 2017,
+      "title": "On Calibration of Modern Neural Networks",
+      "conference": "International Conference on Machine Learning (ICML 2017)",
+      "doi_or_url": "https://proceedings.mlr.press/v70/guo17a.html",
+      "relevant_findings": "Proved that modern deep architectures are miscalibrated and systematically overconfident. Raw softmax probabilities cannot be trusted as confidence scores. Recommended Temperature Scaling and Expected Calibration Error (ECE) monitoring for safety-critical deployment."
+    },
+    {
+      "citation_key": "GEIFMAN2017_2019",
+      "authors": "Yonatan Geifman, Ran El-Yaniv",
+      "year": 2019,
+      "title": "SelectiveNet: A Deep Neural Network with an Integrated Reject Option",
+      "conference": "International Conference on Machine Learning (ICML 2019)",
+      "doi_or_url": "https://arxiv.org/abs/1901.09192",
+      "relevant_findings": "Formalized selective prediction in high-stakes classification: introducing a calibrated abstention mechanism ('Uncertain / Needs Extension Inspection') to maximize accuracy at target coverage levels, preventing catastrophic misdiagnosis."
+    },
+    {
+      "citation_key": "HENDRYCKS2019",
+      "authors": "Dan Hendrycks, Mantas Mazeika, Thomas Dietterich",
+      "year": 2019,
+      "title": "Deep Anomaly Detection with Outlier Exposure",
+      "conference": "International Conference on Learning Representations (ICLR 2019)",
+      "doi_or_url": "https://arxiv.org/abs/1812.04606",
+      "relevant_findings": "Demonstrated that Out-of-Distribution (OOD) inputs (such as non-plant images or unsupported crop varieties) produce dangerously high confidence in standard softmax heads unless explicitly calibrated with outlier exposure."
+    },
+    {
+      "citation_key": "ICAR_NCIPM",
+      "organization": "Indian Council of Agricultural Research (ICAR) — National Research Centre for Integrated Pest Management (NCIPM)",
+      "year": 2022,
+      "title": "Integrated Pest Management Packages for Major Horticultural & Field Crops",
+      "url": "https://ncipm.icar.gov.in/",
+      "relevant_findings": "Established Economic Threshold Levels (ETL), symptom progression charts, look-alike condition differentials (e.g., Cercospora vs Alternaria vs Bacterial spot), and the necessity of multi-parameter diagnostics combining plant part, crop stage, and weather history."
+    },
+    {
+      "citation_key": "ANGRAU_PANCHANGAM",
+      "organization": "Acharya N.G. Ranga Agricultural University (ANGRAU)",
+      "year": 2024,
+      "title": "Vyavasaya Panchangam (Agricultural Almanac) & Crop Protection Recommendations",
+      "url": "https://angrau.ac.in/",
+      "relevant_findings": "Authoritative agronomic guidelines for Andhra Pradesh agro-climatic zones (Krishna-Godavari, Rayalaseema, North Coastal), defining localized seasonal outbreaks, chemical pre-harvest intervals (PHI), and resistant cultivar recommendations."
+    },
+    {
+      "citation_key": "FAO_IPM_2021",
+      "organization": "Food and Agriculture Organization of the United Nations (FAO)",
+      "year": 2021,
+      "title": "International Code of Conduct on Pesticide Management: Guidelines on Integrated Pest Management",
+      "url": "https://www.fao.org/pest-and-pesticide-management/ipm/",
+      "relevant_findings": "Defines the fundamental IPM decision pyramid: prevention and cultural suppression first, regular field scouting and ETL monitoring second, biological control third, and targeted chemical interventions strictly as a last resort."
+    }
+  ]
+}

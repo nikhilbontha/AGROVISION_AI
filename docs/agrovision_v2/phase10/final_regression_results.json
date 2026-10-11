@@ -1,0 +1,172 @@
+{
+  "suite_name": "AgroVision AI 2.0 Final Release Regression Suite",
+  "timestamp": "2026-10-11T09:04:05.446768+00:00",
+  "target_environment": "Local Verification Host (Windows 11 / AMD64)",
+  "overall_status": "PASS",
+  "tests_total": 13,
+  "tests_passed": 13,
+  "tests_failed": 0,
+  "tests_blocked": 0,
+  "test_details": [
+    {
+      "id": "REL-001",
+      "category": "Startup & Liveness",
+      "description": "GET / returns version 2.0.0 and operational status",
+      "status": "PASS",
+      "details": {
+        "message": "Welcome to AgroVision AI Backend!",
+        "version": "2.0.0",
+        "status": "operational"
+      }
+    },
+    {
+      "id": "REL-002",
+      "category": "Startup & Liveness",
+      "description": "GET /health/live returns HTTP 200 and active uptime",
+      "status": "PASS",
+      "details": {
+        "status": "alive",
+        "uptime_seconds": 71.46,
+        "timestamp": "2026-10-11T09:04:05.480137+00:00"
+      }
+    },
+    {
+      "id": "REL-003",
+      "category": "Readiness",
+      "description": "GET /health/ready confirms all 5 taxonomy and schema registries are ready",
+      "status": "PASS",
+      "details": {
+        "status": "ready",
+        "registries": {
+          "crop_registry": "ready",
+          "disease_registry": "ready",
+          "questionnaire_schema": "ready",
+          "questionnaire_config": "ready",
+          "knowledge_base": "ready"
+        },
+        "yield_model": "ready",
+        "database": "connected",
+        "timestamp": "2026-10-11T09:04:05.519607+00:00"
+      }
+    },
+    {
+      "id": "REL-004",
+      "category": "Model Integrity",
+      "description": "GET /health/model verifies SHA-256 checksums of 39-class, 72-class & yield models",
+      "status": "PASS",
+      "details": {
+        "v1_baseline_39class": {
+          "type": "production_baseline",
+          "exists": true,
+          "checksum_verified": true,
+          "expected_classes": 39,
+          "size_bytes": 42876776
+        },
+        "v2_candidate_72class": {
+          "type": "approved_candidate",
+          "exists": true,
+          "checksum_verified": true,
+          "expected_classes": 72,
+          "size_bytes": 34265504
+        },
+        "yield_model": {
+          "type": "production_yield",
+          "exists": true,
+          "checksum_verified": true,
+          "expected_classes": null,
+          "size_bytes": 10460163
+        }
+      }
+    },
+    {
+      "id": "REL-005",
+      "category": "Frontend Build",
+      "description": "Production frontend build artifacts present in frontend/dist",
+      "status": "PASS",
+      "details": {
+        "index_html_size": 668
+      }
+    },
+    {
+      "id": "REL-006",
+      "category": "Questionnaire Service",
+      "description": "GET /questionnaire/crops returns >=15 canonical crops from registry",
+      "status": "PASS",
+      "details": {
+        "crop_count": 18
+      }
+    },
+    {
+      "id": "REL-007",
+      "category": "Questionnaire Service",
+      "description": "GET /questionnaire/config delivers structured adaptive questions and options",
+      "status": "PASS",
+      "details": {
+        "questions_count": 9
+      }
+    },
+    {
+      "id": "REL-008",
+      "category": "Multimodal Diagnosis",
+      "description": "Full diagnostic workflow executes with evidence fusion & CIBRC recommendations",
+      "status": "PASS",
+      "details": {
+        "decision_status": "diagnosis_supported",
+        "guidance_permitted": true,
+        "chemical_treatments_count": 1
+      }
+    },
+    {
+      "id": "REL-009",
+      "category": "Safeguards & Abstention",
+      "description": "Unsupported crop species correctly triggers unsupported_crop abstention with chemical guidance blocked",
+      "status": "PASS",
+      "details": {
+        "decision_status": "unsupported_crop",
+        "guidance_permitted": false
+      }
+    },
+    {
+      "id": "REL-010",
+      "category": "Safeguards & Abstention",
+      "description": "Ambiguous/low-margin scores safely trigger multiple_candidates abstention and withhold chemical treatments",
+      "status": "PASS",
+      "details": {
+        "decision_status": "multiple_candidates",
+        "guidance_permitted": false,
+        "chemical_treatments": 0
+      }
+    },
+    {
+      "id": "REL-011",
+      "category": "Yield Prediction",
+      "description": "Smart agronomic & financial yield forecast executes successfully without model disruption",
+      "status": "PASS",
+      "details": {
+        "yield_per_acre_q": 25.45,
+        "total_harvest_q": 63.62,
+        "roi_pct": 105.6
+      }
+    },
+    {
+      "id": "REL-012",
+      "category": "Security & Redaction",
+      "description": "Malformed request handled cleanly without leaking raw traceback or server paths",
+      "status": "PASS",
+      "details": {
+        "code": 422,
+        "body": "{\"detail\":[{\"type\":\"model_attributes_type\",\"loc\":[\"body\",\"questionnaire_payload\"],\"msg\":\"Input should be a valid dictionary or object to extract fields from\",\"input\":\"NOT_AN_OBJECT\"}]}"
+      }
+    },
+    {
+      "id": "REL-013",
+      "category": "Rollback Integrity",
+      "description": "Both baseline v1 (42.8MB) and candidate v2 (34.2MB) checkpoints remain intact for instant rollback",
+      "status": "PASS",
+      "details": {
+        "baseline_size": 42876776,
+        "candidate_size": 34265504
+      }
+    }
+  ]
+}
