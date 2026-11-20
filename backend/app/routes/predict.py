@@ -80,7 +80,9 @@ CLASS_MAPPING = {
     "Rice___Bacterial_leaf_blight": ("Rice", "Bacterial Leaf Blight"),
     "Rice___healthy": ("Rice", "Healthy"),
     "Cotton___Bacterial_blight": ("Cotton", "Bacterial Blight"),
-    "Cotton___healthy": ("Cotton", "Healthy")
+    "Cotton___healthy": ("Cotton", "Healthy"),
+    "Non_Plant___Unsupported_Object": ("Non_Plant", "Unsupported Object"),
+    "Non_Plant___Unsupported": ("Non_Plant", "Unsupported Object")
 }
 
 SUPPORTED_CROPS = [
@@ -183,75 +185,143 @@ def get_disease_model():
     return disease_model, idx_to_class
 
 
+# Load OpenCV Haar cascade once for human face filtering
+CASCADE_PATH = os.path.join(cv2.data.haarcascades, 'haarcascade_frontalface_default.xml') if hasattr(cv2, 'data') and hasattr(cv2.data, 'haarcascades') else ""
+face_cascade = cv2.CascadeClassifier(CASCADE_PATH) if (CASCADE_PATH and os.path.exists(CASCADE_PATH)) else None
+
 def get_leaf_model():
     """Compatibility stub for pre-loading leaf validation model."""
     return None
 
 
-def resolve_target_crop(crop_type: str, filename: str, cv_img=None, c_model=None, idx_map=None, contents_bytes=None):
+def resolve_target_crop(crop_type: str, filename: str, cv_img=None, c_model=None, idx_map=None, contents_bytes=None, raw_preds=None):
     """
     Hierarchical Crop Species Detection:
     1. Direct User Selection (Highest Priority - 100% Honor when user explicitly selects a crop).
-    2. Explicit Filename and Sample Cues.
-    3. Neural Model Crop Family Aggregation across Primary Crops.
+    2. Explicit Crop Name in Filename (e.g. rice_sample.jpg, corn_field.png).
+    3. Computer Vision Biometrics (Corn kernel/cob colorimetric, Solanaceae fruit detection).
+    4. Neural Model Crop Family Aggregation across 72 classes.
     """
     if crop_type and crop_type in SUPPORTED_CROPS and crop_type != "Auto-Detect":
         return crop_type
 
-    fn = filename.lower()
-    if any(k in fn for k in ["tomato", "lycopersicon", "images (5)", "images (4)"]):
-        return "Tomato"
-    if any(k in fn for k in ["wheat", "stripe_rust", "leaf_rust", "triticum", "crop-diseases", "rust"]):
-        return "Wheat"
-    if any(k in fn for k in ["rice", "paddy", "blast", "oryza", "false-smut", "images (3)"]):
-        return "Rice"
-    if any(k in fn for k in ["corn", "maize", "cob", "images (1)", "images (2)"]):
-        return "Corn"
-    if any(k in fn for k in ["soybean", "glycine", "images.jpeg"]):
-        return "Soybean"
-    if any(k in fn for k in ["potato", "solanum"]):
-        return "Potato"
-    if any(k in fn for k in ["apple", "malus"]):
-        return "Apple"
-    if any(k in fn for k in ["grape", "vitis"]):
-        return "Grape"
-    if any(k in fn for k in ["chilli", "chili", "pepper"]):
-        return "Chilli"
-    if any(k in fn for k in ["cotton", "gossypium"]):
-        return "Cotton"
-    if any(k in fn for k in ["orange", "citrus"]):
-        return "Orange"
-    if any(k in fn for k in ["banana", "musa"]):
-        return "Banana"
-    if any(k in fn for k in ["mango", "mangifera"]):
-        return "Mango"
-    if any(k in fn for k in ["turmeric", "curcuma"]):
-        return "Turmeric"
-    if any(k in fn for k in ["palm", "oil_palm"]):
-        return "Oil Palm"
+    import re
+    # Clean filename into whitespace-separated tokens (replaces underscores, hyphens, dots with spaces)
+    fn_clean = re.sub(r'[^a-z0-9]+', ' ', filename.lower())
+    
+    # Check for explicit crop and organ keywords in filename using word boundaries
+    crop_keywords = {
+        "Tomato": [r"\btomato\b", r"\btomatoes\b", r"\blycopersicon\b", r"\bblossom\b"],
+        "Corn": [r"\bcorn\b", r"\bmaize\b", r"\bzeamays\b", r"\bcob\b", r"\bear\b", r"\bkernel\b", r"\btassel\b"],
+        "Wheat": [r"\bwheat\b", r"\btriticum\b", r"\brust\b", r"\bstripe\b"],
+        "Rice": [r"\brice\b", r"\bpaddy\b", r"\boryza\b", r"\bpanicle\b", r"\bglume\b", r"\btungro\b"],
+        "Potato": [r"\bpotato\b", r"\bpotatoes\b", r"\bsolanum\b", r"\btuber\b"],
+        "Apple": [r"\bapple\b", r"\bapples\b", r"\bmalus\b"],
+        "Grape": [r"\bgrape\b", r"\bgrapes\b", r"\bvitis\b"],
+        "Chilli": [r"\bchilli\b", r"\bchili\b", r"\bcapsicum\b", r"\bpepper\b", r"\bmirchi\b"],
+        "Cotton": [r"\bcotton\b", r"\bgossypium\b", r"\bboll\b", r"\blint\b"],
+        "Orange": [r"\borange\b", r"\bcitrus\b"],
+        "Banana": [r"\bbanana\b", r"\bmusa\b"],
+        "Mango": [r"\bmango\b", r"\bmangifera\b"],
+        "Turmeric": [r"\bturmeric\b", r"\bcurcuma\b"],
+        "Oil Palm": [r"\boil_palm\b", r"\bpalm\b"]
+    }
+    for c_name, patterns in crop_keywords.items():
+        if any(re.search(pat, fn_clean) for pat in patterns):
+            return c_name
 
-    if c_model and idx_map and contents_bytes:
+    # If raw_preds not provided directly, compute from c_model if available
+    if raw_preds is None and c_model and contents_bytes:
         try:
             pil_img = Image.open(io.BytesIO(contents_bytes)).convert('RGB').resize((224, 224))
             import tensorflow as tf
             img_arr = tf.keras.preprocessing.image.img_to_array(pil_img)
             img_arr = tf.expand_dims(img_arr, 0)
-            preds = c_model.predict(img_arr, verbose=0)[0]
-
-            crop_family_scores = {}
-            for idx, prob in enumerate(preds):
-                cls_name = idx_map.get(int(idx))
-                if cls_name in CLASS_MAPPING:
-                    c_fam, _ = CLASS_MAPPING[cls_name]
-                    if c_fam in PRIMARY_CROPS:
-                        crop_family_scores[c_fam] = crop_family_scores.get(c_fam, 0.0) + float(prob)
-
-            if crop_family_scores:
-                best_crop, best_score = max(crop_family_scores.items(), key=lambda x: x[1])
-                if best_score > 0.15:
-                    return best_crop
+            raw_preds = c_model.predict(img_arr, verbose=0)[0]
         except Exception as e:
-            print(f"CNN Crop resolution error: {e}")
+            print(f"CNN Crop prediction error: {e}")
+
+    # Hierarchical Botanical Family Resolution with Computer Vision Biometrics
+    if raw_preds is not None and idx_map:
+        total_px = float(cv_img.shape[0] * cv_img.shape[1]) if (cv_img is not None and cv_img.size > 0) else 50176.0
+
+        # Group probability masses by botanical families
+        family_scores = {"Solanaceae": 0.0, "Poaceae": 0.0, "Other": 0.0}
+        crop_scores = {}
+        for idx, p in enumerate(raw_preds):
+            ckey = idx_map.get(idx, "")
+            if ckey in CLASS_MAPPING:
+                cfam = CLASS_MAPPING[ckey][0]
+                crop_scores[cfam] = crop_scores.get(cfam, 0.0) + float(p)
+                if cfam in ["Tomato", "Chilli", "Potato", "Pepper"]:
+                    family_scores["Solanaceae"] += float(p)
+                elif cfam in ["Corn", "Rice", "Wheat"]:
+                    family_scores["Poaceae"] += float(p)
+                else:
+                    family_scores["Other"] += float(p)
+
+        top_family = max(family_scores.items(), key=lambda x: x[1])[0]
+
+        # 1. Solanaceae Family (Tomato vs Chilli vs Potato)
+        if top_family == "Solanaceae":
+            has_tomato_fruit = False
+            if cv_img is not None and cv_img.size > 0:
+                hsv = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
+                b_c, g_c, r_c = cv2.split(cv_img.astype(np.float32))
+                m_warm1 = cv2.inRange(hsv, (0, 35, 30), (38, 255, 255))
+                m_warm2 = cv2.inRange(hsv, (160, 35, 30), (180, 255, 255))
+                m_warm = cv2.bitwise_or(m_warm1, m_warm2)
+                warm_valid = (r_c > b_c * 1.05) & ((r_c > g_c * 0.9) | (r_c > 70))
+                m_warm = cv2.bitwise_and(m_warm, m_warm, mask=warm_valid.astype(np.uint8))
+                m_warm = cv2.GaussianBlur(m_warm, (9, 9), 2)
+                _, m_warm = cv2.threshold(m_warm, 127, 255, cv2.THRESH_BINARY)
+                cnts, _ = cv2.findContours(m_warm, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                for c in cnts:
+                    a = cv2.contourArea(c)
+                    if a > (total_px * 0.025):
+                        p_len = cv2.arcLength(c, True)
+                        circ = 4 * np.pi * a / (p_len * p_len) if p_len > 0 else 0
+                        hull = cv2.convexHull(c)
+                        solidity = a / cv2.contourArea(hull) if cv2.contourArea(hull) > 0 else 0
+                        (cx, cy), r = cv2.minEnclosingCircle(c)
+                        fill = a / (np.pi * r * r) if r > 0 else 0
+                        if (circ > 0.20 and solidity > 0.65 and fill > 0.35) or (solidity > 0.75 and fill > 0.40):
+                            has_tomato_fruit = True
+                            break
+
+            if has_tomato_fruit:
+                return "Tomato"
+            else:
+                tom_sc = crop_scores.get("Tomato", 0.0)
+                chi_sc = crop_scores.get("Chilli", 0.0)
+                return "Tomato" if tom_sc >= chi_sc * 0.7 else "Chilli"
+
+        # 2. Poaceae Family (Corn vs Rice vs Wheat)
+        elif top_family == "Poaceae":
+            corn_sc = crop_scores.get("Corn", 0.0)
+            rice_sc = crop_scores.get("Rice", 0.0)
+            wheat_sc = crop_scores.get("Wheat", 0.0)
+
+            is_corn = False
+            if cv_img is not None and cv_img.size > 0:
+                gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
+                edges = cv2.Canny(gray, 40, 140)
+                edge_dens = np.count_nonzero(edges) / total_px
+                if edge_dens > 0.08 and corn_sc >= 0.03:
+                    is_corn = True
+
+            if is_corn:
+                return "Corn"
+            elif wheat_sc > rice_sc * 0.8:
+                return "Wheat"
+            else:
+                return "Rice"
+
+        # 3. Other Plant Families (Cotton, Mango, Banana, Turmeric, Apple, etc.)
+        else:
+            best_c = max(crop_scores.items(), key=lambda x: x[1])[0]
+            if best_c in PRIMARY_CROPS:
+                return best_c
 
     return "Tomato"
 
@@ -269,65 +339,161 @@ def calculate_topk_entropy(raw_preds, k=5):
 
 
 def validate_leaf_image(cv_img, raw_preds=None):
+    """
+    Robust Multi-Stage Leaf & Plant Foliage Validator.
+    Rejects:
+      - Empty, blank black/white, or unreadable images
+      - Human portraits / faces (OpenCV Haar Cascade)
+      - Digital UI screenshots, charts, documents, and web interfaces (Hough Line Analysis)
+      - Artificial non-plant objects (cars, sky, indoor walls, electronic screens)
+      - Out-of-distribution random images with diffuse CNN entropy
+      - Model predictions classifying Non_Plant___Unsupported_Object
+    Accepts:
+      - Healthy green crop leaves
+      - Diseased foliar tissue (spots, chlorosis, blights, rusts, necrosis, scorch)
+      - Close-up and field-level crop foliage
+    """
     if cv_img is None or cv_img.size == 0:
         return False, "Invalid or unreadable image data.", 0.0
 
     h, w, c = cv_img.shape
     total_pixels = float(h * w)
-    if total_pixels == 0:
-        return False, "Empty image dimensions.", 0.0
+    if total_pixels < 2500: # Smaller than 50x50
+        return False, "Image resolution is too low for reliable plant diagnosis.", 0.0
 
+    gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
     hsv = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
+    std_dev = float(np.std(gray))
 
-    lower_green = np.array([28, 18, 18])
-    upper_green = np.array([92, 255, 255])
-    mask_green = cv2.inRange(hsv, lower_green, upper_green)
+    # 1. Blank Black / White / Gray Canvas Check
+    mean_s = float(np.mean(hsv[:, :, 1]))
+    mean_v = float(np.mean(hsv[:, :, 2]))
+    if mean_s < 12.0 and (mean_v < 25.0 or mean_v > 240.0) and std_dev < 10.0:
+        return False, "Image appears blank or solid monochrome with no plant features.", 0.0
 
-    lower_yellow = np.array([14, 20, 25])
-    upper_yellow = np.array([34, 255, 255])
-    mask_yellow = cv2.inRange(hsv, lower_yellow, upper_yellow)
+    # 2. Human Face Detection (OpenCV Haar Cascade verified with skin tone)
+    if face_cascade is not None and not face_cascade.empty():
+        max_dim = max(h, w)
+        if max_dim > 600:
+            scale = 600.0 / max_dim
+            small_gray = cv2.resize(gray, (int(w * scale), int(h * scale)))
+        else:
+            small_gray = gray
+        faces = face_cascade.detectMultiScale(small_gray, scaleFactor=1.12, minNeighbors=6, minSize=(50, 50))
+        if len(faces) > 0:
+            mask_skin = cv2.inRange(hsv, np.array([0, 35, 60]), np.array([25, 170, 255]))
+            skin_px_ratio = float(np.count_nonzero(mask_skin)) / total_pixels
+            if skin_px_ratio > 0.12:
+                return False, "Human face detected in the photo. Please upload a clear photo of a crop leaf.", 0.0
 
-    lower_brown = np.array([4, 25, 20])
-    upper_brown = np.array([20, 255, 230])
-    mask_brown = cv2.inRange(hsv, lower_brown, upper_brown)
+    # 3. Digital UI / Document / Grid Detection
+    # UI screenshots, documents, websites, and tables have many axis-aligned straight lines
+    edges = cv2.Canny(gray, 50, 150, apertureSize=3)
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=40, minLineLength=35, maxLineGap=5)
+    hv_lines_count = 0
+    if lines is not None:
+        for line in lines:
+            x1, y1, x2, y2 = line[0]
+            angle = np.abs(np.arctan2(y2 - y1, x2 - x1) * 180.0 / np.pi)
+            if angle < 4.0 or angle > 176.0 or (86.0 < angle < 94.0):
+                hv_lines_count += 1
 
-    foliage_combined_mask = cv2.bitwise_or(mask_green, cv2.bitwise_or(mask_yellow, mask_brown))
+    # 4. Colorimetric & Botanical Vegetation Indices
+    b, g, r = cv2.split(cv_img.astype(np.float32))
 
+    # Excess Green Index (ExG = 2G - R - B)
+    exg = 2.0 * g - r - b
+    exg_mask = (exg > 8.0) & (g > 30.0)
+    exg_ratio = float(np.count_nonzero(exg_mask)) / total_pixels
+
+    # Green Foliage (Healthy or early-stage disease): Hue 25-90, Sat 25-255, Val 25-245
+    mask_green = cv2.inRange(hsv, np.array([25, 25, 25]), np.array([90, 255, 245]))
+    green_ratio = float(np.count_nonzero(mask_green)) / total_pixels
+
+    # Yellowing / Chlorotic Tissue (Mosaic, yellow curl, deficiency, rust): Hue 14-34, Sat 35-255, Val 35-245
+    mask_yellow = cv2.inRange(hsv, np.array([14, 35, 35]), np.array([34, 255, 245]))
+    yellow_rgb_valid = (r > 40) & (g > 40) & (b < np.maximum(r, g) * 0.90)
+    mask_yellow = cv2.bitwise_and(mask_yellow, mask_yellow, mask=yellow_rgb_valid.astype(np.uint8))
+    yellow_ratio = float(np.count_nonzero(mask_yellow)) / total_pixels
+
+    # Brown / Necrotic Lesion Tissue: Hue 6-22, Sat 30-255, Val 25-190
+    mask_brown = cv2.inRange(hsv, np.array([6, 30, 25]), np.array([22, 255, 190]))
+    brown_ratio = float(np.count_nonzero(mask_brown)) / total_pixels
+
+    # Active Foliage is green + yellow + brown
+    raw_foliage_mask = cv2.bitwise_or(mask_green, cv2.bitwise_or(mask_yellow, mask_brown))
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    cleaned_foliage_mask = cv2.morphologyEx(foliage_combined_mask, cv2.MORPH_OPEN, kernel)
-    cleaned_foliage_mask = cv2.morphologyEx(cleaned_foliage_mask, cv2.MORPH_CLOSE, kernel)
+    cleaned_foliage_mask = cv2.morphologyEx(raw_foliage_mask, cv2.MORPH_OPEN, kernel)
+    foliage_ratio = float(np.count_nonzero(cleaned_foliage_mask)) / total_pixels
 
-    foliage_pixel_count = np.count_nonzero(cleaned_foliage_mask)
-    foliage_ratio = foliage_pixel_count / total_pixels
+    # Coherent connected foliage contour
+    contours, _ = cv2.findContours(cleaned_foliage_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    max_foliage_contour = max([cv2.contourArea(c) for c in contours], default=0.0) / total_pixels
 
-    green_yellow_ratio = (np.count_nonzero(mask_green) + np.count_nonzero(mask_yellow)) / total_pixels
-    brown_ratio = np.count_nonzero(mask_brown) / total_pixels
+    # Effective botanical plant tissue ratio
+    vegetation_presence = max(green_ratio + yellow_ratio, exg_ratio)
 
-    lower_artificial = np.array([92, 45, 45])
-    upper_artificial = np.array([165, 255, 255])
-    mask_artificial = cv2.inRange(hsv, lower_artificial, upper_artificial)
-    art_ratio = np.count_nonzero(mask_artificial) / total_pixels
+    # 5. Artificial / Non-Plant Color Detection
+    # Deep blue (UI, sky, blue clothing, cars): Hue 96-135, Sat 45-255, Val 45-255
+    mask_blue = cv2.inRange(hsv, np.array([96, 45, 45]), np.array([135, 255, 255]))
+    blue_ratio = float(np.count_nonzero(mask_blue)) / total_pixels
 
-    lower_skin = np.array([0, 15, 70])
-    upper_skin = np.array([22, 150, 255])
-    mask_skin = cv2.inRange(hsv, lower_skin, upper_skin)
-    skin_ratio = np.count_nonzero(mask_skin) / total_pixels
+    # Magenta / Purple / Pink: Hue 138-170, Sat 45-255, Val 45-255
+    mask_purple = cv2.inRange(hsv, np.array([138, 45, 45]), np.array([170, 255, 255]))
+    purple_ratio = float(np.count_nonzero(mask_purple)) / total_pixels
 
-    if foliage_ratio < 0.02 and green_yellow_ratio < 0.025 and brown_ratio < 0.04:
-        return False, "No crop foliage or plant leaves detected after background noise filtering.", foliage_ratio
+    # Dark UI background or extreme highlights
+    dark_pixels = float(np.count_nonzero(hsv[:, :, 2] < 25)) / total_pixels
+    pure_white_pixels = float(np.count_nonzero((hsv[:, :, 2] > 245) & (hsv[:, :, 1] < 20))) / total_pixels
 
-    if art_ratio > 0.15 and foliage_ratio < 0.10:
-        return False, "Non-plant object or artificial document background detected.", foliage_ratio
+    # Human skin tone mask (YCbCr / HSV)
+    mask_skin = cv2.inRange(hsv, np.array([0, 20, 60]), np.array([22, 140, 255]))
+    skin_ratio = float(np.count_nonzero(mask_skin)) / total_pixels
 
-    if skin_ratio > 0.32 and foliage_ratio < 0.08:
-        return False, "Human portrait photo detected instead of a crop leaf photo.", foliage_ratio
+    # --- REJECTION POLICIES ---
 
+    # A. UI Screenshot / Document Rule:
+    if hv_lines_count >= 16 and vegetation_presence < 0.20:
+        return False, f"Digital screenshot, application interface, or document layout detected ({hv_lines_count} UI grid lines found).", foliage_ratio
+
+    if (dark_pixels > 0.35 or pure_white_pixels > 0.40) and vegetation_presence < 0.12 and hv_lines_count >= 8:
+        return False, "Digital screen capture, user interface, or document detected instead of a crop leaf.", foliage_ratio
+
+    # B. Predominantly Non-Plant Objects (Sky, blue fabric, vehicles, magenta graphics)
+    if (blue_ratio + purple_ratio) > 0.20 and vegetation_presence < 0.12:
+        return False, "Non-plant object, artificial background, or sky detected instead of a crop leaf.", foliage_ratio
+
+    # C. Human Portrait / Skin Dominance
+    if skin_ratio > 0.25 and vegetation_presence < 0.08:
+        return False, "Human portrait or skin tones detected instead of a crop leaf photo.", foliage_ratio
+
+    # D. Insufficient Plant / Foliage Tissue:
+    # Real leaves must have either:
+    # - Green/yellow vegetation >= 5% OR ExG ratio >= 5%
+    # - Or necrotic brown tissue >= 10% accompanied by at least 2% green/yellow foliage
+    # AND must form a coherent foliage component (max contour >= 2.5% of image)
+    has_vegetation = (vegetation_presence >= 0.05) or (brown_ratio >= 0.10 and vegetation_presence >= 0.02)
+    has_coherent_contour = (max_foliage_contour >= 0.025)
+
+    if not (has_vegetation and has_coherent_contour):
+        return False, "No crop foliage or plant leaves detected. Please upload a clear photo of crop leaves or foliage.", foliage_ratio
+
+    # E. Neural Feature Entropy & OOD Distribution Check
     if raw_preds is not None and len(raw_preds) > 0:
         top_prob = float(np.max(raw_preds))
-        entropy_val = calculate_topk_entropy(raw_preds, k=5)
+        top3_sum = float(np.sum(np.sort(raw_preds)[::-1][:3]))
+        entropy_val = calculate_topk_entropy(raw_preds, k=10)
 
-        if top_prob < 0.22 and entropy_val > 2.05 and foliage_ratio < 0.10:
+        # Explicit check: If Non_Plant class (ID 36) has high score
+        if len(raw_preds) > 36 and float(raw_preds[36]) >= 0.25:
+            return False, "AI model classified image as an unsupported non-plant object.", foliage_ratio
+
+        # Extreme diffuse probability distribution on non-plant / high OOD noise inputs
+        if top_prob < 0.09 and top3_sum < 0.16:
             return False, "Image features exhibit high uncertainty and do not match crop disease patterns.", foliage_ratio
+
+        if top_prob < 0.15 and vegetation_presence < 0.04 and entropy_val > 2.3:
+            return False, "Visual features do not match recognizable crop pathology characteristics.", foliage_ratio
 
     return True, "Valid crop leaf photo", foliage_ratio
 
@@ -476,13 +642,27 @@ async def predict_disease(
         raw_predicted_crop = parts[0].replace('_', ' ')
         raw_disease_short = parts[1].replace('_', ' ') if len(parts) > 1 else raw_predicted_key
 
+    # Check if AI model explicitly detected non-plant / unsupported object
+    if raw_predicted_crop == "Non_Plant" or raw_predicted_key == "Non_Plant___Unsupported_Object" or (len(raw_preds) > 36 and float(raw_preds[36]) >= 0.20):
+        msg_en = "No crop leaf detected in the uploaded image. The AI identified this as an unsupported non-plant object."
+        msg_te = "అప్‌లోడ్ చేసిన ఫోటోలో పంట ఆకు కనుగొనబడలేదు. AI దీనిని మొక్క/పంట కాని వస్తువుగా గుర్తించింది."
+        return {
+            "success": False,
+            "is_leaf": False,
+            "leaf_detected": False,
+            "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
+            "error_code": "NON_CROP_IMAGE",
+            "detail": "AI neural model classified image as Non_Plant / Unsupported Object.",
+            "suggestion": "Please ensure you upload a clear photo of a crop leaf or diseased plant tissue."
+        }
+
     # 2. Evidence-Based Lesion Analysis (Detects physical necrosis, rot, chlorosis)
     raw_is_healthy = "healthy" in raw_predicted_key.lower()
     lesion_count, severity_level, processed_b64 = analyze_lesion_masking(cv_img, is_healthy=raw_is_healthy)
     has_physical_lesions = (lesion_count >= 1 or severity_level in ["Medium", "High"]) and (severity_level != "Healthy")
 
     # 3. Hierarchical Target Crop Resolution
-    target_crop = resolve_target_crop(crop_type, filename, cv_img, c_model, idx_map, contents)
+    target_crop = resolve_target_crop(crop_type, filename, cv_img, c_model, idx_map, contents, raw_preds=raw_preds)
     if target_crop not in SUPPORTED_CROPS:
         target_crop = raw_predicted_crop if raw_predicted_crop in SUPPORTED_CROPS else "Tomato"
 
@@ -531,25 +711,28 @@ async def predict_disease(
         predicted_key = chosen_key
         predicted_crop, disease_short = CLASS_MAPPING.get(predicted_key, (target_crop, predicted_key))
 
-        # Calibrate confidence score
+        # Calibrate confidence score honestly without artificial minimum floor
         crop_prob_sum = sum(c[2] for c in crop_candidates)
         if crop_prob_sum > 0:
             rel_ratio = chosen_prob / crop_prob_sum
-            calibrated_conf = min(max(rel_ratio * 72.0 + 15.0, 68.0), 94.5)
+            calibrated_conf = min(max(rel_ratio * 75.0 + chosen_prob * 20.0, float(chosen_prob * 100.0)), 96.5)
         else:
-            calibrated_conf = 82.0
+            calibrated_conf = float(chosen_prob * 100.0)
         confidence_score = round(calibrated_conf, 1)
+
+        # Mark transparent uncertainty flag if neural candidate probability is low
+        is_uncertain = bool(chosen_prob < 0.25 or confidence_score < 45.0)
 
         top_predictions = []
         for c_idx, c_key, c_prob in crop_candidates[:3]:
             c_fam, d_fam = CLASS_MAPPING.get(c_key, (target_crop, c_key))
-            c_prob_disp = round(min(max((c_prob / max(crop_prob_sum, 1e-6)) * 80.0 + 10.0, 50.0), 95.0), 1)
+            c_prob_disp = round(min(max((c_prob / max(crop_prob_sum, 1e-6)) * 80.0 + 10.0, 30.0), 95.0), 1)
             top_predictions.append({"disease": f"{c_fam} {d_fam}", "confidence": c_prob_disp})
     else:
         predicted_key = raw_predicted_key
         predicted_crop = raw_predicted_crop
         disease_short = raw_disease_short
-        confidence_score = round(max(float(global_best_prob * 100.0), 65.0), 1)
+        confidence_score = round(float(global_best_prob * 100.0), 1)
         top_predictions = [{"disease": f"{raw_predicted_crop} {raw_disease_short}", "confidence": confidence_score}]
 
     crop_confidence = round(min(confidence_score + 8.5, 99.2), 1)
@@ -606,7 +789,7 @@ async def predict_disease(
 
     result = {
         "success": True,
-        "is_uncertain": False,
+        "is_uncertain": is_uncertain if 'is_uncertain' in locals() else False,
         "crop": {
             "name": target_crop,
             "confidence": float(crop_confidence)
@@ -620,7 +803,7 @@ async def predict_disease(
         "disease_class": predicted_key,
         "confidence": float(confidence_score),
         "crop_confidence": float(crop_confidence),
-        "certainty": "High" if confidence_score >= 85.0 else "Moderate",
+        "certainty": "High" if confidence_score >= 80.0 else ("Moderate" if confidence_score >= 45.0 else "Low"),
         "severity": final_severity,
         "infected_area_count": int(lesion_count),
         "canonical_crop": info.get("canonical_crop", target_crop),
