@@ -33,7 +33,7 @@ const Login = () => {
 
     // 1. Admin Login Tab Active -> Go to Admin Dashboard (/admin)
     if (isAdminMode) {
-      if (cleanEmail === 'nikhilbontha00@gmail.com' && password === '12345') {
+      if ((cleanEmail === 'nikhilbontha00@gmail.com' || cleanEmail === 'admin@gmail.com') && password === '12345') {
         try {
           const response = await api.post('/auth/login', { email: cleanEmail, password });
           localStorage.setItem('token', response.data.access_token);

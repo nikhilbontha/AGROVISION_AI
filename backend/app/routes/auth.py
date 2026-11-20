@@ -55,17 +55,23 @@ async def register(user: UserCreate):
 async def login(user: UserLogin):
     clean_email = user.email.strip().lower()
     
-    # Special admin check for nikhilbontha00@gmail.com / 12345
-    if clean_email == "nikhilbontha00@gmail.com" and user.password == "12345":
+    # Special admin check for recognized admin accounts
+    ADMIN_ACCOUNTS = {
+        "nikhilbontha00@gmail.com": ("Nikhil Bontha", "+91 98765 43210"),
+        "admin@gmail.com": ("System Administrator", "+91 98765 00000")
+    }
+
+    if clean_email in ADMIN_ACCOUNTS and user.password == "12345":
+        admin_name, admin_phone = ADMIN_ACCOUNTS[clean_email]
         db_user = await users_collection.find_one({"email": clean_email})
         if not db_user:
             hashed_pass = await async_get_password_hash("12345")
             admin_doc = {
-                "name": "Nikhil Bontha",
-                "email": "nikhilbontha00@gmail.com",
+                "name": admin_name,
+                "email": clean_email,
                 "password": hashed_pass,
                 "role": "admin",
-                "phone": "+91 98765 43210",
+                "phone": admin_phone,
                 "location": "Andhra Pradesh",
                 "language": "en",
                 "created_at": datetime.utcnow(),
@@ -75,7 +81,7 @@ async def login(user: UserLogin):
             user_id = str(res.inserted_id)
         else:
             user_id = str(db_user["_id"])
-            await users_collection.update_one({"_id": db_user["_id"]}, {"$set": {"last_login": datetime.utcnow()}})
+            await users_collection.update_one({"_id": db_user["_id"]}, {"$set": {"last_login": datetime.utcnow(), "role": "admin"}})
             
         access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
         access_token = create_access_token(
@@ -108,7 +114,7 @@ async def login(user: UserLogin):
     user_id = str(db_user["_id"])
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": db_user["email"], "id": user_id, "name": db_user.get("name", "Farmer")}, expires_delta=access_token_expires
+        data={"sub": db_user["email"], "id": user_id, "name": db_user.get("name", "Farmer"), "role": db_user.get("role", "farmer")}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer", "user_id": user_id}
 

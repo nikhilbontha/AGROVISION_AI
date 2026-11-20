@@ -20,7 +20,7 @@ const AdminLogin = () => {
     const cleanEmail = email.trim().toLowerCase();
 
     // Validate admin credentials against DB or admin account
-    if (cleanEmail === 'nikhilbontha00@gmail.com' && password === '12345') {
+    if ((cleanEmail === 'nikhilbontha00@gmail.com' || cleanEmail === 'admin@gmail.com') && password === '12345') {
       try {
         const response = await api.post('/auth/login', { email: cleanEmail, password });
         localStorage.setItem('token', response.data.access_token || 'admin-token-token');
@@ -94,7 +94,7 @@ const AdminLogin = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="nikhilbontha00@gmail.com"
+                placeholder="admin@gmail.com"
                 required
                 className="w-full bg-[#06120a]/80 border border-cyan-500/30 rounded-xl pl-11 pr-4 py-3 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 transition-all"
               />
