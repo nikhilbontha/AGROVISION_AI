@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Leaf, Activity, BarChart3, Home, LogIn, LogOut, User, UserPlus, Globe } from 'lucide-react';
+import { Leaf, Activity, BarChart3, Home, LogIn, LogOut, User, UserPlus, Globe, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { useTour } from '../context/TourContext';
 import api from "../api";
 
 const Navbar = () => {
   const { t, language, changeLanguage } = useLanguage();
+  const { startTour } = useTour();
   const location = useLocation();
   const navigate = useNavigate();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -102,6 +104,17 @@ const Navbar = () => {
               })}
             </div>
 
+            {/* Take Tour Quick Pill */}
+            <button
+              type="button"
+              onClick={startTour}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-[#07241a] hover:bg-[#0b3829] text-[#2eed92] border border-[#2eed92]/40 shadow-[0_0_10px_rgba(46,237,146,0.2)] active:scale-95 transition-all"
+              title={language === 'te' ? 'గైడెడ్ టూర్ ప్రారంభించండి' : 'Start Guided Tour'}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-[#2eed92] animate-pulse" />
+              <span className="hidden sm:inline">{language === 'te' ? 'గైడెడ్ టూర్' : 'Take Tour'}</span>
+            </button>
+
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
@@ -146,6 +159,13 @@ const Navbar = () => {
                     </div>
 
                     <div className="py-1">
+                      <button
+                        onClick={() => { setIsProfileOpen(false); startTour(); }}
+                        className="w-full text-left px-4 py-2.5 text-xs text-emerald-300 hover:bg-farm-dark hover:text-emerald-200 flex items-center gap-3 transition-colors border-b border-gray-700/50"
+                      >
+                        <Sparkles className="w-4 h-4 text-emerald-400" />
+                        <span>{language === 'te' ? 'ప్లాట్‌ఫారమ్ గైడెడ్ టూర్' : 'Take Guided Tour'}</span>
+                      </button>
                       {isLoggedIn ? (
                         <>
                           <button

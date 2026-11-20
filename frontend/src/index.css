@@ -38,6 +38,73 @@ code {
   scrollbar-width: none;
 }
 
+/* Sci-Fi Glassmorphism & Cyber-Agri Glow Utilities */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes scan-laser {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 95%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.animate-laser {
+  animation: scan-laser 2.4s ease-in-out infinite;
+}
+
+.glass-cyber-panel {
+  background: rgba(6, 25, 20, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(46, 237, 146, 0.22);
+}
+
+.glass-cyber-panel:hover {
+  border-color: rgba(46, 237, 146, 0.4);
+}
+
+.glow-emerald-sm {
+  box-shadow: 0 0 15px rgba(46, 237, 146, 0.2);
+}
+
+.glow-emerald-md {
+  box-shadow: 0 0 25px rgba(46, 237, 146, 0.35);
+}
+
+.glow-emerald-lg {
+  box-shadow: 0 0 40px rgba(46, 237, 146, 0.5);
+}
+
 /* Print Stylesheet Overrides for Full Report Printing */
 @media print {
   @page {

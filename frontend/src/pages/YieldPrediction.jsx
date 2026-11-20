@@ -48,6 +48,17 @@ const YieldPrediction = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
 
+  // Listen for programmatic step switches (from Guided Tour)
+  useEffect(() => {
+    const handleSwitchStep = (e) => {
+      if (e.detail?.step) {
+        setCurrentStep(e.detail.step);
+      }
+    };
+    window.addEventListener('agrovision-switch-yield-step', handleSwitchStep);
+    return () => window.removeEventListener('agrovision-switch-yield-step', handleSwitchStep);
+  }, []);
+
   // Form State across 5 Steps
   const [formData, setFormData] = useState({
     // Step 1: Farm Profile
@@ -203,7 +214,7 @@ const YieldPrediction = () => {
         className="bg-gradient-to-b from-[#0a1526]/50 via-[#060e1a]/45 to-[#030710]/50 backdrop-blur-md rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6),0_0_50px_rgba(34,197,94,0.1)] border border-emerald-500/30 relative z-10 space-y-8 print:shadow-none print:border-none print:bg-white"
       >
         {/* HERO TITLE & TELEMETRY */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800/80 pb-5 print:border-slate-300">
+        <div id="tour-yield-header" className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800/80 pb-5 print:border-slate-300">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-emerald-500/20 to-teal-500/10 border border-emerald-500/40 text-emerald-300 mb-2.5 shadow-lg shadow-emerald-500/5">
               <Sparkles className="w-3.5 h-3.5 text-emerald-300 animate-pulse" />
@@ -245,7 +256,7 @@ const YieldPrediction = () => {
         </div>
 
         {/* STEPPER PROGRESS BAR */}
-        <div className="print:hidden bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 space-y-3">
+        <div id="tour-yield-stepper" className="print:hidden bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80 space-y-3">
           <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-300">
             <span>Step {currentStep} of 5 — {[
               isTe ? 'పొలం సమాచారం' : 'Farm Profile',
@@ -693,6 +704,7 @@ const YieldPrediction = () => {
                     </button>
                   ) : (
                     <button
+                      id="tour-yield-predict-btn"
                       type="submit"
                       disabled={loading}
                       className="ml-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-black font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-xl shadow-emerald-500/20 hover:scale-[1.02] transition-transform"

@@ -91,6 +91,17 @@ export default function Dashboard() {
     }
   }, [location.state]);
 
+  // Listen for programmatic tab switches (from Guided Tour)
+  useEffect(() => {
+    const handleSwitchTab = (e) => {
+      if (e.detail?.tab) {
+        setActiveTab(e.detail.tab);
+      }
+    };
+    window.addEventListener('agrovision-switch-tab', handleSwitchTab);
+    return () => window.removeEventListener('agrovision-switch-tab', handleSwitchTab);
+  }, []);
+
   useEffect(() => {
     if (!userId) { navigate('/login'); return; }
 
@@ -215,17 +226,17 @@ export default function Dashboard() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-1.5 custom-scrollbar-hide overflow-y-auto pr-1">
-          <NavItem icon={<LayoutDashboard size={18} />} label={t('nav.dashboard') || 'Dashboard'} active={activeTab === 'Dashboard'} onClick={() => setActiveTab('Dashboard')} />
-          <NavItem icon={<Component size={18} />} label={t('nav.crop_management') || 'Crop Management'} active={activeTab === 'Crop Management'} onClick={() => setActiveTab('Crop Management')} />
-          <NavItem icon={<Map size={18} />} label={t('nav.field_monitoring') || 'Field Monitoring'} active={activeTab === 'Field Monitoring'} onClick={() => setActiveTab('Field Monitoring')} />
-          <NavItem icon={<Leaf size={18} />} label={t('nav.soil_health') || 'Soil Health'} active={activeTab === 'Soil Health'} onClick={() => setActiveTab('Soil Health')} />
-          <NavItem icon={<CloudSun size={18} />} label={t('nav.weather_nav') || 'Weather'} active={activeTab === 'Weather'} onClick={() => setActiveTab('Weather')} />
-          <NavItem icon={<Droplets size={18} />} label={t('nav.irrigation') || 'Irrigation'} active={activeTab === 'Irrigation'} onClick={() => setActiveTab('Irrigation')} />
-          <NavItem icon={<Tractor size={18} />} label={t('nav.equipment') || 'Equipment'} active={activeTab === 'Equipment'} onClick={() => setActiveTab('Equipment')} />
-          <NavItem icon={<FileText size={18} />} label={t('nav.reports') || 'Reports'} active={activeTab === 'Reports'} onClick={() => setActiveTab('Reports')} />
-          <NavItem icon={<AlertCircle size={18} />} label={t('nav.alerts') || 'Alerts'} active={activeTab === 'Alerts'} onClick={() => setActiveTab('Alerts')} />
-          <NavItem icon={<Settings size={18} />} label={t('nav.settings') || 'Settings'} active={activeTab === 'Settings'} onClick={() => setActiveTab('Settings')} />
+        <nav id="tour-dashboard-nav" className="flex-1 space-y-1.5 custom-scrollbar-hide overflow-y-auto pr-1">
+          <NavItem id="tour-tab-dashboard" icon={<LayoutDashboard size={18} />} label={t('nav.dashboard') || 'Dashboard'} active={activeTab === 'Dashboard'} onClick={() => setActiveTab('Dashboard')} />
+          <NavItem id="tour-tab-crop" icon={<Component size={18} />} label={t('nav.crop_management') || 'Crop Management'} active={activeTab === 'Crop Management'} onClick={() => setActiveTab('Crop Management')} />
+          <NavItem id="tour-tab-field" icon={<Map size={18} />} label={t('nav.field_monitoring') || 'Field Monitoring'} active={activeTab === 'Field Monitoring'} onClick={() => setActiveTab('Field Monitoring')} />
+          <NavItem id="tour-tab-soil" icon={<Leaf size={18} />} label={t('nav.soil_health') || 'Soil Health'} active={activeTab === 'Soil Health'} onClick={() => setActiveTab('Soil Health')} />
+          <NavItem id="tour-tab-weather" icon={<CloudSun size={18} />} label={t('nav.weather_nav') || 'Weather'} active={activeTab === 'Weather'} onClick={() => setActiveTab('Weather')} />
+          <NavItem id="tour-tab-irrigation" icon={<Droplets size={18} />} label={t('nav.irrigation') || 'Irrigation'} active={activeTab === 'Irrigation'} onClick={() => setActiveTab('Irrigation')} />
+          <NavItem id="tour-tab-equipment" icon={<Tractor size={18} />} label={t('nav.equipment') || 'Equipment'} active={activeTab === 'Equipment'} onClick={() => setActiveTab('Equipment')} />
+          <NavItem id="tour-tab-reports" icon={<FileText size={18} />} label={t('nav.reports') || 'Reports'} active={activeTab === 'Reports'} onClick={() => setActiveTab('Reports')} />
+          <NavItem id="tour-tab-alerts" icon={<AlertCircle size={18} />} label={t('nav.alerts') || 'Alerts'} active={activeTab === 'Alerts'} onClick={() => setActiveTab('Alerts')} />
+          <NavItem id="tour-tab-settings" icon={<Settings size={18} />} label={t('nav.settings') || 'Settings'} active={activeTab === 'Settings'} onClick={() => setActiveTab('Settings')} />
         </nav>
       </aside>
 
@@ -350,7 +361,7 @@ export default function Dashboard() {
           {activeTab === 'Dashboard' ? (
             <>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div id="tour-dashboard-overview" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <TopCard
                   icon={<TrendingUp size={16} className="text-green-400" />}
                   label={t('dashboard.totalProfit') || 'Total Profit'}
@@ -1311,9 +1322,9 @@ function TabContentRenderer({ activeTab, userInfo }) {
   );
 }
 
-function NavItem({ icon, label, active, onClick }) {
+function NavItem({ icon, label, active, onClick, id }) {
   return (
-    <div onClick={onClick} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-sm font-medium ${active ? 'bg-[#1b3d22] text-green-400 shadow-inner' : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'}`}>
+    <div id={id} onClick={onClick} className={`flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-sm font-medium ${active ? 'bg-[#1b3d22] text-green-400 shadow-inner' : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'}`}>
       {icon}
       <span>{label}</span>
     </div>

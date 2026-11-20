@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import DiseaseDetection from './pages/DiseaseDetection';
@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { LanguageProvider } from './context/LanguageContext';
+import { TourProvider } from './context/TourContext';
+import GuidedTour from './components/GuidedTour';
 import AIAssistant from './components/AIAssistant';
 import heroBg from './assets/hero-bg.png';
 
@@ -28,8 +30,21 @@ import AdminSettings from './admin/pages/AdminSettings';
 
 const MainContent = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isDashboard = location.pathname === '/dashboard';
+  const isDiseaseDetection = location.pathname === '/disease-detection';
+  const isHome = location.pathname === '/';
   const isAdmin = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login';
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register' || location.pathname.startsWith('/admin');
+
+  // Login Gating: Redirect unauthenticated first-time users to /login unless guest mode is chosen
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const isGuest = localStorage.getItem('agrovision_guest_mode') === 'true';
+    if (!token && !isGuest && !isAuthPage) {
+      navigate('/login');
+    }
+  }, [location.pathname, isAuthPage, navigate]);
 
   if (isAdmin) {
     return (
@@ -55,7 +70,12 @@ const MainContent = () => {
   return (
     <div className="relative z-10 flex flex-col h-screen overflow-hidden print:h-auto print:overflow-visible print:block">
       <Navbar />
-      <main className={`flex-1 overflow-auto flex flex-col ${isDashboard ? 'p-0' : 'p-4 md:p-8'} print:overflow-visible print:h-auto print:block print:p-0`}>
+      <main className={`flex-1 flex flex-col ${
+        isDashboard ? 'p-0 overflow-auto' :
+        isHome ? 'p-2 sm:p-4 overflow-hidden justify-center' :
+        isDiseaseDetection ? 'p-1.5 sm:p-2 md:p-2.5 overflow-auto' :
+        'p-4 md:p-8 overflow-auto'
+      } print:overflow-visible print:h-auto print:block print:p-0`}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/disease-detection" element={<DiseaseDetection />} />
@@ -66,6 +86,7 @@ const MainContent = () => {
           <Route path="/register" element={<Register />} />
         </Routes>
       </main>
+      <GuidedTour />
       {!isDashboard && <div className="print:hidden"><AIAssistant /></div>}
     </div>
   );
@@ -98,7 +119,9 @@ function RootApp() {
   return (
     <LanguageProvider>
       <Router>
-        <App />
+        <TourProvider>
+          <App />
+        </TourProvider>
       </Router>
     </LanguageProvider>
   );

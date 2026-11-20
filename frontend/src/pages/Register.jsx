@@ -30,8 +30,10 @@ const Register = () => {
       const response = await api.post('/auth/register', formData);
       localStorage.setItem('token', response.data.access_token);
       localStorage.setItem('user_id', response.data.user_id);
-      navigate('/dashboard');
-      window.location.reload();
+      localStorage.setItem('role', 'user');
+      localStorage.setItem('agrovision_just_logged_in', 'true');
+      localStorage.removeItem('agrovision_guest_mode');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.detail || t('err_invalid'));
       setIsSubmitting(false);

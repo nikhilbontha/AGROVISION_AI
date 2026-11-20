@@ -64,15 +64,17 @@ const Login = () => {
       }
     }
 
-    // 2. Farmer Login Tab Active -> Go to Farmer Dashboard (/dashboard)
+    // 2. Farmer Login Tab Active -> Go to Home Page (/) with First-Time Tour
     try {
       const response = await api.post('/auth/login', { email: cleanEmail, password });
       localStorage.setItem('token', response.data.access_token);
       localStorage.setItem('user_id', response.data.user_id);
       localStorage.setItem('role', 'user');
+      localStorage.setItem('agrovision_just_logged_in', 'true');
+      localStorage.removeItem('agrovision_guest_mode');
 
       setIsSubmitting(false);
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.detail === "Incorrect email or password" ? t('err_invalid') : err.response?.data?.detail || t('err_invalid'));
       setIsSubmitting(false);
@@ -224,6 +226,19 @@ const Login = () => {
               Register now
             </Link>
           </p>
+
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.setItem('agrovision_guest_mode', 'true');
+                navigate('/');
+              }}
+              className="text-xs text-emerald-400 hover:text-[#2eed92] font-bold transition-all py-1.5 px-3 rounded-xl border border-emerald-500/25 hover:border-emerald-500/50 bg-emerald-500/10 hover:bg-emerald-500/20 inline-flex items-center gap-1.5"
+            >
+              <span>Explore as Guest (No Login Required) →</span>
+            </button>
+          </div>
 
           <div>
             <Link
