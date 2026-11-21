@@ -162,11 +162,19 @@ def get_disease_model():
                     try:
                         with open(mp, 'r', encoding='utf-8') as f:
                             mapping_data = json.load(f)
-                        idx_to_class = {m['canonical_class_id']: m['canonical_class_key'] for m in mapping_data if 'canonical_class_id' in m}
+                        idx_to_class = {
+                            int(m['canonical_class_id']): m['canonical_class_key']
+                            for m in mapping_data
+                            if isinstance(m.get('canonical_class_id'), int) and 0 <= m['canonical_class_id'] < 72
+                        }
                         # Dynamically update CLASS_MAPPING with all 72 canonical classes
                         for m in mapping_data:
                             if 'canonical_class_key' in m:
-                                CLASS_MAPPING[m['canonical_class_key']] = (m['canonical_crop'], m['canonical_disease'])
+                                c_crop = m.get('canonical_crop', 'Crop')
+                                c_dis = m.get('canonical_disease', 'Disease')
+                                k = m['canonical_class_key']
+                                CLASS_MAPPING[k] = (c_crop, c_dis)
+                                CLASS_MAPPING[k.lower()] = (c_crop, c_dis)
                         print(f"Successfully loaded Master 72-Class Crop Disease Model from {loaded_path} with {len(idx_to_class)} classes.")
                         break
                     except Exception as e:
@@ -215,9 +223,20 @@ def get_disease_model():
     return disease_model, idx_to_class
 
 
+def safe_find_contours(binary_mask):
+    """Robust contour extraction across all OpenCV versions."""
+    res = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    return res[0] if len(res) == 2 else res[1]
+
 # Load OpenCV Haar cascade once for human face filtering
-CASCADE_PATH = os.path.join(cv2.data.haarcascades, 'haarcascade_frontalface_default.xml') if hasattr(cv2, 'data') and hasattr(cv2.data, 'haarcascades') else ""
-face_cascade = cv2.CascadeClassifier(CASCADE_PATH) if (CASCADE_PATH and os.path.exists(CASCADE_PATH)) else None
+face_cascade = None
+try:
+    if hasattr(cv2, 'data') and hasattr(cv2.data, 'haarcascades'):
+        CASCADE_PATH = os.path.join(cv2.data.haarcascades, 'haarcascade_frontalface_default.xml')
+        if CASCADE_PATH and os.path.exists(CASCADE_PATH):
+            face_cascade = cv2.CascadeClassifier(CASCADE_PATH)
+except Exception as e:
+    print(f"Warning initializing face cascade: {e}")
 
 def get_leaf_model():
     """Compatibility stub for pre-loading leaf validation model."""
@@ -305,7 +324,7 @@ def resolve_target_crop(crop_type: str, filename: str, cv_img=None, c_model=None
                 m_warm = cv2.bitwise_and(m_warm, m_warm, mask=warm_valid.astype(np.uint8))
                 m_warm = cv2.GaussianBlur(m_warm, (9, 9), 2)
                 _, m_warm = cv2.threshold(m_warm, 127, 255, cv2.THRESH_BINARY)
-                cnts, _ = cv2.findContours(m_warm, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                cnts = safe_find_contours(m_warm)
                 for c in cnts:
                     a = cv2.contourArea(c)
                     if a > (total_px * 0.025):
@@ -402,19 +421,22 @@ def validate_leaf_image(cv_img, raw_preds=None):
         return False, "Image appears blank or solid monochrome with no plant features.", 0.0
 
     # 2. Human Face Detection (OpenCV Haar Cascade verified with skin tone)
-    if face_cascade is not None and not face_cascade.empty():
-        max_dim = max(h, w)
-        if max_dim > 600:
-            scale = 600.0 / max_dim
-            small_gray = cv2.resize(gray, (int(w * scale), int(h * scale)))
-        else:
-            small_gray = gray
-        faces = face_cascade.detectMultiScale(small_gray, scaleFactor=1.12, minNeighbors=6, minSize=(50, 50))
-        if len(faces) > 0:
-            mask_skin = cv2.inRange(hsv, np.array([0, 35, 60]), np.array([25, 170, 255]))
-            skin_px_ratio = float(np.count_nonzero(mask_skin)) / total_pixels
-            if skin_px_ratio > 0.12:
-                return False, "Human face detected in the photo. Please upload a clear photo of a crop leaf.", 0.0
+    try:
+        if face_cascade is not None and not face_cascade.empty():
+            max_dim = max(h, w)
+            if max_dim > 600:
+                scale = 600.0 / max_dim
+                small_gray = cv2.resize(gray, (int(w * scale), int(h * scale)))
+            else:
+                small_gray = gray
+            faces = face_cascade.detectMultiScale(small_gray, scaleFactor=1.12, minNeighbors=6, minSize=(50, 50))
+            if len(faces) > 0:
+                mask_skin = cv2.inRange(hsv, np.array([0, 35, 60]), np.array([25, 170, 255]))
+                skin_px_ratio = float(np.count_nonzero(mask_skin)) / total_pixels
+                if skin_px_ratio > 0.12:
+                    return False, "Human face detected in the photo. Please upload a clear photo of a crop leaf.", 0.0
+    except Exception as e:
+        print(f"Face cascade detection skipped: {e}")
 
     # 3. Digital UI / Document / Grid Detection
     # UI screenshots, documents, websites, and tables have many axis-aligned straight lines
@@ -457,7 +479,7 @@ def validate_leaf_image(cv_img, raw_preds=None):
     foliage_ratio = float(np.count_nonzero(cleaned_foliage_mask)) / total_pixels
 
     # Coherent connected foliage contour
-    contours, _ = cv2.findContours(cleaned_foliage_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = safe_find_contours(cleaned_foliage_mask)
     max_foliage_contour = max([cv2.contourArea(c) for c in contours], default=0.0) / total_pixels
 
     # Effective botanical plant tissue ratio
@@ -548,7 +570,7 @@ def analyze_lesion_masking(cv_img, is_healthy=False):
     cleaned_mask = cv2.morphologyEx(combined_mask, cv2.MORPH_OPEN, kernel)
     cleaned_mask = cv2.morphologyEx(cleaned_mask, cv2.MORPH_CLOSE, kernel)
 
-    contours, _ = cv2.findContours(cleaned_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = safe_find_contours(cleaned_mask)
     min_area = 25
     max_area = img_area * 0.40
 
@@ -601,300 +623,321 @@ async def predict_disease(
     Uses Phase 7/8 Approved Unified 72-Class Model with Physical Lesion Evidence Fusion
     and Host Species Conditioning.
     """
-    contents = await file.read()
-    if not contents:
-        raise HTTPException(status_code=400, detail="Uploaded file is empty.")
-
-    np_arr = np.frombuffer(contents, np.uint8)
-    cv_img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-    
-    if cv_img is None:
-        return {
-            "success": False,
-            "message": "Invalid or unreadable image file. Please upload a valid JPG, PNG, or WEBP photo."
-        }
-
-    _, buffer_orig = cv2.imencode('.png', cv_img)
-    original_b64 = base64.b64encode(buffer_orig).decode('utf-8')
-
-    filename = file.filename or "uploaded_crop.jpg"
-    c_model, idx_map = get_disease_model()
-
-    if c_model is None or idx_map is None:
-        msg_en = "Crop Disease AI model is currently unavailable."
-        msg_te = "పంట వ్యాధి AI మోడల్ ప్రస్తుతం లభ్యం కాదు."
-        return {
-            "success": False,
-            "error_code": "MODEL_UNAVAILABLE",
-            "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
-            "detail": "Disease model checkpoint could not be initialized."
-        }
-
     try:
-        pil_img = Image.open(io.BytesIO(contents)).convert('RGB').resize((224, 224))
-        import tensorflow as tf
-        img_arr = tf.keras.preprocessing.image.img_to_array(pil_img)
-        img_arr = tf.expand_dims(img_arr, 0)
-        raw_preds = c_model.predict(img_arr, verbose=0)[0]
-    except Exception as e:
-        print(f"Inference processing error: {e}")
-        return {
-            "success": False,
-            "error_code": "INFERENCE_ERROR",
-            "message": "Failed to process image through AI neural network.",
-            "detail": str(e)
-        }
-
-    is_valid_leaf, validation_reason, plant_ratio = validate_leaf_image(cv_img, raw_preds)
-    if not is_valid_leaf:
-        msg_en = "No crop leaf detected in the uploaded image. Please upload a clear photo of plant foliage or leaves for AI disease diagnosis."
-        msg_te = "అప్‌లోడ్ చేసిన ఫోటోలో పంట ఆకు కనుగొనబడలేదు. దయచేసి AI వ్యాధి నిర్ధారణ కోసం పంట ఆకు స్పష్టమైన ఫోటోను అప్‌లోడ్ చేయండి."
-        return {
-            "success": False,
-            "is_leaf": False,
-            "leaf_detected": False,
-            "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
-            "error_code": "NON_CROP_IMAGE",
-            "detail": validation_reason,
-            "suggestion": "Ensure your photo clearly shows crop leaves, plant stems, or diseased foliage without heavy non-plant backgrounds."
-        }
-
-    # 1. Unconstrained Global AI Inference across all output classes
-    global_best_idx = int(np.argmax(raw_preds))
-    global_best_prob = float(raw_preds[global_best_idx])
-    raw_predicted_key = idx_map.get(global_best_idx) or "Tomato___Early_blight"
-
-    # Resolve raw predicted crop species & disease title
-    if raw_predicted_key in CLASS_MAPPING:
-        raw_predicted_crop, raw_disease_short = CLASS_MAPPING[raw_predicted_key]
-    elif raw_predicted_key and '___' in raw_predicted_key:
-        parts = raw_predicted_key.split('___')
-        raw_predicted_crop = parts[0].replace('_', ' ')
-        raw_disease_short = parts[1].replace('_', ' ') if len(parts) > 1 else raw_predicted_key
-    else:
-        raw_predicted_crop = "Tomato"
-        raw_disease_short = "Late Blight"
-
-    # Check if AI model explicitly detected non-plant / unsupported object
-    if raw_predicted_crop == "Non_Plant" or raw_predicted_key == "Non_Plant___Unsupported_Object" or (len(raw_preds) > 36 and float(raw_preds[36]) >= 0.20):
-        msg_en = "No crop leaf detected in the uploaded image. The AI identified this as an unsupported non-plant object."
-        msg_te = "అప్‌లోడ్ చేసిన ఫోటోలో పంట ఆకు కనుగొనబడలేదు. AI దీనిని మొక్క/పంట కాని వస్తువుగా గుర్తించింది."
-        return {
-            "success": False,
-            "is_leaf": False,
-            "leaf_detected": False,
-            "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
-            "error_code": "NON_CROP_IMAGE",
-            "detail": "AI neural model classified image as Non_Plant / Unsupported Object.",
-            "suggestion": "Please ensure you upload a clear photo of a crop leaf or diseased plant tissue."
-        }
-
-    # 2. Evidence-Based Lesion Analysis (Detects physical necrosis, rot, chlorosis)
-    raw_is_healthy = "healthy" in raw_predicted_key.lower()
-    lesion_count, severity_level, processed_b64 = analyze_lesion_masking(cv_img, is_healthy=raw_is_healthy)
-    has_physical_lesions = (lesion_count >= 1 or severity_level in ["Medium", "High"]) and (severity_level != "Healthy")
-
-    # 3. Hierarchical Target Crop Resolution
-    target_crop = resolve_target_crop(crop_type, filename, cv_img, c_model, idx_map, contents, raw_preds=raw_preds)
-    if target_crop not in SUPPORTED_CROPS:
-        target_crop = raw_predicted_crop if raw_predicted_crop in SUPPORTED_CROPS else "Tomato"
-
-    # Botanical Sister Families
-    SOLANACEAE = {"Tomato", "Chilli", "Pepper", "Potato"}
-    POACEAE = {"Wheat", "Rice", "Corn"}
-
-    # 4. Incompatible Family Safeguard (Only reject if user selected completely foreign family with zero support)
-    if crop_type and crop_type != "Auto-Detect" and crop_type in SUPPORTED_CROPS:
-        is_sister = (raw_predicted_crop in SOLANACEAE and crop_type in SOLANACEAE) or (raw_predicted_crop in POACEAE and crop_type in POACEAE)
-        matching_indices_test = [idx_k for idx_k, cls_k in idx_map.items() if cls_k in CLASS_MAPPING and CLASS_MAPPING[cls_k][0] == crop_type]
-        selected_crop_sum = float(sum(raw_preds[idx_k] for idx_k in matching_indices_test)) if matching_indices_test else 0.0
-
-        if not is_sister and raw_predicted_crop != crop_type and global_best_prob >= 0.95 and selected_crop_sum < 0.005:
-            msg_en = f"The uploaded photo appears to be {raw_predicted_crop} ({raw_disease_short}), which differs from your selected crop species ({crop_type}). Please verify your crop selection or upload a clearer {crop_type} foliage photo."
-            msg_te = f"అప్‌లోడ్ చేసిన ఫోటో {raw_predicted_crop} వలె ఉంది ({raw_disease_short}), ఇది మీరు ఎంచుకున్న పంట ({crop_type}) తో సరిపోలడం లేదు. దయచేసి సరైన పంటను ఎంచుకోండి."
+        contents = await file.read()
+        if not contents:
+            raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+    
+        np_arr = np.frombuffer(contents, np.uint8)
+        cv_img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        
+        if cv_img is None:
             return {
                 "success": False,
-                "is_uncertain": True,
-                "error_code": "CROP_MISMATCH",
-                "predicted_crop": raw_predicted_crop,
-                "selected_crop": crop_type,
-                "confidence_score": round(global_best_prob * 100.0, 1),
-                "confidence_threshold": 50.0,
-                "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
-                "suggestion": f"Switch target crop species to '{raw_predicted_crop}' or upload a clear photo of {crop_type}.",
-                "top_predictions": [{"disease": f"{raw_predicted_crop} {raw_disease_short}", "confidence": round(global_best_prob * 100.0, 1)}],
-                "diagnostic_followup_plan": get_diagnostic_followup_plan(lang=lang)
+                "message": "Invalid or unreadable image file. Please upload a valid JPG, PNG, or WEBP photo."
             }
-
-    # 5. Evaluate and Rank Candidate Diseases for Target Crop
-    matching_indices = [idx_k for idx_k, cls_k in idx_map.items() if cls_k in CLASS_MAPPING and CLASS_MAPPING[cls_k][0] == target_crop]
-
-    if matching_indices:
-        crop_candidates = [(idx_k, idx_map[idx_k], float(raw_preds[idx_k])) for idx_k in matching_indices]
-        crop_candidates.sort(key=lambda x: x[2], reverse=True)
-
-        chosen_idx, chosen_key, chosen_prob = crop_candidates[0]
-
-        # If top candidate is "Healthy", but physical necrosis or lesions are detected, choose best diseased candidate
-        if "healthy" in chosen_key.lower() and has_physical_lesions:
-            diseased_cands = [c for c in crop_candidates if "healthy" not in c[1].lower()]
-            if diseased_cands:
-                chosen_idx, chosen_key, chosen_prob = diseased_cands[0]
-
-        predicted_key = chosen_key
-        predicted_crop, disease_short = CLASS_MAPPING.get(predicted_key, (target_crop, predicted_key))
-
-        # Calibrate confidence score honestly without artificial minimum floor
-        crop_prob_sum = sum(c[2] for c in crop_candidates)
-        if crop_prob_sum > 0:
-            rel_ratio = chosen_prob / crop_prob_sum
-            calibrated_conf = min(max(rel_ratio * 75.0 + chosen_prob * 20.0, float(chosen_prob * 100.0)), 96.5)
+    
+        _, buffer_orig = cv2.imencode('.png', cv_img)
+        original_b64 = base64.b64encode(buffer_orig).decode('utf-8')
+    
+        filename = file.filename or "uploaded_crop.jpg"
+        c_model, idx_map = get_disease_model()
+    
+        if c_model is None or idx_map is None:
+            msg_en = "Crop Disease AI model is currently unavailable."
+            msg_te = "పంట వ్యాధి AI మోడల్ ప్రస్తుతం లభ్యం కాదు."
+            return {
+                "success": False,
+                "error_code": "MODEL_UNAVAILABLE",
+                "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
+                "detail": "Disease model checkpoint could not be initialized."
+            }
+    
+        try:
+            pil_img = Image.open(io.BytesIO(contents)).convert('RGB').resize((224, 224))
+            import tensorflow as tf
+            img_arr = tf.keras.preprocessing.image.img_to_array(pil_img)
+            img_arr = tf.expand_dims(img_arr, 0)
+            raw_preds = c_model.predict(img_arr, verbose=0)[0]
+        except Exception as e:
+            print(f"Inference processing error: {e}")
+            return {
+                "success": False,
+                "error_code": "INFERENCE_ERROR",
+                "message": "Failed to process image through AI neural network.",
+                "detail": str(e)
+            }
+    
+        is_valid_leaf, validation_reason, plant_ratio = validate_leaf_image(cv_img, raw_preds)
+        if not is_valid_leaf:
+            msg_en = "No crop leaf detected in the uploaded image. Please upload a clear photo of plant foliage or leaves for AI disease diagnosis."
+            msg_te = "అప్‌లోడ్ చేసిన ఫోటోలో పంట ఆకు కనుగొనబడలేదు. దయచేసి AI వ్యాధి నిర్ధారణ కోసం పంట ఆకు స్పష్టమైన ఫోటోను అప్‌లోడ్ చేయండి."
+            return {
+                "success": False,
+                "is_leaf": False,
+                "leaf_detected": False,
+                "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
+                "error_code": "NON_CROP_IMAGE",
+                "detail": validation_reason,
+                "suggestion": "Ensure your photo clearly shows crop leaves, plant stems, or diseased foliage without heavy non-plant backgrounds."
+            }
+    
+        # 1. Unconstrained Global AI Inference across all output classes
+        global_best_idx = int(np.argmax(raw_preds))
+        global_best_prob = float(raw_preds[global_best_idx])
+        raw_predicted_key = idx_map.get(global_best_idx) or "Tomato___Early_blight"
+    
+        # Resolve raw predicted crop species & disease title
+        if raw_predicted_key in CLASS_MAPPING:
+            raw_predicted_crop, raw_disease_short = CLASS_MAPPING[raw_predicted_key]
+        elif raw_predicted_key and '___' in raw_predicted_key:
+            parts = raw_predicted_key.split('___')
+            raw_predicted_crop = parts[0].replace('_', ' ')
+            raw_disease_short = parts[1].replace('_', ' ') if len(parts) > 1 else raw_predicted_key
         else:
-            calibrated_conf = float(chosen_prob * 100.0)
-        confidence_score = round(calibrated_conf, 1)
-
-        # Mark transparent uncertainty flag if neural candidate probability is low
-        is_uncertain = bool(chosen_prob < 0.25 or confidence_score < 45.0)
-
-        top_predictions = []
-        for c_idx, c_key, c_prob in crop_candidates[:3]:
-            c_fam, d_fam = CLASS_MAPPING.get(c_key, (target_crop, c_key))
-            c_prob_disp = round(min(max((c_prob / max(crop_prob_sum, 1e-6)) * 80.0 + 10.0, 30.0), 95.0), 1)
-            top_predictions.append({"disease": f"{c_fam} {d_fam}", "confidence": c_prob_disp})
-    else:
-        predicted_key = raw_predicted_key
-        predicted_crop = raw_predicted_crop
-        disease_short = raw_disease_short
-        confidence_score = round(float(global_best_prob * 100.0), 1)
-        top_predictions = [{"disease": f"{raw_predicted_crop} {raw_disease_short}", "confidence": confidence_score}]
-
-    crop_confidence = round(min(confidence_score + 8.5, 99.2), 1)
-    is_healthy = ("healthy" in predicted_key.lower()) and not has_physical_lesions
-    final_severity = "None" if is_healthy else (severity_level if severity_level != "Healthy" else "Medium")
-
-    TELUGU_CROP_NAMES = {
-        "Wheat": "గోధుమ (Wheat)",
-        "Rice": "వరి (Rice)",
-        "Corn": "మొక్కజొన్న (Corn)",
-        "Tomato": "టమాటా (Tomato)",
-        "Potato": "బంగాళాదుంప (Potato)",
-        "Apple": "యాపిల్ (Apple)",
-        "Grape": "ద్రాక్ష (Grape)",
-        "Pepper": "మిరప (Pepper)",
-        "Cotton": "పత్తి (Cotton)",
-        "Orange": "సంత్రా (Orange)",
-        "Banana": "అరటి (Banana)",
-        "Mango": "మామిడి (Mango)",
-        "Turmeric": "పసుపు (Turmeric)",
-        "Oil Palm": "పామాయిల్ (Oil Palm)"
-    }
-    TELUGU_DISEASE_NAMES = {
-        "Stripe Rust": "పసుపు కుంకుమ తెగులు (Stripe Rust)",
-        "Leaf Rust": "ఆకు కుంకుమ తెగులు (Leaf Rust)",
-        "Powdery Mildew": "బూడిద తెగులు (Powdery Mildew)",
-        "Healthy": "ఆరోగ్యంగా ఉంది (Healthy)",
-        "Blast": "అగ్గి/రాగి తెగులు (Blast)",
-        "Bacterial Blight": "బాక్టీరియల్ మచ్చ తెగులు (Bacterial Blight)",
-        "Common Rust": "కుంకుమ తెగులు (Common Rust)",
-        "Gray Leaf Spot": "బూడిద మచ్చ తెగులు (Gray Leaf Spot)",
-        "Early Blight": "ఆర్లీ బ్లైట్ తెగులు (Early Blight)",
-        "Late Blight": "లేట్ బ్లైట్ తెగులు (Late Blight)",
-        "Apple Scab": "స్కాబ్ తెగులు (Apple Scab)",
-        "Black Rot": "నల్ల కుళ్ళు తెగులు (Black Rot)",
-        "Citrus Greening": "గ్రీనింగ్ వ్యాధి (Citrus Greening)",
-        "Leaf Scorch": "ఆకు ఎండ తెగులు (Leaf Scorch)",
-        "Bacterial Spot": "బాక్టీరియల్ మచ్చ (Bacterial Spot)",
-        "Black Sigatoka": "సిగటోకా తెగులు (Black Sigatoka)",
-        "Anthracnose": "ఆంత్రక్నోస్ తెగులు (Anthracnose)",
-        "Leaf Curl Virus": "ఆకు ముడత తెగులు (Leaf Curl Virus)",
-        "Bunch Rot": "గుత్తి కుళ్ళు తెగులు (Bunch Rot)"
-    }
-
-    if lang and str(lang).lower().startswith('te'):
-        c_name_disp = TELUGU_CROP_NAMES.get(target_crop, target_crop)
-        d_name_disp = TELUGU_DISEASE_NAMES.get(disease_short, disease_short)
-        full_disease_title = f"{c_name_disp} {d_name_disp}"
-    else:
-        full_disease_title = f"{target_crop} {disease_short}"
-
-    info = get_disease_info(predicted_key, lang=lang)
-    match_status = validate_crop_disease_match(crop_type, predicted_key)
-
-    result = {
-        "success": True,
-        "is_uncertain": is_uncertain if 'is_uncertain' in locals() else False,
-        "crop": {
-            "name": target_crop,
-            "confidence": float(crop_confidence)
-        },
-        "disease_info": {
-            "name": disease_short,
-            "full_name": full_disease_title,
-            "confidence": float(confidence_score)
-        },
-        "disease": full_disease_title,
-        "disease_class": predicted_key,
-        "confidence": float(confidence_score),
-        "crop_confidence": float(crop_confidence),
-        "certainty": "High" if confidence_score >= 80.0 else ("Moderate" if confidence_score >= 45.0 else "Low"),
-        "severity": final_severity,
-        "infected_area_count": int(lesion_count),
-        "canonical_crop": info.get("canonical_crop", target_crop),
-        "canonical_disease": info.get("canonical_disease", disease_short),
-        "synonyms": info.get("synonyms", []),
-        "scientific_name": info.get("scientific_name", f"{target_crop} sp."),
-        "category": info.get("category", "Foliar Diagnostic"),
-        "explanation": info.get("explanation", ""),
-        "exact_cause": info.get("exact_cause", ""),
-        "environmental_factors": info.get("environmental_factors", {}),
-        "favorable_conditions": info.get("favorable_conditions", {}),
-        "visible_symptoms": info.get("visible_symptoms", []),
-        "characteristic_symptoms": info.get("characteristic_symptoms", []),
-        "organic_treatment": info.get("organic_treatment", ""),
-        "chemical_treatment": info.get("chemical_treatment", ""),
-        "treatment": info.get("treatment", ""),
-        "treatment_options": info.get("treatment_options", {}),
-        "precautions": info.get("precautions", ""),
-        "prevention_measures": info.get("prevention_measures", []),
-        "cultural_management": info.get("cultural_management", []),
-        "ipm_recommendations": info.get("ipm_recommendations", []),
-        "action_timeline": info.get("action_timeline", {}),
-        "plan_14_day": info.get("plan_14_day", {}),
-        "similar_diseases": info.get("similar_diseases", []),
-        "region_and_stage_applicability": info.get("region_and_stage_applicability", ""),
-        "authoritative_source": info.get("authoritative_source", "ICAR & Regional Agricultural Extension Services"),
-        "authoritative_source_url": info.get("authoritative_source_url", ""),
-        "review_date": info.get("review_date", "2026-10-10"),
-        "expert_confirmation_required": info.get("expert_confirmation_required", False),
-        "crop_disease_match": match_status,
-        "top_predictions": top_predictions,
-        "original_image_b64": original_b64,
-        "processed_image_b64": processed_b64,
-        "filename": file.filename,
-        "supported_crops": SUPPORTED_CROPS,
-        "leaf_detected": True
-    }
-
-    try:
-        from app.database import disease_collection
-        await disease_collection.insert_one({
-            "user_id": user.get("id", "anonymous"),
-            "crop_type": target_crop,
-            "predicted_disease": full_disease_title,
+            raw_predicted_crop = "Tomato"
+            raw_disease_short = "Late Blight"
+    
+        # Check if AI model explicitly detected non-plant / unsupported object
+        if raw_predicted_crop == "Non_Plant" or raw_predicted_key == "Non_Plant___Unsupported_Object" or (len(raw_preds) > 36 and float(raw_preds[36]) >= 0.20):
+            msg_en = "No crop leaf detected in the uploaded image. The AI identified this as an unsupported non-plant object."
+            msg_te = "అప్‌లోడ్ చేసిన ఫోటోలో పంట ఆకు కనుగొనబడలేదు. AI దీనిని మొక్క/పంట కాని వస్తువుగా గుర్తించింది."
+            return {
+                "success": False,
+                "is_leaf": False,
+                "leaf_detected": False,
+                "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
+                "error_code": "NON_CROP_IMAGE",
+                "detail": "AI neural model classified image as Non_Plant / Unsupported Object.",
+                "suggestion": "Please ensure you upload a clear photo of a crop leaf or diseased plant tissue."
+            }
+    
+        # 2. Evidence-Based Lesion Analysis (Detects physical necrosis, rot, chlorosis)
+        raw_is_healthy = "healthy" in raw_predicted_key.lower()
+        lesion_count, severity_level, processed_b64 = analyze_lesion_masking(cv_img, is_healthy=raw_is_healthy)
+        has_physical_lesions = (lesion_count >= 1 or severity_level in ["Medium", "High"]) and (severity_level != "Healthy")
+    
+        # 3. Hierarchical Target Crop Resolution
+        target_crop = resolve_target_crop(crop_type, filename, cv_img, c_model, idx_map, contents, raw_preds=raw_preds)
+        if target_crop not in SUPPORTED_CROPS:
+            target_crop = raw_predicted_crop if raw_predicted_crop in SUPPORTED_CROPS else "Tomato"
+    
+        # Botanical Sister Families
+        SOLANACEAE = {"Tomato", "Chilli", "Pepper", "Potato"}
+        POACEAE = {"Wheat", "Rice", "Corn"}
+    
+        # 4. Incompatible Family Safeguard (Only reject if user selected completely foreign family with zero support)
+        if crop_type and crop_type != "Auto-Detect" and crop_type in SUPPORTED_CROPS:
+            is_sister = (raw_predicted_crop in SOLANACEAE and crop_type in SOLANACEAE) or (raw_predicted_crop in POACEAE and crop_type in POACEAE)
+            matching_indices_test = [idx_k for idx_k, cls_k in idx_map.items() if isinstance(idx_k, int) and 0 <= idx_k < len(raw_preds) and cls_k in CLASS_MAPPING and CLASS_MAPPING[cls_k][0] == crop_type]
+            selected_crop_sum = float(sum(raw_preds[idx_k] for idx_k in matching_indices_test)) if matching_indices_test else 0.0
+    
+            if not is_sister and raw_predicted_crop != crop_type and global_best_prob >= 0.95 and selected_crop_sum < 0.005:
+                msg_en = f"The uploaded photo appears to be {raw_predicted_crop} ({raw_disease_short}), which differs from your selected crop species ({crop_type}). Please verify your crop selection or upload a clearer {crop_type} foliage photo."
+                msg_te = f"అప్‌లోడ్ చేసిన ఫోటో {raw_predicted_crop} వలె ఉంది ({raw_disease_short}), ఇది మీరు ఎంచుకున్న పంట ({crop_type}) తో సరిపోలడం లేదు. దయచేసి సరైన పంటను ఎంచుకోండి."
+                return {
+                    "success": False,
+                    "is_uncertain": True,
+                    "error_code": "CROP_MISMATCH",
+                    "predicted_crop": raw_predicted_crop,
+                    "selected_crop": crop_type,
+                    "confidence_score": round(global_best_prob * 100.0, 1),
+                    "confidence_threshold": 50.0,
+                    "message": msg_te if (lang and str(lang).lower().startswith('te')) else msg_en,
+                    "suggestion": f"Switch target crop species to '{raw_predicted_crop}' or upload a clear photo of {crop_type}.",
+                    "top_predictions": [{"disease": f"{raw_predicted_crop} {raw_disease_short}", "confidence": round(global_best_prob * 100.0, 1)}],
+                    "diagnostic_followup_plan": get_diagnostic_followup_plan(lang=lang)
+                }
+    
+        # 5. Evaluate and Rank Candidate Diseases for Target Crop
+        matching_indices = [idx_k for idx_k, cls_k in idx_map.items() if isinstance(idx_k, int) and 0 <= idx_k < len(raw_preds) and cls_k in CLASS_MAPPING and CLASS_MAPPING[cls_k][0] == target_crop]
+    
+        if matching_indices:
+            crop_candidates = [(idx_k, idx_map[idx_k], float(raw_preds[idx_k])) for idx_k in matching_indices]
+            crop_candidates.sort(key=lambda x: x[2], reverse=True)
+    
+            chosen_idx, chosen_key, chosen_prob = crop_candidates[0]
+    
+            # If top candidate is "Healthy", but physical necrosis or lesions are detected, choose best diseased candidate
+            if "healthy" in chosen_key.lower() and has_physical_lesions:
+                diseased_cands = [c for c in crop_candidates if "healthy" not in c[1].lower()]
+                if diseased_cands:
+                    chosen_idx, chosen_key, chosen_prob = diseased_cands[0]
+    
+            predicted_key = chosen_key
+            predicted_crop, disease_short = CLASS_MAPPING.get(predicted_key, (target_crop, predicted_key))
+    
+            # Calibrate confidence score honestly without artificial minimum floor
+            crop_prob_sum = sum(c[2] for c in crop_candidates)
+            if crop_prob_sum > 0:
+                rel_ratio = chosen_prob / crop_prob_sum
+                calibrated_conf = min(max(rel_ratio * 75.0 + chosen_prob * 20.0, float(chosen_prob * 100.0)), 96.5)
+            else:
+                calibrated_conf = float(chosen_prob * 100.0)
+            confidence_score = round(calibrated_conf, 1)
+    
+            # Mark transparent uncertainty flag if neural candidate probability is low
+            is_uncertain = bool(chosen_prob < 0.25 or confidence_score < 45.0)
+    
+            top_predictions = []
+            for c_idx, c_key, c_prob in crop_candidates[:3]:
+                c_fam, d_fam = CLASS_MAPPING.get(c_key, (target_crop, c_key))
+                c_prob_disp = round(min(max((c_prob / max(crop_prob_sum, 1e-6)) * 80.0 + 10.0, 30.0), 95.0), 1)
+                top_predictions.append({"disease": f"{c_fam} {d_fam}", "confidence": c_prob_disp})
+        else:
+            predicted_key = raw_predicted_key
+            predicted_crop = raw_predicted_crop
+            disease_short = raw_disease_short
+            confidence_score = round(float(global_best_prob * 100.0), 1)
+            top_predictions = [{"disease": f"{raw_predicted_crop} {raw_disease_short}", "confidence": confidence_score}]
+    
+        crop_confidence = round(min(confidence_score + 8.5, 99.2), 1)
+        is_healthy = ("healthy" in predicted_key.lower()) and not has_physical_lesions
+        final_severity = "None" if is_healthy else (severity_level if severity_level != "Healthy" else "Medium")
+    
+        TELUGU_CROP_NAMES = {
+            "Wheat": "గోధుమ (Wheat)",
+            "Rice": "వరి (Rice)",
+            "Corn": "మొక్కజొన్న (Corn)",
+            "Tomato": "టమాటా (Tomato)",
+            "Potato": "బంగాళాదుంప (Potato)",
+            "Apple": "యాపిల్ (Apple)",
+            "Grape": "ద్రాక్ష (Grape)",
+            "Pepper": "మిరప (Pepper)",
+            "Cotton": "పత్తి (Cotton)",
+            "Orange": "సంత్రా (Orange)",
+            "Banana": "అరటి (Banana)",
+            "Mango": "మామిడి (Mango)",
+            "Turmeric": "పసుపు (Turmeric)",
+            "Oil Palm": "పామాయిల్ (Oil Palm)"
+        }
+        TELUGU_DISEASE_NAMES = {
+            "Stripe Rust": "పసుపు కుంకుమ తెగులు (Stripe Rust)",
+            "Leaf Rust": "ఆకు కుంకుమ తెగులు (Leaf Rust)",
+            "Powdery Mildew": "బూడిద తెగులు (Powdery Mildew)",
+            "Healthy": "ఆరోగ్యంగా ఉంది (Healthy)",
+            "Blast": "అగ్గి/రాగి తెగులు (Blast)",
+            "Bacterial Blight": "బాక్టీరియల్ మచ్చ తెగులు (Bacterial Blight)",
+            "Common Rust": "కుంకుమ తెగులు (Common Rust)",
+            "Gray Leaf Spot": "బూడిద మచ్చ తెగులు (Gray Leaf Spot)",
+            "Early Blight": "ఆర్లీ బ్లైట్ తెగులు (Early Blight)",
+            "Late Blight": "లేట్ బ్లైట్ తెగులు (Late Blight)",
+            "Apple Scab": "స్కాబ్ తెగులు (Apple Scab)",
+            "Black Rot": "నల్ల కుళ్ళు తెగులు (Black Rot)",
+            "Citrus Greening": "గ్రీనింగ్ వ్యాధి (Citrus Greening)",
+            "Leaf Scorch": "ఆకు ఎండ తెగులు (Leaf Scorch)",
+            "Bacterial Spot": "బాక్టీరియల్ మచ్చ (Bacterial Spot)",
+            "Black Sigatoka": "సిగటోకా తెగులు (Black Sigatoka)",
+            "Anthracnose": "ఆంత్రక్నోస్ తెగులు (Anthracnose)",
+            "Leaf Curl Virus": "ఆకు ముడత తెగులు (Leaf Curl Virus)",
+            "Bunch Rot": "గుత్తి కుళ్ళు తెగులు (Bunch Rot)"
+        }
+    
+        if lang and str(lang).lower().startswith('te'):
+            c_name_disp = TELUGU_CROP_NAMES.get(target_crop, target_crop)
+            d_name_disp = TELUGU_DISEASE_NAMES.get(disease_short, disease_short)
+            full_disease_title = f"{c_name_disp} {d_name_disp}"
+        else:
+            full_disease_title = f"{target_crop} {disease_short}"
+    
+        info = get_disease_info(predicted_key, lang=lang)
+        match_status = validate_crop_disease_match(crop_type, predicted_key)
+    
+        result = {
+            "success": True,
+            "is_uncertain": is_uncertain if 'is_uncertain' in locals() else False,
+            "crop": {
+                "name": target_crop,
+                "confidence": float(crop_confidence)
+            },
+            "disease_info": {
+                "name": disease_short,
+                "full_name": full_disease_title,
+                "confidence": float(confidence_score)
+            },
+            "disease": full_disease_title,
+            "disease_class": predicted_key,
             "confidence": float(confidence_score),
             "crop_confidence": float(crop_confidence),
-            "infected_area_count": int(lesion_count),
+            "certainty": "High" if confidence_score >= 80.0 else ("Moderate" if confidence_score >= 45.0 else "Low"),
             "severity": final_severity,
-            "scientific_name": info.get("scientific_name", ""),
-            "symptoms": info.get("visible_symptoms", []),
-            "recommendations": [info.get("treatment", "")],
-            "precautions": [info.get("precautions", "")],
-            "created_at": datetime.datetime.utcnow()
-        })
-    except Exception as e:
-        print(f"Warning: Could not save to disease DB: {e}")
-
-    return result
+            "infected_area_count": int(lesion_count),
+            "canonical_crop": info.get("canonical_crop", target_crop),
+            "canonical_disease": info.get("canonical_disease", disease_short),
+            "synonyms": info.get("synonyms", []),
+            "scientific_name": info.get("scientific_name", f"{target_crop} sp."),
+            "category": info.get("category", "Foliar Diagnostic"),
+            "explanation": info.get("explanation", ""),
+            "exact_cause": info.get("exact_cause", ""),
+            "environmental_factors": info.get("environmental_factors", {}),
+            "favorable_conditions": info.get("favorable_conditions", {}),
+            "visible_symptoms": info.get("visible_symptoms", []),
+            "characteristic_symptoms": info.get("characteristic_symptoms", []),
+            "organic_treatment": info.get("organic_treatment", ""),
+            "chemical_treatment": info.get("chemical_treatment", ""),
+            "treatment": info.get("treatment", ""),
+            "treatment_options": info.get("treatment_options", {}),
+            "precautions": info.get("precautions", ""),
+            "prevention_measures": info.get("prevention_measures", []),
+            "cultural_management": info.get("cultural_management", []),
+            "ipm_recommendations": info.get("ipm_recommendations", []),
+            "action_timeline": info.get("action_timeline", {}),
+            "plan_14_day": info.get("plan_14_day", {}),
+            "similar_diseases": info.get("similar_diseases", []),
+            "region_and_stage_applicability": info.get("region_and_stage_applicability", ""),
+            "authoritative_source": info.get("authoritative_source", "ICAR & Regional Agricultural Extension Services"),
+            "authoritative_source_url": info.get("authoritative_source_url", ""),
+            "review_date": info.get("review_date", "2026-10-10"),
+            "expert_confirmation_required": info.get("expert_confirmation_required", False),
+            "crop_disease_match": match_status,
+            "top_predictions": top_predictions,
+            "original_image_b64": original_b64,
+            "processed_image_b64": processed_b64,
+            "filename": file.filename,
+            "supported_crops": SUPPORTED_CROPS,
+            "leaf_detected": True
+        }
+    
+        try:
+            from app.database import disease_collection
+            import asyncio
+            db_doc = {
+                "user_id": user.get("id", "anonymous") if isinstance(user, dict) else "anonymous",
+                "crop_type": target_crop,
+                "predicted_disease": full_disease_title,
+                "confidence": float(confidence_score),
+                "crop_confidence": float(crop_confidence),
+                "infected_area_count": int(lesion_count),
+                "severity": final_severity,
+                "scientific_name": info.get("scientific_name", ""),
+                "symptoms": info.get("visible_symptoms", []),
+                "recommendations": [info.get("treatment", "")],
+                "precautions": [info.get("precautions", "")],
+                "created_at": datetime.datetime.utcnow()
+            }
+            await asyncio.wait_for(disease_collection.insert_one(db_doc), timeout=3.0)
+        except Exception as e:
+            print(f"Warning: Could not save to disease DB: {e}")
+    
+        return result
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            status_code=500,
+            content={
+                "success": False,
+                "error_code": "PREDICTION_PROCESSING_ERROR",
+                "message": f"Diagnosis error: {str(exc)}",
+                "detail": str(exc)
+            },
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
 
 
 from app.services.yield_engine import calculate_smart_yield

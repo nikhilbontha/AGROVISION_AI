@@ -355,10 +355,12 @@ const DiseaseDetection = () => {
       if (reqId !== requestIdRef.current) return;
       console.error(err);
       setResult(null);
-      setErrorPayload(null);
+      setErrorPayload(err.response?.data || null);
+      const serverMsg = err.response?.data?.message || err.response?.data?.detail;
+      const timeoutMsg = err.code === 'ECONNABORTED' ? "The AI diagnosis server is waking up. Please retry in a moment." : null;
       setError(language === 'te'
-        ? "సర్వర్ లోపం ఏర్పడింది. దయచేసి మళ్ళీ ప్రయత్నించండి."
-        : (err.response?.data?.message || "Internal diagnosis error. Please try again.")
+        ? (serverMsg || "సర్వర్ లోపం ఏర్పడింది. దయచేసి మళ్ళీ ప్రయత్నించండి.")
+        : (serverMsg || timeoutMsg || err.message || "Internal diagnosis error. Please try again.")
       );
     } finally {
       if (reqId === requestIdRef.current) {

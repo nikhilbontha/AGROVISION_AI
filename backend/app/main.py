@@ -27,6 +27,14 @@ async def startup_db_client():
     except Exception as e:
         print(f"Warning pre-loading models: {e}")
 
+@app.middleware("http")
+async def add_cors_header(request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to AgroVision AI Backend!", "version": "2.0.0", "status": "operational"}
@@ -38,13 +46,18 @@ import uuid
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
     req_id = str(uuid.uuid4())[:8]
-    # Redact raw traceback in release mode
+    traceback.print_exc()
     return JSONResponse(
         status_code=500,
         content={
-            "detail": "Internal Server Error",
+            "detail": str(exc),
             "correlation_id": req_id,
-            "message": "An error occurred during request processing. Please check operational logs with this correlation ID."
+            "message": f"Server diagnosis error: {str(exc)}"
+        },
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*",
         }
     )
 

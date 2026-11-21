@@ -48,7 +48,12 @@ client = AsyncIOMotorClient(
     minPoolSize=5,
     maxIdleTimeMS=60000
 )
-db = client.get_database()
+try:
+    db = client.get_database()
+    if not db.name or db.name in ("admin", "test"):
+        db = client.get_database("agrovision")
+except Exception:
+    db = client.get_database("agrovision")
 
 # Collections
 users_collection = db.get_collection("users")

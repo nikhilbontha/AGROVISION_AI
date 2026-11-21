@@ -4,11 +4,11 @@ venv/
 .venv/
 dist/
 .env
-disease_model.h5
-yield_model.pkl
 
+archive/
 datasets/archive.zip
 datasets/
 scratch/
 test_screenshots/
+
 
