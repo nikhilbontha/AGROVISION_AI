@@ -315,28 +315,31 @@ def resolve_target_crop(crop_type: str, filename: str, cv_img=None, c_model=None
         if top_family == "Solanaceae":
             has_tomato_fruit = False
             if cv_img is not None and cv_img.size > 0:
-                hsv = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
-                b_c, g_c, r_c = cv2.split(cv_img.astype(np.float32))
-                m_warm1 = cv2.inRange(hsv, (0, 35, 30), (38, 255, 255))
-                m_warm2 = cv2.inRange(hsv, (160, 35, 30), (180, 255, 255))
-                m_warm = cv2.bitwise_or(m_warm1, m_warm2)
-                warm_valid = (r_c > b_c * 1.05) & ((r_c > g_c * 0.9) | (r_c > 70))
-                m_warm = cv2.bitwise_and(m_warm, m_warm, mask=warm_valid.astype(np.uint8))
-                m_warm = cv2.GaussianBlur(m_warm, (9, 9), 2)
-                _, m_warm = cv2.threshold(m_warm, 127, 255, cv2.THRESH_BINARY)
-                cnts = safe_find_contours(m_warm)
-                for c in cnts:
-                    a = cv2.contourArea(c)
-                    if a > (total_px * 0.025):
-                        p_len = cv2.arcLength(c, True)
-                        circ = 4 * np.pi * a / (p_len * p_len) if p_len > 0 else 0
-                        hull = cv2.convexHull(c)
-                        solidity = a / cv2.contourArea(hull) if cv2.contourArea(hull) > 0 else 0
-                        (cx, cy), r = cv2.minEnclosingCircle(c)
-                        fill = a / (np.pi * r * r) if r > 0 else 0
-                        if (circ > 0.20 and solidity > 0.65 and fill > 0.35) or (solidity > 0.75 and fill > 0.40):
-                            has_tomato_fruit = True
-                            break
+                try:
+                    hsv = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
+                    b_c, g_c, r_c = cv2.split(cv_img.astype(np.float32))
+                    m_warm1 = cv2.inRange(hsv, (0, 35, 30), (38, 255, 255))
+                    m_warm2 = cv2.inRange(hsv, (160, 35, 30), (180, 255, 255))
+                    m_warm = cv2.bitwise_or(m_warm1, m_warm2)
+                    warm_valid = (r_c > b_c * 1.05) & ((r_c > g_c * 0.9) | (r_c > 70))
+                    m_warm = cv2.bitwise_and(m_warm, m_warm, mask=warm_valid.astype(np.uint8))
+                    m_warm = cv2.GaussianBlur(m_warm, (9, 9), 2)
+                    _, m_warm = cv2.threshold(m_warm, 127, 255, cv2.THRESH_BINARY)
+                    cnts = safe_find_contours(m_warm)
+                    for c in cnts:
+                        a = cv2.contourArea(c)
+                        if a > (total_px * 0.025):
+                            p_len = cv2.arcLength(c, True)
+                            circ = 4 * np.pi * a / (p_len * p_len) if p_len > 0 else 0
+                            hull = cv2.convexHull(c)
+                            solidity = a / cv2.contourArea(hull) if cv2.contourArea(hull) > 0 else 0
+                            (cx, cy), r = cv2.minEnclosingCircle(c)
+                            fill = a / (np.pi * r * r) if r > 0 else 0
+                            if (circ > 0.20 and solidity > 0.65 and fill > 0.35) or (solidity > 0.75 and fill > 0.40):
+                                has_tomato_fruit = True
+                                break
+                except Exception as e:
+                    print(f"Solanaceae fruit check bypassed: {e}")
 
             if has_tomato_fruit:
                 return "Tomato"
@@ -445,10 +448,12 @@ def validate_leaf_image(cv_img, raw_preds=None):
     hv_lines_count = 0
     if lines is not None:
         for line in lines:
-            x1, y1, x2, y2 = line[0]
-            angle = np.abs(np.arctan2(y2 - y1, x2 - x1) * 180.0 / np.pi)
-            if angle < 4.0 or angle > 176.0 or (86.0 < angle < 94.0):
-                hv_lines_count += 1
+            pts = np.array(line).flatten()
+            if len(pts) >= 4:
+                x1, y1, x2, y2 = pts[:4]
+                angle = np.abs(np.arctan2(y2 - y1, x2 - x1) * 180.0 / np.pi)
+                if angle < 4.0 or angle > 176.0 or (86.0 < angle < 94.0):
+                    hv_lines_count += 1
 
     # 4. Colorimetric & Botanical Vegetation Indices
     b, g, r = cv2.split(cv_img.astype(np.float32))
